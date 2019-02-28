@@ -86,4 +86,33 @@ public class MemberDAO {
 		}
 		return RightUser;
 	}
+	
+	//멤버 정보폼
+	public Member MemberInfoDAO(String id) {
+		System.out.println("[4]MemberInfoDAO");
+		PreparedStatement pstmt = null;
+		String sql = "select * from member where mem_id=?";
+		ResultSet rs = null;
+		Member member = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member = new Member();
+				member.setMem_id(rs.getString("mem_id"));
+				member.setMem_pass(rs.getString("mem_pass"));
+				member.setMem_name(rs.getString("mem_name"));
+				member.setMem_add(rs.getString("mem_add"));
+				member.setMem_email(rs.getString("mem_email"));
+				member.setMem_grade(rs.getString("mem_grade"));
+				member.setMem_tel(rs.getString("mem_tel"));
+				member.setMem_zip(rs.getString("mem_tel"));
+				member.setMem_add2(rs.getString("mem_add"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
 }

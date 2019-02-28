@@ -7,7 +7,21 @@
 <title>Insert title here</title>
 <link href="css/top_menu.css" rel="stylesheet" type="text/css">
 
-
+<%
+	String id = null;
+	
+	if(session.getAttribute("id")!=null){
+		id=(String)session.getAttribute("id");
+				
+	}
+	/* else{
+		out.println("<script>");
+		out.println("location.href='loginForm.jsp'");
+		out.println("</script>");
+	} */
+	
+	System.out.println("top_menu.jsp String id = " + id);
+%>
 </head>
 <body>
 	<header>
@@ -32,6 +46,7 @@
 				<li><a href="logout.mem"><img src="icon/login.png"></a></li>
 				<li><a href="qnaList.qna">Q&A</a></li>
 				<li><p><%=session.getAttribute("id") %>님 환영합니다</p></li>
+				<li><a href="memberinfo.mem?id=<%=id %>">회원정보 수정</a></li>
 			</ul>
 		</div>
 	</header>
