@@ -12,7 +12,7 @@
 		<h2>새 글 쓰기</h2>
 		<hr>
 		<article id="wrtieform">
-			<form action="noticeWritePro.bo">
+			<form action="noticeWritePro.bo" method="post">
 				<div id="title">
 					제목 : <input type="text" name="title" id="title" autofocus="autofocus"
 						size="20" />
@@ -29,7 +29,7 @@
 		</article>
 	</section>
 	<footer>
-		<jsp:include page="footer.jsp"></jsp:include>
+		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
 </body>
 </html>

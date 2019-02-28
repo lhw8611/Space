@@ -54,7 +54,7 @@ public class NoticeListAction implements Action{
 		request.setAttribute("articleList", articleList);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/noticeList.jsp");
+		forward.setPath("/board/noticeList.jsp");
 		return forward;
 	}
 }

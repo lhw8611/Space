@@ -66,7 +66,7 @@ div>.date {
 		<nav>
 			<div class="banner-image">
 				<div class="position_fixed">
-					<jsp:include page="top_menu.jsp" />
+					<jsp:include page="../top_menu.jsp" />
 				</div>
 			</div>
 		</nav>
@@ -89,7 +89,7 @@ div>.date {
 		</article>
 	</section>
 	<footer>
-		<jsp:include page="footer.jsp"></jsp:include>
+		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
 </body>
 

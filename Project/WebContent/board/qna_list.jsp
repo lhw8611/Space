@@ -16,7 +16,7 @@
 	int endPage = pageInfo.getEndPage();
 %>
 
-<jsp:include page="top_menu.jsp" />
+<jsp:include page="../top_menu.jsp" />
 <!DOCTYPE html>
 <html>
 <head>

@@ -33,9 +33,9 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		String command = requestURL.substring(contextPath.length());
 //		위 3줄은 경로 구하는 코드
 
-//		System.out.println("requestURL : " + requestURL);
-//		System.out.println("contextPath : " + contextPath);
-//		System.out.println("command : " + command);
+		System.out.println("requestURL : " + requestURL);
+		System.out.println("contextPath : " + contextPath);
+		System.out.println("command : " + command);
 //		System.out.println("====================================");
 
 		ActionForward forward = null;
@@ -43,7 +43,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		HttpSession session = request.getSession();
 
 		// 공지사항 목록
-		if (command.equals("/noticeList.bo")) {
+		if (command.equals("/board/noticeList.bo")) {
 //			System.out.println("noticeList 컨트롤러 진입");
 			action = new NoticeListAction();
 			try {
@@ -53,10 +53,12 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			}
 
 			// 공지 글 작성 폼
-		} else if (command.equals("/noticeWriteForm.bo")) {
+		} else if (command.equals("/board/noticeWriteForm.bo")) {
+			System.out.println("이거");
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
-			forward.setPath("/noticeWriteForm.jsp");
+			forward.setPath("noticeWriteForm.jsp");
+			forward.setRedirect(false);
 			/*
 			 * } else { response.setContentType("text/html;charset=UTF-8"); PrintWriter out
 			 * = response.getWriter(); out.println("<script>");
@@ -64,7 +66,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			 * out.println("</script>"); out.close(); }
 			 */
 			// 공지 글 작성 액션
-		} else if (command.equals("/noticeWritePro.bo")) {
+		} else if (command.equals("/board/noticeWritePro.bo")) {
 			action = new NoticeWriteAction();
 			try {
 				forward = action.execute(request, response);
@@ -72,7 +74,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 				e.printStackTrace();
 			}
 			// 공지 글 상세보기
-		} else if (command.equals("/noticeDetail.bo")) {
+		} else if (command.equals("/board/noticeDetail.bo")) {
 			System.out.println("noticeDetail 컨트롤러 진입");
 			action = new NoticeDetailAction();
 			try {
@@ -82,7 +84,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			}
 
 			// 상품등록 폼
-		} else if (command.equals("/productWriteForm.bo")) {
+		} else if (command.equals("/board/productWriteForm.bo")) {
 			System.out.println("상품등록 폼");
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
@@ -95,7 +97,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			 */
 
 			// 상품등록 액션
-		} else if (command.equals("/ProductWritePro.bo")) {
+		} else if (command.equals("/board/ProductWritePro.bo")) {
 			System.out.println("productWritePro 컨트롤러 진입");
 			action = new ProductWriteAction();
 			try {
