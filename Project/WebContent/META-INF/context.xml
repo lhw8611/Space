@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+   <Resource name = "jdbc/MySQLDB"
+   auth = "Container"
+   type = "javax.sql.DataSource"
+   username = "java3pi"
+   password = "java3"
+   dricerClassName = "com.mysql.jdbc.Driver"
+   factory = "org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+   url = "jdbc:mysql://118.131.179.138:3306/java3pi?serverTimezone=UTC"
+   maxActive = "500"
+   maxIdle = "100"/>
+</Context>

@@ -1,0 +1,29 @@
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body { /* footer always bottom of page option */
+	height: 100%;
+}
+
+#container { /* footer always bottom of page option */
+	min-height: 100%;
+}
+
+#main { /* footer always bottom of page option */
+	overflow: auto;
+	padding-bottom: 50px;
+}
+
+#footer { /* footer always bottom of page option */
+	background-color: #000;
+	position: relative;
+	height: 50px;
+	margin-top: -50px;
+	clear: both;
+	text-align: center;
+	line-height: 50px;
+	color: rgba(255, 255, 255, 0.8);
+}
