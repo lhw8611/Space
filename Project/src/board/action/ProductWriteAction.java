@@ -34,7 +34,8 @@ public class ProductWriteAction implements Action{
 		proBean.setPro_category(multi.getParameter("category"));
 		proBean.setPro_content(multi.getParameter("content"));
 		proBean.setPro_price(Integer.parseInt(multi.getParameter("price")));
-		proBean.setPro_image(multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
+//		proBean.setPro_image(multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
+		proBean.setPro_image(multi.getFilesystemName("image"));
 		
 		System.out.println("pro image:"+proBean.getPro_content());
 		System.out.println("pro image:"+proBean.getPro_image());

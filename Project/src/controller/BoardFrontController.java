@@ -14,6 +14,8 @@ import action.Action;
 import board.action.NoticeDetailAction;
 import board.action.NoticeListAction;
 import board.action.NoticeWriteAction;
+import board.action.ProductListAction;
+import board.action.ProductViewAction;
 import board.action.ProductWriteAction;
 import vo.ActionForward;
 
@@ -33,9 +35,9 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		String command = requestURL.substring(contextPath.length());
 //		위 3줄은 경로 구하는 코드
 
-		System.out.println("requestURL : " + requestURL);
-		System.out.println("contextPath : " + contextPath);
-		System.out.println("command : " + command);
+//		System.out.println("requestURL : " + requestURL);
+//		System.out.println("contextPath : " + contextPath);
+//		System.out.println("command : " + command);
 //		System.out.println("====================================");
 
 		ActionForward forward = null;
@@ -100,6 +102,24 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		} else if (command.equals("/board/ProductWritePro.bo")) {
 			System.out.println("productWritePro 컨트롤러 진입");
 			action = new ProductWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/board/productList.bo")) {
+			System.out.println("productList 컨트롤러 진입");
+			action = new ProductListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//상품 상세보기
+		else if (command.equals("/board/productView.bo")) {
+			System.out.println("productView 컨트롤러 진입");
+			action = new ProductViewAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -58,6 +58,30 @@ public class BoardDAO {
 			return listCount;
 		}
 		
+		public int selectListCount2() {
+			System.out.println("selectListCount dao 진입");
+			int listCount = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select count(*) from product";
+			//무언가 검색했을때
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					listCount = rs.getInt(1);
+				}
+			} catch (Exception ex) {
+				System.out.println("getListCount 에러 : " + ex);
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			System.out.println("listCount(글번호) : " + listCount);
+			return listCount;
+		}
+		
 
 
 	// 공지사항 글 등록
@@ -92,8 +116,6 @@ public class BoardDAO {
 	
 	//notice 목록
 	public ArrayList<NoticeBean> selectArticleList(int page, int limit) {
-		System.out.println("글 목록 dao 진입");
-		System.out.println("page : " + page + ", limit : " + limit);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from notice order by no_num desc limit ? , ?";
@@ -203,5 +225,69 @@ public class BoardDAO {
 			}
 			return insertCount;
 		}
+		//상품리스트
+		public ArrayList<ProductBean> selectProductList(int page, int limit) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from product order by pro_code desc limit ? , ?";
+			ArrayList<ProductBean> articleList = new ArrayList<ProductBean>();
+			ProductBean product = null;
+			int startrow = (page - 1) * 10;
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, startrow);
+				pstmt.setInt(2, limit);
+				
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					product = new ProductBean();
+					product.setPro_code(rs.getInt("pro_code"));
+					product.setPro_name(rs.getString("pro_name"));
+					product.setPro_price(rs.getInt("pro_price"));
+					product.setPro_category(rs.getString("pro_category"));
+					product.setPro_content(rs.getString("pro_content"));
+					product.setPro_image(rs.getString("pro_image"));
+					
+					articleList.add(product);
 
+				}
+
+			} catch (Exception ex) {
+				System.out.println("NoticeList 에러 : " + ex);
+				ex.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return articleList;
+		}
+		// 상품 상세보기
+		public ProductBean selectDog(int pro_code) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ProductBean productBean = null;
+
+			try {
+				pstmt = con.prepareStatement("select * from product where pro_code=?");
+				pstmt.setInt(1, pro_code);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					productBean = new ProductBean();
+					productBean.setPro_code(rs.getInt("pro_code"));
+					productBean.setPro_name(rs.getString("pro_name"));
+					productBean.setPro_price(rs.getInt("pro_price"));
+					productBean.setPro_category(rs.getString("pro_category"));
+					productBean.setPro_content(rs.getString("pro_content"));
+					productBean.setPro_image(rs.getString("pro_image"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return productBean;
+
+		}
 }

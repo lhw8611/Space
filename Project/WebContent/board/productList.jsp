@@ -4,6 +4,7 @@
 <%@page import="vo.PageInfo"%>
 <%@ page import="vo.ProductBean"%>
 <%@ page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	ArrayList<ProductBean> articleList = (ArrayList<ProductBean>) request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
@@ -12,7 +13,7 @@
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
-	System.out.println(articleList.size());
+	
 %>
 
 
@@ -25,35 +26,37 @@
 table {
 	width: 100%;
 }
+#productImage {
+	width: 150px;
+	height: 150px;
+	border: none;
+}
 </style>
-</head>
+</head>	
 <body>
 
 	<section id="listForm">
-		<table>
-			<tr class="tableTitle">
-				<td>No</td>
-				<td>제목</td>
-				<td>작성시간</td>
-				<td>조회수</td>
-			</tr>
-			<%
-				for (int i = 0; i < articleList.size(); i++) {
-			%>
-			<tr>
-				<td><%=articleList.get(i).getNo_num()%></td>
-				<td><a href="noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>"> <%=articleList.get(i).getNo_title()%></a></td>
-				<td><%=articleList.get(i).getNo_date()%></td>
-				<td><%=articleList.get(i).getNo_count()%></td>
-			</tr>
-			<%
-				}
-			%>
-
-		</table>
-		<a href="noticeWriteForm.bo">글쓰기</a>
-	</section>
-
+			<c:if test="${articleList!=null }">
+			<table>
+				<tr>
+				<c:forEach var="pro" items="${articleList}" varStatus="status">
+					<td>
+					<a href="productView.bo?pro_code=${pro.pro_code}">
+					<img src="../boardUpload/${pro.pro_image }" id="productImage"/>
+					</a> <br>
+					상품명 : ${pro.pro_name}<br> 
+					가격 : ${pro.pro_price }<br>
+					</td>
+					<c:if test="${((status.index+1) mod 4)==0 }">
+							
+				</tr>
+				<tr>
+				</c:if>
+				</c:forEach>
+				</tr>
+			</table>
+		</c:if>
+</section>
 
 <!-- 페이지 -->
 	<section id="page">
@@ -64,7 +67,7 @@ table {
 		<%
 			} else {
 		%>
-		<a href="noticeList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+		<a href="productList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
 		<%
 			}
 		%>
@@ -78,7 +81,7 @@ table {
 			} else {
 		%>
 
-		<a href="noticeList.bo?page=<%=a%>">[<%=a%>]
+		<a href="productList.bo?page=<%=a%>">[<%=a%>]
 		</a>&nbsp;
 		<%
 			}
@@ -93,7 +96,7 @@ table {
 		<%
 			} else {
 		%>
-		<a href="noticeList.bo?page=<%=nowPage + 1%>">[다음]</a>
+		<a href="productList.bo?page=<%=nowPage + 1%>">[다음]</a>
 		<%
 			}
 		%>
