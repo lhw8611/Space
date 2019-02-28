@@ -9,6 +9,9 @@ public class Member {
 	private String mem_grade;
 	private String mem_tel;
 	private String mem_date;
+	
+	private String mem_zip;
+	private String mem_add2;
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -56,6 +59,18 @@ public class Member {
 	}
 	public void setMem_date(String mem_date) {
 		this.mem_date = mem_date;
+	}
+	public String getMem_zip() {
+		return mem_zip;
+	}
+	public void setMem_zip(String mem_zip) {
+		this.mem_zip = mem_zip;
+	}
+	public String getMem_add2() {
+		return mem_add2;
+	}
+	public void setMem_add2(String mem_add2) {
+		this.mem_add2 = mem_add2;
 	}
 	
 	
