@@ -48,7 +48,7 @@ public class qnaListAction implements Action{
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/qna_list.jsp");
+		forward.setPath("/board/qna_list.jsp");
 		forward.setRedirect(false);
 		
 		System.out.println("[2]경로 확인 : " + forward.getPath());

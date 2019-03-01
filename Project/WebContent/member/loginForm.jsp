@@ -28,7 +28,7 @@
 	<tr>
 		<td colspan="2">
 			<a href="javascript:loginform.submit()">로그인</a>&nbsp;&nbsp;
-			<a href="gaip.join">회원가입</a>
+			<a href="joinForm.mem">회원가입</a>
 		</td>
 	</tr>
 </table>
