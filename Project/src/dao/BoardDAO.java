@@ -35,7 +35,7 @@ public class BoardDAO {
 	
 	// 글의 개수 구하기
 		public int selectListCount() {
-			System.out.println("selectListCount dao 진입");
+//			System.out.println("selectListCount dao 진입");
 			int listCount = 0;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -49,17 +49,17 @@ public class BoardDAO {
 					listCount = rs.getInt(1);
 				}
 			} catch (Exception ex) {
-				System.out.println("getListCount 에러 : " + ex);
+//				System.out.println("getListCount 에러 : " + ex);
 			} finally {
 				close(rs);
 				close(pstmt);
 			}
-			System.out.println("listCount(글번호) : " + listCount);
+//			System.out.println("listCount(글번호) : " + listCount);
 			return listCount;
 		}
 		
 		public int selectListCount2() {
-			System.out.println("selectListCount dao 진입");
+//			System.out.println("selectListCount dao 진입");
 			int listCount = 0;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -78,7 +78,7 @@ public class BoardDAO {
 				close(rs);
 				close(pstmt);
 			}
-			System.out.println("listCount(글번호) : " + listCount);
+//			System.out.println("listCount(글번호) : " + listCount);
 			return listCount;
 		}
 		
@@ -191,7 +191,7 @@ public class BoardDAO {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println(sql);
+//		System.out.println(sql);
 		return updateCount;
 
 	}

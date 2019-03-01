@@ -51,8 +51,8 @@ public class ProductWriteAction implements Action{
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("");
+			forward.setRedirect(false);
+			forward.setPath("/board/productList.bo");
 			
 		}
 		return forward;

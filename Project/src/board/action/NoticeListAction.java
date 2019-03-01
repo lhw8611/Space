@@ -34,14 +34,6 @@ public class NoticeListAction implements Action{
 		if (endPage > maxPage)
 			endPage = maxPage;
 
-		System.out.println("maxPage:"+maxPage);
-		System.out.println("startpage:"+startPage);
-		System.out.println("endPage:"+endPage);
-		System.out.println((int) ((double) page / limitPage + 0.9));
-		System.out.println();
-		System.out.println();
-		
-		
 		
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setEndPage(endPage);

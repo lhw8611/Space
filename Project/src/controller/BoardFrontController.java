@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,7 +55,6 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 
 			// 공지 글 작성 폼
 		} else if (command.equals("/board/noticeWriteForm.bo")) {
-			System.out.println("이거");
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
 			forward.setPath("noticeWriteForm.jsp");
@@ -77,7 +75,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			}
 			// 공지 글 상세보기
 		} else if (command.equals("/board/noticeDetail.bo")) {
-			System.out.println("noticeDetail 컨트롤러 진입");
+//			System.out.println("noticeDetail 컨트롤러 진입");
 			action = new NoticeDetailAction();
 			try {
 				forward = action.execute(request, response);
@@ -87,7 +85,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 
 			// 상품등록 폼
 		} else if (command.equals("/board/productWriteForm.bo")) {
-			System.out.println("상품등록 폼");
+//			System.out.println("상품등록 폼");
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
 			forward.setPath("productWriteForm.jsp");
@@ -100,7 +98,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 
 			// 상품등록 액션
 		} else if (command.equals("/board/ProductWritePro.bo")) {
-			System.out.println("productWritePro 컨트롤러 진입");
+//			System.out.println("productWritePro 컨트롤러 진입");
 			action = new ProductWriteAction();
 			try {
 				forward = action.execute(request, response);
@@ -108,7 +106,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/board/productList.bo")) {
-			System.out.println("productList 컨트롤러 진입");
+//			System.out.println("productList 컨트롤러 진입");
 			action = new ProductListAction();
 			try {
 				forward = action.execute(request, response);
@@ -118,7 +116,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		}
 		//상품 상세보기
 		else if (command.equals("/board/productView.bo")) {
-			System.out.println("productView 컨트롤러 진입");
+//			System.out.println("productView 컨트롤러 진입");
 			action = new ProductViewAction();
 			try {
 				forward = action.execute(request, response);
