@@ -23,81 +23,164 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#board {
+	width: 1000px;
+	margin: 120px auto;
+}
+
 table {
-	width: 100%;
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+	border-spacing: 0;
+}
+
+table td {
+	/* border-top: 1px solid black; */
+	border-bottom: 1px solid gray;
+	margin: 0;
+	height: 50px;
+}
+
+table tr:first-child td {
+	border-top: 2px solid gray;
+	border-bottom: 2px solid gray;
+	margin: 0;
+	height: 50px;
+}
+
+#title-left {
+	text-align: left;
+	padding-left: 50px;
+}
+
+#page {
+	margin: 10px auto;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.pagebox {
+	display: inline-block;
+	border : 1px solid gray;
+	text-align: center;
+	font-size : 1.2rem;
+	padding:10px 20px;
+	margin:4px;	
+}
+#button {
+	border: 1px solid black;
+	text-align: center;
 }
 </style>
 </head>
 <body>
+	<jsp:include page="../top_menu.jsp" />
+	<div id="container">
+		<div id="main">
+			<div id="board">
+				<section id="listForm">
+					<table>
+						<tr class="tableTitle" height="50px">
+							<td width="70px">No</td>
+							<td width="500px">제목</td>
+							<td width="50px">조회수</td>
+							<td width="120px">작성시간</td>
 
-	<section id="listForm">
-		<table>
-			<tr class="tableTitle">
-				<td>No</td>
-				<td>제목</td>
-				<td>작성시간</td>
-				<td>조회수</td>
-			</tr>
-			<%
-				for (int i = 0; i < articleList.size(); i++) {
-			%>
-			<tr>
-				<td><%=articleList.get(i).getNo_num()%></td>
-				<td><a href="noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>"> <%=articleList.get(i).getNo_title()%></a></td>
-				<td><%=articleList.get(i).getNo_date()%></td>
-				<td><%=articleList.get(i).getNo_count()%></td>
-			</tr>
-			<%
-				}
-			%>
+						</tr>
+						<%
+							for (int i = 0; i < articleList.size(); i++) {
+						%>
+						<tr>
+							<td><%=articleList.get(i).getNo_num()%></td>
+							<td id="title-left"><a
+								href="noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>">
+									<%=articleList.get(i).getNo_title()%></a></td>
 
-		</table>
-		<a href="noticeWriteForm.bo">글쓰기</a>
-	</section>
+							<td><%=articleList.get(i).getNo_count()%></td>
+							<td><%=articleList.get(i).getNo_date()%></td>
+						</tr>
+						<%
+							}
+						%>
 
-	<section id="page">
-		<%
-			if (nowPage <= 1) {
-		%>
-		[이전]&nbsp;
-		<%
-			} else {
-		%>
-		<a href="noticeList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
-		<%
-			}
-		%>
+					</table>
 
-		<%
-			for (int a = startPage; a <= endPage; a++) {
-				if (a == nowPage) {
-		%>
-		[<%=a%>]
-		<%
-			} else {
-		%>
+				</section>
 
-		<a href="noticeList.bo?page=<%=a%>">[<%=a%>]
-		</a>&nbsp;
-		<%
-			}
-		%>
-		<%
-			}
-		%>
-		<%
-			if (nowPage >= maxPage) {
-		%>
-		[다음]
-		<%
-			} else {
-		%>
-		<a href="noticeList.bo?page=<%=nowPage + 1%>">[다음]</a>
-		<%
-			}
-		%>
+				<section id="page">
+					<%
+						if (nowPage <= 1) {
+					%>
+					<div class="pagebox">
+					이전
+					</div>
+					<!-- &nbsp; -->
+					<%
+						} else {
+					%>
+					<a href="noticeList.bo?page=<%=nowPage - 1%>">
+					<div class="pagebox">
+					이전
+					</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
 
-	</section>
+					<%
+						for (int a = startPage; a <= endPage; a++) {
+							if (a == nowPage) {
+					%>
+					<div class="pagebox"  style="background-color: gray">
+					<%=a%>
+					</div>
+					<%
+						} else {
+					%>
+					<a href="noticeList.bo?page=<%=a%>">
+					<div class="pagebox">
+					<%=a%> 
+					</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+					<%
+						if (nowPage >= maxPage) {
+					%>
+					<div class="pagebox">다음</div>
+					<%
+						} else {
+					%>
+					
+					<a href="noticeList.bo?page=<%=nowPage + 1%>">
+					<div class="pagebox">다음</div></a>
+					
+					<%
+						}
+					%>
 
+
+				</section>
+				<div id="button">
+					<a href="noticeWriteForm.jsp">글쓰기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

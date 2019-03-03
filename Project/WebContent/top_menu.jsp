@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/top_menu.css" rel="stylesheet" type="text/css">
+<link href="/Project/css/top_menu.css" rel="stylesheet" type="text/css">
 
 <%
 	String id = null;
@@ -28,7 +28,7 @@
 		<div class="h-main">
 
 			<div class="logo">
-				<a href="main.jsp"><img src="images/logo.png"></a>
+				<a href="main.jsp"><img src="/Project/images/logo.png"></a>
 			</div>
 			<!-- 	<ul>
 						<li><a href="#">about us</a></li>
@@ -40,10 +40,10 @@
 					</ul> -->
 			<ul class="h-right">
 				<!-- 오른쪽정렬 -->
-				<li><a href="qnaList.qna"><img src="icon/bell.png"></a></li>
-				<li><a href="#"><img src="icon/cart.png"></a></li>
-				<li><a href="loginForm.mem"><img src="icon/logout.png"></a></li>
-				<li><a href="logout.mem"><img src="icon/login.png"></a></li>
+				<li><a href="qnaList.qna"><img src="/Project/icon/bell.png"></a></li>
+				<li><a href="#"><img src="/Project/icon/cart.png"></a></li>
+				<li><a href="loginForm.mem"><img src="/Project/icon/logout.png"></a></li>
+				<li><a href="logout.mem"><img src="/Project/icon/login.png"></a></li>
 				<li><a href="qnaList.qna">Q&A</a></li>
 				<li><p><%=session.getAttribute("id") %>님 환영합니다</p></li>
 				<li><a href="memberinfo.mem?id=<%=id %>">회원정보 수정</a></li>
