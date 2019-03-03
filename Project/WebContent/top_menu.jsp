@@ -44,7 +44,7 @@
 				<li><a href="#"><img src="/Project/icon/cart.png"></a></li>
 				<li><a href="loginForm.mem"><img src="/Project/icon/logout.png"></a></li>
 				<li><a href="logout.mem"><img src="/Project/icon/login.png"></a></li>
-				<li><a href="qnaList.qna">Q&A</a></li>
+				<li><a href="board/boardTest.jsp">Notice</a></li>
 				<li><p><%=session.getAttribute("id") %>님 환영합니다</p></li>
 				<li><a href="memberinfo.mem?id=<%=id %>">회원정보 수정</a></li>
 			</ul>
