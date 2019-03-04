@@ -14,6 +14,7 @@ import member.action.JoinFormAction;
 import member.action.LoginFormAction;
 import member.action.LogoutAction;
 import member.action.MemberInfoAction;
+import member.action.MemberInfoModifyAction;
 import vo.ActionForward;
 
 @WebServlet("*.mem")
@@ -49,6 +50,14 @@ public class MemberController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				System.out.println("[1]memberinfo.mem 에러");
+				e.printStackTrace();
+			}
+		}else if (command.equals("/modifyproaction.mem")) { // 회원정보 수정
+			action = new MemberInfoModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("[1]logout.mem 로그아웃 에러");
 				e.printStackTrace();
 			}
 		}

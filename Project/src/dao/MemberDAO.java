@@ -108,11 +108,40 @@ public class MemberDAO {
 				member.setMem_grade(rs.getString("mem_grade"));
 				member.setMem_tel(rs.getString("mem_tel"));
 				member.setMem_zip(rs.getString("mem_tel"));
-				member.setMem_add2(rs.getString("mem_add"));
+				member.setMem_add2(rs.getString("mem_add2"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return member;
+	}
+
+	public int modifyDAO(MemberBean member) {
+		System.out.println("[4]modifyDAO");
+		PreparedStatement pstmt = null;
+		String sql = "update member set mem_pass = ?, mem_name =?, mem_add = ?, "
+				+ "mem_email = ?, mem_tel = ?, mem_zip = ?, mem_add2 = ? where mem_id = ?";
+		int count=0;
+		System.out.println("[4]sql문 출력 : " + sql);
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getMem_pass());
+			pstmt.setString(2, member.getMem_name());
+			pstmt.setString(3, member.getMem_add());
+			pstmt.setString(4, member.getMem_email());
+			pstmt.setString(5, member.getMem_tel());
+			pstmt.setString(6, member.getMem_zip());
+			pstmt.setString(7, member.getMem_add2());
+			pstmt.setString(8, member.getMem_id());
+			count = pstmt.executeUpdate();
+			System.out.println("[4]값 넘어왔나 확인 : " + member.getMem_id());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return count;
 	}
 }

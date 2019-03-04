@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ page import="vo.Member"%>
+<%@ page import="vo.MemberBean"%>
 <jsp:include page="../top_menu.jsp" />
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@ table {
 }
 </style>
 <%
-   Member member = (Member) request.getAttribute("member");
+   MemberBean member = (MemberBean) request.getAttribute("member");
 %>
 <script>
    function modisubmit() {
@@ -30,7 +30,7 @@ table {
 <title>Insert title here</title>
 </head>
 <body>
-   <form name="modify" action="modifyproaction.join" method="post" onsubmit="return passcheck()">
+   <form name="modify" action="modifyproaction.mem" method="post" onsubmit="return passcheck()">
       <table border=1>
          <tr>
             <td colspan="2" class="td_title">
@@ -91,7 +91,6 @@ table {
          <tr>
             <td colspan="2"><a href="javascript:modify.submit()">수정하기</a>
                &nbsp;&nbsp; <a href="javascript:modify.reset()">초기화</a>
-               &nbsp;&nbsp; <a href="member/main.jsp">main으로</a></td>
          </tr>
       </table>
    </form>
