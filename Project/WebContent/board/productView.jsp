@@ -14,14 +14,8 @@
 			<section id="content_left">
 				<img src="../boardUpload/${probean.pro_image}" />
 			</section>
-<%-- 			<section id="content_right">
-				<b>품종 : </b> ${probean.pro_name }<br> <b>가격 : </b> ${probean.pro_price }<br> <b>신장
-					: </b> ${probean.pro_content }<br> <b>체중 : </b> ${probean.pro_category }<br>
-				<p id="desc">
-					<b>내용 : </b>${dog.content}<br>
-				</p>
-			</section> --%>
-			<form action="orderForm.od">주문하기
+
+			<form action="../orders/orderForm.od">주문하기
 				<table>
 					<tr>
 						<td>상품명 </td>
@@ -31,7 +25,7 @@
 						<td>상품 가격</td><td>${probean.pro_price }</td>
 					</tr>
 					<tr>
-						<td> 수량 </td><td><input type="text" id="qty" name="qty"></td>
+						<td> 수량 </td><td><input type="text" id="qty" name="qty" value="1"></td>
 					<tr>
 						<td>카테고리</td><td>${probean.pro_category }</td>
 					</tr>

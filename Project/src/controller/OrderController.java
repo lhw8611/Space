@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import board.action.NoticeListAction;
-import orders.action.orderPayAction;
+import orders.action.orderFormAction;
 import vo.ActionForward;
 
 /**
@@ -40,9 +39,9 @@ public class OrderController extends HttpServlet {
 		Action action = null;
 
 		// 주문 페이지
-		if (command.equals("/orders/orderForm.bo")) {
+		if (command.equals("/orders/orderForm.od")) {
 			System.out.println("orderForm컨트롤러 진입");
-			action = new orderPayAction();
+			action = new orderFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
