@@ -1,11 +1,12 @@
 package vo;
 
+import java.sql.Date;
+
 public class QnaBean {
-	private int qna_num; 
+	private int qna_num;
 	private String qna_question;
 	private String qna_answer;
-	private String mem_id;
-	
+	private Date qna_date;
 	
 	public int getQna_num() {
 		return qna_num;
@@ -25,10 +26,11 @@ public class QnaBean {
 	public void setQna_answer(String qna_answer) {
 		this.qna_answer = qna_answer;
 	}
-	public String getMem_id() {
-		return mem_id;
+	public Date getQna_date() {
+		return qna_date;
 	}
-	public void setMem_id(String mem_id) {
-		this.mem_id = mem_id;
+	public void setQna_date(Date qna_date) {
+		this.qna_date = qna_date;
 	}
+	
 }

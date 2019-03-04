@@ -5,10 +5,10 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 
 import dao.MemberDAO;
-import vo.Member;
+import vo.MemberBean;
 
 public class LoginFormSvc {
-	public boolean LoginCheck(Member member) {
+	public boolean LoginCheck(MemberBean member) {
 		System.out.println("[3]LoginFormSvc");
 		boolean RightUser = false;
 		Connection con = getConnection();

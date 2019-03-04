@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 
-import vo.Member;
+import vo.MemberBean;
 
 public class MemberDAO {
 		DataSource ds;
@@ -32,7 +32,7 @@ public class MemberDAO {
 		this.con = con;
 	}
 
-	public int JoinCheckDAO(Member member) {
+	public int JoinCheckDAO(MemberBean member) {
 		System.out.println("[4]JoinCheckDAO");
 		PreparedStatement pstmt = null;
 		int updateCount = 0;
@@ -59,7 +59,7 @@ public class MemberDAO {
 		return updateCount;
 	}
 
-	public boolean LoginCheckDAO(Member member) {
+	public boolean LoginCheckDAO(MemberBean member) {
 		System.out.println("[4]LoginCheckDAO");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -88,18 +88,18 @@ public class MemberDAO {
 	}
 	
 	//멤버 정보폼
-	public Member MemberInfoDAO(String id) {
+	public MemberBean MemberInfoDAO(String id) {
 		System.out.println("[4]MemberInfoDAO");
 		PreparedStatement pstmt = null;
 		String sql = "select * from member where mem_id=?";
 		ResultSet rs = null;
-		Member member = null;
+		MemberBean member = null;
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				member = new Member();
+				member = new MemberBean();
 				member.setMem_id(rs.getString("mem_id"));
 				member.setMem_pass(rs.getString("mem_pass"));
 				member.setMem_name(rs.getString("mem_name"));

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import action.Action;
 import board.action.NoticeListAction;
+import orders.action.orderPayAction;
 import vo.ActionForward;
 
 /**
@@ -30,7 +31,6 @@ public class OrderController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String command = requestURL.substring(contextPath.length());
 //		위 3줄은 경로 구하는 코드
-
 //		System.out.println("requestURL : " + requestURL);
 //		System.out.println("contextPath : " + contextPath);
 //		System.out.println("command : " + command);
@@ -39,10 +39,10 @@ public class OrderController extends HttpServlet {
 		ActionForward forward = null;
 		Action action = null;
 
-		// 공지사항 목록
-		if (command.equals("/orders/orderPay.bo")) {
-			System.out.println("orderPay컨트롤러 진입");
-			action = new NoticeListAction();
+		// 주문 페이지
+		if (command.equals("/orders/orderForm.bo")) {
+			System.out.println("orderForm컨트롤러 진입");
+			action = new orderPayAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

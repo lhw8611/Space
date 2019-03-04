@@ -5,10 +5,10 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 
 import dao.qnaDAO;
-import vo.qna;
+import vo.QnaBean;
 
 public class qnaWriteSvc {
-	public void UserCheck(qna voqna){
+	public void UserCheck(QnaBean voqna){
 		System.out.println("[3]UserCheck");
 		Connection con = getConnection();
 		qnaDAO qnadao = qnaDAO.getInstance();

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import member.svc.LoginFormSvc;
 import vo.ActionForward;
-import vo.Member;
+import vo.MemberBean;
 
 import java.sql.Connection;
 
@@ -24,7 +24,7 @@ public class LoginFormAction implements Action{
 		response.setContentType("text/html;charset=utf-8");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
-		Member member = new Member();
+		MemberBean member = new MemberBean();
 		member.setMem_id(request.getParameter("id"));
 		member.setMem_pass(request.getParameter("pass"));
 		LoginFormSvc loginformsvc = new LoginFormSvc();

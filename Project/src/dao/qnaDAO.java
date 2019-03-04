@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import vo.qna;
+import vo.QnaBean;
 
 public class qnaDAO {
 	DataSource ds;
@@ -50,12 +50,12 @@ public class qnaDAO {
 	}
 
 	// 글 목록 보기
-	public ArrayList<qna> selectArticleList(int page, int limit) {
+	public ArrayList<QnaBean> selectArticleList(int page, int limit) {
 		System.out.println("[4]selectArticleList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<qna> arryqna = new ArrayList<qna>();
-		qna voqna = null;
+		ArrayList<QnaBean> arryqna = new ArrayList<QnaBean>();
+		QnaBean voqna = null;
 		int startrow = (page - 1) * 10; // 읽기 시작할 row 번호
 		try {
 			pstmt = con.prepareStatement("select * from qna order by qna_num desc limit ?,?");
@@ -64,7 +64,7 @@ public class qnaDAO {
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				voqna = new qna();
+				voqna = new QnaBean();
 				voqna.setQna_num(rs.getInt("qna_num"));
 				voqna.setQna_question(rs.getString("qna_question"));
 				voqna.setQna_answer(rs.getString("qna_answer"));
@@ -81,7 +81,7 @@ public class qnaDAO {
 	}
 	
 	//qna 글쓰기 
-	public int UserCheckDAO(qna voqna) {
+	public int UserCheckDAO(QnaBean voqna) {
 		System.out.println("[4]UserCheckDAO");
 		PreparedStatement pstmt = null;
 		int insertCount = 0;

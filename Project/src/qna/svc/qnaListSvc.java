@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 import dao.qnaDAO;
-import vo.qna;
+import vo.QnaBean;
 
 public class qnaListSvc {
 	public int getListCount() throws Exception{
@@ -21,9 +21,9 @@ public class qnaListSvc {
 		return listCount;
 	}
 	
-	public ArrayList<qna> getArticleList(int page, int limit) throws Exception{
+	public ArrayList<QnaBean> getArticleList(int page, int limit) throws Exception{
 		System.out.println("[3]boardlist 서비스진입");
-		ArrayList<qna> articleList = null;
+		ArrayList<QnaBean> articleList = null;
 		Connection con = getConnection();
 		qnaDAO qnadao= qnaDAO.getInstance();
 		qnadao.setConnection(con);

@@ -1,6 +1,6 @@
 package vo;
 
-public class Member { 
+public class MemberBean { 
 	private String mem_id;
 	private String mem_pass;
 	private String mem_name;

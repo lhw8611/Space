@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
+	<form action="orderForm.od">
 	<table>
 		<tr>
 			<td>상품명</td>

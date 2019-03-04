@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import member.svc.JoinFormSvc;
 import vo.ActionForward;
-import vo.Member;
+import vo.MemberBean;
 
 public class JoinFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("[2]JoinFormAction");
-		Member member = new Member();
+		MemberBean member = new MemberBean();
 		member.setMem_id(request.getParameter("id"));
 		member.setMem_pass(request.getParameter("pass"));
 		member.setMem_name(request.getParameter("name"));

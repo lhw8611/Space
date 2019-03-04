@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="vo.Member"%>
+<%@ page import="vo.MemberBean"%>
 <jsp:include page="../top_menu.jsp" />
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@ table {
 }
 </style>
 <%
-	Member member = (Member) request.getAttribute("member");
+	MemberBean member = (MemberBean) request.getAttribute("member");
 %>
 <script>
 	function modisubmit() {

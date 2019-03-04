@@ -8,7 +8,7 @@ import action.Action;
 import qna.svc.qnaListSvc;
 import vo.ActionForward;
 import vo.PageInfo;
-import vo.qna;
+import vo.QnaBean;
 
 public class qnaListAction implements Action{
 
@@ -16,7 +16,7 @@ public class qnaListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("[2]qnaListAction");
-		ArrayList<qna> articleList = new ArrayList<qna>(); //각 페이지당 출력될 전체 글 목록을 저장할 arrylist
+		ArrayList<QnaBean> articleList = new ArrayList<QnaBean>(); //각 페이지당 출력될 전체 글 목록을 저장할 arrylist
 		int page=1; //목록 보기 요청에서 출력될 페이지의 기본값으로 1페이지를 설정하는 부분
 		int limit=10; //한 페이지당 출력될 글의 갯수 10개로 설정
 		

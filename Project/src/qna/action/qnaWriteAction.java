@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import qna.svc.qnaWriteSvc;
 import vo.ActionForward;
-import vo.qna;
+import vo.QnaBean;
 
 public class qnaWriteAction implements Action {
 
@@ -18,7 +18,7 @@ public class qnaWriteAction implements Action {
 		System.out.println("[2]qnaWriteAction");
 		HttpSession session = request.getSession();
 		ActionForward forward = null;
-		qna voqna;
+		QnaBean voqna;
 		System.out.println(session.getAttribute("id"));
 		if (session.getAttribute("id") == null || (!(session.getAttribute("id").equals("admin"))) ) {
 			System.out.println("if문 진입체크");
@@ -31,7 +31,7 @@ public class qnaWriteAction implements Action {
 			
 		} else {
 			System.out.println("else문 진입체크");
-			voqna = new qna();
+			voqna = new QnaBean();
 			voqna.setQna_question(request.getParameter("question"));
 			voqna.setQna_answer(request.getParameter("answer"));
 			qnaWriteSvc qnawritesvc = new qnaWriteSvc();

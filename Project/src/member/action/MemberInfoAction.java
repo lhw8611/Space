@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import member.svc.MemberInfoSvc;
 import vo.ActionForward;
-import vo.Member;
+import vo.MemberBean;
 
 public class MemberInfoAction implements Action{
 
@@ -17,7 +17,7 @@ public class MemberInfoAction implements Action{
 		ActionForward forward = new ActionForward();
 		String id = request.getParameter("id");
 		MemberInfoSvc memberinfosvc = new MemberInfoSvc();
-		Member member = memberinfosvc.MemberInfo(id);
+		MemberBean member = memberinfosvc.MemberInfo(id);
 		request.setAttribute("member", member);
 		
 		System.out.println("[2] : " + request.getAttribute(member.getMem_id()));
