@@ -262,7 +262,7 @@ public class BoardDAO {
 			return articleList;
 		}
 		// 상품 상세보기
-		public ProductBean selectDog(int pro_code) {
+		public ProductBean productInfo(int pro_code) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			ProductBean productBean = null;

@@ -12,7 +12,7 @@ import vo.ActionForward;
 import vo.MemberBean;
 import vo.ProductBean;
 
-public class orderFormAction implements Action {
+public class OrderFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("orderPay 액션 진입");
@@ -44,6 +44,7 @@ public class orderFormAction implements Action {
 			ProductBean probean = odFormSvc.productsInfo(pro_code);
 			request.setAttribute("probean", probean);
 			
+//			int usePoint = probean.getPro_price()
 			
 			forward.setPath("../orders/orderForm.jsp");
 		}

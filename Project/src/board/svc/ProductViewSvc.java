@@ -24,7 +24,7 @@ public class ProductViewSvc {
 			rollback(con);
 		}
 		
-		ProductBean productBean = boardDAO.selectDog(pro_code);
+		ProductBean productBean = boardDAO.productInfo(pro_code);
 		close(con);
 		return productBean;
 	}

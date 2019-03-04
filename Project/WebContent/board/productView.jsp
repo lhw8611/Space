@@ -32,6 +32,7 @@
 					
 				</table>
 				<input type="submit" value="주문하기">
+				<a href="cartList.od">장바구니</a>
 			</form>
 			
 			<div style="clear: both"></div>

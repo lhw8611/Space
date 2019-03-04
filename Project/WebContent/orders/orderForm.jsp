@@ -59,7 +59,7 @@ table {
 		<table>
 			<tr>
 				<td>총상품가격</td>
-				<td></td>
+				<td>${probean.pro_price*qty }</td>
 			</tr>
 			<tr>
 				<td>배송비</td>

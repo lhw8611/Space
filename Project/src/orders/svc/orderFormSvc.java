@@ -4,6 +4,7 @@ import static db.jdbcUtil.*;
 
 import java.sql.Connection;
 
+import dao.BoardDAO;
 import dao.OrderDAO;
 import vo.MemberBean;
 import vo.OrderBean;
@@ -33,10 +34,10 @@ public class orderFormSvc {
 	public ProductBean productsInfo(int pro_code) {
 		System.out.println("구매 상품 정보 서비스 진입");
 		Connection con = getConnection();
-		OrderDAO orderDAO = OrderDAO.getInstance();
-		orderDAO.setConnection(con);
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
 		
-		ProductBean probean = orderDAO.productsInfo(pro_code);
+		ProductBean probean = boardDAO.productInfo(pro_code);
 		
 		if(probean!=null) {
 			commit(con);

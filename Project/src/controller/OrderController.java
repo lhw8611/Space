@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import orders.action.orderFormAction;
+import orders.action.CartListAction;
+import orders.action.OrderFormAction;
 import vo.ActionForward;
 
 /**
@@ -41,7 +42,24 @@ public class OrderController extends HttpServlet {
 		// 주문 페이지
 		if (command.equals("/orders/orderForm.od")) {
 			System.out.println("orderForm컨트롤러 진입");
-			action = new orderFormAction();
+			action = new OrderFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/orders/cartAdd.od")) {
+			System.out.println("cartAdd 컨트롤러 진입");
+			action = new CartListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/orders/cartList.od")) {
+			System.out.println("cartList 컨트롤러 진입");
+			action = new CartListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -49,15 +67,7 @@ public class OrderController extends HttpServlet {
 			}
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		//포워드
+		// 포워드
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
@@ -67,6 +77,7 @@ public class OrderController extends HttpServlet {
 			}
 		}
 	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doProcess(request, response);
