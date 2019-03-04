@@ -19,14 +19,16 @@ public class JoinFormAction implements Action {
 		member.setMem_id(request.getParameter("id"));
 		member.setMem_pass(request.getParameter("pass"));
 		member.setMem_name(request.getParameter("name"));
-		member.setMem_add(request.getParameter("add"));
+		member.setMem_add(request.getParameter("mem_add"));
 		member.setMem_email(request.getParameter("email"));
 		member.setMem_grade(request.getParameter("grade"));
 		member.setMem_tel(request.getParameter("tel"));
-		
+		member.setMem_zip(request.getParameter("mem_zip"));
+		member.setMem_add2(request.getParameter("mem_add2"));
 		System.out.println("[2]member.getMem_id 값 : " + member.getMem_id());
-		System.out.println("[2]member.getpass 값 : " + member.getMem_pass());
-		System.out.println("[2]member.getMem_name 값 : " + member.getMem_name());
+		System.out.println("[2]주소 : " + member.getMem_add());
+		System.out.println("[2]주소2 : " + member.getMem_add2());
+		System.out.println("[2]우편번호 : " + member.getMem_zip());
 		ActionForward forward = null;
 		JoinFormSvc joinformsvc = new JoinFormSvc();
 		int updateCount = joinformsvc.JoinCheck(member);

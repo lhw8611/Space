@@ -5,24 +5,24 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 
 import dao.MemberDAO;
-import vo.MemberBean;
-public class JoinFormSvc {
-	public int JoinCheck(MemberBean member) {
-		System.out.println("[3]JoinFormSvc.JoinCheck");
+public class MemberDeleteSvc {
+
+	public int UserDelete(String id) {
+		System.out.println("[3]MemberDeleteSvc");
 		Connection con = getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		int updateCount;
-		updateCount = memberDAO.JoinCheckDAO(member);
+		int deleteCount = memberDAO.UserDeleteDAO(id);
 		
-		if(updateCount > 0) {
+		if(deleteCount > 0) {
 			commit(con);
 		}
 		else {
 			rollback(con);
 		}
-		close(con);
 		
-		return updateCount;
+		close(con);
+		return deleteCount;
 	}
+
 }

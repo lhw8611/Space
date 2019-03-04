@@ -65,20 +65,17 @@ table {
          </tr>
 
          <tr>
-            <td colspan="2"><label for="add">주소</label></td>
+            <td colspan="2"><span>주소</span></td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" id="mem_zip"
-               placeholder="우편번호" size="7"> <input type="button"
-               onclick="sample4_execDaumPostcode()" value="우편번호 찾기"></td>
+            <td colspan="2"><input type="text" id="mem_zip" placeholder="우편번호" size="7">
+            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"></td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" id="mem_add"
-               placeholder="도로명주소"></td>
+            <td colspan="2"><input type="text" id="mem_add" placeholder="도로명주소"></td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" id="mem_add2"
-               placeholder="상세주소"></td>
+            <td colspan="2"><input type="text" id="mem_add2" placeholder="상세주소"></td>
          </tr>
          <tr>
             <td><label for="email">이메일 </label></td>
@@ -139,8 +136,8 @@ table {
 </script>
 <script>
 function passcheck(){
-   var pass = document.getElementById("pass");
-   var pass2 = document.getElementById("pass2");
+   var pass = document.getElementById("pass").value;
+   var pass2 = document.getElementById("pass2").value;
    
    if(pass != pass2){
       alert('비밀번호가 틀렸습니다. 다시 입력해주세요');

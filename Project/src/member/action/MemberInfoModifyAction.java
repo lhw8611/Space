@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import controller.MemberInfoModifySvc;
+import member.svc.MemberInfoModifySvc;
 import vo.ActionForward;
 import vo.MemberBean;
 

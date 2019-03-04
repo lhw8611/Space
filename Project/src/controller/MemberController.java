@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import member.action.AdminMemberList;
 import member.action.JoinFormAction;
 import member.action.LoginFormAction;
 import member.action.LogoutAction;
+import member.action.MemberDeleteAction;
 import member.action.MemberInfoAction;
 import member.action.MemberInfoModifyAction;
 import vo.ActionForward;
@@ -85,7 +87,20 @@ public class MemberController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				System.out.println("[1]logout.mem 로그아웃 에러");
+				e.printStackTrace();
+			}
+		}else if (command.equals("/admingetlist.mem")) { // 관리자 회원목록 보기
+			action = new AdminMemberList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/memberdelete.mem")) { // 회원탈퇴
+			action = new MemberDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

@@ -1,4 +1,4 @@
-package controller;
+package member.svc;
 
 import static db.jdbcUtil.*;
 
