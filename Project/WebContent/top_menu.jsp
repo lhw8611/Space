@@ -47,16 +47,15 @@
 				<li><a href="board/boardTest.jsp">Notice</a></li>
 				<li><p><%=session.getAttribute("id") %>님 환영합니다</p></li>
 				<li><a href="memberinfo.mem?id=<%=id %>">회원정보 수정</a></li>
-				<li><a href="memberdelete.mem?id=<%=id %>">회원탈퇴</a>
-				<li><input type="button" value="회원탈퇴" onclick="userdelete()"></li>
+				<a href="javascript:userdelete('<%=id %>');">회원탈퇴</a>
 			</ul>
 		</div>
 	</header>
 	<script>
-	function userdelete(){
+	function userdelete(id){
 		var userdel = confirm("회원탈퇴를 진행합니까?");
 		 if(userdel == true){
-			 location.href="top_menu.jsp";
+			 location.href="memberdelete.mem?id="+id;
 		 }
 	}
 	</script>

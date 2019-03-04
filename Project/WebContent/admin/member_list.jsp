@@ -36,11 +36,17 @@
 		<td><a href="memberinfo.mem?id=<%=list.get(i).getMem_id() %>">수정</a>
 		<%System.out.println(i + "  " + list.get(i).getMem_id()); %>
 		&nbsp;&nbsp;&nbsp;
-		<a href="merber_delete.member?id=<%=list.get(i).getMem_id() %>">삭제</a></td>
+		<a href="javascript:userdelete('<%=list.get(i).getMem_id() %>');">삭제</a></td>
 	</tr>
 		<%}%>
-		
-<a href="../main.jsp">돌아가기</a>
 </table>
+	<script>
+	function userdelete(id){
+		var userdel = confirm("회원탈퇴를 진행합니까?");
+		 if(userdel == true){
+			 location.href="memberdelete.mem?id="+id;
+		 }
+	}
+	</script>
 </body>
 </html>

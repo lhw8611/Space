@@ -68,14 +68,14 @@ table {
             <td colspan="2"><span>주소</span></td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" id="mem_zip" placeholder="우편번호" size="7">
+            <td colspan="2"><input type="text" name="mem_zip" id="mem_zip" placeholder="우편번호" size="7">
             <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"></td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" id="mem_add" placeholder="도로명주소"></td>
+            <td colspan="2"><input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"></td>
          </tr>
          <tr>
-            <td colspan="2"><input type="text" id="mem_add2" placeholder="상세주소"></td>
+            <td colspan="2"><input type="text" name="mem_add2" id="mem_add2" placeholder="상세주소"></td>
          </tr>
          <tr>
             <td><label for="email">이메일 </label></td>

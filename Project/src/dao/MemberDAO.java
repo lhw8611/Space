@@ -38,7 +38,7 @@ public class MemberDAO {
 		int updateCount = 0;
 		try {
 
-			pstmt = con.prepareStatement("insert into member values(?, ?, ?, ?, ?, ?, ?, now()), ?, ?");
+			pstmt = con.prepareStatement("insert into member values(?, ?, ?, ?, ?, ?, ?, now(),?,?)");
 			System.out.println("[4]member.id 값 : " + member.getMem_id());
 			System.out.println("[4]member.getMem_name 값 : " + member.getMem_name());
 			pstmt.setString(1, member.getMem_id());
@@ -50,15 +50,6 @@ public class MemberDAO {
 			pstmt.setString(7, member.getMem_tel());
 			pstmt.setString(8, member.getMem_zip());
 			pstmt.setString(9, member.getMem_add2());
-			System.out.println("노가다 1 : " + member.getMem_id());
-			System.out.println("비번 : " + member.getMem_pass());
-			System.out.println("name : " + member.getMem_name());
-			System.out.println("add : " + member.getMem_add()); //null
-			System.out.println("email : " +member.getMem_email());
-			System.out.println("grade : " + member.getMem_grade());
-			System.out.println("tel : " + member.getMem_tel());
-			System.out.println("zip : " + member.getMem_zip()); //null
-			System.out.println("add2 : " + member.getMem_add2()); //null
 			updateCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("[4]JoinCheckDAO 에러");
@@ -120,6 +111,7 @@ public class MemberDAO {
 				member.setMem_tel(rs.getString("mem_tel"));
 				member.setMem_zip(rs.getString("mem_tel"));
 				member.setMem_add2(rs.getString("mem_add2"));
+				member.setMem_date(rs.getString("mem_date"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
