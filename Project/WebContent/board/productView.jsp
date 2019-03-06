@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
+ <%
+	String id = null;
+	
+	if(session.getAttribute("id")!=null){
+		id=(String)session.getAttribute("id");
+				
+	}
+ %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +25,7 @@
 				<img src="../boardUpload/${probean.pro_image}" />
 			</section>
 
-			<form action="../orders/orderForm.od">주문하기
+			<form action="../orderForm.od">주문하기
 				<table>
 					<tr>
 						<td>상품명 </td>
@@ -32,12 +42,13 @@
 					
 				</table>
 				<input type="submit" value="주문하기">
-				<a href="cartList.od">장바구니</a>
 			</form>
 			
 			<div style="clear: both"></div>
 			<nav id="commandList">
-				<a href="dogList.dog">쇼핑 계속하기</a> <a href="dogCartAdd.dog?id=${dog.id }">장바구니에
+				<a href="dogList.dog">쇼핑 계속하기</a> <a href="../cartList.od?<%-- id=${session.id}& --%>
+				id=<%=id %>&
+				pro_code=${probean.pro_code}">장바구니에
 					담기</a>
 					<a href="orderPay.od?pro_code=${probean.pro_code}">주문하기</a>
 			</nav>

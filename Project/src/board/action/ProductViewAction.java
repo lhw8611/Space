@@ -2,6 +2,7 @@ package board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import board.svc.ProductViewSvc;
@@ -12,7 +13,7 @@ public class ProductViewAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ProductViewSvc proViewSvc = new ProductViewSvc();
 		int pro_code = Integer.parseInt(request.getParameter("pro_code"));
-		ProductBean probean = proViewSvc.getDogView(pro_code);
+		ProductBean probean = proViewSvc.getProView(pro_code);
 		request.setAttribute("probean", probean);
 		ActionForward forward = new ActionForward();
 

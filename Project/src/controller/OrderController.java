@@ -40,7 +40,7 @@ public class OrderController extends HttpServlet {
 		Action action = null;
 
 		// 주문 페이지
-		if (command.equals("/orders/orderForm.od")) {
+		if (command.equals("/orderForm.od")) {
 			System.out.println("orderForm컨트롤러 진입");
 			action = new OrderFormAction();
 			try {
@@ -49,7 +49,7 @@ public class OrderController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else if (command.equals("/orders/cartAdd.od")) {
+		} else if (command.equals("/cartAdd.od")) {
 			System.out.println("cartAdd 컨트롤러 진입");
 			action = new CartListAction();
 			try {
@@ -57,7 +57,7 @@ public class OrderController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/orders/cartList.od")) {
+		} else if (command.equals("/cartList.od")) {
 			System.out.println("cartList 컨트롤러 진입");
 			action = new CartListAction();
 			try {

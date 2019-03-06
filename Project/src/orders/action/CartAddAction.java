@@ -25,10 +25,8 @@ public class CartAddAction implements Action{
 			ProductBean probean = cartAddSvc.getCartList(pro_code);
 			cartAddSvc.addCart(request, probean);
 			
-			
-			
-			
-			
+			forward = new ActionForward();
+			forward.setPath("../orders/cartList.jsp");
 			
 		//로그인 상태
 		}else {

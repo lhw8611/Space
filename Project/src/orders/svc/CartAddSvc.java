@@ -12,7 +12,7 @@ import vo.CartBean;
 import vo.ProductBean;
 
 public class CartAddSvc {
-	//상품 정보 받아옴
+	//상품 정보 받아오는 메소드
 	public ProductBean getCartList(int pro_code) {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
@@ -22,32 +22,32 @@ public class CartAddSvc {
 		return probean;
 		
 	}
+	//카트에 추가하는 메소드
 	public void addCart(HttpServletRequest request, ProductBean probean) {
 		HttpSession session = request.getSession();
 		ArrayList<CartBean> cartList = (ArrayList<CartBean>)session.getAttribute("cartList");
 		
+		//세션에 장바구니가 없을 경우
 		if(cartList == null) {
 			cartList = new ArrayList<CartBean>();
 			session.setAttribute("cartList", cartList);
-			
 		}
 		
 		boolean isNewCart = true;
 		
-		//지금 장바구니에 담는 항목이 새로 추가되는 항목인지를 저장할 변수
+		//이미 장바구니에 상품이 있는 상태
 		for(int i = 0; i<cartList.size(); i++) {
-			if(probean.getPro_name().equals(cartList.get(i).getKind())) {
+			if(probean.getPro_code()==cartList.get(i).getPro_code()) { 
 				isNewCart = false;
-				cartList.get(i).setQty(cartList.get(i).getQty()+1);
+				cartList.get(i).setCart_qty(cartList.get(i).getCart_qty()+1);
 				break;
 			}
 		}
+		//장바구니에 상품이 없는 상태
 		if(isNewCart) {
 			CartBean cartbean= new CartBean();
-			cartbean.setImage(cartDog.getImage());
-			cartbean.setKind(cartDog.getKind());
-			cartbean.setPrice(cartDog.getPrice());
-			cartbean.setQty(1);
+			cartbean.setPro_code(probean.getPro_code());
+			cartbean.setCart_qty(1);
 			cartList.add(cartbean);
 		}
 	}

@@ -34,17 +34,17 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		String command = requestURL.substring(contextPath.length());
 //		위 3줄은 경로 구하는 코드
 
-//		System.out.println("requestURL : " + requestURL);
-//		System.out.println("contextPath : " + contextPath);
-//		System.out.println("command : " + command);
-//		System.out.println("====================================");
+		System.out.println("requestURL : " + requestURL);
+		System.out.println("contextPath : " + contextPath);
+		System.out.println("command : " + command);
+		System.out.println("====================================");
 
 		ActionForward forward = null;
 		Action action = null;
 		HttpSession session = request.getSession();
 
 		// 공지사항 목록
-		if (command.equals("/board/noticeList.bo")) {
+		if (command.equals("/noticeList.bo")) {
 //			System.out.println("noticeList 컨트롤러 진입");
 			action = new NoticeListAction();
 			try {
@@ -54,7 +54,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			}
 
 			// 공지 글 작성 폼
-		} else if (command.equals("/board/noticeWriteForm.bo")) {
+		} else if (command.equals("/noticeWriteForm.bo")) {
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
 			forward.setPath("noticeWriteForm.jsp");
@@ -66,7 +66,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			 * out.println("</script>"); out.close(); }
 			 */
 			// 공지 글 작성 액션
-		} else if (command.equals("/board/noticeWritePro.bo")) {
+		} else if (command.equals("/noticeWritePro.bo")) {
 			action = new NoticeWriteAction();
 			try {
 				forward = action.execute(request, response);
@@ -74,7 +74,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 				e.printStackTrace();
 			}
 			// 공지 글 상세보기
-		} else if (command.equals("/board/noticeDetail.bo")) {
+		} else if (command.equals("/noticeDetail.bo")) {
 //			System.out.println("noticeDetail 컨트롤러 진입");
 			action = new NoticeDetailAction();
 			try {
@@ -84,7 +84,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			}
 
 			// 상품등록 폼
-		} else if (command.equals("/board/productWriteForm.bo")) {
+		} else if (command.equals("/productWriteForm.bo")) {
 //			System.out.println("상품등록 폼");
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
@@ -97,7 +97,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			 */
 
 			// 상품등록 액션
-		} else if (command.equals("/board/ProductWritePro.bo")) {
+		} else if (command.equals("/ProductWritePro.bo")) {
 //			System.out.println("productWritePro 컨트롤러 진입");
 			action = new ProductWriteAction();
 			try {
@@ -105,7 +105,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/board/productList.bo")) {
+		} else if (command.equals("/productList.bo")) {
 //			System.out.println("productList 컨트롤러 진입");
 			action = new ProductListAction();
 			try {
@@ -115,8 +115,8 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			}
 		}
 		//상품 상세보기
-		else if (command.equals("/board/productView.bo")) {
-//			System.out.println("productView 컨트롤러 진입");
+		else if (command.equals("/productView.bo")) {
+			System.out.println("productView 컨트롤러 진입");
 			action = new ProductViewAction();
 			try {
 				forward = action.execute(request, response);

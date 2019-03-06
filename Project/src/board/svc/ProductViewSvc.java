@@ -9,7 +9,7 @@ import vo.ProductBean;
 
 
 public class ProductViewSvc {
-	public ProductBean getDogView(int pro_code) {
+	public ProductBean getProView(int pro_code) {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);

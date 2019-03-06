@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="noticeList.bo">공지 리스트</a>
-	<a href="noticeWriteForm.bo">공지 글 작성</a>
-	<a href="productList.bo">상품 리스트</a>
-	<a href="productWriteForm.bo">상품 글 작성</a>
+	<a href="../noticeList.bo">공지 리스트</a>
+	<a href="../noticeWriteForm.bo">공지 글 작성</a>
+	<a href="../productList.bo">상품 리스트</a>
+	<a href="../productWriteForm.bo">상품 글 작성</a>
 	<a href="#">주문페이지</a>
 	<a href="../qnaList.qna">qna</a>
 	<a href="../admingetlist.mem">회원목록보기</a>
