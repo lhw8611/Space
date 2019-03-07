@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="vo.MemberBean"%>
+<%@ page import="vo.ProductBean" %>
+<% MemberBean membean = (MemberBean)request.getAttribute("membean"); 
+	ProductBean probean = (ProductBean)request.getAttribute("probean");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,34 +19,37 @@ table {
 <body>
 
 		
-		<h1>받는 사람 정보</h1>
-		<table>
-			<tr>
-				<td>구매자 이름</td>
-				<td><input type="text" id="purchaser" name="purchaser" value="${membean.mem_name }"></td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" id="name" name="name" ></td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td><input type="text" id="tel" name="tel"></td>
-			</tr>
-			<tr>
-				<td>배송 요청사항</td>
-				<td><input type="text" id="remarks" name="remarks"></td>
-			</tr>
-			
-		</table>
+		<h1>구매자 정보</h1>
+			<label for="buyer_name">이름</label>			
+			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>"/>
+			<br>
+			<label for="buyer_email">이메일</label>				
+			<input type="text" id="buyer_email" name="buyer_email" value=""/>
+			<br>
+			<label for="buyer_tel">전화번호</label>
+			<input type="text" id="buyer_tel" name="buyer_tel"/>
+			<br>
+		<h1>받는사람정보</h1><button>배송지변경</button>		
+			<label for="gain_name">이름</label>
+			<input type="text" id="gain_name" name="gain_name"/>
+			<br>
+			<label for="gain_zip">배송주소</label>
+			<input type="text" id="gain_zip" name="gain_zip"/>
+			<input type="text" id="gain_add" name="gain_add"/>
+			<br>
+			<input type="text" id="gain_add2" name="gain_add2"/>
+			<br>
+			<label for="gain_zip">배송 요청사항</label>
+			<input type="text" id="gain_add2" name="gain_add2"/>
 		
 		<h1>결제 상품</h1>
 		<table>
 			<tr>
-				<td>상품명</td>
-				<td>가격</td>
-				<td>수량</td>
-				<td>적립</td>
+				<td>총 상품가격</td>
+				<td>포인트</td>
+				<td>배송비</td>
+				<td>총 결제금액</td>
+				결제방법
 			</tr>
 			<tr>
 				<td>${probean.pro_name }</td>
