@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
-<link href="css/main.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css">
 <style>
 </style>
 
@@ -32,10 +32,10 @@
 				<h1 class="about_con about_h1">WHAT WE DO</h1>
 				<P class="about_con about_p">홈페이지 내에서 작동하는 모든 기능들을 만들고 이해하는 것에 관심을 가지고
 					투자해 왔습니다. 빠른 이해력과 경험을 바탕으로 모두가 불편함 없이 사이트를 이용할 수 있는 것이 목표입니다.</p>
-				<img class="about_icon java" src="/Project/images/java.jpg"> <img
-					class="about_icon jsp" src="/Project/images/jsp.png"> <img
-					class="about_icon css" src="/Project/images/css.png"> <img
-					class="about_icon mysql" src="/Project/images/mysql.png">
+				<img class="about_icon java" src="<%=request.getContextPath()%>/images/java.jpg"> <img
+					class="about_icon jsp" src="<%=request.getContextPath()%>/images/jsp.png"> <img
+					class="about_icon css" src="<%=request.getContextPath()%>/images/css.png"> <img
+					class="about_icon mysql" src="<%=request.getContextPath()%>/images/mysql.png">
 			</div>
 		</div>
 

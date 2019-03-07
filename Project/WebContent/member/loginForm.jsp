@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="loginform" action="loginProcess.mem" method="post" onsubmit="return checkForm(this)">
+<form name="loginform" action="<%=request.getContextPath()%>/loginProcess.mem" method="post" onsubmit="return checkForm(this)">
 <table>
 	<tr>
 		<td colspan="2" class="td_title">

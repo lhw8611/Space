@@ -30,7 +30,7 @@ table {
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="modify" action="/Project/modifyproaction.mem" method="post"
+	<form name="modify" action="<%=request.getContextPath()%>/modifyproaction.mem" method="post"
 		onsubmit="return passcheck()">
 		<table border=1>
 			<tr>
