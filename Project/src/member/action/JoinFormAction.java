@@ -32,7 +32,7 @@ public class JoinFormAction implements Action {
 		if(updateCount > 0) {
 			forward = new ActionForward();
 			forward.setPath("/Project/loginForm.mem");
-			
+			forward.setRedirect(true);
 		}else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

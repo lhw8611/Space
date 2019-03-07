@@ -38,13 +38,13 @@ public class qnaController extends HttpServlet {
 			}
 		}
 		
-		if(command.equals("/qnaWriteForm.qna")) { //qna 글쓰기 폼
+		else if(command.equals("/qnaWriteForm.qna")) { //qna 글쓰기 폼
 			System.out.println("qna글쓰기폼 진입");
 			forward = new ActionForward();
 			forward.setPath("/board/qnaWriteForm.jsp");
 		}
 		
-		if (command.equals("/qnaForm.qna")) { //qna 글쓰기 액션
+		else if (command.equals("/qnaForm.qna")) { //qna 글쓰기 액션
 			action = new qnaWriteAction();
 			try {
 				forward=action.execute(request, response);

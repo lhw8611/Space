@@ -23,7 +23,13 @@ public class MemberDeleteAction implements Action {
 					PrintWriter out = response.getWriter();
 					out.println("<script>");
 					out.println("alert('탈퇴되었습니다.');");
-					out.println("location.href='/Project/logout.mem';");
+					if(session.getAttribute("id").equals("admin")) {
+					forward = new ActionForward();
+					forward.setPath("/Project/admingetlist.mem");
+					forward.setRedirect(true);
+					}else {
+					out.println("location.href='logout.mem';");
+					}
 					out.println("</script>");
 				}
 		}

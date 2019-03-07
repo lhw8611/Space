@@ -174,7 +174,7 @@ table tr:first-child td {
 
 				</section>
 				<div id="button">
-					<a href="/Project/noticeWriteForm.jsp">글쓰기</a>
+					<a href="/Project/noticeWriteForm.bo">글쓰기</a>
 				</div>
 			</div>
 		</div>

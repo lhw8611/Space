@@ -38,8 +38,8 @@ public class qnaWriteAction implements Action {
 			qnawritesvc.UserCheck(voqna);
 
 			forward = new ActionForward();
-			forward.setPath("/qnaList.qna");
-			forward.setRedirect(false);
+			forward.setPath("/Project/qnaList.qna");
+			forward.setRedirect(true);
 		}
 
 		return forward;

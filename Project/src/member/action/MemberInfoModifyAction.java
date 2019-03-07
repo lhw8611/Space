@@ -40,7 +40,7 @@ public class MemberInfoModifyAction implements Action {
 			membermodify.modifysvc(member);
 			
 			forward = new ActionForward();
-			forward.setPath("/Project/main.jsp");
+			forward.setPath("/main.jsp");
 			System.out.println("[2]action에서 setPath 경로 확인 " + forward.getPath());
 		} else {
 			out.println("<script>");

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="qnaForm.qna" name="qnaForm">
+	<form action="qnaForm.qna" name="qnaForm" method="post">
 		<table>
 			<tr>
 				<td>question</td>
