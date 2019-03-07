@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import dao.BoardDAO;
-import vo.CartBean;
+import vo.CartProViewBean;
 import vo.ProductBean;
 
 public class CartAddSvc {
@@ -16,6 +16,7 @@ public class CartAddSvc {
 	public ProductBean getCartList(int pro_code) {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
 		ProductBean probean = boardDAO.productInfo(pro_code);
 		
 		close(con);
@@ -23,13 +24,13 @@ public class CartAddSvc {
 		
 	}
 	//카트에 추가하는 메소드
-	public void addCart(HttpServletRequest request, ProductBean probean) {
+	public void addCart(HttpServletRequest request, ProductBean probean, String id) {
 		HttpSession session = request.getSession();
-		ArrayList<CartBean> cartList = (ArrayList<CartBean>)session.getAttribute("cartList");
-		
+		ArrayList<CartProViewBean> cartList = (ArrayList<CartProViewBean>)session.getAttribute("cartList");
+		System.out.println(id);
 		//세션에 장바구니가 없을 경우
 		if(cartList == null) {
-			cartList = new ArrayList<CartBean>();
+			cartList = new ArrayList<CartProViewBean>();
 			session.setAttribute("cartList", cartList);
 		}
 		
@@ -45,10 +46,14 @@ public class CartAddSvc {
 		}
 		//장바구니에 상품이 없는 상태
 		if(isNewCart) {
-			CartBean cartbean= new CartBean();
+			CartProViewBean cartbean= new CartProViewBean();
 			cartbean.setPro_code(probean.getPro_code());
+			cartbean.setPro_name(probean.getPro_name());
+			cartbean.setPro_price(probean.getPro_price());
+			cartbean.setPro_image(probean.getPro_image());
 			cartbean.setCart_qty(1);
 			cartList.add(cartbean);
+			
 		}
 	}
 }

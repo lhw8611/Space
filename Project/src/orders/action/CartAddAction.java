@@ -15,24 +15,26 @@ public class CartAddAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
+		String id=(String)session.getAttribute("id");
 		
 		
 		//비로그인 상태
-		if(session.getAttribute("id")==null) {
+//		if(session.getAttribute("id")==null) {
 			CartAddSvc cartAddSvc = new CartAddSvc();
 			int pro_code = Integer.parseInt(request.getParameter("pro_code"));
 			
 			ProductBean probean = cartAddSvc.getCartList(pro_code);
-			cartAddSvc.addCart(request, probean);
+			cartAddSvc.addCart(request, probean, id);
 			
 			forward = new ActionForward();
 			forward.setPath("/orders/cartList.jsp");
+			forward.setRedirect(true);
 			
 		//로그인 상태
-		}else {
-			
-			
-		}
+//		}else {
+//			
+//			
+//		}
 		
 
 		return forward;

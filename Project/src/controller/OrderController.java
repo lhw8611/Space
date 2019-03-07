@@ -8,10 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
-import orders.action.CartListAction;
+import orders.action.CartAddAction;
 import orders.action.OrderFormAction;
 import vo.ActionForward;
 
@@ -33,7 +32,7 @@ public class OrderController extends HttpServlet {
 //		위 3줄은 경로 구하는 코드
 //		System.out.println("requestURL : " + requestURL);
 //		System.out.println("contextPath : " + contextPath);
-//		System.out.println("command : " + command);
+		System.out.println("command : " + command);
 //		System.out.println("====================================");
 
 		ActionForward forward = null;
@@ -51,15 +50,15 @@ public class OrderController extends HttpServlet {
 
 		} else if (command.equals("/cartAdd.od")) {
 			System.out.println("cartAdd 컨트롤러 진입");
-			action = new CartListAction();
+			action = new CartAddAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/cartList.od")) {
-			System.out.println("cartList 컨트롤러 진입");
-			action = new CartListAction();
+		} else if (command.equals("/cartListForm.od")) {
+			System.out.println("cartListForm 컨트롤러 진입");
+			action = new CartAddAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
