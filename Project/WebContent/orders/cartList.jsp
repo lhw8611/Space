@@ -55,7 +55,7 @@ int shipping = 3000;
 		<tr>
 			<td><%=i+1 %></td>
 			<td><input type="checkbox" id="remove" name="remove" value="<%=cartList.get(i).getPro_code() %>" /></td>
-			<td><img src="boardUpload/<%=cartList.get(i).getPro_image() %>" id="cartImage" width="100px"/></td>
+			<td><img src="../boardUpload/<%=cartList.get(i).getPro_image() %>" id="cartImage" width="100px"/></td>
 			<td><input type="text" name="name" id="name" value="<%=cartList.get(i).getPro_name()%>"/></td>
 			<td><input type="text" name="price" id="price" value="<%=cartList.get(i).getPro_price()%>원"/></td>
 			<td><input type="text" name="qty" id="qty" value="<%=cartList.get(i).getCart_qty()%>"/></td>

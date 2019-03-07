@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import dao.BoardDAO;
+import dao.OrderDAO;
 import vo.CartProViewBean;
 import vo.ProductBean;
 
@@ -23,11 +24,10 @@ public class CartAddSvc {
 		return probean;
 		
 	}
-	//카트에 추가하는 메소드
-	public void addCart(HttpServletRequest request, ProductBean probean, String id) {
+	//비로그인 상태 cartAdd
+	public void addCart(HttpServletRequest request, ProductBean probean) {
 		HttpSession session = request.getSession();
 		ArrayList<CartProViewBean> cartList = (ArrayList<CartProViewBean>)session.getAttribute("cartList");
-		System.out.println(id);
 		//세션에 장바구니가 없을 경우
 		if(cartList == null) {
 			cartList = new ArrayList<CartProViewBean>();
@@ -55,5 +55,38 @@ public class CartAddSvc {
 			cartList.add(cartbean);
 			
 		}
+	}
+	
+	//로그인 상태 addCart
+	public CartProViewBean addCart2(ProductBean probean, String id) {
+		Connection con = getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		boolean isNewCart = true;
+		ArrayList<CartProViewBean> cartList = orderDAO.checkCart(id);
+		
+		//이미 장바구니에 해당 상품이 있을 경우
+		for(int i = 0; i<cartList.size(); i++) {
+			if(probean.getPro_code()==cartList.get(i).getPro_code()) { 
+				isNewCart = false;
+				cartList.get(i).setCart_qty(cartList.get(i).getCart_qty()+1);
+				break;
+			}
+		}
+		//장바구니에 해당 상품이 없는 경우
+		int checkCartInsert = orderDAO.addCart(probean,id);
+		//insert 성공
+		if(checkCartInsert >= 0) {
+			
+			
+		//insert 실패
+		}else {
+			
+			
+		}
+		
+		
+		close(con);
+		return cartProViewBean;
 	}
 }

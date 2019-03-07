@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import vo.CartProViewBean;
 import vo.MemberBean;
 import vo.ProductBean;
 
@@ -83,6 +84,67 @@ public class OrderDAO {
 		}
 		return probean;
 	}
+	
 	//오더 폼 관련 끝==================================================
+	
+	
+	//장바구니에 상품이 있나 확인 (있으면  true , 없으면 false)
+	public ArrayList<CartProViewBean> checkCart(String id) {
+		ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		CartProViewBean cartProViewBean = null;
+		
+		String sql = "select * from cart_result where mem_id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				cartProViewBean = new CartProViewBean();
+				cartProViewBean.setPro_code(rs.getInt("pro_code"));
+				cartProViewBean.setMem_id(rs.getString("mem_id"));
+				cartProViewBean.setPro_name(rs.getString("pro_name"));
+				cartProViewBean.setPro_price(rs.getInt("pro_price"));
+				cartProViewBean.setPro_image(rs.getString("pro_image"));
+				cartProViewBean.setCart_qty(rs.getInt("cart_qty"));
+				cartList.add(cartProViewBean);
+			}
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return cartList;
+		
+	}
+	
+	
+	
+	//로그인 상태 CartAdd
+	public int addCart(ProductBean probean, String id) {
+		PreparedStatement pstmt = null;
+		int checkCartInsert = 0;
+		
+		String sql = "insert into cart values (null, '"+id+"', '"+probean.getPro_code()+"', 1)";
+		try {
+			pstmt =con.prepareStatement(sql);
+			checkCartInsert = pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return checkCartInsert;
+		
+	}
+	
 }
 

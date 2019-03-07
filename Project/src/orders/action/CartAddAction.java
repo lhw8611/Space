@@ -24,17 +24,24 @@ public class CartAddAction implements Action{
 			int pro_code = Integer.parseInt(request.getParameter("pro_code"));
 			
 			ProductBean probean = cartAddSvc.getCartList(pro_code);
-			cartAddSvc.addCart(request, probean, id);
+			//비로그인
+			if(id==null) {
+				cartAddSvc.addCart(request, probean);
+			
+			//로그인
+			}else {
+				cartAddSvc.addCart2(probean,id);
+			}
 			
 			forward = new ActionForward();
-			forward.setPath("/orders/cartList.jsp");
+			forward.setPath("/Project/orders/cartList.jsp");
 			forward.setRedirect(true);
 			
 		//로그인 상태
 //		}else {
 //			
-//			
 //		}
+		
 		
 
 		return forward;
