@@ -84,7 +84,7 @@ div>.date {
 			</div>
 			<hr>
 			<div>
-				<input type="button" value="목록" onclick='location.href="noticeList.bo?page=<%=nowPage %>"' />
+				<input type="button" value="목록" onclick='location.href="/Project/noticeList.bo?page=<%=nowPage %>"' />
 			</div>
 		</article>
 	</section>

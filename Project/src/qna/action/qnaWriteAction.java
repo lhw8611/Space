@@ -25,7 +25,7 @@ public class qnaWriteAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('관리자로 로그인하세요');");
-			out.println("location.href='main.jsp';");
+			out.println("location.href='/Project/main.jsp';");
 			out.println("</script>");
 			
 			

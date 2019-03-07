@@ -31,7 +31,7 @@ public class JoinFormAction implements Action {
 		
 		if(updateCount > 0) {
 			forward = new ActionForward();
-			forward.setPath("/loginForm.mem");
+			forward.setPath("/Project/loginForm.mem");
 			
 		}else {
 			PrintWriter out = response.getWriter();

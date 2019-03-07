@@ -88,7 +88,7 @@ header nav ul li :hover ul {
 			<li class="right-menu"><a href="#">장바구니</a></li>
 			<li class="right-menu"><a href="#">로그인관련</a></li>
 			<li class="right-menu"><a href="joinForm.mem">회원가입</a></li>
-			<li class="right-menu"><a href="loginForm.mem">로그인</a></li>
+			<li class="right-menu"><a href="/Project/loginForm.mem">로그인</a></li>
 			<li class="right-menu"><a href="logout.mem">로그아웃</a></li>
 			<li class="right-menu"><a href="qnaList.qna">Q&A</a></li>
 		</ul>

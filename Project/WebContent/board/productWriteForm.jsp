@@ -21,7 +21,7 @@
 		<h2>새 글 쓰기</h2>
 		<hr>
 		<article id="wrtieform">
-			<form action="ProductWritePro.bo" name="proWriteForm" method="post"
+			<form action="/Project/ProductWritePro.bo" name="proWriteForm" method="post"
 				enctype="multipart/form-data">
 				<div id="title">
 					제목 : <input type="text" name="name" id="name" autofocus="autofocus"

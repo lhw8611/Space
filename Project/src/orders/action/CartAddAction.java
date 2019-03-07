@@ -26,7 +26,7 @@ public class CartAddAction implements Action{
 			cartAddSvc.addCart(request, probean);
 			
 			forward = new ActionForward();
-			forward.setPath("../orders/cartList.jsp");
+			forward.setPath("/orders/cartList.jsp");
 			
 		//로그인 상태
 		}else {

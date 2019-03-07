@@ -80,7 +80,6 @@ public class OrderDAO {
 		}finally {
 			close(pstmt);
 			close(rs);
-			
 		}
 		return probean;
 	}

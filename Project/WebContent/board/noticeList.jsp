@@ -99,7 +99,7 @@ table tr:first-child td {
 						<tr>
 							<td><%=articleList.get(i).getNo_num()%></td>
 							<td id="title-left"><a
-								href="noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>">
+								href="/Project/noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>">
 									<%=articleList.get(i).getNo_title()%></a></td>
 
 							<td><%=articleList.get(i).getNo_count()%></td>
@@ -124,7 +124,7 @@ table tr:first-child td {
 					<%
 						} else {
 					%>
-					<a href="noticeList.bo?page=<%=nowPage - 1%>">
+					<a href="/Project/noticeList.bo?page=<%=nowPage - 1%>">
 					<div class="pagebox">
 					이전
 					</div>
@@ -144,7 +144,7 @@ table tr:first-child td {
 					<%
 						} else {
 					%>
-					<a href="noticeList.bo?page=<%=a%>">
+					<a href="/Project/noticeList.bo?page=<%=a%>">
 					<div class="pagebox">
 					<%=a%> 
 					</div>
@@ -164,7 +164,7 @@ table tr:first-child td {
 						} else {
 					%>
 					
-					<a href="noticeList.bo?page=<%=nowPage + 1%>">
+					<a href="/Project/noticeList.bo?page=<%=nowPage + 1%>">
 					<div class="pagebox">다음</div></a>
 					
 					<%
@@ -174,7 +174,7 @@ table tr:first-child td {
 
 				</section>
 				<div id="button">
-					<a href="noticeWriteForm.jsp">글쓰기</a>
+					<a href="/Project/noticeWriteForm.jsp">글쓰기</a>
 				</div>
 			</div>
 		</div>

@@ -40,13 +40,13 @@
 					</ul> -->
 			<ul class="h-right">
 				<!-- 오른쪽정렬 -->
-				<li><a href="qnaList.qna"><img src="/Project/icon/bell.png"></a></li>
+				<li><a href="/Project/qnaList.qna"><img src="/Project/icon/bell.png"></a></li>
 				<li><a href="#"><img src="/Project/icon/cart.png"></a></li>
-				<li><a href="loginForm.mem"><img src="/Project/icon/logout.png"></a></li>
-				<li><a href="logout.mem"><img src="/Project/icon/login.png"></a></li>
-				<li><a href="board/boardTest.jsp">Notice</a></li>
+				<li><a href="/Project/loginForm.mem"><img src="/Project/icon/logout.png"></a></li>
+				<li><a href="/Project/logout.mem"><img src="/Project/icon/login.png"></a></li>
+				<li><a href="/Project/board/boardTest.jsp">Notice</a></li>
 				<li><p><%=session.getAttribute("id") %>님 환영합니다</p></li>
-				<li><a href="memberinfo.mem?id=<%=id %>">회원정보 수정</a></li>
+				<li><a href="/Project/memberinfo.mem?id=<%=id %>">회원정보 수정</a></li>
 				<a href="javascript:userdelete('<%=id %>');">회원탈퇴</a>
 			</ul>
 		</div>
@@ -55,7 +55,7 @@
 	function userdelete(id){
 		var userdel = confirm("회원탈퇴를 진행합니까?");
 		 if(userdel == true){
-			 location.href="memberdelete.mem?id="+id;
+			 location.href="/Project/memberdelete.mem?id="+id;
 		 }
 	}
 	</script>

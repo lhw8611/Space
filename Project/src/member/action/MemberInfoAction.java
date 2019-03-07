@@ -21,7 +21,7 @@ public class MemberInfoAction implements Action{
 		request.setAttribute("member", member);
 		
 		System.out.println("[2] : " + request.getAttribute(member.getMem_id()));
-		forward.setPath("member/member_info.jsp");
+		forward.setPath("/member/member_info.jsp");
 		
 		return forward;
 	}

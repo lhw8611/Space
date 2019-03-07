@@ -57,7 +57,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		} else if (command.equals("/noticeWriteForm.bo")) {
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
-			forward.setPath("noticeWriteForm.jsp");
+			forward.setPath("/board/noticeWriteForm.jsp");
 			forward.setRedirect(false);
 			/*
 			 * } else { response.setContentType("text/html;charset=UTF-8"); PrintWriter out
@@ -88,7 +88,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 //			System.out.println("상품등록 폼");
 			/* if(session.getAttribute("id").equals("admin")) { */
 			forward = new ActionForward();
-			forward.setPath("productWriteForm.jsp");
+			forward.setPath("/board/productWriteForm.jsp");
 			/*
 			 * } else { response.setContentType("text/html;charset=UTF-8"); PrintWriter out
 			 * = response.getWriter(); out.println("<script>");

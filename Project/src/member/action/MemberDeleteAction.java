@@ -23,7 +23,7 @@ public class MemberDeleteAction implements Action {
 					PrintWriter out = response.getWriter();
 					out.println("<script>");
 					out.println("alert('탈퇴되었습니다.');");
-					out.println("location.href='logout.mem';");
+					out.println("location.href='/Project/logout.mem';");
 					out.println("</script>");
 				}
 		}

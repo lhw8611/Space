@@ -41,8 +41,8 @@ table {
 				<tr>
 				<c:forEach var="pro" items="${articleList}" varStatus="status">
 					<td>
-					<a href="productView.bo?pro_code=${pro.pro_code}">
-					<img src="boardUpload/${pro.pro_image }" id="productImage"/>
+					<a href="/Project/productView.bo?pro_code=${pro.pro_code}">
+					<img src="/Project/boardUpload/${pro.pro_image }" id="productImage"/>
 					</a> <br>
 					상품명 : ${pro.pro_name}<br> 
 					가격 : ${pro.pro_price }<br>
@@ -67,7 +67,7 @@ table {
 		<%
 			} else {
 		%>
-		<a href="productList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+		<a href="/Project/productList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
 		<%
 			}
 		%>
@@ -81,7 +81,7 @@ table {
 			} else {
 		%>
 
-		<a href="productList.bo?page=<%=a%>">[<%=a%>]
+		<a href="/Project/productList.bo?page=<%=a%>">[<%=a%>]
 		</a>&nbsp;
 		<%
 			}
@@ -96,7 +96,7 @@ table {
 		<%
 			} else {
 		%>
-		<a href="productList.bo?page=<%=nowPage + 1%>">[다음]</a>
+		<a href="/Project/productList.bo?page=<%=nowPage + 1%>">[다음]</a>
 		<%
 			}
 		%>

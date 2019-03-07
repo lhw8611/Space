@@ -17,7 +17,7 @@ public class ProductViewAction implements Action {
 		request.setAttribute("probean", probean);
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("productView.jsp");
+		forward.setPath("/board/productView.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

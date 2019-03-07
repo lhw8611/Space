@@ -52,7 +52,7 @@ public class ProductWriteAction implements Action{
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/board/productList.bo");
+			forward.setPath("productList.bo");
 			
 		}
 		return forward;

@@ -31,7 +31,7 @@ public class NoticeWriteAction implements Action{
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("noticeList.bo");
+			forward.setPath("/Project/noticeList.bo");
 			
 		}
 		return forward;

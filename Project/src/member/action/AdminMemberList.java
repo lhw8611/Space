@@ -31,7 +31,7 @@ public class AdminMemberList implements Action{
 			out.println("</script>");
 		}else {
 			forward = new ActionForward();
-			forward.setPath("admin/member_list.jsp");
+			forward.setPath("/admin/member_list.jsp");
 			System.out.println("[2]action에서 setPath 경로 확인 " + forward.getPath());
 		}
 		

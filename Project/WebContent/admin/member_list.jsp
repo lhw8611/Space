@@ -33,7 +33,7 @@
 	%>
 	<tr>
 		<td><%=list.get(i).getMem_id() %></td>
-		<td><a href="memberinfo.mem?id=<%=list.get(i).getMem_id() %>">수정</a>
+		<td><a href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id() %>">수정</a>
 		<%System.out.println(i + "  " + list.get(i).getMem_id()); %>
 		&nbsp;&nbsp;&nbsp;
 		<a href="javascript:userdelete('<%=list.get(i).getMem_id() %>');">삭제</a></td>
@@ -44,7 +44,7 @@
 	function userdelete(id){
 		var userdel = confirm("회원탈퇴를 진행합니까?");
 		 if(userdel == true){
-			 location.href="memberdelete.mem?id="+id;
+			 location.href="/Project/memberdelete.mem?id="+id;
 		 }
 	}
 	</script>

@@ -46,7 +46,7 @@ public class OrderFormAction implements Action {
 			
 //			int usePoint = probean.getPro_price()
 			
-			forward.setPath("../orders/orderForm.jsp");
+			forward.setPath("/orders/orderForm.jsp");
 		}
 		return forward;
 	}
