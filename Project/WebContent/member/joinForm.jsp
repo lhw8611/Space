@@ -4,41 +4,68 @@
 <html>
 <head>
 <style>
-*{
-	margin : 0;
-	padding : 0;
+* {
+	margin: 0;
+	padding: 0;
+	font-size : 15px;
 }
+
+h1{
+	font-size : 26px;
+}
+
 body {
 	color: white;
-	background-color: green;
+}
+
+.position:before {
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	display: block;
+	background-image: url("/Project/images/join.jpg");
+	width: 100%;
+	height: 100%;
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
 }
 
 .position {
+	z-index: 0;
 	width: 550px;
 	margin: auto;
-	border : 1px solid blue;
 }
 
-.content{
-	padding : 10px 45px 45px 45px;
-	border : white solid pink;
+.content {
+	background-color: rgba(0,0,0,0.7);
+	padding: 10px 45px 45px 45px;
+	margin-left: auto;
+	margin-right: auto;
+	border: white solid pink;
 	max-width: 360px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.3);
 }
 
-.center{
+.center {
 	text-align: center
 }
 
-.width100{
-	width : 100%;
+.width100 {
+	width: 100%;
 }
 
-.content button {
-	font-family:"Nanum Gothic";
+.content button, input[type=button], input[type=submit] {
+	font-family: "Nanum Gothic";
 	font-weight: 700;
 	text-transform: uppercase;
 	outline: 0;
-	background: #4CAF50;
+	background: #abc;
 	border: 0;
 	padding: 13px;
 	color: #FFFFFF;
@@ -48,12 +75,11 @@ body {
 	cursor: pointer;
 }
 
-.content input{
-	border : 0;
+.content input {
+	border: 0;
 	margin-bottom: 15px;
-	padding : 15px;
+	padding: 15px;
 	box-sizing: border-box;
-	width : 100%;
 }
 </style>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -62,53 +88,42 @@ body {
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="position">
-		<div class="content">
-		<form action="<%=request.getContextPath()%>/joinProcess.mem"
-			name="joinform" method="post" onsubmit="return passcheck()">
-			<div class="center">
-			<a href="<%=request.getContextPath()%>/main.jsp">
-			<img src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
-			<hr color="#f00">
-			<h1>회원가입</h1>
+		<div class="position">
+			<div class="content">
+				<form action="<%=request.getContextPath()%>/joinProcess.mem"
+					name="joinform" method="post" onsubmit="return passcheck()">
+					<div class="center">
+						<a href="<%=request.getContextPath()%>/main.jsp"> <img
+							src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
+						<hr color="#abc">
+						<h1>회원가입</h1>
+					</div>
+
+					<label for="id">아이디</label> <input type="text" name="id" id="id"
+						placeholder="6~20자 영문자 또는 영문자+숫자" class="width100">
+					<button class="width100" name="check" id="check" type="button"
+						onclick="window.open('./dulpTest.us?openInit=true','','width=500, height=300')">중복검사</button>
+					<br>
+					<br> <label for="pass">비밀번호 </label> <input type="password"
+						name="pass" id="pass" placeholder="4자리 이상" class="width100" /> <label
+						for="pass2">비밀번호 확인 </label> <input type="password" name="pass2"
+						id="pass2" class="width100" /> <label for="name">이름</label> <input
+						type="text" name="name" id="name" class="width100" />
+
+					<label for="mem_zip">주소</label><br>
+					<input type="text" name="mem_zip" id="mem_zip" placeholder="우편번호" size="7" />
+					<button onclick="sample4_execDaumPostcode()" value="우편번호 찾기">우편번호 찾기</button>
+						<input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"  class="width100" />
+					<input type="text" name="mem_add2" id="mem_add2" placeholder="상세주소"  class="width100" />
+
+					<label for="email">이메일 </label> <input type="text" name="email"
+						id="email" class="width100" /> <input type="hidden" name="grade"
+						id="grade" value="u" /> <label for="tel">전화번호</label>
+						<input type="tel" name="tel" id="tel" class="width100" />
+						<button type="submit" class="width100">회원가입</button>
+				</form>
 			</div>
-			
-			<label for="id">아이디</label>
-			<input type="text" name="id" id="id" placeholder="6~20자 영문자 또는 영문자+숫자">
-		<button class="width100" name="check" id="check" type="button"
-		onclick="window.open('./dulpTest.us?openInit=true','','width=500, height=300')">중복검사</button>
-		<br><br>
-
-			<label for="pass">비밀번호 </label>
-			<input type="password" name="pass" id="pass" placeholder="4자리 이상" />
-			<label for="pass2">비밀번호 확인 </label>
-			<input type="password" name="pass2" id="pass2" />
-			
-			<label for="name">이름</label>
-			<input type="text" name="name" id="name" />
-			
-				<td colspan="2"><span>주소</span></td>
-				<td colspan="2"><input type="text" name="mem_zip" id="mem_zip"
-					placeholder="우편번호" size="7"> <input type="button"
-					onclick="sample4_execDaumPostcode()" value="우편번호 찾기"></td>
-				<td colspan="2"><input type="text" name="mem_add" id="mem_add"
-					placeholder="도로명주소"></td>
-				<td colspan="2"><input type="text" name="mem_add2"
-					id="mem_add2" placeholder="상세주소"></td>
-				<td><label for="email">이메일 </label></td>
-				<td><input type="text" name="email" id="email" /></td>
-
-				<td><input type="hidden" name="grade" id="grade" value="u" /></td>
-
-				<td><label for="tel">전화번호</label></td>
-				<td><input type="tel" name="tel" id="tel" /></td>
-
-				<td colspan="2"><hr color="#555">
-				<td>
-				<td colspan="2"><input type="submit" value="회원가입"></td>
-		</form>
 		</div>
-	</div>
 	<script>
 		//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 		function sample4_execDaumPostcode() {
@@ -153,5 +168,6 @@ body {
 			}
 		}
 	</script>
+
 </body>
 </html>
