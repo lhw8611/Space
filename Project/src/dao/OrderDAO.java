@@ -128,7 +128,7 @@ public class OrderDAO {
 	
 	
 	
-	//로그인 상태 CartAdd(장바구니에 해당 상품 X)
+	//로그인 상태 CartAdd
 	public int addCart(boolean isNewCart, ProductBean probean, String id) {
 		System.out.println("addCart DAO 진입");
 		PreparedStatement pstmt = null;
@@ -137,6 +137,7 @@ public class OrderDAO {
 		//장바구니에 해당 상품 X
 		if(isNewCart) {
 			sql = "insert into cart values (null, '"+id+"', '"+probean.getPro_code()+"', 1)";
+			System.out.println("sql : " +sql);
 		//장바구니에 해당 상품 있을때
 		}else {
 			sql = "update cart_result set cart_qty=cart_qty+1 where mem_id='"+id+"' AND pro_code ='"+probean.getPro_code()+"'";
@@ -195,6 +196,7 @@ public class OrderDAO {
 		
 		try {
 			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 			cartProViewBean = new CartProViewBean();
