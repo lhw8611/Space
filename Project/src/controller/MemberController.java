@@ -38,10 +38,12 @@ public class MemberController extends HttpServlet {
 		if (command.equals("/joinForm.mem")) {
 			System.out.println("[1]joinForm.mem 회원가입 폼");
 			forward = new ActionForward();
+			forward.setRedirect(true);
 			forward.setPath("member/joinForm.jsp");
 		} else if (command.equals("/loginForm.mem")) {
 			System.out.println("[1]loginForm.mem 로그인 폼");
 			forward = new ActionForward();
+			forward.setRedirect(true);
 			forward.setPath("member/loginForm.jsp");
 		}
 

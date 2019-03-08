@@ -8,7 +8,7 @@ public class OrderBean {
 	private String or_state;
 	private String or_pay;
 	private String mem_id;
-	
+	private String or_request;
 	
 	
 	public int getOr_num() {
@@ -41,5 +41,12 @@ public class OrderBean {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+	public String getOr_request() {
+		return or_request;
+	}
+	public void setOr_request(String or_request) {
+		this.or_request = or_request;
+	}
+	
 
 }

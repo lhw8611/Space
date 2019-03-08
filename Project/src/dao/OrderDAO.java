@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import vo.CartProViewBean;
 import vo.MemberBean;
 import vo.ProductBean;
+import vo.QtyBean;
 
 
 public class OrderDAO {
@@ -36,7 +37,7 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from member where mem_id=?";
-		MemberBean membean = new MemberBean();
+		MemberBean membean = null;
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -44,11 +45,17 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-//				membean.setMem_id(rs.getString("mem_id"));
+				membean = new MemberBean();
+				membean.setMem_id(rs.getString("mem_id"));
+				membean.setMem_pass(rs.getString("mem_pass"));
 				membean.setMem_name(rs.getString("mem_name"));
-				membean.setMem_tel(rs.getString("mem_tel"));
 				membean.setMem_add(rs.getString("mem_add"));
+				membean.setMem_email(rs.getString("mem_email"));
+				membean.setMem_grade(rs.getString("mem_grade"));
+				membean.setMem_tel(rs.getString("mem_tel"));
+				membean.setMem_zip(rs.getString("mem_tel"));
 				membean.setMem_add2(rs.getString("mem_add2"));
+				membean.setMem_date(rs.getString("mem_date"));
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -144,6 +151,35 @@ public class OrderDAO {
 		}
 		return checkCartInsert;
 		
+	}
+
+	public QtyBean productqty(int pro_code) {
+		System.out.println("[4]OrderDAO.productqty");
+		QtyBean qtybean = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		String sql = "select * from qty where pro_code=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pro_code);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qtybean = new QtyBean();
+				qtybean.setQty_num(rs.getInt("qty_num"));
+				qtybean.setPro_code(rs.getInt("pro_code"));
+				qtybean.setQty_qty(rs.getInt("qty_qty"));
+				qtybean.setQty_inout(rs.getString("qty_inout"));
+				qtybean.setQty_date(rs.getDate("qty_date"));
+				qtybean.setQty_note(rs.getString("qty_note"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return qtybean;
 	}
 	
 }

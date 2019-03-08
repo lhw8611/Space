@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import orders.svc.orderFormSvc;
+import orders.svc.OrderFormSvc;
 import vo.ActionForward;
 import vo.MemberBean;
 import vo.ProductBean;
@@ -34,7 +34,7 @@ public class OrderFormAction implements Action {
 			out.println("location.href='/Project/member/loginForm.jsp'");
 			out.println("</script>");
 		} else {
-			orderFormSvc odFormSvc = new orderFormSvc();
+			OrderFormSvc odFormSvc = new OrderFormSvc();
 			
 			// 구매자 정보
 			MemberBean membean = odFormSvc.purchaserInfo(id);
