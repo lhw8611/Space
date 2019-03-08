@@ -3,9 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
 <%@ page import="vo.CartProViewBean" %>
-<%
+<% 
+ArrayList<CartProViewBean> cartList = null;
+//비로그인 상태
+if(session.getAttribute("id")==null) {
+	cartList = (ArrayList<CartProViewBean>)session.getAttribute("cartList");
+//로그인 상태
+}else {
+	cartList = (ArrayList<CartProViewBean>)request.getAttribute("cartList");
+}
 
-ArrayList<CartProViewBean> cartList = (ArrayList<CartProViewBean>)session.getAttribute("cartList");
 int cartResult = 0;
 int shipping = 3000;
 %>
@@ -38,7 +45,6 @@ int shipping = 3000;
 		<td>상품명</td>
 		<td>가격</td>
 		<td>수량</td>
-		<td>배송비</td>
 	</tr>
 <%-- 	<c:forEach var="cart" items="${cartList }" varStatus="status">
 		<tr>
@@ -59,11 +65,10 @@ int shipping = 3000;
 			<td><input type="text" name="name" id="name" value="<%=cartList.get(i).getPro_name()%>"/></td>
 			<td><input type="text" name="price" id="price" value="<%=cartList.get(i).getPro_price()%>원"/></td>
 			<td><input type="text" name="qty" id="qty" value="<%=cartList.get(i).getCart_qty()%>"/></td>
-			<td><input type="text" name="delivery" id="delivery" value="<%=shipping%>"/></td>
 		</tr>
 		<%
 		//상품 전체 합계
-		cartResult = cartList.get(i).getPro_price()*cartList.get(i).getCart_qty();
+		cartResult += cartList.get(i).getPro_price()*cartList.get(i).getCart_qty();
 		}
 	
 		//상품 전체 금액이 3만원 이상일 경우 배송비 0원

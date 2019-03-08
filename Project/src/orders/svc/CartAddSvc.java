@@ -27,7 +27,7 @@ public class CartAddSvc {
 	}
 
 	// 비로그인 상태 cartAdd
-	public void addCart(HttpServletRequest request, ProductBean probean) {
+	public void addCart(HttpServletRequest request, ProductBean probean, int qty) {
 		HttpSession session = request.getSession();
 		ArrayList<CartProViewBean> cartList = (ArrayList<CartProViewBean>) session.getAttribute("cartList");
 		// 세션에 장바구니가 없을 경우
@@ -42,7 +42,7 @@ public class CartAddSvc {
 		for (int i = 0; i < cartList.size(); i++) {
 			if (probean.getPro_code() == cartList.get(i).getPro_code()) {
 				isNewCart = false;
-				cartList.get(i).setCart_qty(cartList.get(i).getCart_qty() + 1);
+				cartList.get(i).setCart_qty(cartList.get(i).getCart_qty() + qty);
 				break;
 			}
 		}
@@ -53,7 +53,7 @@ public class CartAddSvc {
 			cartbean.setPro_name(probean.getPro_name());
 			cartbean.setPro_price(probean.getPro_price());
 			cartbean.setPro_image(probean.getPro_image());
-			cartbean.setCart_qty(1);
+			cartbean.setCart_qty(qty);
 			cartList.add(cartbean);
 
 		}
@@ -71,16 +71,8 @@ public class CartAddSvc {
 		System.out.println("서비스에서 isNewCart = " + isNewCart);
 		System.out.println("서비스에서 probean:" + probean.getPro_name());
 		System.out.println("서비스에서 ID : " + id);
-		// 이미 장바구니에 해당 상품이 있을 경우
-//		for(int i = 0; i<cartList.size(); i++) {
-//			if(probean.getPro_code()==cartList.get(i).getPro_code()) { 
-//				isNewCart = false;
-//				cartList.get(i).setCart_qty(cartList.get(i).getCart_qty()+1);
-//				break;
-//			}
-//		}
+
 		// 장바구니에 해당 상품이 없는 경우
-		System.out.println("실행되는지??");
 		int checkCartInsert = orderDAO.addCart(isNewCart, probean, id);
 
 		// 커밋 성공 여부
