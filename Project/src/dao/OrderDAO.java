@@ -215,5 +215,24 @@ public class OrderDAO {
 		}
 		return cartList;
 	}
+	
+	public int orderinsert(String mem_id) { //id에 대한 주문내역 만들기
+		PreparedStatement pstmt = null;
+		String sql = "insert into orders values(null, now(), 'wait', 'card', ?)";
+		int updateCount = 0;
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			updateCount = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
 }
 

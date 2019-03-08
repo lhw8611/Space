@@ -15,6 +15,7 @@ import vo.MemberBean;
 import vo.QtyBean;
 public class OrderCompleteSvc {
 	public QtyBean productqty(int pro_code) {//재고수 구하는 메소드
+		System.out.println("[3]OrderCompleteSvc.productqty");
 		QtyBean qtybean = new QtyBean(); 
 		Connection con = getConnection();
 		OrderDAO orderDAO = OrderDAO.getInstance();
@@ -31,6 +32,27 @@ public class OrderCompleteSvc {
 		close(con);
 		
 		return qtybean;
+	}
+
+	public MemberBean orderaction(String mem_id) { //주문내역에 정보저장
+		System.out.println("[3]OrderCompleteSvc.orderaction");
+		MemberBean membean = new MemberBean(); 
+		Connection con = getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		
+		int updateCount = orderDAO.orderinsert(mem_id);
+		System.out.println("insert order 업데이트 카운트 확인 : " + updateCount);
+		if(updateCount > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return membean;
+		
 	}
 	
 }
