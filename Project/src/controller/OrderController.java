@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import orders.action.CartAddAction;
-<<<<<<< HEAD
 import orders.action.OrderCompleteAction;
-=======
 import orders.action.CartListFormAction;
->>>>>>> branch 'master' of https://github.com/lhw8611/impark
 import orders.action.OrderFormAction;
 import vo.ActionForward;
 

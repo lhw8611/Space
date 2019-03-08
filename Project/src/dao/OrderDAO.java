@@ -155,7 +155,6 @@ public class OrderDAO {
 		return checkCartInsert;
 		
 	}
-<<<<<<< HEAD
 
 	public QtyBean productqty(int pro_code) {
 		System.out.println("[4]OrderDAO.productqty");
@@ -186,7 +185,6 @@ public class OrderDAO {
 		return qtybean;
 	}
 	
-=======
 	//장바구니 리스트 
 	public ArrayList<CartProViewBean> cartListForm(String id) {
 		CartProViewBean cartProViewBean = null;
@@ -217,6 +215,5 @@ public class OrderDAO {
 		}
 		return cartList;
 	}
->>>>>>> branch 'master' of https://github.com/lhw8611/impark
 }
 
