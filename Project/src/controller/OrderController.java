@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import orders.action.CartAddAction;
+<<<<<<< HEAD
 import orders.action.OrderCompleteAction;
+=======
+import orders.action.CartListFormAction;
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 import orders.action.OrderFormAction;
 import vo.ActionForward;
 
@@ -59,7 +63,7 @@ public class OrderController extends HttpServlet {
 			}
 		} else if (command.equals("/cartListForm.od")) {
 			System.out.println("cartListForm 컨트롤러 진입");
-			action = new CartAddAction();
+			action = new CartListFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

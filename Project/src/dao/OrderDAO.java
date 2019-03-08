@@ -95,29 +95,24 @@ public class OrderDAO {
 	//오더 폼 관련 끝==================================================
 	
 	
-	//장바구니에 상품이 있나 확인 (있으면  true , 없으면 false)
-	public ArrayList<CartProViewBean> checkCart(String id) {
-		ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
+	//장바구니에 상품이 있나 확인 (없으면 true , 있으면 false)
+	public boolean checkCart(ProductBean probean, String id) {
+//		ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
-		CartProViewBean cartProViewBean = null;
+		boolean isNewCart = true;
 		
-		String sql = "select * from cart_result where mem_id=?";
+		String sql = "select * from cart_result where mem_id=? AND pro_code=?";
+//		System.out.println("checkCart DAO에서 slq문 : "+sql);
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setInt(2, probean.getPro_code());
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				cartProViewBean = new CartProViewBean();
-				cartProViewBean.setPro_code(rs.getInt("pro_code"));
-				cartProViewBean.setMem_id(rs.getString("mem_id"));
-				cartProViewBean.setPro_name(rs.getString("pro_name"));
-				cartProViewBean.setPro_price(rs.getInt("pro_price"));
-				cartProViewBean.setPro_image(rs.getString("pro_image"));
-				cartProViewBean.setCart_qty(rs.getInt("cart_qty"));
-				cartList.add(cartProViewBean);
-			}
 			
+			if(rs.next()) {
+				isNewCart = false;
+			}
 			
 			
 		}catch(Exception e) {
@@ -127,18 +122,26 @@ public class OrderDAO {
 			close(rs);
 		}
 		
-		return cartList;
+		return isNewCart;
 		
 	}
 	
 	
 	
-	//로그인 상태 CartAdd
-	public int addCart(ProductBean probean, String id) {
+	//로그인 상태 CartAdd(장바구니에 해당 상품 X)
+	public int addCart(boolean isNewCart, ProductBean probean, String id) {
+		System.out.println("addCart DAO 진입");
 		PreparedStatement pstmt = null;
 		int checkCartInsert = 0;
-		
-		String sql = "insert into cart values (null, '"+id+"', '"+probean.getPro_code()+"', 1)";
+		String sql = null;
+		//장바구니에 해당 상품 X
+		if(isNewCart) {
+			sql = "insert into cart values (null, '"+id+"', '"+probean.getPro_code()+"', 1)";
+		//장바구니에 해당 상품 있을때
+		}else {
+			sql = "update cart_result set cart_qty=cart_qty+1 where mem_id='"+id+"' AND pro_code ='"+probean.getPro_code()+"'";
+			System.out.println("sql : " +sql);
+		}
 		try {
 			pstmt =con.prepareStatement(sql);
 			checkCartInsert = pstmt.executeUpdate();
@@ -152,6 +155,7 @@ public class OrderDAO {
 		return checkCartInsert;
 		
 	}
+<<<<<<< HEAD
 
 	public QtyBean productqty(int pro_code) {
 		System.out.println("[4]OrderDAO.productqty");
@@ -182,5 +186,37 @@ public class OrderDAO {
 		return qtybean;
 	}
 	
+=======
+	//장바구니 리스트 
+	public ArrayList<CartProViewBean> cartListForm(String id) {
+		CartProViewBean cartProViewBean = null;
+		ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from cart_result where mem_id=?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+			cartProViewBean = new CartProViewBean();
+			cartProViewBean.setPro_code(rs.getInt("pro_code"));
+			cartProViewBean.setMem_id(rs.getString("mem_id"));
+			cartProViewBean.setPro_name(rs.getString("pro_name"));
+			cartProViewBean.setPro_price(rs.getInt("pro_price"));
+			cartProViewBean.setPro_image(rs.getString("pro_image"));
+			cartProViewBean.setCart_qty(rs.getInt("cart_qty"));
+			cartList.add(cartProViewBean);
+		}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cartList;
+	}
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 }
 
