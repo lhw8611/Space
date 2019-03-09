@@ -15,7 +15,7 @@ import vo.ProductBean;
 public class OrderFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("orderPay 액션 진입");
+		System.out.println("[2]OrderFormAction 액션 진입");
 
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
@@ -34,8 +34,8 @@ public class OrderFormAction implements Action {
 			out.println("location.href='/Project/member/loginForm.jsp'");
 			out.println("</script>");
 		} else {
+			System.out.println("[2]세션있음");
 			OrderFormSvc odFormSvc = new OrderFormSvc();
-			
 			// 구매자 정보
 			MemberBean membean = odFormSvc.purchaserInfo(id);
 			request.setAttribute("membean", membean);

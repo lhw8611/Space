@@ -26,25 +26,26 @@ table {
 		<h1>구매자 정보</h1>
 			<input type="hidden" id="qty" name="qty" value="<%=qty %>"/>
 			<label for="buyer_name">이름</label>			
-			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>"/>
+			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>" readonly/>
 			<br>
 			<label for="buyer_email">이메일</label>				
-			<input type="text" id="buyer_email" name="buyer_email" value="<%=membean.getMem_email() %>"/>
+			<input type="text" id="buyer_email" name="buyer_email" value="<%=membean.getMem_email() %>" readonly/>
 			<br>
-			<label for="buyer_tel">전화번호</label>
-			<input type="text" id="buyer_tel" name="buyer_tel" value="<%=membean.getMem_tel()%>"/>
 			<br>
 		<h1>받는사람정보 <button>배송지변경</button></h1>		
-			<label for="gain_name">이름</label>
-			<input type="text" id="gain_name" name="gain_name" value="<%=membean.getMem_name() %>"/>
+			<label for="get_name">이름</label>
+			<input type="text" id="get_name" name="get_name" value="<%=membean.getMem_name() %>"/>
 			<br>
-			<label for="gain_zip">배송주소</label>
-			<input type="text" name="gain_zip" id="gain_zip" placeholder="우편번호" size="7" value="<%=membean.getMem_zip()%>"/>
+			<label for="get_zip">배송주소</label>
+			<input type="text" name="get_zip" id="get_zip" placeholder="우편번호" size="7" value="<%=membean.getMem_zip()%>"/>
 			<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
 			<br>
-			<input type="text" name="gain_add" id="gain_add" placeholder="도로명주소" value="<%=membean.getMem_add() %>"/>
+			<input type="text" name="get_add" id="get_add" placeholder="도로명주소" value="<%=membean.getMem_add() %>"/>
 			<br>
-			<input type="text" name="gain_add2" id="gain_add2" placeholder="상세주소" value="<%=membean.getMem_add2() %>"/>
+			<input type="text" name="get_add2" id="get_add2" placeholder="상세주소" value="<%=membean.getMem_add2() %>"/>
+			<br>
+			<label for="get_tel">전화번호</label>
+			<input type="text" id="get_tel" name="get_tel" value="<%=membean.getMem_tel()%>"/>
 			<br>
 			<label for="or_request">배송 요청사항</label>
 			<input type="text" id="or_request" name="or_request"/>
@@ -55,16 +56,22 @@ table {
 			<input type="text" name="item_result" id="item_result"
 			value="<%=probean.getPro_price()*qty %>"readonly/>
 			<br>
-			<label for="point">(-)포인트 사용금액</label>
-			<input type="text" name="point" id="point" />
+			
+			<label for="or_point">사용 가능 포인트  ??점 중</label>
+			<input type="text" name="or_point" id="or_point" />
 			<button type="submit">사용하기</button>
-				<label for="delivery">(+)배송비</label>
+			<br>
+			<label for="delivery">(+)배송비</label>
 			<input type="text" name="delivery" id="delivery" value="2500" readonly/>
 			<br>
 			<label for="total_result">총 결제금액</label>
 			<input type="text" name="total_result" id="total_result" 
 			value="<%=probean.getPro_price()*qty+2500 %>"readonly/>
-			결제방법
+			<br>
+			<p>결제방법</p>
+			<label><input type='radio' id="cash" name='gyulze' value='cash' checked/>무통장입금</label>
+			<label><input type='radio' id="card" name='gyulze' value='card' />신용카드</label>
+			
 			
 			<input type="submit" value="결제하기">
 		</form>
@@ -92,11 +99,11 @@ table {
 					}
 
 					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					document.getElementById('gain_zip').value = data.zonecode;
-					document.getElementById("gain_add").value = roadAddr;
+					document.getElementById('get_zip').value = data.zonecode;
+					document.getElementById("get_add").value = roadAddr;
 
 					//auto focus
-					document.getElementById("gain_add2").focus();
+					document.getElementById("get_add2").focus();
 				}
 			}).open();
 		}

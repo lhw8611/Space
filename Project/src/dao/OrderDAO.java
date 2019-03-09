@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import vo.CartProViewBean;
 import vo.MemberBean;
+import vo.OrderBean;
 import vo.ProductBean;
 import vo.QtyBean;
 
@@ -218,14 +219,20 @@ public class OrderDAO {
 		return cartList;
 	}
 	
-	public int orderinsert(String mem_id) { //id에 대한 주문내역 만들기
+	public int orderinsert(String mem_id, OrderBean odbean) { //id에 대한 주문내역 만들기
 		PreparedStatement pstmt = null;
-		String sql = "insert into orders values(null, now(), 'wait', 'card', ?)";
+		String sql = "insert into orders values(null, now(), 'wait', ?, ?, ?, ?, ?, ?, ?)";
 		int updateCount = 0;
 		try {
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mem_id);
+			pstmt.setString(1, "temp cash");//결제방법
+			pstmt.setInt(2, odbean.getOr_point());//포인트
+			pstmt.setString(3, odbean.getOr_request());//요청사항
+			pstmt.setString(4, odbean.getOr_getname());//받는사람 이름
+			pstmt.setString(5, odbean.getOr_getadd());//받는사람 주소
+			pstmt.setString(6, odbean.getOr_gettel());//받는사람 전화
+			pstmt.setString(7, mem_id);//구매자 아이디
 			updateCount = pstmt.executeUpdate();
 			
 		}catch(Exception e) {
