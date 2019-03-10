@@ -10,7 +10,7 @@ import vo.MemberBean;
 import vo.OrderBean;
 import vo.ProductBean;
 
-public class orderFormSvc {
+public class OrderFormSvc {
 	//구매자 정보
 	public MemberBean purchaserInfo(String id) {
 		System.out.println("구매자 정보 서비스 진입");

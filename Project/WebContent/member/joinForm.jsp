@@ -82,7 +82,7 @@ body {
 	box-sizing: border-box;
 }
 </style>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -90,7 +90,7 @@ body {
 <body>
 		<div class="position">
 			<div class="content">
-				<form action="<%=request.getContextPath()%>/joinProcess.mem"
+				<form action="<%=request.getContextPath() %>/joinProcess.mem"
 					name="joinform" method="post" onsubmit="return passcheck()">
 					<div class="center">
 						<a href="<%=request.getContextPath()%>/main.jsp"> <img
@@ -112,7 +112,7 @@ body {
 
 					<label for="mem_zip">주소</label><br>
 					<input type="text" name="mem_zip" id="mem_zip" placeholder="우편번호" size="7" />
-					<button onclick="sample4_execDaumPostcode()" value="우편번호 찾기">우편번호 찾기</button>
+					<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
 						<input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"  class="width100" />
 					<input type="text" name="mem_add2" id="mem_add2" placeholder="상세주소"  class="width100" />
 
@@ -124,8 +124,8 @@ body {
 				</form>
 			</div>
 		</div>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
-		//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 		function sample4_execDaumPostcode() {
 			new daum.Postcode({
 				oncomplete : function(data) {

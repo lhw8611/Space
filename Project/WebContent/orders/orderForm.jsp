@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="vo.MemberBean"%>
+<%@ page import="vo.ProductBean" %>
+<% MemberBean membean = (MemberBean)request.getAttribute("membean"); 
+	ProductBean probean = (ProductBean)request.getAttribute("probean");
+	int qty = Integer.parseInt(request.getParameter("qty"));
+	System.out.println("qty값 보자 : " + qty);
+	session.setAttribute("membean", membean);
+	session.setAttribute("probean", probean);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,69 +22,91 @@ table {
 </head>
 <body>
 
+		<form action="<%=request.getContextPath() %>/orderaction.od" method="post">
+		<h1>구매자 정보</h1>
+			<input type="hidden" id="qty" name="qty" value="<%=qty %>"/>
+			<label for="buyer_name">이름</label>			
+			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>" readonly/>
+			<br>
+			<label for="buyer_email">이메일</label>				
+			<input type="text" id="buyer_email" name="buyer_email" value="<%=membean.getMem_email() %>" readonly/>
+			<br>
+			<br>
+		<h1>받는사람정보 <button>배송지변경</button></h1>		
+			<label for="get_name">이름</label>
+			<input type="text" id="get_name" name="get_name" value="<%=membean.getMem_name() %>"/>
+			<br>
+			<label for="get_zip">배송주소</label>
+			<input type="text" name="get_zip" id="get_zip" placeholder="우편번호" size="7" value="<%=membean.getMem_zip()%>"/>
+			<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
+			<br>
+			<input type="text" name="get_add" id="get_add" placeholder="도로명주소" value="<%=membean.getMem_add() %>"/>
+			<br>
+			<input type="text" name="get_add2" id="get_add2" placeholder="상세주소" value="<%=membean.getMem_add2() %>"/>
+			<br>
+			<label for="get_tel">전화번호</label>
+			<input type="text" id="get_tel" name="get_tel" value="<%=membean.getMem_tel()%>"/>
+			<br>
+			<label for="or_request">배송 요청사항</label>
+			<input type="text" id="or_request" name="or_request"/>
 		
-		<h1>받는 사람 정보</h1>
-		<table>
-			<tr>
-				<td>구매자 이름</td>
-				<td><input type="text" id="purchaser" name="purchaser" value="${membean.mem_name }"></td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" id="name" name="name" ></td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td><input type="text" id="tel" name="tel"></td>
-			</tr>
-			<tr>
-				<td>배송 요청사항</td>
-				<td><input type="text" id="remarks" name="remarks"></td>
-			</tr>
+		
+		<h1>결제 금액</h1>
+			<label for="item_result">총 상품금액</label>	
+			<input type="text" name="item_result" id="item_result"
+			value="<%=probean.getPro_price()*qty %>"readonly/>
+			<br>
 			
-		</table>
-		
-		<h1>결제 상품</h1>
-		<table>
-			<tr>
-				<td>상품명</td>
-				<td>가격</td>
-				<td>수량</td>
-				<td>적립</td>
-			</tr>
-			<tr>
-				<td>${probean.pro_name }</td>
-				<td>${probean.pro_price }</td>
-				<td>${qty }</td>
-				<td></td>
-			</tr>
+			<label for="or_point">사용 가능 포인트  ??점 중</label>
+			<input type="text" name="or_point" id="or_point" />
+			<button type="submit">사용하기</button>
+			<br>
+			<label for="delivery">(+)배송비</label>
+			<input type="text" name="delivery" id="delivery" value="2500" readonly/>
+			<br>
+			<label for="total_result">총 결제금액</label>
+			<input type="text" name="total_result" id="total_result" 
+			value="<%=probean.getPro_price()*qty+2500 %>"readonly/>
+			<br>
+			<p>결제방법</p>
+			<label><input type='radio' id="cash" name='gyulze' value='cash' checked/>무통장입금</label>
+			<label><input type='radio' id="card" name='gyulze' value='card' />신용카드</label>
 			
-		</table>
-		
-		<h1>결제 정보</h1>
-		<table>
-			<tr>
-				<td>총상품가격</td>
-				<td>${probean.pro_price*qty }</td>
-			</tr>
-			<tr>
-				<td>배송비</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>적립금 사용</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>총결제금액</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>결제방법</td>
-				<td></td>
-			</tr>
-		</table>
-		
-		<a href="#">결제하기</a>
+			
+			<input type="submit" value="결제하기">
+		</form>
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
+		function sample4_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+					// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var roadAddr = data.roadAddress; // 도로명 주소 변수
+					var extraRoadAddr = ''; // 참고 항목 변수
+
+					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraRoadAddr += data.bname;
+					}
+					// 건물명이 있고, 공동주택일 경우 추가한다.
+					if (data.buildingName !== '' && data.apartment === 'Y') {
+						extraRoadAddr += (extraRoadAddr !== '' ? ', '
+								+ data.buildingName : data.buildingName);
+					}
+
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('get_zip').value = data.zonecode;
+					document.getElementById("get_add").value = roadAddr;
+
+					//auto focus
+					document.getElementById("get_add2").focus();
+				}
+			}).open();
+		}
+	</script>
 </body>
 </html>

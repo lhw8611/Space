@@ -116,7 +116,7 @@ body {
 				
 				<button type="submit" class="width50">로그인</button>
 				<button onclick="javascript:location.href='joinForm.mem';" class="width50">회원가입</button>
-				<a href="joinForm.mem">회원가입</a>
+				<a href="<%=request.getContextPath() %>/joinForm.mem">회원가입</a>
 			</form>
 		</div>
 	</div>
