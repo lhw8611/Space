@@ -299,7 +299,7 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, oddbean.getPro_code());
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 			qty_qty = rs.getInt("qty_qty");
 			}
 			close(pstmt);
