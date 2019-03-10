@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import vo.CartProViewBean;
 import vo.MemberBean;
 import vo.OrderBean;
+import vo.OrderDetailBean;
 import vo.ProductBean;
 import vo.QtyBean;
 
@@ -219,7 +220,7 @@ public class OrderDAO {
 		return cartList;
 	}
 	
-	public int orderinsert(String mem_id, OrderBean odbean) { //id에 대한 주문내역 만들기
+	public int order_insert(String mem_id, OrderBean odbean) { //id에 대한 주문내역 만들기
 		PreparedStatement pstmt = null;
 		String sql = "insert into orders values(null, now(), 'wait', ?, ?, ?, ?, ?, ?, ?)";
 		int updateCount = 0;
@@ -242,6 +243,80 @@ public class OrderDAO {
 		}
 		
 		return updateCount;
+	}
+
+	public OrderDetailBean ordercode(OrderBean odbean, OrderDetailBean oddbean) { //마지막행의 주문번호 즉 방금 주문해서 추가된 주문코드
+		PreparedStatement pstmt = null;
+		String sql = "select * from orders";
+		ResultSet rs = null;
+		try {
+			pstmt=con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+				oddbean.setOd_num(rs.getInt("or_num"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return oddbean;
+	}
+
+	
+	
+	public int detail_insert(OrderDetailBean oddbean) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into order_detail values(?, ?, ?)";
+		int updateCount = 0;
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oddbean.getOd_num());//주문코드
+			pstmt.setInt(2, oddbean.getPro_code());//상품코드
+			pstmt.setInt(3, oddbean.getOd_qty());//주문갯수
+			updateCount = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
+
+	public int qty_insert(OrderDetailBean oddbean, QtyBean qtybean) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from qty where pro_code=?";
+		int qtyUpdate=0;
+		int qty_qty=0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oddbean.getPro_code());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			qty_qty = rs.getInt("qty_qty");
+			}
+			close(pstmt);
+			sql = "insert into qty values(null, ?, ?, 'out', now(), 'sell')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oddbean.getPro_code());//상품코드
+			pstmt.setInt(2, qty_qty-oddbean.getOd_qty());//재고수
+			qtyUpdate = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return qtyUpdate;
 	}
 }
 

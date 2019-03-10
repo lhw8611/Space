@@ -11,6 +11,7 @@ import orders.svc.OrderCompleteSvc;
 import vo.ActionForward;
 import vo.MemberBean;
 import vo.OrderBean;
+import vo.OrderDetailBean;
 import vo.ProductBean;
 import vo.QtyBean;
 
@@ -22,15 +23,16 @@ public class OrderCompleteAction implements Action {
 		MemberBean membean = (MemberBean)session.getAttribute("membean"); //구매자정보
 		ProductBean probean = (ProductBean)session.getAttribute("probean"); //상품에 대한 정보
 		ActionForward forward = null;
-		int buyqty = Integer.parseInt(request.getParameter("qty"));
+		
 		QtyBean qtybean = new QtyBean(); //재고수 저장클래스
 		OrderBean odbean = new OrderBean(); //구매정보 저장 클래스
+		OrderDetailBean oddbean = new OrderDetailBean(); //상세주문 저장
 		
-		System.out.println("멤버아이디 : " + membean.getMem_id());
-		System.out.println("상품코드 : " + probean.getPro_code());
-		System.out.println("구매수량 찍어보자 : " + buyqty);
+		oddbean.setPro_code(probean.getPro_code());
+		oddbean.setOd_qty(Integer.parseInt(request.getParameter("qty")));
+//		System.out.println("멤버아이디 : " + membean.getMem_id());
+//		System.out.println("상품코드 : " + probean.getPro_code());
 		
-//		get_name,get_zip,get_add,get_add2, get_tel, or_request
 		String get_zip = request.getParameter("get_zip");
 		String get_add = request.getParameter("get_add");
 		String get_add2 = request.getParameter("get_add2");
@@ -48,9 +50,9 @@ public class OrderCompleteAction implements Action {
 		OrderCompleteSvc ordercompletesvc = new OrderCompleteSvc();
 		qtybean = ordercompletesvc.productqty(probean.getPro_code()); //재고수 확인
 		System.out.println("재고 확인 : " + qtybean.getQty_qty());
-		if((qtybean.getQty_qty()-buyqty)>0) { //구매가능
+		if((qtybean.getQty_qty()-oddbean.getOd_qty())>0) { //구매가능
 			forward = new ActionForward();
-			ordercompletesvc.orderaction(membean.getMem_id(), odbean);
+			ordercompletesvc.orderaction(membean.getMem_id(), odbean, oddbean, qtybean);
 			
 			forward.setPath("orders/orderComplete.jsp");
 		}else {
