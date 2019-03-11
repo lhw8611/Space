@@ -154,6 +154,23 @@ public class OrderDAO {
 		return checkCartInsert;
 
 	}
+	//장바구니 삭제
+	public int deleteCart(int cart_num) {
+		PreparedStatement pstmt = null;
+		int deleteCartCheck =0;
+		String sql = "delete from cart where cart_num=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cart_num);
+			deleteCartCheck = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return deleteCartCheck;
+	}
 
 	public QtyBean productqty(int pro_code) {
 		System.out.println("[4]OrderDAO.productqty");
@@ -223,18 +240,17 @@ public class OrderDAO {
 		return cartList;
 	}
 	//수량변경
-	public int qtyChange (String id, int pro_code, int cart_qty ) {
+	public int qtyChange (int cart_num, int cart_qty ) {
 //		System.out.println("id : " +id);
 //		System.out.println("pro_code : " + pro_code);
 //		System.out.println("cart_qty : " +cart_qty);
 		PreparedStatement pstmt = null;
 		int qtyChangeCheck =0;
-		String sql = "update cart set cart_qty=? where mem_id=? and pro_code=?";
+		String sql = "update cart set cart_qty=? where cart_num=?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,cart_qty);
-			pstmt.setString(2, id);
-			pstmt.setInt(3, pro_code);
+			pstmt.setInt(2, cart_num);
 			qtyChangeCheck = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
