@@ -7,13 +7,13 @@ import java.sql.Connection;
 import dao.OrderDAO;
 
 public class CartQtyChangeSvc {
-	public int qtyChangeSvc (String id, int pro_code, int cart_qty) {
+	public int qtyChangeSvc (int cart_num, int cart_qty) {
 	int qtyChangeSvc = 0;
 	Connection con = getConnection();
 	OrderDAO orderDAO = OrderDAO.getInstance();
 	orderDAO.setConnection(con);
 	
-	qtyChangeSvc = orderDAO.qtyChange(id, pro_code,cart_qty );
+	qtyChangeSvc = orderDAO.qtyChange(cart_num, cart_qty );
 	
 	if(qtyChangeSvc>0) {
 		commit(con);
