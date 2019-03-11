@@ -4,6 +4,7 @@ public class OrderDetailBean {
 	int od_num;	//주문번호
 	int pro_code;	//상품코드
 	int od_qty; //구매수량
+	int or_itemresult;
 	public int getOd_num() {
 		return od_num;
 	}
@@ -21,6 +22,12 @@ public class OrderDetailBean {
 	}
 	public void setOd_qty(int od_qty) {
 		this.od_qty = od_qty;
+	}
+	public int getOr_itemresult() {
+		return or_itemresult;
+	}
+	public void setOr_itemresult(int or_itemresult) {
+		this.or_itemresult = or_itemresult;
 	}
 	
 	

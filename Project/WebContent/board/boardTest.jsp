@@ -15,6 +15,6 @@
 	<a href="/Project/qnaList.qna">qna</a>
 	<a href="/Project/admingetlist.mem">회원목록보기</a>
 	<a href="/Project/cartListForm.od">장바구니 보기</a>
-	<a href="/Project/orderList.op">주문목록 보기</a>
+	<a href="/Project/orderList.od">주문목록 보기</a>
 </body>
 </html>

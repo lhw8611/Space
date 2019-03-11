@@ -221,6 +221,7 @@ public class OrderDAO {
 	}
 	
 	public int order_insert(String mem_id, OrderBean odbean) { //id에 대한 주문내역 만들기
+		System.out.println("[OrderDAO.order_insert]");
 		PreparedStatement pstmt = null;
 		String sql = "insert into orders values(null, now(), 'wait', ?, ?, ?, ?, ?, ?, ?)";
 		int updateCount = 0;
@@ -246,6 +247,7 @@ public class OrderDAO {
 	}
 
 	public OrderDetailBean ordercode(OrderBean odbean, OrderDetailBean oddbean) { //마지막행의 주문번호 즉 방금 주문해서 추가된 주문코드
+		System.out.println("[OrderDAO.ordercode]");
 		PreparedStatement pstmt = null;
 		String sql = "select * from orders";
 		ResultSet rs = null;
@@ -268,7 +270,8 @@ public class OrderDAO {
 
 	
 	
-	public int detail_insert(OrderDetailBean oddbean) {
+	public int detail_insert(OrderDetailBean oddbean) { //오더디테일 값넣기 
+		System.out.println("[OrderDAO.detail_insert]");
 		PreparedStatement pstmt = null;
 		String sql = "insert into order_detail values(?, ?, ?)";
 		int updateCount = 0;
@@ -289,7 +292,8 @@ public class OrderDAO {
 		return updateCount;
 	}
 
-	public int qty_insert(OrderDetailBean oddbean, QtyBean qtybean) {
+	public int qty_insert(OrderDetailBean oddbean, QtyBean qtybean) { //재고수 select해서 구매수량만큼 빼기
+		System.out.println("[OrderDAO.qty_insert]");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from qty where pro_code=?";
@@ -317,6 +321,69 @@ public class OrderDAO {
 		}
 		
 		return qtyUpdate;
+	}
+	
+	public ArrayList<OrderBean> odlistDAO(String id) { //사용자 아이디로 주문조회
+		ArrayList<OrderBean> odbeanlist = new ArrayList<OrderBean>();
+		OrderBean odbean = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from orders where mem_id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				odbean = new OrderBean();
+				odbean.setOr_num(rs.getInt("or_num"));
+				odbean.setOr_date(rs.getDate("or_date"));
+				odbean.setOr_state(rs.getString("or_state"));
+				odbean.setOr_pay(rs.getString("or_pay"));
+				odbean.setOr_point(rs.getInt("or_point"));
+				odbean.setOr_request(rs.getString("or_request"));
+				odbean.setOr_getname(rs.getString("or_getname"));
+				odbean.setOr_getadd(rs.getString("or_getadd"));
+				odbean.setOr_gettel(rs.getString("or_gettel"));
+				odbean.setMem_id(rs.getString("mem_id"));
+				odbeanlist.add(odbean);
+				System.out.println("주문번호 보기 : " + odbean.getOr_num());
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return odbeanlist;
+	}
+
+	public ArrayList<OrderDetailBean> oddlistDAO(ArrayList<OrderBean> odbeanlist){
+		ArrayList<OrderDetailBean> oddbeanlist = new ArrayList<OrderDetailBean>();
+		OrderDetailBean oddbean = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select or_num, order_detail.pro_code, pro_price, od_qty, pro_price*od_qty as "
+				+ "itemresult from orders inner join order_detail on orders.or_num=order_detail.od_num "
+				+ "inner join product on order_detail.pro_code=product.pro_code;";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				oddbean = new OrderDetailBean();
+				oddbean.setOd_num(rs.getInt("or_num"));
+				oddbean.setOd_qty(rs.getInt("od_qty"));
+				oddbean
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return oddbeanlist;
 	}
 }
 

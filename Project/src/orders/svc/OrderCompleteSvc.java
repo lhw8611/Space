@@ -38,7 +38,7 @@ public class OrderCompleteSvc {
 
 	public MemberBean orderaction(String mem_id, OrderBean odbean, OrderDetailBean oddbean, QtyBean qtybean) { //주문내역에 정보저장
 		System.out.println("[3]OrderCompleteSvc.orderaction");
-		MemberBean membean = new MemberBean(); 
+		MemberBean membean = new MemberBean();
 		Connection con = getConnection();
 		OrderDAO orderDAO = OrderDAO.getInstance();
 		orderDAO.setConnection(con);
@@ -48,8 +48,8 @@ public class OrderCompleteSvc {
 //		System.out.println("주문코드 들어갔나 확인 : " + oddbean.getOd_num());
 //		System.out.println("주문갯수 들어갔나 확인 : " + oddbean.getOd_qty());
 //		System.out.println("상품코드 들어갔나 확인 : " + oddbean.getPro_code());
-		int oddUpdate = orderDAO.detail_insert(oddbean);
-		int qtyUpdate = orderDAO.qty_insert(oddbean, qtybean);
+		int oddUpdate = orderDAO.detail_insert(oddbean);//order_detail에 주문한 상품값 넣기 
+		int qtyUpdate = orderDAO.qty_insert(oddbean, qtybean); //구매한만큼 재고수테이블에서 상품재고 빼기
 		if(odUpdate > 0 && oddUpdate > 0 && qtyUpdate >  0) {
 			commit(con);
 		}else {
