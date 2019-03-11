@@ -11,6 +11,7 @@ import action.Action;
 import orders.svc.OrderListSvc;
 import vo.ActionForward;
 import vo.OrderBean;
+import vo.OrderDetailBean;
 
 public class OrderListAction implements Action{
 
@@ -25,7 +26,10 @@ public class OrderListAction implements Action{
 		forward = new ActionForward();
 		OrderListSvc odlistsvc = new OrderListSvc();
 		ArrayList<OrderBean> odbeanlist = odlistsvc.odlist(id);
+		ArrayList<OrderDetailBean> oddbeanlist = odlistsvc.oddlist(odbeanlist, id);
+		
 		session.setAttribute("odbeanlist", odbeanlist);
+		session.setAttribute("oddbeanlist", oddbeanlist);
 		forward.setRedirect(false);
 		forward.setPath("orders/orderList.jsp");
 		}else {

@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList" %>
     <%@page import="vo.OrderBean" %>
+    <%@page import="vo.OrderDetailBean" %>
     
 <%
 	ArrayList<OrderBean> odbeanlist = (ArrayList<OrderBean>)session.getAttribute("odbeanlist");
+	ArrayList<OrderDetailBean> oddbeanlist = (ArrayList<OrderDetailBean>)session.getAttribute("oddbeanlist");
 %>
 <!DOCTYPE html>
 <html>
@@ -115,12 +117,17 @@
 
 
 <% 
+for(int i=0; i<oddbeanlist.size(); i++){
+	System.out.println("["+ i+"]주문번호 :" + oddbeanlist.get(i).getOd_num());
+	System.out.println("상품총가격 :" + oddbeanlist.get(i).getOr_itemresult());
+	System.out.println("갯수 :" + oddbeanlist.get(i).getOd_qty());
+}
 for(int i=0; i<odbeanlist.size(); i++){
-	
-	out.println("<li><ul><li>" + odbeanlist.get(i).getOr_num()+"</li>");
-	out.println("<li class='left'>" + odbeanlist.get(i).getOr_date()+"</li>");
-	out.println("<li>" + odbeanlist.get(i).getOr_pay()+"</li>");
-	out.println("<li>" + odbeanlist.get(i).getOr_state()+"</li></ul></li>");
+	out.println("<li><ul><li>" + odbeanlist.get(i).getOr_num()+"</li>"); //주문번호
+	out.println("<li>" + odbeanlist.get(i).getOr_date()+"</li>"); //주문일시
+	out.println("<li>" + oddbeanlist.get(i).getOr_itemresult()+"</li>"); //결제금액
+	out.println("<li>" + odbeanlist.get(i).getOr_pay()+"</li>"); //결제방법
+	out.println("<li>" + odbeanlist.get(i).getOr_state()+"</li></ul></li>"); //주문상태
 }
 %>
                 </ul>

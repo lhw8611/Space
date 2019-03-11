@@ -43,10 +43,10 @@ public class OrderCompleteAction implements Action {
 		odbean.setOr_request(request.getParameter("or_request")); //주문 요청사항
 		odbean.setOr_point(Integer.parseInt(request.getParameter("or_point")));//사용 가능한 포인트
 		
-		/* 값 제대로 못받아옴 임시보류
-		 * odbean.setOr_pay(request.getParameter("gyulze"));
-		 * System.out.println("결제 뭘로됬나 확인 : " + request.getParameter("gyulze"));
-		 */
+//		 값 제대로 못받아옴 임시보류
+		  odbean.setOr_pay(request.getParameter("gyulze"));
+		  System.out.println("결제 뭘로됬나 확인 : " + request.getParameter("gyulze"));
+		 
 		OrderCompleteSvc ordercompletesvc = new OrderCompleteSvc();
 		qtybean = ordercompletesvc.productqty(probean.getPro_code()); //재고수 확인
 		System.out.println("재고 확인 : " + qtybean.getQty_qty());

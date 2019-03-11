@@ -69,8 +69,8 @@ table {
 			value="<%=probean.getPro_price()*qty+2500 %>"readonly/>
 			<br>
 			<p>결제방법</p>
-			<label><input type='radio' id="cash" name='gyulze' value='cash' checked/>무통장입금</label>
-			<label><input type='radio' id="card" name='gyulze' value='card' />신용카드</label>
+			<label><input type="radio" id="gyulze" name="gyulze" value="cash" checked/>무통장입금</label>
+			<label><input type="radio" id="gyulze" name="gyulze" value="card" />신용카드</label>
 			
 			
 			<input type="submit" value="결제하기">

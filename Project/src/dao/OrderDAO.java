@@ -384,22 +384,26 @@ public class OrderDAO {
 		return odbeanlist;
 	}
 
-	public ArrayList<OrderDetailBean> oddlistDAO(ArrayList<OrderBean> odbeanlist){
+	public ArrayList<OrderDetailBean> oddlistDAO(ArrayList<OrderBean> odbeanlist, String id){
 		ArrayList<OrderDetailBean> oddbeanlist = new ArrayList<OrderDetailBean>();
 		OrderDetailBean oddbean = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select or_num, order_detail.pro_code, pro_price, od_qty, pro_price*od_qty as "
-				+ "itemresult from orders inner join order_detail on orders.or_num=order_detail.od_num "
-				+ "inner join product on order_detail.pro_code=product.pro_code;";
+//		String sql = "select or_num, order_detail.pro_code, pro_price, od_qty, pro_price*od_qty as "
+//				+ "itemresult from orders inner join order_detail on orders.or_num=order_detail.od_num "
+//				+ "inner join product on order_detail.pro_code=product.pro_code;";
+		String sql = "select * from order_list where mem_id=?";
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				oddbean = new OrderDetailBean();
 				oddbean.setOd_num(rs.getInt("or_num"));
 				oddbean.setOd_qty(rs.getInt("od_qty"));
-				oddbean
+				oddbean.setOr_itemresult(rs.getInt("itemresult"));
+				oddbean.setPro_code(rs.getInt("pro_code"));
+				oddbeanlist.add(oddbean);
 			}
 			
 		}catch(Exception e) {
