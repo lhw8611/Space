@@ -24,17 +24,6 @@ public class CartListFormAction implements Action {
 		cartList = cartListFormSvc.cartListForm(id);
 
 		request.setAttribute("cartList", cartList);
-		for(int i=0; i<cartList.size(); i++) {
-			System.out.println(cartList.get(i).getPro_name());
-		}
-		// 비로그인 상태
-		if (id != null) {
-			
-			
-		// 로그인 상태
-		} else {
-			
-		}
 		System.out.println("cartListForm Action 진입");
 		forward.setPath("orders/cartList.jsp");
 		return forward;

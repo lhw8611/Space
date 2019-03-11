@@ -47,7 +47,7 @@
 			<div style="clear: both"></div>
 			<nav id="commandList">
 				<a href="/Project/dogList.dog">쇼핑 계속하기</a> 
-				<a href="#" onclick="orderForm.action='/Project/cartAdd.od<%-- ?id=<%=id %>&pro_code=${probean.pro_code} --%>';orderForm.submit();"> 장바구니에 담기</a>
+				<a href="#" onclick="orderForm.action='/Project/cartAdd.od';orderForm.submit();"> 장바구니에 담기</a>
 					<a href="/Project/orderPay.od?pro_code=${probean.pro_code}">주문하기</a>
 			</nav>
 		</section>

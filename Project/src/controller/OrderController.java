@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import orders.action.CartAddAction;
+import orders.action.CartDeleteAction;
 import orders.action.OrderCompleteAction;
 import orders.action.CartListFormAction;
+import orders.action.CartQtyChangeAction;
 import orders.action.OrderFormAction;
 import orders.action.OrderListAction;
 import vo.ActionForward;
@@ -67,8 +69,7 @@ public class OrderController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		else if(command.equals("/orderaction.od")){ //주문상세->주문완료 액션
+		} else if (command.equals("/orderaction.od")) { // 주문상세->주문완료 액션
 			System.out.println("[1]orderaction.od 컨트롤러 진입");
 			action = new OrderCompleteAction();
 			try {
@@ -76,10 +77,26 @@ public class OrderController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if(command.equals("/orderList.od")){ //주문조회
+		} else if (command.equals("/orderList.od")) { // 주문조회
 			System.out.println("[1]orderList.od 컨트롤러 진입");
 			action = new OrderListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/cartQtyChnage.od")) {
+			System.out.println("카트 수량변경 컨트롤러 진입");
+			action = new CartQtyChangeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/cartDelete.od")) {
+			System.out.println("카트 목록 삭제 컨트롤러 진입");
+			action = new CartDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
