@@ -15,16 +15,19 @@ public class CartListFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
+		System.out.println("cartListForm Action 진입");
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		
+		//로그인 상태
+		if (id != null) {
+			ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
+			CartListFormSvc cartListFormSvc = new CartListFormSvc();
+			cartList = cartListFormSvc.cartListForm(id);
+			request.setAttribute("cartList", cartList);
+		}
 
-		CartListFormSvc cartListFormSvc = new CartListFormSvc();
-		cartList = cartListFormSvc.cartListForm(id);
-
-		request.setAttribute("cartList", cartList);
-		System.out.println("cartListForm Action 진입");
 		forward.setPath("orders/cartList.jsp");
 		return forward;
 	}

@@ -85,7 +85,7 @@
 				<td><input type="button" value="수량 변경"
 					onclick="cartForm.action='/Project/cartQtyChnage.od?index=<%=i %>';cartForm.submit();" /></td>
 				<td><input type="button" value="삭제"
-					onclick="location.href='cartDelete.od?cart_num=<%=cartList.get(i).getCart_num()%>'" />
+					onclick="location.href='cartDelete.od?cart_num=<%=cartList.get(i).getCart_num()%>&index=<%=i %>'" />
 				</td>
 			</tr>
 
