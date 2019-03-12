@@ -30,21 +30,71 @@
 <script>
 	/* 	function checkAll(theForm) {
 	 if (theForm.remove.length == undefined) {
-	 theForm.remove.checked = theForm.allCheck.checked;
+	 theForm.remove.checked = theForm.checkAll.checked;
 	 } else {
 	 for (var i = 0; i < theForm.remove.length; i++) {
-	 theForm.remove[i].checked = theForm.allCheck.checked;
+	 theForm.remove[i].checked = theForm.checkAll.checked;
 	 }
 	 }
 	 }
 	 */
 </script>
+<script>
+	var check = false;
+	function CheckAll() {
+		var chk = document.getElementsByName("checklist");
+		if (check == false) {
+			check = true;
+			for (var i = 0; i < chk.length; i++) {
+				chk[i].checked = true; //모두 체크
+			}
+		} else {
+			check = false;
+			for (var i = 0; i < chk.length; i++) {
+				chk[i].checked = false; //모두 해제
+			}
+		}
+	}
+
+	function SelectCheck() {
+		var chk = document.getElementsByName("checklist"); // 체크박스객체를 담는다
+		var len = chk.length; //체크박스의 전체 개수
+		var checkRow = ''; //체크된 체크박스의 value를 담기위한 변수
+		var checkCnt = 0; //체크된 체크박스의 개수
+		var checkLast = ''; //체크된 체크박스 중 마지막 체크박스의 인덱스를 담기위한 변수
+		var rowid = ''; //체크된 체크박스의 모든 value 값을 담는다
+		var cnt = 0;
+		for (var i = 0; i < len; i++) {
+			if (chk[i].checked == true) {
+				checkCnt++; //체크된 체크박스의 개수
+				checkLast = i; //체크된 체크박스의 인덱스
+			}
+		}
+		for (var i = 0; i < len; i++) {
+			if (chk[i].checked == true) { //체크가 되어있는 값 구분
+				checkRow = chk[i].value;
+				if (checkCnt == 1) { //체크된 체크박스의 개수가 한 개 일때,
+					rowid += "'" + checkRow + "'"; //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+				} else { //체크된 체크박스의 개수가 여러 개 일때,
+					if (i == checkLast) { //체크된 체크박스 중 마지막 체크박스일 때,
+						rowid += "'" + checkRow + "'"; //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+					} else {
+						rowid += "'" + checkRow + "',"; //'value',의 형태 (뒤에 ,(콤마)가 붙게)         			
+					}
+				}
+				cnt++;
+				checkRow = ''; //checkRow초기화.
+			}
+		}
+		alert(rowid); //'value1', 'value2', 'value3' 의 형태로 출력된다.
+	}
+</script>
 </head>
 <body>
-	<form name="cartForm" method="post" >
+	<form name="cartForm" method="post">
 
 		<%
-			if (cartList == null||cartList.size()==0) {
+			if (cartList == null || cartList.size() == 0) {
 		%>
 		<h1>장바구니에 상품이 없습니다.</h1>
 		<%
@@ -54,8 +104,8 @@
 		<table>
 			<h3>3만원 이상 무료배송</h3>
 			<tr>
-				<td><input type="checkbox" id="allCheck" name="allCheck"
-					onclick="checkAll(this.form)" /></td>
+				<td><input type="checkbox" id="checkAll" name="checkAll"
+					onclick="javascript:CheckAll(this.form)" /></td>
 				<td>번호</td>
 				<td>상품이미지</td>
 				<td>상품명</td>
@@ -68,11 +118,10 @@
 			<tr>
 				<td><%=i + 1%></td>
 
-				<td>
-				<input type="hidden" id="cart_num<%=i %>" name="cart_num<%=i %>"
-					value="<%=cartList.get(i).getCart_num()%>" /> 
-				<input type="checkbox" id="check" name="check"
-					value="<%=cartList.get(i).getPro_code()%>" onClick="checkedvalue(this.form)" /></td>
+				<td><input type="hidden" id="cart_num<%=i%>"
+					name="cart_num<%=i%>" value="<%=cartList.get(i).getCart_num()%>" />
+					<input type="checkbox" id="checklist" name="checklist"
+					value="<%=cartList.get(i).getPro_code()%>" /></td>
 				<td><img
 					src="../boardUpload/<%=cartList.get(i).getPro_image()%>"
 					id="cartImage" width="100px" /></td>
@@ -80,13 +129,13 @@
 					value="<%=cartList.get(i).getPro_name()%>" /></td>
 				<td><input type="text" name="price" id="price"
 					value="<%=cartList.get(i).getPro_price()%>원" /></td>
-				<td><input type="text" name="qty<%=i %>" id="qty<%=i %>"
+				<td><input type="text" name="qty<%=i%>" id="qty<%=i%>"
 					value="<%=cartList.get(i).getCart_qty()%>" /></td>
 
 				<td><input type="button" value="수량 변경"
-					onclick="cartForm.action='/Project/cartQtyChnage.od?index=<%=i %>';cartForm.submit();" /></td>
+					onclick="cartForm.action='/Project/cartQtyChnage.od?index=<%=i%>';cartForm.submit();" /></td>
 				<td><input type="button" value="삭제"
-					onclick="cartForm.action='/Project/cartDelete.od?index=<%=i %>';cartForm.submit();"/>
+					onclick="cartForm.action='/Project/cartDelete.od?index=<%=i%>';cartForm.submit();" />
 				</td>
 			</tr>
 
@@ -122,25 +171,33 @@
 	<%
 		}
 	%>
-	<input type="button" value="선택 결제하기" onClick="checkedvalue()"/>
-	<input type="button" value="전체 결제하기" onClick="location.href='akldjfklasjfkalfjl'"/>
-	<script language="javascript">
-//버튼클릭시 checkedvalue 호출합니다.
-function checkedvalue(){
-    //check를 가진 값의 이름을 가져오기
-    var size = document.getElementsByName("check").length;
-    for(var i = 0; i < size; i++){
-    	document.write(document.getElementsByName("check")[i].value);
-    }
- 
-    //check이름을 가진 check중에서 체크된 것만 값 가져오기
-    var size = document.getElementsByName("check").length;
-    for(var i = 0; i < size; i++){
-        if(document.getElementsByName("check")[i].checked == true){
-        	document.write(document.getElementsByName("check")[i].value+"(체크)");
-        }
-    }
-}
-</script>
+	<button type="button"  onclick="document.getElementById('cartForm').submit();"
+	onClick="location.href='orderForm.od'">선택 결제하기</button>
+	<input type="button" value="전체 결제하기"
+		onClick="location.href='akldjfklasjfkalfjl'" />
+		<script>
+		/*
+		 * path : 전송 URL
+		 * params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력
+		 * method : 전송 방식(생략가능)
+		 */
+		function post_to_url(path, params, method) {
+		    method = method || "post"; // Set method to post by default, if not specified.
+		    // The rest of this code assumes you are not using a library.
+		    // It can be made less wordy if you use one.
+		    var form = document.createElement("form");
+		    form.setAttribute("method", method);
+		    form.setAttribute("action", path);
+		    for(var key in params) {
+		        var hiddenField = document.createElement("input");
+		        hiddenField.setAttribute("type", "hidden");
+		        hiddenField.setAttribute("name", key);
+		        hiddenField.setAttribute("value", params[key]);
+		        form.appendChild(hiddenField);
+		    }
+		    document.body.appendChild(form);
+		    form.submit();
+		}
+		</script>
 </body>
 </html>

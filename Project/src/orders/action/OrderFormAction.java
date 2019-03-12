@@ -19,7 +19,18 @@ public class OrderFormAction implements Action {
 
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
-
+		
+		if(request.getParameterValues("checklist")!=null) {
+		String[] value = request.getParameterValues("checklist");
+		
+		System.out.println("값 찎어보자 :" + value);
+		for(int i=0; i<value.length; i++) {
+			System.out.println("값 찎어보자 :" + value[i]);
+		
+		}
+		}else {
+			System.out.println("체크된게없음");
+		}
 		String id = (String) session.getAttribute("id"); // 세션에서 ID 받아옴
 		int pro_code = Integer.parseInt(request.getParameter("pro_code")); // 상품코드 받아옴
 		String qty = request.getParameter("qty");// 수량 받아옴
