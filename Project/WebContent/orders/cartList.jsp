@@ -68,10 +68,11 @@
 			<tr>
 				<td><%=i + 1%></td>
 
-				<td><input type="hidden" id="cart_num<%=i %>" name="cart_num<%=i %>"
-					value="<%=cartList.get(i).getCart_num()%>" />  <input
-					type="checkbox" id="check" name="check"
-					value="<%=cartList.get(i).getPro_code()%>" /></td>
+				<td>
+				<input type="hidden" id="cart_num<%=i %>" name="cart_num<%=i %>"
+					value="<%=cartList.get(i).getCart_num()%>" /> 
+				<input type="checkbox" id="check" name="check"
+					value="<%=cartList.get(i).getPro_code()%>" onClick="checkedvalue(this.form)" /></td>
 				<td><img
 					src="../boardUpload/<%=cartList.get(i).getPro_image()%>"
 					id="cartImage" width="100px" /></td>
@@ -121,6 +122,25 @@
 	<%
 		}
 	%>
-	<input type="button" value="결제하기"/>
+	<input type="button" value="선택 결제하기" onClick="checkedvalue()"/>
+	<input type="button" value="전체 결제하기" onClick="location.href='akldjfklasjfkalfjl'"/>
+	<script language="javascript">
+//버튼클릭시 checkedvalue 호출합니다.
+function checkedvalue(){
+    //check를 가진 값의 이름을 가져오기
+    var size = document.getElementsByName("check").length;
+    for(var i = 0; i < size; i++){
+    	document.write(document.getElementsByName("check")[i].value);
+    }
+ 
+    //check이름을 가진 check중에서 체크된 것만 값 가져오기
+    var size = document.getElementsByName("check").length;
+    for(var i = 0; i < size; i++){
+        if(document.getElementsByName("check")[i].checked == true){
+        	document.write(document.getElementsByName("check")[i].value+"(체크)");
+        }
+    }
+}
+</script>
 </body>
 </html>

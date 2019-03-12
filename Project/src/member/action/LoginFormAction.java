@@ -39,7 +39,6 @@ public class LoginFormAction implements Action{
 		}else{
 			session.setAttribute("id", request.getParameter("id"));
 			forward = new ActionForward();
-			request.setAttribute("membean", member);
 			forward.setRedirect(false);
 			forward.setPath("/main.jsp");
 			
