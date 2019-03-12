@@ -33,8 +33,11 @@
 					</ul> -->
 			<ul class="h-right">
 				<!-- 오른쪽정렬 -->
+<<<<<<< HEAD
 					<ii><a href='admin/admin_page.jsp'>관리자 페이지</a></ii>
 				
+=======
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 				<li><a href="<%=request.getContextPath()%>/qnaList.qna"><img src="<%=request.getContextPath()%>/icon/bell.png"></a></li>
 				<li><a href="#"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
 				<li><a href="<%=request.getContextPath()%>/loginForm.mem"><img src="<%=request.getContextPath()%>/icon/logout.png"></a></li>

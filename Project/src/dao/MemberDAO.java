@@ -75,7 +75,10 @@ public class MemberDAO {
 			if (rs.next()) {
 				if (member.getMem_pass().equals(rs.getString("mem_pass"))) {
 					RightUser = true;
+<<<<<<< HEAD
 					
+=======
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 				} else {
 					RightUser = false;
 				}

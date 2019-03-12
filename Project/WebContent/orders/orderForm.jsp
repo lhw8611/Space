@@ -15,15 +15,111 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-table {
-	border:1px solid black;
+    ul, li{ 
+        list-style:none;
+        text-align:center;
+        padding:0;
+        margin:0;
 }
+
+    #mainWrapper{
+        width: 800px;
+        margin: 0 auto; /*가운데 정렬*/
+    }
+
+    #mainWrapper > ul > li:first-child {
+        text-align: center;
+        font-size:14pt;
+        height:40px;
+        vertical-align:middle;
+        line-height:30px;
+}
+
+    #ulTable {margin-top:10px;}
+    
+
+    #ulTable > li:first-child > ul > li {
+        background-color:#c9c9c9;
+        font-weight:bold;
+        text-align:center;
+}
+
+    #ulTable > li > ul {
+        clear:both;
+        padding:0px auto;
+        position:relative;
+        min-width:40px;
+}
+    #ulTable > li > ul > li { 
+        float:left;
+        font-size:10pt;
+        border-bottom:1px solid silver;
+        vertical-align:baseline;
+}    
+
+    #ulTable > li > ul > li:first-child               {width:10%;} /*No 열 크기*/
+    #ulTable > li > ul > li:first-child +li           {width:45%;} /*제목 열 크기*/
+    #ulTable > li > ul > li:first-child +li+li        {width:20%;} /*작성일 열 크기*/
+    #ulTable > li > ul > li:first-child +li+li+li     {width:15%;} /*작성자 열 크기*/
+    #ulTable > li > ul > li:first-child +li+li+li+li{width:10%;} /*조회수 열 크기*/
+
+    #divPaging {
+          clear:both; 
+        margin:0 auto; 
+        width:220px; 
+        height:50px;
+}
+
+    #divPaging > div {
+        float:left;
+        width: 30px;
+        margin:0 auto;
+        text-align:center;
+}
+
+    #liSearchOption {clear:both;}
+    #liSearchOption > div {
+        margin:0 auto; 
+        margin-top: 30px; 
+        width:auto; 
+        height:100px; 
+
+}
+
+    .left {
+        text-align : left;
+}
+
 </style>
 </head>
 <body>
-
+<div id="mainWrapper">
 		<form action="<%=request.getContextPath() %>/orderaction.od" method="post">
-		<h1>구매자 정보</h1>
+
+		<ul><li>결제상품</li>
+			<li>
+				<ul id ="ulTable">
+					<li>
+						<ul>
+							<li>상품명</li>
+							<li>수량</li>
+							<li>상품가격</li>
+							<li>할인적용금액</li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li><%=probean.getPro_name() %></li>	
+							<li><%=qty%></li>
+							<li><%=probean.getPro_price()*qty %>	</li>
+							<li>아몰랑</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<br><h1>구매자 정보</h1>
 			<input type="hidden" id="qty" name="qty" value="<%=qty %>"/>
 			<label for="buyer_name">이름</label>			
 			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>" readonly/>
@@ -75,6 +171,7 @@ table {
 			
 			<input type="submit" value="결제하기">
 		</form>
+		</div>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		function sample4_execDaumPostcode() {
