@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="vo.MemberBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +10,12 @@
 
 <%
 	String id = null;
-	
+	MemberBean membean = (MemberBean)request.getAttribute("membean");
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
-				
+		System.out.println("멤버등급 찍어보자" + membean.getMem_grade());
 	}
-	/* else{
-		out.println("<script>");
-		out.println("location.href='loginForm.jsp'");
-		out.println("</script>");
-	} */
 	
-	System.out.println("top_menu.jsp String id = " + id);
 %>
 </head>
 <body>

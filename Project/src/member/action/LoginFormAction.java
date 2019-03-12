@@ -33,12 +33,13 @@ public class LoginFormAction implements Action{
 		if(!RightUser) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('비밀번호나 아이디가 일치하지 않습니다.')");
+			out.println("alert('아이디나 비밀번호가 일치하지 않습니다.')");
 			out.println("location.href='./member/loginForm.jsp'");
 			out.println("</script>");
 		}else{
 			session.setAttribute("id", request.getParameter("id"));
 			forward = new ActionForward();
+			request.setAttribute("membean", member);
 			forward.setRedirect(false);
 			forward.setPath("/main.jsp");
 			

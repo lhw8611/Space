@@ -91,21 +91,23 @@ body {
 		<div class="position">
 			<div class="content">
 				<form action="<%=request.getContextPath() %>/joinProcess.mem"
-					name="joinform" method="post" onsubmit="return passcheck()">
+					name="join" method="post" onsubmit="return validate()">
 					<div class="center">
 						<a href="<%=request.getContextPath()%>/main.jsp"> <img
 							src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
 						<hr color="#abc">
-						<h1>회원가입</h1>
+						<h1>Sing up</h1>
 					</div>
 
 					<label for="id">아이디</label> <input type="text" name="id" id="id"
-						placeholder="6~20자 영문자 또는 영문자+숫자" class="width100">
+						placeholder="4~20자 영문자 또는 영문자+숫자" class="width100">
+						
 					<button class="width100" name="check" id="check" type="button"
 						onclick="window.open('./dulpTest.us?openInit=true','','width=500, height=300')">중복검사</button>
+						
 					<br>
 					<br> <label for="pass">비밀번호 </label> <input type="password"
-						name="pass" id="pass" placeholder="4자리 이상" class="width100" /> <label
+						name="pass" id="pass" placeholder="4~20자리 영문자 또는 영문자+숫자" class="width100" /> <label
 						for="pass2">비밀번호 확인 </label> <input type="password" name="pass2"
 						id="pass2" class="width100" /> <label for="name">이름</label> <input
 						type="text" name="name" id="name" class="width100" />
@@ -117,7 +119,7 @@ body {
 					<input type="text" name="mem_add2" id="mem_add2" placeholder="상세주소"  class="width100" />
 
 					<label for="email">이메일 </label> <input type="text" name="email"
-						id="email" class="width100" /> <input type="hidden" name="grade"
+						id="email" class="width100" value=""/> <input type="hidden" name="grade"
 						id="grade" value="u" /> <label for="tel">전화번호</label>
 						<input type="tel" name="tel" id="tel" class="width100" />
 						<button type="submit" class="width100">회원가입</button>
@@ -157,17 +159,91 @@ body {
 			}).open();
 		}
 	</script>
-	<script>
-		function passcheck() {
-			var pass = document.getElementById("pass").value;
-			var pass2 = document.getElementById("pass2").value;
-
-			if (pass != pass2) {
-				alert('비밀번호가 틀렸습니다. 다시 입력해주세요');
-				return false;
-			}
-		}
-	</script>
-
+	      <script>
+            function validate() {
+                var re = /^[a-zA-Z0-9]{4,20}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+                var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                // 이메일이 적합한지 검사할 정규식
+ 
+                var id = document.getElementById("id");
+                var pw = document.getElementById("pass");
+                var email = document.getElementById("email");
+ 
+ 
+                // ------------ 이메일 까지 -----------
+ 
+                if(join.id.value=="") {
+                    alert("아이디를 입력해 주세요");
+                    join.id.focus();
+                    return false;
+                }
+                if(!check(re,id,"아이디는 4~20자의 영문 대소문자와 숫자로만 입력")) {
+                    return false;
+                }
+ 
+                if(join.pass.value=="") {
+                    alert("비밀번호를 입력해 주세요");
+                    join.pass.focus();
+                    return false;
+                }
+                if(!check(re,pass,"패스워드는 4~20자의 영문 대소문자와 숫자로만 입력")) {
+                    return false;
+                }
+ 
+                if(join.pass.value != join.pass2.value) {
+                    alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
+                    join.pass2.value = "";
+                    join.pass2.focus();
+                    return false;
+                }
+                if(join.name.value=="") {
+                    alert("이름을 입력해 주세요");
+                    join.name.focus();
+                    return false;
+                }
+                
+                if(join.mem_zip.value=="") {
+                    alert("우편번호를 입력해 주세요");
+                    join.mem_zip.focus();
+                    return false;
+                }
+                if(join.mem_add.value=="") {
+                    alert("도로명주소를 입력해 주세요");
+                    join.mem_add.focus();
+                    return false;
+                }
+                if(join.mem_add2.value=="") {
+                    alert("상세주소를 입력해 주세요");
+                    join.mem_add2.focus();
+                    return false;
+                }
+                if(email.value=="") {
+                    alert("이메일을 입력해 주세요");
+                    email.focus();
+                    return false;
+                }
+ 
+                if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+                    return false;
+                }
+ 
+                if(join.tel.value=="") {
+                    alert("전화번호를 입력해 주세요");
+                    join.tel.focus();
+                    return false;
+                }
+               
+            }
+ 
+            function check(re, what, message) {
+                if(re.test(what.value)) {
+                    return true;
+                }
+                alert(message);
+                what.value = "";
+                what.focus();
+                //return false;
+            }
+      </script>
 </body>
 </html>

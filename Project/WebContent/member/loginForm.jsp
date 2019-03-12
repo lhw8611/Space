@@ -37,13 +37,14 @@ body {
 	filter: blur(5px);
 }
 
-.blur{
+.blur {
 	z-index: 0;
 }
+
 .position {
 	width: 550px;
 	margin: auto;
-	padding-top : 140px;
+	padding-top: 140px;
 }
 
 .content {
@@ -96,30 +97,43 @@ body {
 </head>
 <body>
 	<div class="blur">
-	<div class="position">
-		<div class="content">
-			<form name="loginform"
-				action="<%=request.getContextPath()%>/loginProcess.mem"
-				method="post" onsubmit="return checkForm(this)">
+		<div class="position">
+			<div class="content">
+				<form name="login"
+					action="<%=request.getContextPath()%>/loginProcess.mem"
+					method="post" onsubmit="return validate()">
 
-				<div class="center">
-					<a href="<%=request.getContextPath()%>/main.jsp"> <img
-						src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
-					<hr color="#abc">
-					<h1>회원가입</h1>
-				</div>
-				<label for="id">아이디</label>
-				<input type="text" name="id" id="id" class="width100"/>
+					<div class="center">
+						<a href="<%=request.getContextPath()%>/main.jsp"> <img
+							src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
+						<hr color="#abc">
+						<h1>Login</h1>
+					</div>
+					<label for="id">아이디</label> <input type="text" name="id" id="id"
+						class="width100" /> <label for="pass">비밀번호 : </label> <input
+						type="password" name="pass" id="pass" class="width100" />
 
-				<label for="pass">비밀번호 : </label>
-				<input type="password" name="pass" id="pass" class="width100"/>
-				
-				<button type="submit" class="width50">로그인</button>
-				<button onclick="javascript:location.href='joinForm.mem';" class="width50">회원가입</button>
-				<a href="<%=request.getContextPath() %>/joinForm.mem">회원가입</a>
-			</form>
+					<button type="submit" class="width50">로그인</button>
+					<button type="button" onclick="javascript:location.href='<%=request.getContextPath()%>/joinForm.mem';"
+						class="width50">회원가입</button>
+					<a href="<%=request.getContextPath()%>/joinForm.mem">회원가입</a>
+				</form>
+			</div>
 		</div>
 	</div>
-	</div>
+	<script>
+		function validate() {
+			if (login.id.value == "") {
+				alert("아이디를 입력해 주세요");
+				login.id.focus();
+				return false;
+			}
+			if (login.pass.value == "") {
+				alert("비밀번호를 입력해 주세요");
+				login.pass.focus();
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>
