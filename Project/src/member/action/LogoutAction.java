@@ -18,7 +18,7 @@ public class LogoutAction implements Action{
 		session.invalidate();
 		
 		forward.setRedirect(true);
-		forward.setPath("/main.jsp");
+		forward.setPath("/Project/main.jsp");
 		
 		return forward;
 	}
