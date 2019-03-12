@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,18 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-		<header>
-		<div class="h-main">
-			<div class="logo">
-				<a href="main.jsp"><img src="/Project/images/logo.png"></a>
-			</div>
-			<ul class="h-right">
-				
-				<li><a href="<%=request.getContextPath()%>/qnaList.qna"><img src="<%=request.getContextPath()%>/icon/bell.png"></a></li>
-				<li><a href="/Project/productWriteForm.bo">상품 글 작성</a></li>
-			</ul>
-		</div>
-	</header>
+	<a href="/Project/admingetlist.mem">회원관리</a>
+	<a href="/Project/productWriteForm.bo">상품등록</a>
+	<a href="/Project/qtyManagement.ad">재고관리</a>
+	<a href="">구매내역</a>
+	<a href="">취소/환불</a>
 </body>
 </html>

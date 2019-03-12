@@ -225,6 +225,8 @@ public class BoardDAO {
 			}
 			return insertCount;
 		}
+		//상품등록 - qty-modifyCount 추가
+			
 		//상품리스트
 		public ArrayList<ProductBean> selectProductList(int page, int limit) {
 			PreparedStatement pstmt = null;

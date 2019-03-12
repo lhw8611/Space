@@ -10,11 +10,8 @@
 
 <%
 	String id = null;
-	MemberBean membean = null;
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
-		membean = (MemberBean)request.getAttribute("membean");
-		System.out.println("멤버등급 찍어보자" + membean.getMem_grade());
 	}
 	
 %>
@@ -36,10 +33,7 @@
 					</ul> -->
 			<ul class="h-right">
 				<!-- 오른쪽정렬 -->
-				<%if(membean!= null && membean.getMem_grade().equals("s")){ 
-					out.println("<ii><a href='#'>관리자 페이지</a></ii>");
-				}
-				%>
+					<ii><a href='admin/admin_page.jsp'>관리자 페이지</a></ii>
 				
 				<li><a href="<%=request.getContextPath()%>/qnaList.qna"><img src="<%=request.getContextPath()%>/icon/bell.png"></a></li>
 				<li><a href="#"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
