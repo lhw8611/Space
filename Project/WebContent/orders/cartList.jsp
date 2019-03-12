@@ -44,7 +44,7 @@
 	<form name="cartForm" method="post" >
 
 		<%
-			if (cartList == null) {
+			if (cartList == null||cartList.size()==0) {
 		%>
 		<h1>장바구니에 상품이 없습니다.</h1>
 		<%
@@ -85,7 +85,7 @@
 				<td><input type="button" value="수량 변경"
 					onclick="cartForm.action='/Project/cartQtyChnage.od?index=<%=i %>';cartForm.submit();" /></td>
 				<td><input type="button" value="삭제"
-					onclick="location.href='cartDelete.od?cart_num=<%=cartList.get(i).getCart_num()%>&index=<%=i %>'" />
+					onclick="cartForm.action='/Project/cartDelete.od?index=<%=i %>';cartForm.submit();"/>
 				</td>
 			</tr>
 
@@ -121,5 +121,6 @@
 	<%
 		}
 	%>
+	<input type="button" value="결제하기"/>
 </body>
 </html>
