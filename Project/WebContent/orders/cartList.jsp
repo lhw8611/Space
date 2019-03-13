@@ -152,6 +152,7 @@
 					if (cartResult >= 30000) {
 						shipping = 0;
 					}
+			}
 			%>
 
 
@@ -175,12 +176,6 @@
 				}
 			}
 		}
-	%>
-	<button type="button"  onclick="document.getElementById('cartForm').submit();"
-	onClick="location.href='orderForm.od'">선택 결제하기</button>
-	<input type="button" value="전체 결제하기"
-		onClick="location.href='akldjfklasjfkalfjl'" />
-		<script>
 		/* path : 전송 URL
 		 * params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력
 		 * method : 전송 방식(생략가능)		 */
@@ -202,9 +197,5 @@
 		    form.submit();
 		}
 		</script>
-	</script>
-	</script>
-	</script>
-	</script>
 </body>
 </html>

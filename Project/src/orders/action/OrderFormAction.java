@@ -52,9 +52,6 @@ public class OrderFormAction implements Action {
 			ProductBean probean = null;
 		
 			
-			
-
-			
 			int codes[] = null;
 			if(request.getParameter("type").equals("all")) { //장바구니 전체주문
 				
@@ -82,8 +79,8 @@ public class OrderFormAction implements Action {
 				}
 			}else if(request.getParameter("type").equals("one")) {
 				int pro_code = Integer.parseInt(request.getParameter("pro_code")); // 상품코드 받아옴
-				// 수량 받아옴
-				String qty = request.getParameter("qty");
+				String qty = request.getParameter("qty"); // 수량 받아옴
+				
 				request.setAttribute("qty", qty);
 				probean = odFormSvc.productsInfo(pro_code);	//상품정보
 				probeanList.add(probean);
@@ -98,10 +95,9 @@ public class OrderFormAction implements Action {
 			}
 		
 			
-
+			request.setAttribute("probeanList", probeanList);
 			request.setAttribute("membean", membean);
 			request.setAttribute("maxpoint", MaxPoint);
-			
 			System.out.println("다 실행되나 확인");
 			forward.setPath("/orders/orderForm.jsp");
 		}

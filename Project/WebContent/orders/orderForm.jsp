@@ -2,19 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="vo.MemberBean"%>
 <%@ page import="vo.ProductBean" %>
+<%@ page import="java.util.*" %>
 <% MemberBean membean = (MemberBean)request.getAttribute("membean"); 
-	ProductBean probean = (ProductBean)request.getAttribute("probean");
+	ArrayList<ProductBean> probeanlist = (ArrayList<ProductBean>)request.getAttribute("probean");	
 	if(membean == null){
 		membean = (MemberBean)session.getAttribute("membean");
-	}
-	if(probean == null){
-		probean = (ProductBean)session.getAttribute("probean");
 	}
 	int MaxPoint = (Integer)(request.getAttribute("maxpoint"));
 	int qty = Integer.parseInt(request.getParameter("qty"));
 	System.out.println("orderForm.jsp : " + MaxPoint +" <-포인트, 재고-> " + qty);
 	session.setAttribute("membean", membean);
-	session.setAttribute("probean", probean);
 %>
 <!DOCTYPE html>
 <html>
@@ -114,14 +111,17 @@
 							<li>할인적용금액</li>
 						</ul>
 					</li>
+					
+					<%for(int i=0; i<probeanlist.size(); i++){ %>
 					<li>
 						<ul>
-							<li><%=probean.getPro_name() %></li>	
+							<li><%=probeanlist.get(i).getPro_name() %></li>	
 							<li><%=qty%></li>
-							<li><%=probean.getPro_price()*qty %>	</li>
+							<li><%=probeanlist.get(i).getPro_price()*qty %>	</li>
 							<li>아몰랑</li>
 						</ul>
 					</li>
+					<%} %>
 				</ul>
 			</li>
 		</ul>

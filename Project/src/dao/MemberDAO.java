@@ -111,7 +111,7 @@ public class MemberDAO {
 				member.setMem_tel(rs.getString("mem_tel"));
 				member.setMem_zip(rs.getString("mem_tel"));
 				member.setMem_add2(rs.getString("mem_add2"));
-				member.setMem_date(rs.getString("mem_date"));
+				member.setMem_date(rs.getDate("mem_date"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,7 +171,7 @@ public class MemberDAO {
 				member.setMem_email(rs.getString("mem_email"));
 				member.setMem_grade(rs.getString("mem_grade"));
 				member.setMem_tel(rs.getString("mem_tel"));
-				member.setMem_date(rs.getString("mem_date"));
+				member.setMem_date(rs.getDate("mem_date"));
 				list.add(member);
 			}
 		} catch (Exception ex) {
