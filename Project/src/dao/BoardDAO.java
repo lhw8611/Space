@@ -226,7 +226,38 @@ public class BoardDAO {
 			}
 			return insertCount;
 		}
+	
+
 		//상품등록 - qty-modifyCount 추가
+		public int QtyModifyCount () {
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			int insertCount =0;
+			String sql = "select * from product order by pro_code desc";
+			String sql2 = "insert into qty(qty_modifyCount,pro_code) values(0,?);";
+			
+			//새로 등록한 상품의 코드를 추출
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					int getPro_code = rs.getInt("pro_code");
+					pstmt2 = con.prepareStatement(sql2);
+					pstmt2.setInt(1, getPro_code);
+					System.out.println(sql2);
+					insertCount = pstmt2.executeUpdate();
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return insertCount;
+		}
 			
 		//상품리스트
 		public ArrayList<ProductBean> selectProductList(int page, int limit) {
