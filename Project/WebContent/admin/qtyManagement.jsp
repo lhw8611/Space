@@ -47,7 +47,7 @@ table td {
 			<td><%=qtyList.get(i).getQty_date() %></td>
 			<td><%=qtyList.get(i).getQty_note() %></td>
 			<td><input type="button" value="상세보기" onclick="window.open('idCheckForm.mem?openInit=true', '', 'width=300, height=200')"/> </td>
-			<td><input type="button" value="입/출고 관리" onclick="window.open('inoutListForm.ad?pro_code=<%=qtyList.get(i).getPro_code() %>', '', 'width=300, height=500')"/> </td>
+			<td><input type="button" value="입/출고 관리" onclick="window.open('inoutListForm.ad?pro_code=<%=qtyList.get(i).getPro_code() %>', '', 'width=500, height=700')"/> </td>
 			<td><input type="button" value="삭제"/></td>			
 			
 		</tr>

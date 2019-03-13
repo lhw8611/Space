@@ -12,7 +12,9 @@ public class QtyInOutAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		int pro_code = Integer.parseInt((String) request.getAttribute("pro_code"));//이거 인식안됨
+//		System.out.println("이거:"+request.getAttribute("pro_code"));
+//		int pro_code = Integer.parseInt((String) request.getAttribute("pro_code"));//이거 인식안됨
+		int pro_code = Integer.parseInt(request.getParameter("pro_code"));
 		
 		int qty = Integer.parseInt(request.getParameter("qty"));
 		String note = request.getParameter("note");
@@ -25,7 +27,7 @@ public class QtyInOutAction implements Action {
 		qtyInOutSvc.QtyInSvc(pro_code,inout,qty,note);
 	
 		
-		forward.setPath("admin/popup_inout");
+		forward.setPath("Project/inoutListForm.ad");
 		return forward;
 	}
 

@@ -3,8 +3,11 @@
 <%@ page import="vo.QtyProViewBean"%>
 <%@ page import="java.util.*"%>
 <%
-	ArrayList<QtyProViewBean> qtyInOutList = (ArrayList<QtyProViewBean>)request.getAttribute("qtyInOutList");
-System.out.println((ArrayList<QtyProViewBean>)request.getAttribute("qtyInOutList"));
+	ArrayList<QtyProViewBean> qtyInOutList = (ArrayList<QtyProViewBean>) request.getAttribute("qtyInOutList");
+	int pro_code = 0;
+	if (request.getAttribute("pro_code") != null) {
+		pro_code = (int)request.getAttribute("pro_code");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -14,15 +17,15 @@ System.out.println((ArrayList<QtyProViewBean>)request.getAttribute("qtyInOutList
 </head>
 <body>
 
-<form action="QtyInOutAction.ad">
-입고<input type="radio" name="inout" id="inout" value="in" checked="checked"/>
-출고<input type="radio" name="inout" id="inout" value="out"/><br>
+	<form action="QtyInOutAction.ad">
+		<input type="hidden" name="pro_code" id="pro_code"
+			value="<%=pro_code%>" /> 입고<input type="radio" name="inout"
+			id="inout" value="in" checked="checked" /> 출고<input type="radio"
+			name="inout" id="inout" value="out" /><br> 수량 : <input
+			type="text" name="qty" id="qty" /><br> 비고 : <input type="text"
+			name="note" id="note" /> <input type="submit" value="등록" />
 
-수량 : <input type="text" name="qty" id="qty"/><br>
-비고 : <input type="text" name="note" id="note"/>
-<input type="submit" value="등록"/>
-
-</form>
+	</form>
 	<table>
 		<tr>
 			<td>번호</td>
@@ -38,12 +41,12 @@ System.out.println((ArrayList<QtyProViewBean>)request.getAttribute("qtyInOutList
 				for (int i = 0; i < qtyInOutList.size(); i++) {
 		%>
 		<tr>
-			<td><%=i+1 %></td>
-			<td><%=qtyInOutList.get(i).getPro_name() %></td>
-			<td><%=qtyInOutList.get(i).getQty_inout() %></td>
-			<td><%=qtyInOutList.get(i).getQty_note() %></td>
-			<td><%=qtyInOutList.get(i).getQty_date() %></td>
-		
+			<td><%=i + 1%></td>
+			<td><%=qtyInOutList.get(i).getPro_name()%></td>
+			<td><%=qtyInOutList.get(i).getQty_inout()%></td>
+			<td><%=qtyInOutList.get(i).getQty_note()%></td>
+			<td><%=qtyInOutList.get(i).getQty_date()%></td>
+
 		</tr>
 		<%
 			}
@@ -51,6 +54,6 @@ System.out.println((ArrayList<QtyProViewBean>)request.getAttribute("qtyInOutList
 		%>
 
 	</table>
-	
+
 </body>
 </html>

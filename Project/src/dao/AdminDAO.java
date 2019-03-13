@@ -57,7 +57,7 @@ public class AdminDAO {
 				qtybean.setPro_name(rs.getString("pro_name"));
 				qtybean.setPro_price(rs.getInt("pro_price"));
 				qtybean.setPro_category(rs.getString("pro_category"));
-				qtybean.setPro_content(rs.getString("pro_content"));
+				qtybean.setPro_content(rs.getString("pro_content"));	
 				qtybean.setPro_image(rs.getString("pro_image"));
 				qtybean.setQty_modifycount(rs.getInt("qty_modifycount"));
 				qtyList.add(qtybean);
@@ -117,7 +117,7 @@ public class AdminDAO {
 	public int qtyInOutRegister(int pro_code,String inout,int qty,String note) {
 		PreparedStatement pstmt = null;
 		int inoutCheck =0;
-		String sql = "update qty set qty_qty=?, qty_inout=?, qty_date=now(), qty_modifyCount=qty_modifyCount+1, qty_note=? where pro_code=? ";
+		String sql = "insert into qty values (null,?,?,?,now(),?,?)";
 		
 		try {
 			pstmt=con.prepareStatement(sql);

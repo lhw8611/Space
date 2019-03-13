@@ -21,7 +21,7 @@ public class InOutListFormAction implements Action{
 		qtyInOutList = inOutListFormSvc.InOutManagement(pro_code);
 		request.setAttribute("qtyInOutList", qtyInOutList);
 		request.setAttribute("pro_code", pro_code);
-		System.out.println("이거:"+request.getAttribute("pro_code"));
+		
 		
 		forward.setPath("admin/popup_inout.jsp");
 		return forward;

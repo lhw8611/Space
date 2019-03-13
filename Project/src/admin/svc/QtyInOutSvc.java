@@ -11,7 +11,7 @@ public class QtyInOutSvc {
 		AdminDAO adminDAO = AdminDAO.getInstance();
 		adminDAO.setConnection(con);
 		int inoutCheck =0;
-		adminDAO.qtyInOutRegister(pro_code,inout,qty,note);
+		inoutCheck = adminDAO.qtyInOutRegister(pro_code,inout,qty,note);
 		
 		if(inoutCheck>0) {
 			commit(con);
