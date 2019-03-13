@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import vo.NoticeBean;
+import vo.PointBean;
 import vo.ProductBean;
 
 public class BoardDAO {
@@ -285,11 +286,34 @@ public class BoardDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("OrderDAO.productInfo error");
 			} finally {
 				close(pstmt);
 				close(rs);
 			}
 			return productBean;
 
+		}
+
+		public int MaxPointDAO(String mem_id) { //사용할 수 있는 포인트 조회
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int MaxPoint = 0;
+			try {
+				pstmt = con.prepareStatement("select * from point where mem_id=?");
+				pstmt.setString(1, mem_id);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //마지막행의 갖고있는 포인트 사용을 위한 반복문
+					MaxPoint = rs.getInt("po_total");
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("OrderDAO.MaxPointDAO error");
+			}finally {
+				close(pstmt);
+				close(rs);
+			}
+			
+			return MaxPoint;
 		}
 }

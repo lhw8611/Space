@@ -25,7 +25,7 @@ public class CartListFormAction implements Action {
 			ArrayList<CartProViewBean> cartList = new ArrayList<CartProViewBean>();
 			CartListFormSvc cartListFormSvc = new CartListFormSvc();
 			cartList = cartListFormSvc.cartListForm(id);
-			request.setAttribute("cartList", cartList);
+			session.setAttribute("cartListdb", cartList);
 		}
 
 		forward.setPath("orders/cartList.jsp");

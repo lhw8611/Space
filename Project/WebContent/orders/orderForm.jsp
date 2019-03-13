@@ -4,8 +4,15 @@
 <%@ page import="vo.ProductBean" %>
 <% MemberBean membean = (MemberBean)request.getAttribute("membean"); 
 	ProductBean probean = (ProductBean)request.getAttribute("probean");
+	if(membean == null){
+		membean = (MemberBean)session.getAttribute("membean");
+	}
+	if(probean == null){
+		probean = (ProductBean)session.getAttribute("probean");
+	}
+	int MaxPoint = (Integer)(request.getAttribute("maxpoint"));
 	int qty = Integer.parseInt(request.getParameter("qty"));
-	System.out.println("qty값 보자 : " + qty);
+	System.out.println("orderForm.jsp : " + MaxPoint +" <-포인트, 재고-> " + qty);
 	session.setAttribute("membean", membean);
 	session.setAttribute("probean", probean);
 %>
@@ -153,8 +160,8 @@
 			value="<%=probean.getPro_price()*qty %>"readonly/>
 			<br>
 			
-			<label for="or_point">사용 가능 포인트  ??점 중</label>
-			<input type="text" name="or_point" id="or_point" />
+			<label for="or_point">사용 가능 포인트  <%=MaxPoint %>점 중</label>
+			<input type="text" name="or_point" id="or_point" value="0"/>
 			<button type="submit">사용하기</button>
 			<br>
 			<label for="delivery">(+)배송비</label>

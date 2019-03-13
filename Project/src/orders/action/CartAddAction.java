@@ -1,5 +1,7 @@
 package orders.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,12 +19,15 @@ public class CartAddAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		int pro_code = Integer.parseInt(request.getParameter("pro_code"));
-		int qty=Integer.parseInt(request.getParameter("qty"));
-
-		CartAddSvc cartAddSvc = new CartAddSvc();
+		int qty=1;
+		if(request.getParameter("qty")!=null) {
+			qty = Integer.parseInt(request.getParameter("qty"));
+		}
 		
-
-		ProductBean probean = cartAddSvc.getCartList(pro_code);
+		CartAddSvc cartAddSvc = new CartAddSvc();
+		ProductBean probean = cartAddSvc.getCartList(pro_code); //상품코드로 정보 probean에 넣기
+//		ArrayList<ProductBean> probeanlist = (ArrayList<Product 
+		
 		// 비로그인 상태
 		if (id == null) {
 			cartAddSvc.addCart(request, probean, qty);

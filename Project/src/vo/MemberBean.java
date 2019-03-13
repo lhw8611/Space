@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 public class MemberBean { 
 	private String mem_id;
 	private String mem_pass;
@@ -8,7 +10,7 @@ public class MemberBean {
 	private String mem_email;
 	private String mem_grade;
 	private String mem_tel;
-	private String mem_date;
+	private Date mem_date;
 	
 	private String mem_zip;
 	private String mem_add2;
@@ -54,11 +56,11 @@ public class MemberBean {
 	public void setMem_tel(String mem_tel) {
 		this.mem_tel = mem_tel;
 	}
-	public String getMem_date() {
+	public Date getMem_date() {
 		return mem_date;
 	}
-	public void setMem_date(String mem_date) {
-		this.mem_date = mem_date;
+	public void setMem_date(Date date) {
+		this.mem_date = date;
 	}
 	public String getMem_zip() {
 		return mem_zip;

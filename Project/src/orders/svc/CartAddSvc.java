@@ -30,6 +30,7 @@ public class CartAddSvc {
 	public void addCart(HttpServletRequest request, ProductBean probean, int qty) {
 		HttpSession session = request.getSession();
 		ArrayList<CartProViewBean> cartList = (ArrayList<CartProViewBean>) session.getAttribute("cartList");
+		
 		// 세션에 장바구니가 없을 경우
 		if (cartList == null) {
 			cartList = new ArrayList<CartProViewBean>();
