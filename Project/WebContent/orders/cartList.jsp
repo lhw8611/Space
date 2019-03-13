@@ -176,11 +176,9 @@
 	<input type="button" value="전체 결제하기"
 		onClick="location.href='akldjfklasjfkalfjl'" />
 		<script>
-		/*
-		 * path : 전송 URL
+		/* path : 전송 URL
 		 * params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력
-		 * method : 전송 방식(생략가능)
-		 */
+		 * method : 전송 방식(생략가능)		 */
 		function post_to_url(path, params, method) {
 		    method = method || "post"; // Set method to post by default, if not specified.
 		    // The rest of this code assumes you are not using a library.
