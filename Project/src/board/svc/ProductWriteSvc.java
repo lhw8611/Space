@@ -17,9 +17,10 @@ public class ProductWriteSvc {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
-		int insertCount = boardDAO.productWrite(noticeBean);
-
-		if (insertCount > 0) {
+		int insertProduct = boardDAO.productWrite(noticeBean);
+		int insertCount = boardDAO.QtyModifyCount();
+		
+		if (insertProduct > 0 && insertCount>0) {
 			commit(con);
 			isWriteSuccess = true;
 		} else {

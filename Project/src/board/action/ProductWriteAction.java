@@ -41,6 +41,8 @@ public class ProductWriteAction implements Action{
 		System.out.println("pro image:"+proBean.getPro_image());
 		ProductWriteSvc productWriteSvc = new ProductWriteSvc();
 		boolean isWriteSuccess = productWriteSvc.productWriteSvc(proBean);
+		
+		
 
 		if (!isWriteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
