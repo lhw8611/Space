@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import vo.NoticeBean;
+import vo.PointBean;
 import vo.ProductBean;
 
 public class BoardDAO {
@@ -225,7 +226,38 @@ public class BoardDAO {
 			}
 			return insertCount;
 		}
+	
+
 		//상품등록 - qty-modifyCount 추가
+		public int QtyModifyCount () {
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			int insertCount =0;
+			String sql = "select * from product order by pro_code desc";
+			String sql2 = "insert into qty(qty_modifyCount,pro_code) values(0,?);";
+			
+			//새로 등록한 상품의 코드를 추출
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					int getPro_code = rs.getInt("pro_code");
+					pstmt2 = con.prepareStatement(sql2);
+					pstmt2.setInt(1, getPro_code);
+					System.out.println(sql2);
+					insertCount = pstmt2.executeUpdate();
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return insertCount;
+		}
 			
 		//상품리스트
 		public ArrayList<ProductBean> selectProductList(int page, int limit) {
@@ -285,11 +317,34 @@ public class BoardDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("OrderDAO.productInfo error");
 			} finally {
 				close(pstmt);
 				close(rs);
 			}
 			return productBean;
 
+		}
+
+		public int MaxPointDAO(String mem_id) { //사용할 수 있는 포인트 조회
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int MaxPoint = 0;
+			try {
+				pstmt = con.prepareStatement("select * from point where mem_id=?");
+				pstmt.setString(1, mem_id);
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //마지막행의 갖고있는 포인트 사용을 위한 반복문
+					MaxPoint = rs.getInt("po_total");
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("OrderDAO.MaxPointDAO error");
+			}finally {
+				close(pstmt);
+				close(rs);
+			}
+			
+			return MaxPoint;
 		}
 }

@@ -4,7 +4,6 @@
 <%@ page import="vo.QtyProViewBean"%>
 <%
 	ArrayList<QtyProViewBean> qtyList = (ArrayList<QtyProViewBean>)request.getAttribute("qtyList");
-	System.out.println(qtyList);
 %>
 <!DOCTYPE html>
 <html>
@@ -27,12 +26,10 @@ table td {
 			<td>이미지</td>
 			<td>상품명</td>
 			<td>남은 수량</td>
-			<td>in/out</td>
 			<td>최근 입/출고 날짜</td>
 			<td>비고</td>
 			<td>상세보기</td>
-			<td>입고</td>
-			<td>출고</td>
+			<td>입/출고 관리</td>
 			<td>삭제</td>
 		</tr>
 		<%
@@ -44,16 +41,14 @@ table td {
 		<tr>
 			<td><%=qtyList.get(i).getQty_num() %> </td>
 			<td><%=qtyList.get(i).getPro_code() %></td>
-			<td><img src="/Project/boardUpload/<%=qtyList.get(i).getPro_image() %>"/></td>
+			<td><img src="/Project/boardUpload/<%=qtyList.get(i).getPro_image() %>" width="100px"/></td>
 			<td><%=qtyList.get(i).getPro_name() %></td>
 			<td>남은 수량 </td>
-			<td><%=qtyList.get(i).getQty_inout() %></td>
 			<td><%=qtyList.get(i).getQty_date() %></td>
 			<td><%=qtyList.get(i).getQty_note() %></td>
-			<td>상세보기 페이지 </td>
-			<td>입고 </td>
-			<td>출고 </td>
-			<td>삭제 </td>			
+			<td><input type="button" value="상세보기" onclick="window.open('idCheckForm.mem?openInit=true', '', 'width=300, height=200')"/> </td>
+			<td><input type="button" value="입/출고 관리" onclick="window.open('inoutListForm.ad?pro_code=<%=qtyList.get(i).getPro_code() %>', '', 'width=300, height=500')"/> </td>
+			<td><input type="button" value="삭제"/></td>			
 			
 		</tr>
 		<%

@@ -4,10 +4,11 @@ public class CartProViewBean {
 	private int cart_num;
 	private String mem_id;
 	private int pro_code;
+	private int cart_qty;
+	
 	private String pro_name;
 	private int pro_price;
 	private String pro_image;
-	private int cart_qty;
 	
 	
 	public int getCart_num() {

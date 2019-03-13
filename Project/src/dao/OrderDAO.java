@@ -56,9 +56,9 @@ public class OrderDAO {
 				membean.setMem_email(rs.getString("mem_email"));
 				membean.setMem_grade(rs.getString("mem_grade"));
 				membean.setMem_tel(rs.getString("mem_tel"));
-				membean.setMem_zip(rs.getString("mem_tel"));
+				membean.setMem_date(rs.getDate("mem_date"));
+				membean.setMem_zip(rs.getString("mem_zip"));
 				membean.setMem_add2(rs.getString("mem_add2"));
-				membean.setMem_date(rs.getString("mem_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,8 +83,12 @@ public class OrderDAO {
 			pstmt.setInt(1, pro_code);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+				probean.setPro_code(rs.getInt("pro_code"));
 				probean.setPro_name(rs.getString("pro_name"));
 				probean.setPro_price(rs.getInt("pro_price"));
+				probean.setPro_category(rs.getString("pro_category"));
+				probean.setPro_content(rs.getString("pro_content"));
+				probean.setPro_image(rs.getString("pro_image"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import admin.action.InOutListFormAction;
+import admin.action.QtyInOutAction;
 import admin.action.QtyManagementFormAction;
 import vo.ActionForward;
 
@@ -22,7 +24,7 @@ public class adminController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 
 		String requestURL = request.getRequestURI();
@@ -47,10 +49,27 @@ public class adminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		
-		
-		
+			// 입/출고 리스트 폼
+		} else if (command.equals("/inoutListForm.ad")) {
+			System.out.println("입/출고 리스트 컨트롤러 진입");
+			action = new InOutListFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 입고 액션
+		} else if (command.equals("/QtyInOutAction.ad")) {
+			System.out.println("입출고 레지스트 컨트롤러 진입");
+			action = new QtyInOutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 출고 액션
+		}
+
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

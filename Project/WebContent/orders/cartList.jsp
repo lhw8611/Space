@@ -158,17 +158,22 @@
 
 		</table>
 	</form>
-	<div>
-		<h2>
-			총 상품가격
-			<%=cartResult%>
-			+ 배송비
-			<%=shipping%>
-			= 총 주문금액 :
-			<%=cartResult + shipping%>원
-		</h2>
-	</div>
-	<%
+	
+	<script>
+		var check = false;
+		function CheckAll() {
+			var chk = document.getElementsByName("checklist");
+			if (check == false) {
+				check = true;
+				for (var i = 0; i < chk.length; i++) {
+					chk[i].checked = true; //모두 체크
+				}
+			} else {
+				check = false;
+				for (var i = 0; i < chk.length; i++) {
+					chk[i].checked = false; //모두 해제
+				}
+			}
 		}
 	%>
 	<button type="button"  onclick="document.getElementById('cartForm').submit();"
@@ -197,5 +202,9 @@
 		    form.submit();
 		}
 		</script>
+	</script>
+	</script>
+	</script>
+	</script>
 </body>
 </html>

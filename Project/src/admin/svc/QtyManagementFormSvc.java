@@ -15,7 +15,7 @@ public class QtyManagementFormSvc {
 	AdminDAO adminDAO = AdminDAO.getInstance();
 	adminDAO.setConnection(con);
 	ArrayList<QtyProViewBean> qtyList = new ArrayList<QtyProViewBean>();
-	qtyList = adminDAO.QtyProView();
+	qtyList = adminDAO.qtyProView();
 	return qtyList;		
 	}
 }
