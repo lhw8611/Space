@@ -56,8 +56,8 @@ public class CartAddSvc {
 			cartbean.setPro_image(probean.getPro_image());
 			cartbean.setCart_qty(qty);
 			cartList.add(cartbean);
-
 		}
+		
 	}
 
 	// 로그인 상태 addCart
@@ -73,7 +73,6 @@ public class CartAddSvc {
 		System.out.println("서비스에서 probean:" + probean.getPro_name());
 		System.out.println("서비스에서 ID : " + id);
 
-		// 장바구니에 해당 상품이 없는 경우
 		int checkCartInsert = orderDAO.addCart(isNewCart, probean, id);
 
 		// 커밋 성공 여부

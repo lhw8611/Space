@@ -9,6 +9,7 @@ public class OrderListBean {
  private String pro_category;
  private String pro_content;
  private String pro_image;
+ 
 public int getOd_num() {
 	return od_num;
 }

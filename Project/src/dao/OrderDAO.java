@@ -12,6 +12,7 @@ import vo.CartProViewBean;
 import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderDetailBean;
+import vo.OrderListBean;
 import vo.ProductBean;
 import vo.QtyBean;
 
@@ -176,9 +177,10 @@ public class OrderDAO {
 		return deleteCartCheck;
 	}
 
-	public QtyBean productqty(int pro_code) {
+	public QtyBean productqty(int pro_code) { //재고수 계산
 		System.out.println("[4]OrderDAO.productqty");
 		QtyBean qtybean = null;
+		ArrayList<QtyBean> qtybeanlist = new ArrayList<QtyBean>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from qty where pro_code=?";
@@ -186,7 +188,7 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pro_code);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			while(rs.next()) {
 				qtybean = new QtyBean();
 				qtybean.setQty_num(rs.getInt("qty_num"));
 				qtybean.setPro_code(rs.getInt("pro_code"));
@@ -194,7 +196,11 @@ public class OrderDAO {
 				qtybean.setQty_inout(rs.getString("qty_inout"));
 				qtybean.setQty_date(rs.getDate("qty_date"));
 				qtybean.setQty_note(rs.getString("qty_note"));
+				qtybean.setResult_qty(0);
+				qtybeanlist.add(qtybean);
 			}
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -434,5 +440,56 @@ public class OrderDAO {
 		}
 		
 		return oddbeanlist;
+	}
+	
+	
+	public ArrayList<OrderListBean> OrderList(int pro_code, int qty){ //주문DAO
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OrderListBean orderbean = null;
+		ArrayList<OrderListBean> orderlistbean = new ArrayList<OrderListBean>();
+		try {
+			pstmt = con.prepareStatement("select * from product where pro_code=?");
+			pstmt.setInt(1, pro_code);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				orderbean = new OrderListBean();
+				orderbean.setPro_code(rs.getInt("pro_code"));
+				orderbean.setPro_name(rs.getString("pro_name"));
+				orderbean.setPro_price(rs.getInt("pro_price"));
+				orderbean.setPro_category(rs.getString("pro_category"));
+				orderbean.setPro_content(rs.getString("pro_content"));
+				orderbean.setPro_image(rs.getString("pro_image"));
+				orderbean.setOd_qty(qty);
+				orderlistbean.add(orderbean);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return orderlistbean;
+	}
+	public int MaxPointDAO(String mem_id) { //사용할 수 있는 포인트 조회
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int MaxPoint = 0;
+		try {
+			pstmt = con.prepareStatement("select * from point where mem_id=?");
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) { //마지막행의 갖고있는 포인트 사용을 위한 반복문
+				MaxPoint = rs.getInt("po_total");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("OrderDAO.MaxPointDAO error");
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return MaxPoint;
 	}
 }

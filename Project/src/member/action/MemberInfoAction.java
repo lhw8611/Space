@@ -19,8 +19,6 @@ public class MemberInfoAction implements Action{
 		MemberInfoSvc memberinfosvc = new MemberInfoSvc();
 		MemberBean member = memberinfosvc.MemberInfo(id);
 		request.setAttribute("member", member);
-		
-		System.out.println("[2] : " + request.getAttribute(member.getMem_id()));
 		forward.setPath("/member/member_info.jsp");
 		
 		return forward;

@@ -9,6 +9,14 @@ public class QtyBean {
 	private String qty_inout;
 	private Date qty_date;
 	private String qty_note;
+	private int result_qty;//모든 행 계산결과 입고일때 + 출고일때 -
+	
+	public int getResult_qty() {
+		return result_qty;
+	}
+	public void setResult_qty(int result_qty) {
+		this.result_qty = result_qty;
+	}
 	public int getQty_num() {
 		return qty_num;
 	}

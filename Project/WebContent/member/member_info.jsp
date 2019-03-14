@@ -94,18 +94,6 @@ table {
 					<%} %>
 					" readonly /></td>
 			</tr>
-			<script>
-			function gradecheck{
-				var grade = document.getElementById("grade").value;
-				if(grade.equals('s')){
-					document.getElementById("grade").value = "관리자 등급";
-				}else if(grade.equals('u')){
-					document.getElementById("grade").value = "일반 등급";
-				}else{
-					document.getElementById("grade").value = "ㅋㅋ뭔가안됨";
-				}
-			}
-			</script>
 			<tr>
 				<td><label for="date">가입일 </label></td>
 				<td><input type="text" name="date" id="date"

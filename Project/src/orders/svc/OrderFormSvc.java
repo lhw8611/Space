@@ -3,11 +3,13 @@ package orders.svc;
 import static db.jdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.BoardDAO;
 import dao.OrderDAO;
 import vo.MemberBean;
 import vo.OrderBean;
+import vo.OrderListBean;
 import vo.PointBean;
 import vo.ProductBean;
 
@@ -49,13 +51,29 @@ public class OrderFormSvc {
 		
 		return probean;
 	}
-	
+	//뷰에서 넘어온 주문폼
+	public ArrayList<OrderListBean> orderTypeOne(int pro_code, int qty) {
+		System.out.println("뷰에서 넘어온 주문폼");
+		Connection con = getConnection();
+		OrderDAO orderDAO= OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		ArrayList<OrderListBean> orderlistbean= orderDAO.OrderList(pro_code, qty);
+		if(orderlistbean !=null) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return orderlistbean;
+	}
 	public int MaxPoint(String mem_id) { //사용할 수 있는 포인트 계산
 		System.out.println("[3]OrderFormSvc.MaxPoint");
 		Connection con = getConnection();
-		BoardDAO boardDAO = BoardDAO.getInstance();
-		boardDAO.setConnection(con);
-		int MaxPoint = boardDAO.MaxPointDAO(mem_id);
+		OrderDAO orderDAO= OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		int MaxPoint = orderDAO.MaxPointDAO(mem_id);
 		
 		close(con);
 		

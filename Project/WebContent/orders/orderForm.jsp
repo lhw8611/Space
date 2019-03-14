@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="vo.MemberBean"%>
-<%@ page import="vo.ProductBean" %>
+<%@ page import="vo.OrderListBean" %>
 <%@ page import="java.util.*" %>
-<% MemberBean membean = (MemberBean)request.getAttribute("membean"); 
-	ArrayList<ProductBean> probeanlist = (ArrayList<ProductBean>)request.getAttribute("probean");	
-	if(membean == null){
-		membean = (MemberBean)session.getAttribute("membean");
-	}
+<%  MemberBean membean = (MemberBean)request.getAttribute("membean"); 
+	int totalItem = (int)(request.getAttribute("totalItem"));
+	int totalMoney = (int)(request.getAttribute("totalMoney"));
+	int delivery = (int)(request.getAttribute("delivery"));
+	ArrayList<OrderListBean> orderlistbean = (ArrayList<OrderListBean>)request.getAttribute("orderlistbean");
+	request.setAttribute("membean", membean);
+	
 	int MaxPoint = (Integer)(request.getAttribute("maxpoint"));
-	int qty = Integer.parseInt(request.getParameter("qty"));
-	System.out.println("orderForm.jsp : " + MaxPoint +" <-포인트, 재고-> " + qty);
-	session.setAttribute("membean", membean);
 %>
 <!DOCTYPE html>
 <html>
@@ -112,12 +111,12 @@
 						</ul>
 					</li>
 					
-					<%for(int i=0; i<probeanlist.size(); i++){ %>
+					<%for(int i=0; i<orderlistbean.size(); i++){ %>
 					<li>
 						<ul>
-							<li><%=probeanlist.get(i).getPro_name() %></li>	
-							<li><%=qty%></li>
-							<li><%=probeanlist.get(i).getPro_price()*qty %>	</li>
+							<li><%=orderlistbean.get(i).getPro_name() %></li>	
+							<li><%=orderlistbean.get(i).getOd_qty()%></li>
+							<li><%=orderlistbean.get(i).getPro_price()%>	</li>
 							<li>아몰랑</li>
 						</ul>
 					</li>
@@ -127,7 +126,8 @@
 		</ul>
 		
 		<br><h1>구매자 정보</h1>
-			<input type="hidden" id="qty" name="qty" value="<%=qty %>"/>
+			<%-- <input type="hidden" id="orderlistbean" name="orderlistbean" value="<%=orderlistbean %>"/> --%>
+			
 			<label for="buyer_name">이름</label>			
 			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>" readonly/>
 			<br>
@@ -155,9 +155,9 @@
 		
 		
 		<h1>결제 금액</h1>
-			<label for="item_result">총 상품금액</label>	
-			<input type="text" name="item_result" id="item_result"
-			value="<%=probean.getPro_price()*qty %>"readonly/>
+			<label for="totalItem">총 상품금액</label>	
+			<input type="text" name="totalItem" id="totalItem"
+			value="<%=totalItem %>"readonly/>
 			<br>
 			
 			<label for="or_point">사용 가능 포인트  <%=MaxPoint %>점 중</label>
@@ -165,11 +165,11 @@
 			<button type="submit">사용하기</button>
 			<br>
 			<label for="delivery">(+)배송비</label>
-			<input type="text" name="delivery" id="delivery" value="2500" readonly/>
+			<input type="text" name="delivery" id="delivery" value=<%=delivery %> readonly/>
 			<br>
 			<label for="total_result">총 결제금액</label>
 			<input type="text" name="total_result" id="total_result" 
-			value="<%=probean.getPro_price()*qty+2500 %>"readonly/>
+			value="<%=totalMoney %>"readonly/>
 			<br>
 			<p>결제방법</p>
 			<label><input type="radio" id="gyulze" name="gyulze" value="cash" checked/>무통장입금</label>
