@@ -54,7 +54,7 @@ public class ProductWriteAction implements Action{
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("productList.bo");
+			forward.setPath("qtyManagement.ad");
 			
 		}
 		return forward;

@@ -7,8 +7,15 @@ public class ProductBean {
 	private String pro_category;
 	private String pro_content;
 	private String pro_image;
+	private String pro_show;
 	
 	
+	public String getPro_show() {
+		return pro_show;
+	}
+	public void setPro_show(String pro_show) {
+		this.pro_show = pro_show;
+	}
 	public String getPro_name() {
 		return pro_name;
 	}
