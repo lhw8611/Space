@@ -1,6 +1,6 @@
 package admin.svc;
 
-import static db.jdbcUtil.getConnection;
+import static db.jdbcUtil.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -15,7 +15,9 @@ public class QtyManagementFormSvc {
 	AdminDAO adminDAO = AdminDAO.getInstance();
 	adminDAO.setConnection(con);
 	ArrayList<QtyProViewBean> qtyList = new ArrayList<QtyProViewBean>();
-	qtyList = adminDAO.qtyProView();
+	qtyList = adminDAO.qtyProViewList();
+	
+	close(con);
 	return qtyList;		
 	}
 }

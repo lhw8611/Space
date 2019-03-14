@@ -204,7 +204,7 @@ public class BoardDAO {
 			int insertCount = 0;
 
 			try {
-				sql = "insert into product values (null,?,?,?,?,?)";
+				sql = "insert into product values (null,?,?,?,?,?,?)";
 				
 				pstmt = con.prepareStatement(sql);
 
@@ -213,6 +213,7 @@ public class BoardDAO {
 				pstmt.setString(3, article.getPro_category());
 				pstmt.setString(4, article.getPro_content());
 				pstmt.setString(5, article.getPro_image());
+				pstmt.setString(6, "x");
 
 				insertCount = pstmt.executeUpdate();
 			} catch (Exception ex) {
@@ -235,7 +236,7 @@ public class BoardDAO {
 			ResultSet rs = null;
 			int insertCount =0;
 			String sql = "select * from product order by pro_code desc";
-			String sql2 = "insert into qty(qty_modifyCount,pro_code) values(0,?);";
+			String sql2 = "insert into qty(qty_modifyCount, pro_code) values(0,?);";
 			
 			//새로 등록한 상품의 코드를 추출
 			try {
@@ -263,7 +264,7 @@ public class BoardDAO {
 		public ArrayList<ProductBean> selectProductList(int page, int limit) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			String sql = "select * from product order by pro_code desc limit ? , ?";
+			String sql = "select * from product where pro_show='o' order by pro_code desc limit ? , ?";
 			ArrayList<ProductBean> articleList = new ArrayList<ProductBean>();
 			ProductBean product = null;
 			int startrow = (page - 1) * 10;
@@ -281,6 +282,7 @@ public class BoardDAO {
 					product.setPro_category(rs.getString("pro_category"));
 					product.setPro_content(rs.getString("pro_content"));
 					product.setPro_image(rs.getString("pro_image"));
+					
 					
 					articleList.add(product);
 

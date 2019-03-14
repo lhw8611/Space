@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import admin.action.HideAction;
 import admin.action.InOutListFormAction;
 import admin.action.QtyInOutAction;
+import admin.action.QtyInOutDeleteAction;
 import admin.action.QtyManagementFormAction;
+import admin.action.ShowAction;
 import vo.ActionForward;
 
 /**
@@ -42,7 +45,7 @@ public class adminController extends HttpServlet {
 
 		// 재고관리
 		if (command.equals("/qtyManagement.ad")) {
-			System.out.println("재고관리 컨트롤러 진입");
+			System.out.println("상품관리 컨트롤러 진입");
 			action = new QtyManagementFormAction();
 			try {
 				forward = action.execute(request, response);
@@ -58,7 +61,7 @@ public class adminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// 입고 액션
+			// 입출고 액션
 		} else if (command.equals("/QtyInOutAction.ad")) {
 			System.out.println("입출고 레지스트 컨트롤러 진입");
 			action = new QtyInOutAction();
@@ -67,9 +70,40 @@ public class adminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// 출고 액션
+			//입출고 삭제
+		}else if (command.equals("/qtyInOutDelete.ad")) {
+			System.out.println("입출고 삭제 진입");
+			action = new QtyInOutDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		//게시글 show
+		}else if (command.equals("/show.ad")) {
+			System.out.println("상품 show 컨트롤러 진입");
+			action = new ShowAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		//게시글 hide
+		else if (command.equals("/hide.ad")) {
+			System.out.println("상품 hide 컨트롤러 진입");
+			action = new HideAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 
+		//포워드
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

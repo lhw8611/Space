@@ -16,7 +16,14 @@ public class QtyProViewBean {
 	private String pro_content;
 	private String pro_image;
 	private int qty_modifycount;
+	private String pro_show;
 	
+	public String getPro_show() {
+		return pro_show;
+	}
+	public void setPro_show(String pro_show) {
+		this.pro_show = pro_show;
+	}
 	public int getQty_modifycount() {
 		return qty_modifycount;
 	}
