@@ -68,6 +68,7 @@ public class OrderFormSvc {
 		
 		return orderlistbean;
 	}
+	
 	public int MaxPoint(String mem_id) { //사용할 수 있는 포인트 계산
 		System.out.println("[3]OrderFormSvc.MaxPoint");
 		Connection con = getConnection();
