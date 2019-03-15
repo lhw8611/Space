@@ -113,16 +113,6 @@ public class MemberDAO {
 				member.setMem_add2(rs.getString("mem_add2"));
 				member.setMem_date(rs.getDate("mem_date"));
 			}
-			System.out.println("시작 " + member.getMem_id());
-			System.out.println(member.getMem_pass());
-			System.out.println(member.getMem_name());
-			System.out.println(member.getMem_add());
-			System.out.println(member.getMem_email());
-			System.out.println(member.getMem_grade());
-			System.out.println(member.getMem_tel());
-			System.out.println(member.getMem_zip());
-			System.out.println(member.getMem_add2());
-			System.out.println(member.getMem_date()+" 껕");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -105,19 +105,23 @@
 					<li>
 						<ul>
 							<li>상품명</li>
-							<li>수량</li>
 							<li>상품가격</li>
-							<li>할인적용금액</li>
+							<li>수량</li>
+							<li>총 가격</li>
+							<li>적립금</li>
 						</ul>
 					</li>
-					
+			<input type="hidden" id="size" name="size" value="<%=orderlistbean.size() %>"/>					
 					<%for(int i=0; i<orderlistbean.size(); i++){ %>
+			<input type="hidden" id="pro_codes<%=i %>" name="pro_codes<%=i %>" value="<%=orderlistbean.get(i).getPro_code() %>"/>
+			<input type="hidden" id="pro_qty<%=i %>" name="pro_qty<%=i %>" value="<%=orderlistbean.get(i).getOd_qty()%>" />
 					<li>
 						<ul>
-							<li><%=orderlistbean.get(i).getPro_name() %></li>	
-							<li><%=orderlistbean.get(i).getOd_qty()%></li>
+							<li><%=orderlistbean.get(i).getPro_name() %></li>
 							<li><%=orderlistbean.get(i).getPro_price()%>	</li>
-							<li>아몰랑</li>
+							<li><%=orderlistbean.get(i).getOd_qty()%></li>
+							<li><%=orderlistbean.get(i).getPro_price()*orderlistbean.get(i).getOd_qty() %></li>
+							<li><%=orderlistbean.get(i).getPro_price()*orderlistbean.get(i).getOd_qty()/100 %></li>
 						</ul>
 					</li>
 					<%} %>
@@ -126,7 +130,6 @@
 		</ul>
 		
 		<br><h1>구매자 정보</h1>
-			<%-- <input type="hidden" id="orderlistbean" name="orderlistbean" value="<%=orderlistbean %>"/> --%>
 			
 			<label for="buyer_name">이름</label>			
 			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>" readonly/>

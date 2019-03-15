@@ -486,10 +486,60 @@ public class OrderDAO {
 			e.printStackTrace();
 			System.out.println("OrderDAO.MaxPointDAO error");
 		}finally {
-			close(pstmt);
 			close(rs);
+			close(pstmt);
 		}
 		
 		return MaxPoint;
+	}
+
+	public ArrayList<OrderListBean> productsInfoDAO(ArrayList<Integer> pro_codes, ArrayList<Integer> pro_qty) { //구매폼->구매액션 상품정보 저장
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OrderListBean orderbean = null;
+		ArrayList<OrderListBean> orderlistbean = new ArrayList<OrderListBean>();
+		try {
+			for(int i=0; i<pro_codes.size(); i++) {
+			pstmt = con.prepareStatement("select * from product where pro_code=?");
+			pstmt.setInt(1, pro_codes.get(i));
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				orderbean = new OrderListBean();
+				orderbean.setPro_code(rs.getInt("pro_code"));
+				orderbean.setPro_name(rs.getString("pro_name"));
+				orderbean.setPro_price(rs.getInt("pro_price"));
+				orderbean.setPro_category(rs.getString("pro_category"));
+				orderbean.setPro_content(rs.getString("pro_content"));
+				orderbean.setPro_image(rs.getString("pro_image"));
+				orderbean.setPro_name(rs.getString("pro_name"));
+				orderbean.setOd_qty(pro_qty.get(i));
+				orderlistbean.add(orderbean);
+			}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return orderlistbean;
+	}
+	
+	public int order_qty(ArrayList<OrderListBean> orderlistbean) {
+		PreparedStatement pstmt = null;
+		int insertCount = 0;
+		try {
+			for(int i=0; i<orderlistbean.size(); i++) {
+			pstmt = con.prepareStatement("insert into qty values(null, ?, ?, 'out', now(), ?, 'sell')");
+			pstmt.setInt(1, orderlistbean.get);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return
 	}
 }
