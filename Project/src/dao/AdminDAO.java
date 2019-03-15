@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import vo.ProductBean;
 import vo.QtyProViewBean;
 
 public class AdminDAO {
@@ -187,7 +188,6 @@ public class AdminDAO {
 	
 	//상품 Show
 	public int ProShow(int pro_code) {
-		System.out.println("꺄꺄꺄꺄꺄ㅑㄲ :"+pro_code);
 		PreparedStatement pstmt = null;
 		int updateCheck = 0;
 		String sql = "update product set pro_show='o' where pro_code=?";
@@ -220,5 +220,30 @@ public class AdminDAO {
 		}
 		return updateCheck;
 	}
+	
+	//상품 수정
+	public int ProModify(ProductBean probean) {
+		PreparedStatement pstmt = null;
+		int updateCheck = 0;
+		String sql = "update product set pro_name=?, pro_price=?, pro_category=?, pro_content=?, pro_image=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,probean.getPro_name());
+			pstmt.setInt(2, probean.getPro_price());
+			pstmt.setString(3, probean.getPro_category());
+			pstmt.setString(4, probean.getPro_content());
+			pstmt.setString(5, probean.getPro_image());
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return updateCheck;
+		
+	}
+	
+	
 	
 }
