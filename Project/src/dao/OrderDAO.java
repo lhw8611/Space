@@ -409,68 +409,26 @@ public class OrderDAO {
 
 		return odbeanlist;
 	}
-
-	public ArrayList<OrderDetailBean> oddlistDAO(ArrayList<OrderBean> odbeanlist, String id){
-		ArrayList<OrderDetailBean> oddbeanlist = new ArrayList<OrderDetailBean>();
-		OrderDetailBean oddbean = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-//		String sql = "select or_num, order_detail.pro_code, pro_price, od_qty, pro_price*od_qty as "
-//				+ "itemresult from orders inner join order_detail on orders.or_num=order_detail.od_num "
-//				+ "inner join product on order_detail.pro_code=product.pro_code;";
-		String sql = "select * from order_list where mem_id=?";
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				oddbean = new OrderDetailBean();
-				oddbean.setOd_num(rs.getInt("or_num"));
-				oddbean.setOd_qty(rs.getInt("od_qty"));
-				oddbean.setOr_itemresult(rs.getInt("itemresult"));
-				oddbean.setPro_code(rs.getInt("pro_code"));
-				oddbeanlist.add(oddbean);
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return oddbeanlist;
-	}
 	
 	
-	public ArrayList<OrderListBean> OrderList(int pro_code, int qty){ //주문DAO
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		OrderListBean orderbean = null;
-		ArrayList<OrderListBean> orderlistbean = new ArrayList<OrderListBean>();
-		try {
-			pstmt = con.prepareStatement("select * from product where pro_code=?");
-			pstmt.setInt(1, pro_code);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				orderbean = new OrderListBean();
-				orderbean.setPro_code(rs.getInt("pro_code"));
-				orderbean.setPro_name(rs.getString("pro_name"));
-				orderbean.setPro_price(rs.getInt("pro_price"));
-				orderbean.setPro_category(rs.getString("pro_category"));
-				orderbean.setPro_content(rs.getString("pro_content"));
-				orderbean.setPro_image(rs.getString("pro_image"));
-				orderbean.setOd_qty(qty);
-				orderlistbean.add(orderbean);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return orderlistbean;
-	}
+	/*
+	 * public ArrayList<OrderListBean> OrderList(int pro_code, int qty){ //주문DAO
+	 * PreparedStatement pstmt = null; ResultSet rs = null; OrderListBean orderbean
+	 * = null; ArrayList<OrderListBean> orderlistbean = new
+	 * ArrayList<OrderListBean>(); try { pstmt =
+	 * con.prepareStatement("select * from product where pro_code=?");
+	 * pstmt.setInt(1, pro_code); rs = pstmt.executeQuery(); if(rs.next()) {
+	 * orderbean = new OrderListBean();
+	 * orderbean.setPro_code(rs.getInt("pro_code"));
+	 * orderbean.setPro_name(rs.getString("pro_name"));
+	 * orderbean.setPro_price(rs.getInt("pro_price"));
+	 * orderbean.setPro_category(rs.getString("pro_category"));
+	 * orderbean.setPro_content(rs.getString("pro_content"));
+	 * orderbean.setPro_image(rs.getString("pro_image")); orderbean.setOd_qty(qty);
+	 * orderlistbean.add(orderbean); } }catch(Exception e) { e.printStackTrace();
+	 * }finally { close(rs); close(pstmt); } return orderlistbean; }
+	 */
+	
 	public int MaxPointDAO(String mem_id) { //사용할 수 있는 포인트 조회
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -526,13 +484,26 @@ public class OrderDAO {
 		return orderlistbean;
 	}
 	
-	public int order_qty(ArrayList<OrderListBean> orderlistbean) {
+	public int order_qty(ArrayList<OrderListBean> orderlistbean) { //주문할때 재고수 뺀거 insert
+		System.out.println("order_qty dao");
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		int insertCount = 0;
 		try {
 			for(int i=0; i<orderlistbean.size(); i++) {
+			pstmt = con.prepareStatement("select max(qty_modifyCount) as qty_modifyCount from qty where pro_code=?");
+			pstmt.setInt(1, orderlistbean.get(i).getPro_code());
+			rs = pstmt.executeQuery();
+			int modifycount = 0;
+			if(rs.next()) {
+				modifycount = rs.getInt("qty_modifyCount");
+			}
+			close(pstmt);
 			pstmt = con.prepareStatement("insert into qty values(null, ?, ?, 'out', now(), ?, 'sell')");
-			pstmt.setInt(1, orderlistbean.get);
+			pstmt.setInt(1, orderlistbean.get(i).getPro_code());
+			pstmt.setInt(2, orderlistbean.get(i).getOd_qty());
+			pstmt.setInt(3, modifycount);
+			insertCount = pstmt.executeUpdate();
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -540,6 +511,28 @@ public class OrderDAO {
 			close(pstmt);
 		}
 		
-		return
+		return insertCount;
+	}
+	
+//	| or_num     | int(11)      | NO   | PRI | NULL    | auto_increment |
+//	| or_date    | date         | YES  |     | NULL    |                |
+//	| or_state   | varchar(20)  | YES  |     | NULL    |                |
+//	| or_pay     | varchar(20)  | YES  |     | NULL    |                |
+//	| or_point   | int(11)      | YES  |     | NULL    |                |
+//	| or_request | varchar(100) | YES  |     | NULL    |                |
+//	| or_getname | varchar(20)  | YES  |     | NULL    |                |
+//	| or_getadd  | varchar(100) | YES  |     | NULL    |                |
+//	| or_gettel  | varchar(20)  | YES  |     | NULL    |                |
+//	| mem_id
+	public void order_add() {
+		System.out.println("order_add dao");
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement("insert into qty values(null, now(), wait, ?, ?, ?, ?, ?, ?, ?)");
+			pstmt.setString(1, "temp card");
+			pstmt.setString(2, "temp point..");
+			pstmt.setString(3, x);
+			
+		}
 	}
 }

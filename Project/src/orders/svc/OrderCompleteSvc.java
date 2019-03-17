@@ -18,24 +18,19 @@ import vo.OrderDetailBean;
 import vo.OrderListBean;
 import vo.QtyBean;
 public class OrderCompleteSvc {
-	public QtyBean productqty(int pro_code) {//재고수 구하는 메소드
+	public void order_qty(ArrayList<OrderListBean> orderlistbean) {//주문할때 재고수 구하는 메소드
 		System.out.println("[3]OrderCompleteSvc.productqty");
-		QtyBean qtybean = new QtyBean(); 
 		Connection con = getConnection();
 		OrderDAO orderDAO = OrderDAO.getInstance();
 		orderDAO.setConnection(con);
+		int insertCount = orderDAO.order_qty(orderlistbean);
 		
-		qtybean = orderDAO.productqty(pro_code);
-		
-		if(qtybean!=null) {
+		if(insertCount>0) {
 			commit(con);
 		}else {
 			rollback(con);
 		}
-		
 		close(con);
-		
-		return qtybean;
 	}
 
 	public ArrayList<OrderListBean> productInfo(ArrayList<Integer> pro_codes, ArrayList<Integer> pro_qty) {

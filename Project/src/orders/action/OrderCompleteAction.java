@@ -29,7 +29,6 @@ public class OrderCompleteAction implements Action {
 		//구매자 정보
 		MemberInfoSvc memberinfosvc = new MemberInfoSvc();
 		MemberBean membean = memberinfosvc.MemberInfo(id); 
-		System.out.println("구매자정보 끝");
 		//받는사람 정보
 		OrderBean orderbean = new OrderBean();
 		orderbean.setOr_getname(request.getParameter("get_name"));
@@ -37,7 +36,6 @@ public class OrderCompleteAction implements Action {
 		orderbean.setOr_getadd(get_add);
 		orderbean.setOr_gettel("get_tel");
 		orderbean.setOr_request("or_request");
-		System.out.println("받는사람 정보 끝");
 		//주문상품 정보
 		int size = Integer.parseInt(request.getParameter("size"));
 		System.out.println("size의 값 : " + size);
@@ -54,6 +52,9 @@ public class OrderCompleteAction implements Action {
 		for(int i=0; i<orderlistbean.size(); i++) {
 			System.out.println("비 속을 걸어도 나 감사하니까~~ : " + orderlistbean.get(i).getPro_name());
 		}
+		
+		ordercompletesvc.order_add() //주문테이블에 값추가
+		ordercompletesvc.order_qty(orderlistbean);//주문상품 재고수 빼기
 		
 //		ProductBean probean = (ProductBean)session.getAttribute("probean"); //상품에 대한 정보
 //		ActionForward forward = null;
