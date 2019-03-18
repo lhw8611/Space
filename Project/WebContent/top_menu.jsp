@@ -36,7 +36,7 @@
 					<ii><a href='admin/admin_page.jsp'>관리자 페이지</a></ii>
 				
 				<li><a href="<%=request.getContextPath()%>/qnaList.qna"><img src="<%=request.getContextPath()%>/icon/bell.png"></a></li>
-				<li><a href="#"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
+				<li><a href="<%=request.getContextPath()%>/cartListForm.od"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
 				<li><a href="<%=request.getContextPath()%>/loginForm.mem"><img src="<%=request.getContextPath()%>/icon/logout.png"></a></li>
 				<li><a href="<%=request.getContextPath()%>/logout.mem"><img src="<%=request.getContextPath()%>/icon/login.png"></a></li>
 				<li><a href="<%=request.getContextPath()%>/board/boardTest.jsp">Notice</a></li>

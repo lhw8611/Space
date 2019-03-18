@@ -18,7 +18,8 @@ public class CartDeleteAction implements Action {
 		CartDeleteSvc cartDeleteSvc = new CartDeleteSvc();
 		// 로그인 상태
 		if (session.getAttribute("id") != null) {
-			int cart_num = Integer.parseInt(request.getParameter("cart_num"));
+			
+			int cart_num = Integer.parseInt(request.getParameter("cart_num0"));
 			cartDeleteSvc.cartDeleteSvcLogin(cart_num);
 
 		// 비로그인 상태

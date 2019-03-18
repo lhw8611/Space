@@ -21,11 +21,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<style>
+div{ 
+text-decoration: none;
+}
+</style>
 <title>Q&A</title>
 </head>
 <body>
-
 	<!-- 게시판 리스트 -->
 	<section id="qnalistForm">
 		<h2>

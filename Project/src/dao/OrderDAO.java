@@ -411,23 +411,23 @@ public class OrderDAO {
 	}
 	
 	
-	/*
-	 * public ArrayList<OrderListBean> OrderList(int pro_code, int qty){ //주문DAO
-	 * PreparedStatement pstmt = null; ResultSet rs = null; OrderListBean orderbean
-	 * = null; ArrayList<OrderListBean> orderlistbean = new
-	 * ArrayList<OrderListBean>(); try { pstmt =
-	 * con.prepareStatement("select * from product where pro_code=?");
-	 * pstmt.setInt(1, pro_code); rs = pstmt.executeQuery(); if(rs.next()) {
-	 * orderbean = new OrderListBean();
-	 * orderbean.setPro_code(rs.getInt("pro_code"));
-	 * orderbean.setPro_name(rs.getString("pro_name"));
-	 * orderbean.setPro_price(rs.getInt("pro_price"));
-	 * orderbean.setPro_category(rs.getString("pro_category"));
-	 * orderbean.setPro_content(rs.getString("pro_content"));
-	 * orderbean.setPro_image(rs.getString("pro_image")); orderbean.setOd_qty(qty);
-	 * orderlistbean.add(orderbean); } }catch(Exception e) { e.printStackTrace();
-	 * }finally { close(rs); close(pstmt); } return orderlistbean; }
-	 */
+	
+	  public ArrayList<OrderListBean> OrderList(int pro_code, int qty){ //주문DAO
+	  PreparedStatement pstmt = null; ResultSet rs = null; OrderListBean orderbean
+	  = null; ArrayList<OrderListBean> orderlistbean = new
+	  ArrayList<OrderListBean>(); try { pstmt =
+	  con.prepareStatement("select * from product where pro_code=?");
+	  pstmt.setInt(1, pro_code); rs = pstmt.executeQuery(); if(rs.next()) {
+	  orderbean = new OrderListBean();
+	  orderbean.setPro_code(rs.getInt("pro_code"));
+	  orderbean.setPro_name(rs.getString("pro_name"));
+	  orderbean.setPro_price(rs.getInt("pro_price"));
+	  orderbean.setPro_category(rs.getString("pro_category"));
+	  orderbean.setPro_content(rs.getString("pro_content"));
+	  orderbean.setPro_image(rs.getString("pro_image")); orderbean.setOd_qty(qty);
+	  orderlistbean.add(orderbean); } }catch(Exception e) { e.printStackTrace();
+	  }finally { close(rs); close(pstmt); } return orderlistbean; }
+	 
 	
 	public int MaxPointDAO(String mem_id) { //사용할 수 있는 포인트 조회
 		PreparedStatement pstmt = null;

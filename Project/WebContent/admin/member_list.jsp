@@ -22,12 +22,15 @@
 		font-weight: bold;
 		font-size: x-large;
 	}
+	td{
+		border : 1px solid black;
+	}
 </style>
 </head>
 <body>
 <table>
 	<tr><td colspan=2 class="td_title">회원 목록</td></tr>
-	<%-- <%while(rs.next()) { %> --%>
+		<tr><td>아이디</td><td>관리</td>
 	<%
 			for(int i=0; i<list.size(); i++){
 	%>
