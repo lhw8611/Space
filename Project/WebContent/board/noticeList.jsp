@@ -67,22 +67,56 @@ table tr:first-child td {
 
 .pagebox {
 	display: inline-block;
-	border : 1px solid gray;
+	border: 1px solid gray;
 	text-align: center;
-	font-size : 1.2rem;
-	padding:10px 20px;
-	margin:4px;	
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	margin: 4px;
 }
+
 #button {
 	border: 1px solid black;
 	text-align: center;
 }
+
+
+#backImage {
+	width:1900px;
+	height:477px;
+	background-image:
+		url('https://cdn.imweb.me/thumbnail/20171218/5a37485dd02b9.jpg');
+	background-position: 50% 50%;
+	background-size: cover;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0; 
+}
+
+h1 {
+color: rgba(255,255,255,0.9);
+font-size: 4em;
+
+   
+}
+#title {
+display:inline-block;
+    position: absolute;
+ margin:auto;
+     top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} 
 </style>
 </head>
 <body>
 	<jsp:include page="../top_menu.jsp" />
+
 	<div id="container">
 		<div id="main">
+			<div id="backImage">
+			<div id="title"><h1>Notice</h1></div>
+			</div>
 			<div id="board">
 				<section id="listForm">
 					<table>
@@ -117,17 +151,13 @@ table tr:first-child td {
 					<%
 						if (nowPage <= 1) {
 					%>
-					<div class="pagebox">
-					이전
-					</div>
+					<div class="pagebox">이전</div>
 					<!-- &nbsp; -->
 					<%
 						} else {
 					%>
 					<a href="/Project/noticeList.bo?page=<%=nowPage - 1%>">
-					<div class="pagebox">
-					이전
-					</div>
+						<div class="pagebox">이전</div>
 					</a>
 					<!-- &nbsp; -->
 					<%
@@ -138,16 +168,16 @@ table tr:first-child td {
 						for (int a = startPage; a <= endPage; a++) {
 							if (a == nowPage) {
 					%>
-					<div class="pagebox"  style="background-color: gray">
-					<%=a%>
+					<div class="pagebox" style="background-color: gray">
+						<%=a%>
 					</div>
 					<%
 						} else {
 					%>
 					<a href="/Project/noticeList.bo?page=<%=a%>">
-					<div class="pagebox">
-					<%=a%> 
-					</div>
+						<div class="pagebox">
+							<%=a%>
+						</div>
 					</a>
 					<!-- &nbsp; -->
 					<%
@@ -163,10 +193,11 @@ table tr:first-child td {
 					<%
 						} else {
 					%>
-					
+
 					<a href="/Project/noticeList.bo?page=<%=nowPage + 1%>">
-					<div class="pagebox">다음</div></a>
-					
+						<div class="pagebox">다음</div>
+					</a>
+
 					<%
 						}
 					%>
