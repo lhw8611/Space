@@ -34,15 +34,9 @@
 			<ul class="h-right">
 				<!-- 오른쪽정렬 -->
 					<ii><a href='admin/admin_page.jsp'>관리자 페이지</a></ii>
-				<a href="board/boardTest.jsp">boardTest</a>
 				<li><a href="<%=request.getContextPath()%>/qnaList.qna"><img src="<%=request.getContextPath()%>/icon/bell.png"></a></li>
-<<<<<<< HEAD
 				<li><a href="<%=request.getContextPath()%>/cartListForm.od"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
-				<li><a href="<%=request.getContextPath()%>/loginForm.mem"><img src="<%=request.getContextPath()%>/icon/logout.png"></a></li>
-=======
-				<li><a href="cartListForm.od"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
 				<% if(id!=null) {%>
->>>>>>> branch 'master' of https://github.com/lhw8611/impark
 				<li><a href="<%=request.getContextPath()%>/logout.mem"><img src="<%=request.getContextPath()%>/icon/login.png"></a></li>
 				<% }else {%>
 				<li><a href="<%=request.getContextPath()%>/loginForm.mem"><img src="<%=request.getContextPath()%>/icon/logout.png"></a></li>

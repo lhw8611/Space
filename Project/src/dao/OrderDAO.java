@@ -4,6 +4,7 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -514,6 +515,8 @@ public class OrderDAO {
 		return insertCount;
 	}
 	
+//	| Field      | Type         | Null | Key | Default | Extra          |
+//	+------------+--------------+------+-----+---------+----------------+
 //	| or_num     | int(11)      | NO   | PRI | NULL    | auto_increment |
 //	| or_date    | date         | YES  |     | NULL    |                |
 //	| or_state   | varchar(20)  | YES  |     | NULL    |                |
@@ -523,16 +526,66 @@ public class OrderDAO {
 //	| or_getname | varchar(20)  | YES  |     | NULL    |                |
 //	| or_getadd  | varchar(100) | YES  |     | NULL    |                |
 //	| or_gettel  | varchar(20)  | YES  |     | NULL    |                |
-//	| mem_id
-	public void order_add() {
-		System.out.println("order_add dao");
+//	| mem_id     | varchar(20)  | YES  |     | NULL    |                |
+//	+------------+--------------+------+-----+---------+----------------+
+	public int order_add(MemberBean membean, OrderBean orderbean) { //ordercomplete orders insert
+		System.out.println("[4]order_add dao");
 		PreparedStatement pstmt = null;
+		int insertCount = 0;
 		try {
-			pstmt = con.prepareStatement("insert into qty values(null, now(), wait, ?, ?, ?, ?, ?, ?, ?)");
-			pstmt.setString(1, "temp card");
-			pstmt.setString(2, "temp point..");
-			pstmt.setString(3, x);
-			
+			pstmt = con.prepareStatement("insert into orders values(null, now(), 'wait', ?, ?, ?, ?, ?, ?, ?)");
+			pstmt.setString(1, orderbean.getOr_pay());
+			pstmt.setInt(2, 12345);
+			pstmt.setString(3, orderbean.getOr_request());
+			pstmt.setString(4, orderbean.getOr_getname());
+			pstmt.setString(5,  orderbean.getOr_getadd());
+			pstmt.setString(6, orderbean.getOr_gettel());
+			pstmt.setString(7, membean.getMem_id());
+			insertCount = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
+		
+		return insertCount;
+	}
+	
+//	| Field    | Type    | Null | Key | Default | Extra |
+//	+----------+---------+------+-----+---------+-------+
+//	| od_num   | int(11) | NO   | PRI | NULL    |       |
+//	| pro_code | int(11) | NO   | PRI | NULL    |       |
+//	| od_qty   | int(11) | YES  |     | NULL    |       |
+//	+----------+---------+------+-----+---------+-------+
+	public ArrayList<Integer> order_detail_add(OrderBean orderbean, ArrayList<OrderListBean> orderlistbean) { //ordercomplete order_detail_insert
+		System.out.println("[4]order_detail_add dao");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Integer> arryInsertCount = new ArrayList<Integer>();
+		int order_num = 0;
+		try {
+				pstmt = con.prepareStatement("select max(or_num) as or_num from orders");
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					order_num = rs.getInt("or_num");
+					orderbean.setOr_num(order_num);
+				}
+				close(rs);
+				close(pstmt);
+			for(int i=0; i<orderlistbean.size(); i++) {
+				pstmt = con.prepareStatement("insert into order_detail values(?, ?, ?)");
+				pstmt.setInt(1, order_num);
+				pstmt.setInt(2, orderlistbean.get(i).getPro_code());
+				pstmt.setInt(3, orderlistbean.get(i).getOd_qty());
+				arryInsertCount.add(pstmt.executeUpdate());
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return arryInsertCount;
 	}
 }

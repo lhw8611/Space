@@ -143,10 +143,10 @@
 			<input type="text" id="get_name" name="get_name" value="<%=membean.getMem_name() %>"/>
 			<br>
 			<label for="get_zip">배송주소</label>
-			<input type="text" name="get_zip" id="get_zip" placeholder="우편번호" size="7" value="<%=membean.getMem_zip()%>"/>
+			<input type="text" name="get_zip" id="get_zip" placeholder="우편번호" size="7" value="<%=membean.getMem_zip()%>" readonly/>
 			<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
 			<br>
-			<input type="text" name="get_add" id="get_add" placeholder="도로명주소" value="<%=membean.getMem_add() %>"/>
+			<input type="text" name="get_add" id="get_add" placeholder="도로명주소" value="<%=membean.getMem_add() %>" readonly/>
 			<br>
 			<input type="text" name="get_add2" id="get_add2" placeholder="상세주소" value="<%=membean.getMem_add2() %>"/>
 			<br>
@@ -154,7 +154,7 @@
 			<input type="text" id="get_tel" name="get_tel" value="<%=membean.getMem_tel()%>"/>
 			<br>
 			<label for="or_request">배송 요청사항</label>
-			<input type="text" id="or_request" name="or_request"/>
+			<input type="text" id="or_request" name="or_request" value="빠른 배송 부탁드립니다."/>
 		
 		
 		<h1>결제 금액</h1>
