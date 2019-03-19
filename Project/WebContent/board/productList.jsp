@@ -21,42 +21,67 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 리스트</title>
 <style>
 table {
 	width: 100%;
 }
 #productImage {
-	width: 150px;
-	height: 150px;
+	width: 300px;
+	height: 300px;
 	border: none;
 }
+container {
+height:100vh;
+}
+.pro_grid>li {
+
+list-style: none;
+display: inline-block;
+margin:20px;
+border:0.5px solid #D9D9D9;
+border-radius: 4px;
+
+} 
+#listForm {
+	width:1200px;
+	margin:0 auto;
+}
+.pro_detail {
+	text-align: center;
+}
+.pro_img>a {
+	text-decoration: none;
+} 
 </style>
 </head>	
 <body>
-
+	<div id="container">
+		<div id="main">
+	<jsp:include page="../top_menu.jsp"></jsp:include>
 	<section id="listForm">
 			<c:if test="${articleList!=null }">
-			<table>
-				<tr>
-				<c:forEach var="pro" items="${articleList}" varStatus="status">
-					<td>
-					<a href="/Project/productView.bo?pro_code=${pro.pro_code}">
-					<img src="/Project/boardUpload/${pro.pro_image }" id="productImage"/>
-					</a> <br>
-					상품명 : ${pro.pro_name}<br> 
-					가격 : ${pro.pro_price }<br>
-					</td>
-					<c:if test="${((status.index+1) mod 4)==0 }">
-								
-				</tr>
-				<tr>
-				</c:if>
-				</c:forEach>
-				</tr>
-			</table>
+			<ul class="pro_grid">
+			<%for(int i=0; i<articleList.size(); i++) {
+			%>
+			<li>
+			<div class="pro_img">
+			<a href="/Project/productView.bo?pro_code=<%=articleList.get(i).getPro_code()%>">
+			<img src="/Project/boardUpload/<%=articleList.get(i).getPro_image() %>" id="productImage"/>
+			</a>
+			</div>
+			<div class ="pro_detail">
+			상품명 : <%=articleList.get(i).getPro_name() %><br> 
+			가격 : <%=articleList.get(i).getPro_price() %><br>
+			</div>
+			</li>
+			<% 
+			}
+			%>
+			</ul>
 		</c:if>
 </section>
+
 
 <!-- 페이지 -->
 	<section id="page">
@@ -102,6 +127,8 @@ table {
 		%>
 
 	</section>
-
+	</div>
+	</div>
+ <jsp:include page="../footer.jsp"/> 
 </body>
 </html>

@@ -136,11 +136,10 @@ margin:5px;
 </head>
 <body id="page">
 
-			<jsp:include page="../top_menu.jsp" />  
+		<jsp:include page="../top_menu.jsp" />  
 	<section id="container">
 		
 		
-		<hr>
 		<article id="wrtieform">
 		<h2>상품 등록</h2>
 		<hr>
@@ -177,8 +176,7 @@ margin:5px;
 	</section>
 	
 	<footer>
-		<jsp:include page="../footer.jsp"></jsp:include>
+		 <jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
-	</div>
 </body>
 </html>

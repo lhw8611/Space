@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/css/footer.css" rel="stylesheet" type="text/css">
 <style>
-
 </style>
 </head>
 <body>
