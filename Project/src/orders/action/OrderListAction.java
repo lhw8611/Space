@@ -11,7 +11,7 @@ import action.Action;
 import orders.svc.OrderListSvc;
 import vo.ActionForward;
 import vo.OrderBean;
-import vo.OrderDetailBean;
+import vo.OrderListBean;
 
 public class OrderListAction implements Action{
 
@@ -24,16 +24,20 @@ public class OrderListAction implements Action{
 		
 		if(session.getAttribute("id") != null) {
 		forward = new ActionForward();
-		OrderListSvc odlistsvc = new OrderListSvc();
-		ArrayList<OrderBean> odbeanlist = odlistsvc.odlist(id);
-		ArrayList<OrderDetailBean> oddbeanlist = odlistsvc.oddlist(odbeanlist, id);
+		OrderListSvc orderlistsvc = new OrderListSvc();
+		ArrayList<OrderListBean> ordersimplelist = orderlistsvc.OrderSimpleList(id); //주문조회
 		
-		session.setAttribute("odbeanlist", odbeanlist);
-		session.setAttribute("oddbeanlist", oddbeanlist);
+		request.setAttribute("ordersimplelist", ordersimplelist);
+		
 		forward.setRedirect(false);
-		forward.setPath("orders/orderList.jsp");
+		forward.setPath("orders/orderSimpleList.jsp");
 		}else {
-					
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.');");
+			out.println("location.back();");
+			out.println("</script>");
 		}
 		return forward;
 	}

@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Date;
 
-public class OrderBean {
+public class OrderBean { //orders
 	private int or_num;
 	private Date or_date;
 	private String or_state;

@@ -14,7 +14,6 @@ import db.jdbcUtil.*;
 import sun.security.jca.GetInstance;
 import vo.MemberBean;
 import vo.OrderBean;
-import vo.OrderDetailBean;
 import vo.OrderListBean;
 import vo.QtyBean;
 public class OrderCompleteSvc {

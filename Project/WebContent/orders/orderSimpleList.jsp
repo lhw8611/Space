@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList" %>
-    <%@page import="vo.OrderBean" %>
-    <%@page import="vo.OrderDetailBean" %>
-    
+    <%@page import="vo.OrderListBean" %>
 <%
-	ArrayList<OrderBean> odbeanlist = (ArrayList<OrderBean>)session.getAttribute("odbeanlist");
-	ArrayList<OrderDetailBean> oddbeanlist = (ArrayList<OrderDetailBean>)session.getAttribute("oddbeanlist");
+	ArrayList<OrderListBean> ordersimplelist = (ArrayList<OrderListBean>)request.getAttribute("ordersimplelist");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -89,7 +87,10 @@
         text-align : left;
 }
 
-
+.simple_img{
+	width : 90px;
+	height: 90px;
+}
 </style>
 </head>
 <body>
@@ -102,14 +103,14 @@
             <!-- 게시판 목록  -->
             <li>
                 Table
-                <%if(odbeanlist != null){ %>
+                <%if(ordersimplelist != null){ %>
                 <ul id ="ulTable">
                     <li>
                         <ul>
-                            <li>주문번호</li>
                             <li>주문일시</li>
+                            <li>주문상품</li>
+                            <li>상품이름</li>
                             <li>결제금액</li>
-                            <li>결제방식</li>
                             <li>주문현황</li>
                         </ul>
                     </li>
@@ -117,17 +118,18 @@
 
 
 <% 
-for(int i=0; i<oddbeanlist.size(); i++){
-	System.out.println("["+ i+"]주문번호 :" + oddbeanlist.get(i).getOd_num());
-	System.out.println("상품총가격 :" + oddbeanlist.get(i).getOr_itemresult());
-	System.out.println("갯수 :" + oddbeanlist.get(i).getOd_qty());
-}
-for(int i=0; i<odbeanlist.size(); i++){
-	out.println("<li><ul><li>" + odbeanlist.get(i).getOr_num()+"</li>"); //주문번호
-	out.println("<li>" + odbeanlist.get(i).getOr_date()+"</li>"); //주문일시
-	out.println("<li>" + oddbeanlist.get(i).getOr_itemresult()+"</li>"); //결제금액
-	out.println("<li>" + odbeanlist.get(i).getOr_pay()+"</li>"); //결제방법
-	out.println("<li>" + odbeanlist.get(i).getOr_state()+"</li></ul></li>"); //주문상태
+for(int i=0; i<ordersimplelist.size(); i++){
+	int totalMoney = ordersimplelist.get(i).getPro_price()*ordersimplelist.get(i).getOd_qty();
+	int delivery = 2500;
+	if(totalMoney >30000){
+		delivery = 0;
+	}
+	totalMoney += delivery;
+	out.println("<li><ul><li>" + ordersimplelist.get(i).getOr_date()+"</li>"); //주문일시
+	out.println("<li>" + "<img src='/Project/boardUpload/" +ordersimplelist.get(i).getPro_image()  +"'class='simple_img'></li>"); //상품 이미지
+	out.println("<li>" + ordersimplelist.get(i).getPro_name() +"</li>"); //상품이름
+	out.println("<li>" + totalMoney +"</li>"); //결제금액
+	out.println("<li>" + ordersimplelist.get(i).getOr_state()+"</li></ul></li>"); //주문상태
 }
 %>
                 </ul>

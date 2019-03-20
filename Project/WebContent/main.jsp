@@ -23,7 +23,7 @@
 					<p>do you wanna the best interior accessories?</p>
 				</div>
 				<div class="h-title2">
-					<a href="#">GO TO SHOPPING</a>
+					<a href="/Project/productList.bo">GO TO SHOPPING</a>
 				</div>
 				<div style="clear: both"></div>
 			</div>

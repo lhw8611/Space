@@ -21,14 +21,12 @@ public class qnaWriteAction implements Action {
 		QnaBean voqna;
 		System.out.println(session.getAttribute("id"));
 		if (session.getAttribute("id") == null || (!(session.getAttribute("id").equals("admin"))) ) {
-			System.out.println("if문 진입체크");
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('관리자로 로그인하세요');");
 			out.println("location.href='/Project/main.jsp';");
 			out.println("</script>");
-			
-			
 		} else {
 			System.out.println("else문 진입체크");
 			voqna = new QnaBean();

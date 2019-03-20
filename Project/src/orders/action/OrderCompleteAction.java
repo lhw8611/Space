@@ -14,7 +14,6 @@ import orders.svc.OrderCompleteSvc;
 import vo.ActionForward;
 import vo.MemberBean;
 import vo.OrderBean;
-import vo.OrderDetailBean;
 import vo.OrderListBean;
 import vo.ProductBean;
 import vo.QtyBean;
@@ -48,16 +47,13 @@ public class OrderCompleteAction implements Action {
 		ArrayList<OrderListBean> orderlistbean;
 		orderlistbean = ordercompletesvc.productInfo(pro_codes, pro_qty); //주문상품 정보
 		session.setAttribute("orderlistbean", orderlistbean); //주문조회할때도 씀 = session
-//		for(int i=0; i<orderlistbean.size(); i++) {
-//			System.out.println("비 속을 걸어도 나 감사하니까~~ : " + orderlistbean.get(i).getPro_name());
-//		}
 
 		
 		int insertOrderCnt = ordercompletesvc.order_add(membean, orderbean); //orders 에 insert
 		System.out.println("order table insertCnt  : " + insertOrderCnt);
 		int insertQtyCnt = ordercompletesvc.order_qty(orderlistbean);//주문상품 재고수 빼기
 		System.out.println("qty table insertCnt  : " + insertQtyCnt);
-		/* orderbean = */ordercompletesvc.order_detail_add(orderbean, orderlistbean);//order_detail에 insert
+		ordercompletesvc.order_detail_add(orderbean, orderlistbean);//order_detail에 insert
 		System.out.println("orderbean num : " + orderbean.getOr_num());
 		System.out.println("orderbean name : " + orderbean.getOr_getname());
 		System.out.println("orderbean tel : " + orderbean.getOr_gettel());

@@ -20,6 +20,7 @@ public class MemberDeleteAction implements Action {
 		 if(session.getAttribute("id") != null) {
 			delcount = memberdeletesvc.UserDelete(request.getParameter("id"));
 				if(delcount > 0) {
+					response.setContentType("text/html;charset=UTF-8");
 					PrintWriter out = response.getWriter();
 					out.println("<script>");
 					out.println("alert('탈퇴되었습니다.');");

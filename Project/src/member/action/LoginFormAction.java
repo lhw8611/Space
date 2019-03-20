@@ -31,6 +31,7 @@ public class LoginFormAction implements Action{
 		boolean RightUser = loginformsvc.LoginCheck(member);
 		
 		if(!RightUser) {
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('아이디나 비밀번호가 일치하지 않습니다.')");
