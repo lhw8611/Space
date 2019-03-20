@@ -328,6 +328,5 @@ public class BoardDAO {
 			return productBean;
 
 		}
-
-
+	
 }

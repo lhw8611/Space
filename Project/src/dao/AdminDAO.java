@@ -190,7 +190,7 @@ public class AdminDAO {
 	public int ProShow(int pro_code) {
 		PreparedStatement pstmt = null;
 		int updateCheck = 0;
-		String sql = "update product set pro_show='o' where pro_code=?";
+		String sql = "update product set pro_show='o', pro_date=now() where pro_code=?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pro_code);

@@ -134,6 +134,13 @@ margin:5px;
 
 </style>
 </head>
+<script>
+	function clickon(v) {
+		if (v.value == '가구') {
+			alert(v.value + ' 선택하셨습니다.');
+		}
+	}
+</script>
 <body id="page">
 
 		<jsp:include page="../top_menu.jsp" />  
@@ -151,7 +158,7 @@ margin:5px;
 						</div>
 						<div id="option">
 						<select name="category" id="category">
-						<option value="x" style="color:gray;">카테고리 선택</option>
+						<option value="x" style="color:gray;">카테고리 선택</option> 
 						<option value="gagu">가구</option>
 						<option value="candle">캔들</option>
 						<option value="light">조명</option>

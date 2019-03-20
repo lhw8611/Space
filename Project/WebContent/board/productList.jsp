@@ -27,9 +27,13 @@ table {
 	width: 100%;
 }
 #productImage {
-	width: 300px;
-	height: 300px;
+	width: 400px;
+	height: 400px;
 	border: none;
+	border-radius: 3px;s
+}
+#productImage:hover {
+	opacity: 0.7;
 }
 container {
 height:100vh;
@@ -38,28 +42,102 @@ height:100vh;
 
 list-style: none;
 display: inline-block;
-margin:20px;
+margin:10px;
 border:0.5px solid #D9D9D9;
 border-radius: 4px;
 
 } 
 #listForm {
-	width:1200px;
+	width:1400px;
 	margin:0 auto;
 }
-.pro_detail {
+/* .pro_detail {
 	text-align: center;
-}
+} */
 .pro_img>a {
 	text-decoration: none;
 } 
+#headerImage {
+		width:1900px;
+	height:477px;
+	background-image:
+		url('headerImage/back04.jpg');
+	background-position: 50% 50%;
+	background-size: 	cover;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0; 
+}
+#title {
+	color:white;
+	font-size:1.5em;
+	display:inline-block;
+    position: absolute;
+ 	margin:auto;
+    top: 35%;	
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#category {
+	float:right;
+}
+#sort {
+	float:left;
+	margin:10px 10px;
+	height:30px;
+	border-radius: 3px;
+	padding-left: 5px;
+}
+#category li {
+	list-style-type: none;
+	display: inline-block;
+}
+#sort li {
+	list-style-type: none;
+	display: inline-block;
+}
 </style>
 </head>	
 <body>
+
 	<div id="container">
 		<div id="main">
 	<jsp:include page="../top_menu.jsp"></jsp:include>
+	<div id="headerImage">
+	<div id="title"><h1>Product</h1></div>
+	</div>
+	
+	
 	<section id="listForm">
+	<div id="category">
+	<ul>
+	<li><a href="#">가구</a></li>
+	<li><a href="#">캔들</a></li>
+	<li><a href="#">조명</a></li>
+	<li><a href="#">소품</a></li>
+	</ul>
+	</div>
+	<div id="sortDiv">
+<!-- 	<ul>
+		<li><a href="#">최신순</a></li>
+		<li><a href="#">인기순</a></li>
+		<li><a href="#">조회수 많은 순</a></li>
+		<li><a href="#">가격이 낮은 순</a></li>
+		<li><a href="#">판매수가 많은 순</a></li>
+		<li><a href="#">구매 후기가 많은 순</a></li>
+	</ul> -->
+	<form name="sortForm">
+		<select id="sort" name="sort" onchange="sortForm.action='/Project/sort.bo';sortForm.submit();">
+			<option value="hot">인기순</option>
+			<option value="new">최근 등록일 순</option>
+			<option value="count">조회수가 많은 순</option>
+			<option value="sell">판매수가 많은 순</option>
+			<option value="review">구매 후기가 많은 순</option>
+		</select>
+	</form>
+	</div>
+	<div style="clear:both;"></div>
 			<c:if test="${articleList!=null }">
 			<ul class="pro_grid">
 			<%for(int i=0; i<articleList.size(); i++) {
@@ -71,8 +149,8 @@ border-radius: 4px;
 			</a>
 			</div>
 			<div class ="pro_detail">
-			상품명 : <%=articleList.get(i).getPro_name() %><br> 
-			가격 : <%=articleList.get(i).getPro_price() %><br>
+			<%=articleList.get(i).getPro_name() %><br> 
+			<%=articleList.get(i).getPro_price() %>원<br>
 			</div>
 			</li>
 			<% 

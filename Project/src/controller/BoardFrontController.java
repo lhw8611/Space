@@ -14,6 +14,7 @@ import board.action.NoticeDetailAction;
 import board.action.NoticeListAction;
 import board.action.NoticeWriteAction;
 import board.action.ProductListAction;
+import board.action.SortAction;
 import board.action.ProductViewAction;
 import board.action.ProductWriteAction;
 import vo.ActionForward;
@@ -124,10 +125,20 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+		//상품 정렬
+		else if (command.equals("/sort.bo")) {
+			System.out.println("상품 정렬 컨트롤러 진입");
+			action = new SortAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		
+		//포워드
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
