@@ -14,15 +14,15 @@ public class ProductViewSvc {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		
-		int updateCount = boardDAO.updateReadCount(pro_code);
-		
+		//상품 조회수 
+		int updateCount = boardDAO.proUpdateReadCount(pro_code);
 		if(updateCount>0) {
 			commit(con);
 			
 		}else  {
 			rollback(con);
 		}
-		
+		//상세보기
 		ProductBean productBean = boardDAO.productInfo(pro_code);
 		close(con);
 		return productBean;

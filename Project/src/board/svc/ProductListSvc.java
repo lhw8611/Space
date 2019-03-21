@@ -21,12 +21,12 @@ public class ProductListSvc {
 	}
 	
 	
-	public ArrayList<ProductBean> getArticleList(int page, int limit) throws Exception {
+	public ArrayList<ProductBean> getArticleList(int page, int limit, String sort) throws Exception {
 		ArrayList<ProductBean> articleList = null;
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
-		articleList = boardDAO.selectProductList(page, limit);
+		articleList = boardDAO.selectProductList(page, limit, sort);
 		
 		close(con);
 		return articleList;
