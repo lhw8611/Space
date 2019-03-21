@@ -18,7 +18,7 @@ public class OrderDetailListAction implements Action{
 		int od_num = Integer.parseInt(request.getParameter("od_num"));
 		OrderDetailListSvc orderdetaillistsvc = new OrderDetailListSvc();
 		ArrayList<OrOdProViewBean> orodproviewbean = orderdetaillistsvc.OrderDetailList(od_num);
-		
+		request.setAttribute("orderdetaillist", orodproviewbean);
 		if(orodproviewbean != null) {
 			forward = new ActionForward();
 			forward.setPath("orders/orderDetailList");

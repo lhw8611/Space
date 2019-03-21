@@ -9,6 +9,7 @@ import dao.OrderDAO;
 import vo.OrOdProViewBean;
 public class OrderDetailListSvc {
 	public ArrayList<OrOdProViewBean> OrderDetailList(int od_num) {
+		System.out.println("[3]OrderDetailList");
 		Connection con = getConnection();
 		OrderDAO orderdao = OrderDAO.getInstance();
 		orderdao.setConnection(con);
