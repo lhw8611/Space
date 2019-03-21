@@ -66,12 +66,13 @@ margin:0 30px;
 					<input type="hidden" id="type" name="type" value="one"/></td></tr>
 				</table>
 				<input type="submit" value="주문하기">
+				<a href="/Project/dogList.dog">쇼핑 계속하기</a> 
+				<a href="#" onclick="orderForm.action='/Project/cartAdd.od';orderForm.submit();"> 장바구니에 담기</a>
 			</form>
 			</div>
 			<div style="clear: both"></div>
 			<nav id="commandList">
-				<a href="/Project/dogList.dog">쇼핑 계속하기</a> 
-				<a href="#" onclick="orderForm.action='/Project/cartAdd.od';orderForm.submit();"> 장바구니에 담기</a>
+				
 			</nav>
 		</section>
 		</section>

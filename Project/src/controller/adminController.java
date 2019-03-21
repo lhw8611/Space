@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import admin.action.Admin_orderListAction;
 import admin.action.HideAction;
 import admin.action.InOutListFormAction;
 import admin.action.QtyInOutAction;
 import admin.action.QtyInOutDeleteAction;
 import admin.action.QtyManagementFormAction;
 import admin.action.ShowAction;
-import admin.action.admin_orderListAction;
 import vo.ActionForward;
 
 /**
@@ -103,14 +103,26 @@ public class adminController extends HttpServlet {
 		}
 		//관리자 - 주문내역
 		else if (command.equals("/admin_orderList.ad")) {
-			System.out.println("상품 hide 컨트롤러 진입");
-			action = new admin_orderListAction();
+			System.out.println("관리자 주문내역");
+			action = new Admin_orderListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		//환불
+		else if (command.equals("/refund.ad")) {
+			System.out.println("환불 컨트롤러");
+			action = new Admin_orderListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		
 

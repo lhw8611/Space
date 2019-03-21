@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import vo.OrOdProViewBean;
 import vo.ProductBean;
 import vo.QtyProViewBean;
 
@@ -243,7 +244,70 @@ public class AdminDAO {
 		return updateCheck;
 		
 	}
-	
-	
+	//관리자 - 주문내역
+	public ArrayList<OrOdProViewBean> admin_orderList() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from orodproview";
+		ArrayList<OrOdProViewBean> OrderList= new ArrayList<OrOdProViewBean>();
+		OrOdProViewBean OrderListBean = null;
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				 OrderListBean = new OrOdProViewBean();
+				 OrderListBean.setOr_num(rs.getInt("or_num")); // orders 주문번호
+				 OrderListBean.setOr_date(rs.getDate("or_date")); //주문날짜
+				 OrderListBean.setOr_state(rs.getString("or_state")); //주문현황
+				 OrderListBean.setOr_pay(rs.getString("or_pay")); //결제방식
+				 OrderListBean.setOr_point(rs.getInt("or_point")); //포인트 사용
+				 OrderListBean.setOr_request(rs.getString("or_request")); //요청사항
+				 OrderListBean.setOr_getname(rs.getString("or_getname"));//받는사람 이름
+				 OrderListBean.setOr_getadd(rs.getString("or_getadd"));//받는사람 주소
+				 OrderListBean.setOr_gettel(rs.getString("or_gettel"));//받는사람 번호
+				 OrderListBean.setMem_id(rs.getString("mem_id")); //주문자 이름
+		               
+				 OrderListBean.setOd_num(rs.getInt("od_num"));//order_detail주문번호
+				 OrderListBean.setPro_code(rs.getInt("pro_code")); //상품코드
+				 OrderListBean.setOd_qty(rs.getInt("od_qty")); //상품주문갯수
+		               
+				 OrderListBean.setPro_name(rs.getString("pro_name"));//상품이름
+				 OrderListBean.setPro_price(rs.getInt("pro_price")); //상품가격
+				 OrderListBean.setPro_category(rs.getString("pro_category")); //상품 카테고리
+				 OrderListBean.setPro_content(rs.getString("pro_content"));//상품 내용
+				 OrderListBean.setPro_image(rs.getString("pro_image")); //상품이미지
+				 OrderListBean.setPro_show(rs.getString("pro_show"));//상품 보이기 숨기기
+				 OrderListBean.setPro_date(rs.getDate("pro_date"));//상품 등록날짜
+				 OrderListBean.setPro_count(rs.getInt("pro_count")); //상품 조회수
+				 OrderList.add(OrderListBean);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return OrderList;
+		
+	}
+
+	public void refund(int od_num, int pro_code,String state) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		String sql = "update order_detail set od_state = ? where od_num=? AND pro_code =?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, state);
+			pstmt.setInt(2, od_num);
+			pstmt.setInt(3, pro_code);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+	}
 	
 }
