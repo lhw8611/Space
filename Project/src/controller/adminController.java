@@ -16,6 +16,7 @@ import admin.action.QtyInOutAction;
 import admin.action.QtyInOutDeleteAction;
 import admin.action.QtyManagementFormAction;
 import admin.action.ShowAction;
+import admin.action.admin_orderListAction;
 import vo.ActionForward;
 
 /**
@@ -94,6 +95,16 @@ public class adminController extends HttpServlet {
 		else if (command.equals("/hide.ad")) {
 			System.out.println("상품 hide 컨트롤러 진입");
 			action = new HideAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//관리자 - 주문내역
+		else if (command.equals("/admin_orderList.ad")) {
+			System.out.println("상품 hide 컨트롤러 진입");
+			action = new admin_orderListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
