@@ -13,6 +13,7 @@ import action.Action;
 import orders.action.CartAddAction;
 import orders.action.CartDeleteAction;
 import orders.action.OrderCompleteAction;
+import orders.action.OrderDetailListAction;
 import orders.action.CartListFormAction;
 import orders.action.CartQtyChangeAction;
 import orders.action.OrderFormAction;
@@ -80,6 +81,14 @@ public class OrderController extends HttpServlet {
 		} else if (command.equals("/orderList.od")) { // 주문조회
 			System.out.println("[1]orderList.od 컨트롤러 진입");
 			action = new OrderListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/orderDetailList.od")) { // 주문조회
+			System.out.println("[1]orderDetailList.od 컨트롤러 진입");
+			action = new OrderDetailListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

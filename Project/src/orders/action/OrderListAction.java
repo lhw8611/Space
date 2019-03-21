@@ -10,8 +10,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import orders.svc.OrderListSvc;
 import vo.ActionForward;
-import vo.OrderBean;
-import vo.OrderListBean;
+import vo.OrOdProViewBean;
 
 public class OrderListAction implements Action{
 
@@ -25,9 +24,9 @@ public class OrderListAction implements Action{
 		if(session.getAttribute("id") != null) {
 		forward = new ActionForward();
 		OrderListSvc orderlistsvc = new OrderListSvc();
-		ArrayList<OrderListBean> ordersimplelist = orderlistsvc.OrderSimpleList(id); //주문조회
+		ArrayList<OrOdProViewBean> orodproviewbean = orderlistsvc.OrderSimpleList(id); //주문조회
 		
-		request.setAttribute("ordersimplelist", ordersimplelist);
+		request.setAttribute("orodproviewbean", orodproviewbean);
 		
 		forward.setRedirect(false);
 		forward.setPath("orders/orderSimpleList.jsp");

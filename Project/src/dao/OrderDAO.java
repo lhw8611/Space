@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import vo.CartProViewBean;
 import vo.MemberBean;
+import vo.OrOdProViewBean;
 import vo.OrderBean;
 import vo.OrderListBean;
 import vo.ProductBean;
@@ -270,142 +271,6 @@ public class OrderDAO {
 		return qtyChangeCheck;
 	}
 
-//	public int order_insert(String mem_id, OrderBean odbean) { // id에 대한 주문내역 만들기
-//		System.out.println("[OrderDAO.order_insert]");
-//		PreparedStatement pstmt = null;
-//		String sql = "insert into orders values(null, now(), 'wait', ?, ?, ?, ?, ?, ?, ?)";
-//		int updateCount = 0;
-//		try {
-//
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, "temp cash");// 결제방법
-//			pstmt.setInt(2, odbean.getOr_point());// 포인트
-//			pstmt.setString(3, odbean.getOr_request());// 요청사항
-//			pstmt.setString(4, odbean.getOr_getname());// 받는사람 이름
-//			pstmt.setString(5, odbean.getOr_getadd());// 받는사람 주소
-//			pstmt.setString(6, odbean.getOr_gettel());// 받는사람 전화
-//			pstmt.setString(7, mem_id);// 구매자 아이디
-//			updateCount = pstmt.executeUpdate();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//		}
-//
-//		return updateCount;
-//	}
-
-//	public OrderDetailBean ordercode(OrderBean odbean, OrderDetailBean oddbean) { // 마지막행의 주문번호 즉 방금 주문해서 추가된 주문코드
-//		System.out.println("[OrderDAO.ordercode]");
-//		PreparedStatement pstmt = null;
-//		String sql = "select * from orders";
-//		ResultSet rs = null;
-//		try {
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//
-//				oddbean.setOd_num(rs.getInt("or_num"));
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//
-//		return oddbean;
-//	}
-
-//	public int detail_insert(OrderDetailBean oddbean) { // 오더디테일 값넣기
-//		System.out.println("[OrderDAO.detail_insert]");
-//		PreparedStatement pstmt = null;
-//		String sql = "insert into order_detail values(?, ?, ?)";
-//		int updateCount = 0;
-//		try {
-//
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, oddbean.getOd_num());// 주문코드
-//			pstmt.setInt(2, oddbean.getPro_code());// 상품코드
-//			pstmt.setInt(3, oddbean.getOd_qty());// 주문갯수
-//			updateCount = pstmt.executeUpdate();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//		}
-//
-//		return updateCount;
-//	}
-
-//	public int qty_insert(OrderDetailBean oddbean, QtyBean qtybean) { // 재고수 select해서 구매수량만큼 빼기
-//		System.out.println("[OrderDAO.qty_insert]");
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		String sql = "select * from qty where pro_code=?";
-//		int qtyUpdate = 0;
-//		int qty_qty = 0;
-//		try {
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, oddbean.getPro_code());
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				qty_qty = rs.getInt("qty_qty");
-//			}
-//			close(pstmt);
-//			sql = "insert into qty values(null, ?, ?, 'out', now(), 'sell')";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, oddbean.getPro_code());// 상품코드
-//			pstmt.setInt(2, qty_qty - oddbean.getOd_qty());// 재고수
-//			qtyUpdate = pstmt.executeUpdate();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//
-//		return qtyUpdate;
-//	}
-
-//	public ArrayList<OrderBean> odlistDAO(String id) { // 사용자 아이디로 주문조회
-//		ArrayList<OrderBean> odbeanlist = new ArrayList<OrderBean>();
-//		OrderBean odbean = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		String sql = "select * from orders where mem_id=?";
-//		try {
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, id);
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				odbean = new OrderBean();
-//				odbean.setOr_num(rs.getInt("or_num"));
-//				odbean.setOr_date(rs.getDate("or_date"));
-//				odbean.setOr_state(rs.getString("or_state"));
-//				odbean.setOr_pay(rs.getString("or_pay"));
-//				odbean.setOr_point(rs.getInt("or_point"));
-//				odbean.setOr_request(rs.getString("or_request"));
-//				odbean.setOr_getname(rs.getString("or_getname"));
-//				odbean.setOr_getadd(rs.getString("or_getadd"));
-//				odbean.setOr_gettel(rs.getString("or_gettel"));
-//				odbean.setMem_id(rs.getString("mem_id"));
-//				odbeanlist.add(odbean);
-//				System.out.println("주문번호 보기 : " + odbean.getOr_num());
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//
-//		return odbeanlist;
-//	}
-
 	public ArrayList<OrderListBean> OrderList(int pro_code, int qty) { // 하나 주문DAO
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -599,28 +464,44 @@ public class OrderDAO {
 	}
 
 	
-	public ArrayList<OrderListBean> OrderSimpleList(String id) { //주문조회
+	public ArrayList<OrOdProViewBean> OrderSimpleList(String id) { //주문조회
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<OrderListBean> ordersimplelist = null;
-		OrderListBean temp = null;
+		ArrayList<OrOdProViewBean> orodproviewbean = null;
+		OrOdProViewBean temp = null;
 		try {
-			pstmt = con.prepareStatement("select * from ordersimplelist where mem_id=? order by or_date desc");
+			pstmt = con.prepareStatement("select * from orodproview where mem_id=? order by or_date desc;" ,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				ordersimplelist = new ArrayList<OrderListBean>();
+				orodproviewbean = new ArrayList<OrOdProViewBean>();
 				rs.beforeFirst();
 				while(rs.next()) {
-					temp = new OrderListBean();
-					temp.setMem_id(rs.getString("mem_id"));
-					temp.setOr_date(rs.getDate("or_date"));
-					temp.setPro_image(rs.getString("pro_image"));
-					temp.setPro_price(rs.getInt("pro_price"));
-					temp.setPro_name(rs.getString("pro_name"));
-					temp.setOd_qty(rs.getInt("od_qty"));
-					temp.setOr_state(rs.getString("or_state"));
-					ordersimplelist.add(temp);
+					temp = new OrOdProViewBean();
+					temp.setOr_num(rs.getInt("or_num")); // orders 주문번호
+					temp.setOr_date(rs.getDate("or_date")); //주문날짜
+					temp.setOr_state(rs.getString("or_state")); //주문현황
+					temp.setOr_pay(rs.getString("or_pay")); //결제방식
+					temp.setOr_point(rs.getInt("or_point")); //포인트 사용
+					temp.setOr_request(rs.getString("or_request")); //요청사항
+					temp.setOr_getname(rs.getString("or_getname"));//받는사람 이름
+					temp.setOr_getadd(rs.getString("or_getadd"));//받는사람 주소
+					temp.setOr_gettel(rs.getString("or_gettel"));//받는사람 번호
+					temp.setMem_id(rs.getString("mem_id")); //주문자 이름
+					
+					temp.setOd_num(rs.getInt("od_num"));//order_detail주문번호
+					temp.setPro_code(rs.getInt("pro_code")); //상품코드
+					temp.setOd_qty(rs.getInt("od_qty")); //상품주문갯수
+					
+					temp.setPro_name(rs.getString("pro_name"));//상품이름
+					temp.setPro_price(rs.getInt("pro_price")); //상품가격
+					temp.setPro_category(rs.getString("pro_category")); //상품 카테고리
+					temp.setPro_content(rs.getString("pro_content"));//상품 내용
+					temp.setPro_image(rs.getString("pro_image")); //상품이미지
+					temp.setPro_show(rs.getString("pro_show"));//상품 보이기 숨기기
+					temp.setPro_date(rs.getDate("pro_date"));//상품 등록날짜
+					temp.setPro_count(rs.getInt("pro_count")); //상품 조회수
+					orodproviewbean.add(temp);
 				}
 			}
 		}catch(SQLException e){
@@ -629,6 +510,58 @@ public class OrderDAO {
 			close(rs);
 			close(pstmt);
 		}
-		return ordersimplelist;
+		return orodproviewbean;
 	}
+
+	public ArrayList<OrOdProViewBean> OrderDetailList(int od_num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<OrOdProViewBean> orodproviewbean = null;
+		OrOdProViewBean temp = null;
+		try {
+			pstmt = con.prepareStatement("select * from orodproview where od_num=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt.setInt(1, od_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				orodproviewbean = new ArrayList<OrOdProViewBean>();
+				rs.beforeFirst();
+				while(rs.next()) {
+					 temp = new OrOdProViewBean();
+		               temp.setOr_num(rs.getInt("or_num")); // orders 주문번호
+		               temp.setOr_date(rs.getDate("or_date")); //주문날짜
+		               temp.setOr_state(rs.getString("or_state")); //주문현황
+		               temp.setOr_pay(rs.getString("or_pay")); //결제방식
+		               temp.setOr_point(rs.getInt("or_point")); //포인트 사용
+		               temp.setOr_request(rs.getString("or_request")); //요청사항
+		               temp.setOr_getname(rs.getString("or_getname"));//받는사람 이름
+		               temp.setOr_getadd(rs.getString("or_getadd"));//받는사람 주소
+		               temp.setOr_gettel(rs.getString("or_gettel"));//받는사람 번호
+		               temp.setMem_id(rs.getString("mem_id")); //주문자 이름
+		               
+		               temp.setOd_num(rs.getInt("od_num"));//order_detail주문번호
+		               temp.setPro_code(rs.getInt("pro_code")); //상품코드
+		               temp.setOd_qty(rs.getInt("od_qty")); //상품주문갯수
+		               
+		               temp.setPro_name(rs.getString("pro_name"));//상품이름
+		               temp.setPro_price(rs.getInt("pro_price")); //상품가격
+		               temp.setPro_category(rs.getString("pro_category")); //상품 카테고리
+		               temp.setPro_content(rs.getString("pro_content"));//상품 내용
+		               temp.setPro_image(rs.getString("pro_image")); //상품이미지
+		               temp.setPro_show(rs.getString("pro_show"));//상품 보이기 숨기기
+		               temp.setPro_date(rs.getDate("pro_date"));//상품 등록날짜
+		               temp.setPro_count(rs.getInt("pro_count")); //상품 조회수
+		               orodproviewbean.add(temp);
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return orodproviewbean;
+	}
+	
+	
 }

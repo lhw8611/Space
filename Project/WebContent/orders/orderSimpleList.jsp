@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList" %>
-    <%@page import="vo.OrderListBean" %>
+    <%@page import="vo.OrOdProViewBean" %>
 <%
-	ArrayList<OrderListBean> ordersimplelist = (ArrayList<OrderListBean>)request.getAttribute("ordersimplelist");
+	ArrayList<OrOdProViewBean> orodproviewbean = (ArrayList<OrOdProViewBean>)request.getAttribute("orodproviewbean");
 
 %>
 <!DOCTYPE html>
@@ -86,15 +86,14 @@
 
 }
 
-    .left {
-        text-align : left;
-}
-
 .simple_img{
 	width : 90px;
 	height: 90px;
 }
 
+a{
+	text-decoration: none;
+}
 
 </style>
 </head>
@@ -107,7 +106,7 @@
             <li></li>
             <li><h1>주문조회</h1></li>
             <li>
-                <%if(ordersimplelist != null){ %>
+                <%if(orodproviewbean != null){ %>
                 <ul id ="ulTable">
                     <li>
                         <ul>
@@ -121,20 +120,20 @@
                     </li>
                     <!-- 게시물이 출력될 영역 -->
 <% 
-for(int i=0; i<ordersimplelist.size(); i++){
-	int totalMoney = ordersimplelist.get(i).getPro_price()*ordersimplelist.get(i).getOd_qty();
+for(int i=0; i<orodproviewbean.size(); i++){
+	int totalMoney = orodproviewbean.get(i).getPro_price()*orodproviewbean.get(i).getOd_qty();
 	int delivery = 2500;
 	if(totalMoney >30000){
 		delivery = 0;
 	}
-	String state = ordersimplelist.get(i).getOr_state();
+	String state = orodproviewbean.get(i).getOr_state();
 	if(state.equals("wait")){
 	 state = "주문완료";
 	}
 	totalMoney += delivery;
-	out.println("<li><ul><li>" + ordersimplelist.get(i).getOr_date()+"</li>"); //주문일시
-	out.println("<li>" + "<img src='/Project/boardUpload/" +ordersimplelist.get(i).getPro_image()  +"'class='simple_img'></li>"); //상품 이미지
-	out.println("<li>" + ordersimplelist.get(i).getPro_name() +"</li>"); //상품이름
+	out.println("<li><ul><li>" + orodproviewbean.get(i).getOr_date()+"</li>"); //주문일시
+	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'><img src='/Project/boardUpload/" +orodproviewbean.get(i).getPro_image()  +"'class='simple_img'></a></li>"); //상품 이미지
+	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'>" + orodproviewbean.get(i).getPro_name() +"</a></li>"); //상품이름
 	out.println("<li>" + totalMoney +"</li>"); //결제금액
 	out.println("<li>" + state +"</li></ul></li>"); //주문상태
 }
