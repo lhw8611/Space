@@ -17,7 +17,7 @@ public class OrderListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("[OrderListAction]");
+		System.out.println("[OrderSimpleListAction]");
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");

@@ -605,7 +605,7 @@ public class OrderDAO {
 		ArrayList<OrderListBean> ordersimplelist = null;
 		OrderListBean temp = null;
 		try {
-			pstmt = con.prepareStatement("select * from ordersimplelist where mem_id=?");
+			pstmt = con.prepareStatement("select * from ordersimplelist where mem_id=? order by or_date desc");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

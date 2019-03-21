@@ -26,7 +26,7 @@
 
     #mainWrapper > ul > li:first-child {
         text-align: center;
-        font-size:14pt;
+        font-size:16px;
         height:40px;
         vertical-align:middle;
         line-height:30px;
@@ -38,6 +38,7 @@
     #ulTable > li:first-child > ul > li {
         background-color:#c9c9c9;
         font-weight:bold;
+        size : 16px;
         text-align:center;
 }
 
@@ -50,16 +51,18 @@
     #ulTable > li > ul > li { 
         float:left;
         font-size:10pt;
-        border-bottom:1px solid silver;
+        text-align:center;
+      	border-bottom:1px solid silver;
         vertical-align:baseline;
+        line-height: 90px;
+        height : 90px;
 }    
 
-    #ulTable > li > ul > li:first-child               {width:10%;} /*No 열 크기*/
-    #ulTable > li > ul > li:first-child +li           {width:45%;} /*제목 열 크기*/
-    #ulTable > li > ul > li:first-child +li+li        {width:20%;} /*작성일 열 크기*/
-    #ulTable > li > ul > li:first-child +li+li+li     {width:15%;} /*작성자 열 크기*/
-    #ulTable > li > ul > li:first-child +li+li+li+li{width:10%;} /*조회수 열 크기*/
-
+    #ulTable > li > ul > li:first-child               {width:10%;} 
+    #ulTable > li > ul > li:first-child +li           {width:45%;} 
+    #ulTable > li > ul > li:first-child +li+li        {width:20%;} 
+    #ulTable > li > ul > li:first-child +li+li+li     {width:15%;} 
+    #ulTable > li > ul > li:first-child +li+li+li+li{width:10%;}
     #divPaging {
           clear:both; 
         margin:0 auto; 
@@ -91,18 +94,19 @@
 	width : 90px;
 	height: 90px;
 }
+
+
 </style>
 </head>
 <body>
- <div id="mainWrapper">
-
+<jsp:include page="../top_menu.jsp"/>
+ <div id="container">
+		<div id="main">
+			 <div id="mainWrapper">
         <ul>
-            <!-- 게시판 제목 -->
-            <li>게시판 Title </li>
-
-            <!-- 게시판 목록  -->
+            <li></li>
+            <li><h1>주문조회</h1></li>
             <li>
-                Table
                 <%if(ordersimplelist != null){ %>
                 <ul id ="ulTable">
                     <li>
@@ -112,11 +116,10 @@
                             <li>상품이름</li>
                             <li>결제금액</li>
                             <li>주문현황</li>
+                          
                         </ul>
                     </li>
                     <!-- 게시물이 출력될 영역 -->
-
-
 <% 
 for(int i=0; i<ordersimplelist.size(); i++){
 	int totalMoney = ordersimplelist.get(i).getPro_price()*ordersimplelist.get(i).getOd_qty();
@@ -124,24 +127,25 @@ for(int i=0; i<ordersimplelist.size(); i++){
 	if(totalMoney >30000){
 		delivery = 0;
 	}
+	String state = ordersimplelist.get(i).getOr_state();
+	if(state.equals("wait")){
+	 state = "주문완료";
+	}
 	totalMoney += delivery;
 	out.println("<li><ul><li>" + ordersimplelist.get(i).getOr_date()+"</li>"); //주문일시
 	out.println("<li>" + "<img src='/Project/boardUpload/" +ordersimplelist.get(i).getPro_image()  +"'class='simple_img'></li>"); //상품 이미지
 	out.println("<li>" + ordersimplelist.get(i).getPro_name() +"</li>"); //상품이름
 	out.println("<li>" + totalMoney +"</li>"); //결제금액
-	out.println("<li>" + ordersimplelist.get(i).getOr_state()+"</li></ul></li>"); //주문상태
+	out.println("<li>" + state +"</li></ul></li>"); //주문상태
 }
 %>
                 </ul>
                 <%
                 }else{
-                	out.println("구매내역이 없습니다.");
+                	out.println("<br>구매내역이 없습니다.");
                 }
                 %>
-                
-                
             </li>
-
             <!-- 게시판 페이징 영역 -->
             <li>
                 <div id="divPaging">
@@ -154,7 +158,6 @@ for(int i=0; i<ordersimplelist.size(); i++){
                     <div>▶</div>
                 </div>
             </li>
-
             <!-- 검색 폼 영역 -->
             <li id='liSearchOption'>
                 <div>
@@ -167,9 +170,11 @@ for(int i=0; i<ordersimplelist.size(); i++){
                     <input type='button' value='검색'/>
                 </div>
                 </li>
-
         </ul>
     </div>
+		</div>
+	</div>
+	<jsp:include page="../footer.jsp"/>
 
 </body>
 </html>

@@ -42,7 +42,7 @@ public class OrderCompleteSvc {
 		ArrayList<OrderListBean> orderlistbean;
 		
 		orderlistbean = orderDAO.productsInfoDAO(pro_codes, pro_qty);
-		
+		close(con);
 		return orderlistbean;
 	}
 

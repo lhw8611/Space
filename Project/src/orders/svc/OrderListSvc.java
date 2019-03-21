@@ -22,6 +22,7 @@ public class OrderListSvc {
 		}else {
 			rollback(con);
 		}
+		close(con);
 		return ordersimplelist;
 	}
 	
