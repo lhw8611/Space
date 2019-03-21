@@ -8,12 +8,16 @@
 <%
 	ArrayList<ProductBean> articleList = (ArrayList<ProductBean>) request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+	String sort = (String)request.getAttribute("sort");
+	
 	int listCount = pageInfo.getListCount();
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	
+	
+	System.out.println(sort);
 %>
 
 
@@ -128,12 +132,11 @@ border-radius: 4px;
 		<li><a href="#">구매 후기가 많은 순</a></li>
 	</ul> -->
 	<form name="sortForm">
-		<select id="sort" name="sort" onchange="sortForm.action='/Project/sort.bo';sortForm.submit();">
-			<option value="hot">인기순</option>
-			<option value="new">최근 등록일 순</option>
-			<option value="count">조회수가 많은 순</option>
-			<option value="sell">판매수가 많은 순</option>
-			<option value="review">구매 후기가 많은 순</option>
+		<select id="sort" name="sort" onchange="sortForm.action='/Project/productList.bo';sortForm.submit();">
+			<option value="new"<%if(sort.equals("new")) {%>selected<%} %>>최근 등록일 순</option>
+			<option value="count" <%if(sort.equals("count")) {%>selected<%} %>>조회수가 많은 순</option>
+			<option value="sell" <%if(sort.equals("sell")) {%>selected<%} %>>판매수가 많은 순</option>
+			<option value="review" <%if(sort.equals("review")) {%>selected<%} %>>구매 후기가 많은 순</option>
 		</select>
 	</form>
 	</div>

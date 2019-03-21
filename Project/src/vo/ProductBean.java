@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 public class ProductBean {
 	private int pro_code;
 	private String pro_name;
@@ -8,8 +10,22 @@ public class ProductBean {
 	private String pro_content;
 	private String pro_image;
 	private String pro_show;
+	private Date pro_date;
+	private int pro_count;
 	
 	
+	public Date getPro_date() {
+		return pro_date;
+	}
+	public void setPro_date(Date pro_date) {
+		this.pro_date = pro_date;
+	}
+	public int getPro_count() {
+		return pro_count;
+	}
+	public void setPro_count(int pro_count) {
+		this.pro_count = pro_count;
+	}
 	public String getPro_show() {
 		return pro_show;
 	}

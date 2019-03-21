@@ -14,7 +14,10 @@ import vo.ProductBean;
 public class ProductListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ProductListAction 액션 진입");
-		
+		String sort = "new";
+		if(request.getParameter("sort")!=null) {
+		sort = request.getParameter("sort");
+		}
 		ArrayList<ProductBean> articleList = new ArrayList<ProductBean>();
 		
 		//페이지 관련
@@ -27,7 +30,7 @@ public class ProductListAction implements Action {
 		}
 		ProductListSvc proListService = new ProductListSvc();
 		int listCount = proListService.getListCount(); // 글 목록 개수
-		articleList = proListService.getArticleList(page, limit);
+		articleList = proListService.getArticleList(page, limit, sort);
 		int maxPage = (int) ((double) listCount / limit + 0.95); //글 목록 개수가 1.2면 2페이지가 필요하니깐 올림을 해주기위해 0.95를 더함
 		int startPage = (((int) ((double) page / limitPage + 0.9)) - 1) * limitPage + 1;
 		int endPage = startPage + limitPage - 1;
@@ -44,7 +47,7 @@ public class ProductListAction implements Action {
 		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
-		
+		request.setAttribute("sort", sort);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/board/productList.jsp");
 		return forward;
