@@ -12,129 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.page_title {
-	position: relative;
-	z-index: 100;
-	margin: 0 0 11px;
-	zoom: 1;
-}
-
-page_title:after {
-	display: block;
-	clear: both;
-	content: '';
-}
-
-body {
-	font-family: '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum,
-		Helvetica, sans-serif;
-}
-
-ul {
-	display: blcok;
-	list-style-type: none;
-}
-
-li {
-	display: list-item;
-	text-align: -webkit-match-parent;
-}
-
-dd {
-	display: block;
-	margin-inline-start: 40px;
-}
-
-a {
-	text-decoration: none;
-}
-
-.fl {
-	float: left;
-}
-
-.vsb:after {
-	display: block;
-	visibility: hidden;
-	clear: both;
-	content: '';
-}
-
-.order_info1 {
-	margin-top: -1px;
-	zoom: 1;
-}
-
-.order_info1 li:first-child {
-	margin-left: 0;
-	border: none;
-}
-
-.order_info1 li {
-	float: left;
-	margin-left: 25px;
-	padding-left: 29px;
-	border-left: 1px solid #eff0f1;
-}
-
-.order_info1:after {
-	display: block;
-	visibility: hidden;
-	content: "";
-	clear: both;
-}
-
-.order_info1 li dl:after {
-	display: block;
-	visibility: hidden;
-	content: "";
-	clear: both;
-}
-
-.order_info1 li dt {
-	float: left;
-	margin: 0 25px 0 0;
-	padding-top: 4px;
-	font-size: 14px;
-	font-weight: bold;
-}
-
-.order_info1 li dd {
-	float: left;
-	font-size: 17px;
-	font-weight: normal;
-	line-height: 20px;
-}
-
-.order_info1 li dl {
-	color: #20232c;
-	line-height: 13px;
-}
-
-.order_info1 li dd a {
-	display: inline-block;
-	width: 88px;
-	height: 20px;
-	margin: 1px 0 0 3px;
-	background:
-		url(../../../../img/service/front/order/spr_btn.gif?20190214)
-		no-repeat -410px -720px;
-	vertical-align: top;
-}
-
-a:-webkit-any-link {
-	color: -webkit-link;
-	cursor: pointer;
-	text-decoration: underline;
-}
-
-.content {
-	width: 860px;
-	margin: 0 auto;
-}
-
-.tg {
-	width: 860px;
+.tg, .tg2 {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
@@ -142,113 +20,277 @@ a:-webkit-any-link {
 .tg td {
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-	padding: 2px 20px;
-	border-style: solid;
-	border-width: 1px;
+	padding: 0px 10px;
 	overflow: hidden;
 	word-break: normal;
-	border-color: black;
+	height: 90px;
+	border-bottom: 1px solid silver;
 }
 
-.tg td img{
-	wdith : 80px;
-	height: 80px;
-}
 .tg th {
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	font-weight: normal;
-	padding: 2px 20px;
-	border-style: solid;
-	border-width: 1px;
+	padding: 0px 10px;
 	overflow: hidden;
 	word-break: normal;
-	border-color: black;
+	height: 90px;
+	background-color: #F6F6F6;
+	font-weight: bold;
+	size: 16px;
+	border-top: 2px solid black;
+	border-bottom: 1px solid silver;
+}
+
+.tg2 td{
+	height: 40px;
+}
+
+.input_section1{
+box-sizing : border-box;
+	width: 100%;
+}
+.input_section1 .tg2 td:first-child {
+	background-color: #EAEAEA;
+}
+.input_section1 .tg3 td:first-child {
+	background-color: #FFF;
+}
+.tg3 td{
+	border-left: 1px solid silver;
+}
+.get_info{
+box-sizing : border-box;
+	display : inline-block;
+	margin : 0;
+	padding : 0;
+	width : 70%;
+}
+.order_info{
+box-sizing : border-box;
+display : inline-block;
+margin : 0;
+	padding : 0;
+	width : 30%;
+}
+.tg .tg-s6z2 {
+	text-align: center
 }
 
 .tg .tg-uys7 {
-	border-color: inherit;
-	text-align: center;
+	text-align: center
 }
 
-.tg .tg-0lax {
-	text-align: center;
+.content {
+	width: 860px;
+	margin: 0 auto;
 }
 
-.tg .tg-xldj {
-	border-color: inherit;
-	text-align: center;
+.detail_title {
+	margin: 10px 0 10px;
 }
+.detail_title2{
+	margin: 50px 0 10px;
+}
+table {
+box-sizing : border-box;
+	width: 100%;
+	border: 0;
+}
+
+tr td img {
+	width: 90px;
+	height: 90px;
+}
+
+dt, dd {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+dd {
+	font-weight: bold;
+}
+
+li {
+	display: inline-block;
+}
+
+.vertical_line {
+	border-left: 2px solid #EAEAEA;
+}
+
+.detail_border {
+	border: 5px solid #eff0f2;
+	padding: 17px 0;
+	margin-bottom: 15px;
+}
+
+.detail_delete {
+	font-size: 12px;
+	padding: 2px 8px;
+	border: 1px solid silver;
+	background: #EAEAEA;
+	border-radius: 15px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.result {
+	float: right;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.result li {
+	display: block;
+}
+
+
 </style>
 </head>
 <body>
+	<%
+		int cartResult = 0;
+		int delivery = 2500;
+
+		for (int i = 0; i < orderdetaillist.size(); i++) {
+			cartResult += orderdetaillist.get(i).getPro_price() * orderdetaillist.get(i).getOd_qty();
+
+		}
+		if (cartResult >= 30000) {
+			delivery = 0;
+		}
+	%>
 	<jsp:include page="../top_menu.jsp" />
 
 	<div id="container">
 		<div id="main">
+
 			<div class="content">
-				<div class="page_title">
-					<h3>주문상세정보</h3>
+				<div class="detail_title">
+					<h2>주문상세정보</h2>
 				</div>
-				<div class="order_header vsb">
-					<ul class="fl order_info1">
+				<div class="detail_border">
+					<ul>
 						<li>
 							<dl>
 								<dt>주문일자</dt>
-								<dd>
-									<strong> <%=orderdetaillist.get(0).getOr_date()%>
-									</strong>
+								<dd style="margin-right: 20px;">
+									<%=orderdetaillist.get(0).getOr_date()%>
 								</dd>
 							</dl>
-						<li>
+						</li>
+						<li class="vertical_line">
 							<dl>
 								<dt>주문번호</dt>
 								<dd class="ordnum"><%=orderdetaillist.get(0).getOr_num()%>
-									<a href="#" class="order_del_click">내역삭제</a>
+								</dd>
+								<dd>
+									<div class="detail_delete">
+										<a href="#">내역삭제</a>
+									</div>
 								</dd>
 							</dl>
-
 						</li>
 					</ul>
 				</div>
-
-
 				<table class="tg">
 					<tr>
-						<th class="tg-0lax">상품주문번호</th>
-						<th class="tg-xldj">상품정보</th>
+						<th class="tg-s6z2">상품번호</th>
+						<th class="tg-uys7">상품정보</th>
+						<th class="tg-uys7">상품이름</th>
 						<th class="tg-uys7">상품금액(수량)</th>
-						<th class="tg-xldj">진행상태</th>
+						<th class="tg-uys7">진행상태</th>
 					</tr>
-<%
+					<%
 						for (int i = 0; i < orderdetaillist.size(); i++) {
 					%>
 					<tr>
-						<td class="tg-0lax"><%=orderdetaillist.get(i).getPro_code()%></td>
-						<td class="tg-xldj"><a href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
-							target="_blank"><img src="/Project/boardUpload/<%=orderdetaillist.get(i).getPro_image()%>"
+						<td class="tg-s6z2"><%=orderdetaillist.get(i).getPro_code()%></td>
+						<td class="tg-uys7"><a
+							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
+							target="_blank"><img
+								src="/Project/boardUpload/<%=orderdetaillist.get(i).getPro_image()%>"
 								alt="<%=orderdetaillist.get(i).getPro_name()%>"></a></td>
-						<td class="tg-uys7">aaaa</td>
-						<td class="tg-xldj">aa</td>
+						<td class="tg-uys7"><a
+							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
+							target="_blank"><%=orderdetaillist.get(i).getPro_name()%></a></td>
+						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%></td>
+						<td class="tg-uys7"><%=orderdetaillist.get(i).getOd_state()%></td>
 					</tr>
-					<tr>
-						<td class="tg-0lax"></td>
-						<td class="tg-xldj"></td>
-						<td class="tg-uys7">ddd</td>
-						<td class="tg-xldj"></td>
-					</tr>
-				</table>
-				상품
-				<%=orderdetaillist.get(i).getPro_name()%>
-				가격
-				<%=orderdetaillist.get(i).getPro_price()%>
-				수량
-				<%=orderdetaillist.get(i).getOd_qty()%>
+					<%
+						}
+					%>
 
-				<%
-					}
-				%>
+
+
+				</table>
+			
+				<div class="detail_title2">
+					<h2>배송지 정보</h2>			
+				</div>
+				
+				<div class="input_section1">
+					<div class="get_info">
+					<table class="tg tg2">
+						<tr>
+							<td class="tg-uys7">수령인</td>
+							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_getname() %></td>
+						</tr>
+						<tr>
+							<td class="tg-uys7">연락처</td>
+							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_gettel()%></td>
+						</tr>
+						<tr>
+							<td class="tg-uys7">배송지</td>
+							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_getadd()%></td>
+						</tr>
+						<tr>
+							<td class="tg-uys7">요청사항</td>
+							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_request()%></td>
+						</tr>
+					</table>
+					</div>
+					
+					<div class="order_info">
+					<table class="tg tg2 tg3">
+						<tr>
+							<td>주문자정보</td>
+						</tr>
+						<tr>
+						<td>구매자 이름</td>
+						</tr>
+						<tr>
+						<td>구매자 전화번호</td>
+						</tr>
+						<tr>
+						<td>구매자 이메일</td>
+						</tr>
+					</table>
+					</div>
+				</div>
+				
+				<div class="result">
+					<ul>
+						<li>상품금액 : <%=cartResult%>원
+						</li>
+						<li>포인트 : 0원</li>
+						<li>배송비 : <%=delivery%>원
+						</li>
+						<li>&nbsp;</li>
+						<li><h3>
+								결제금액 :
+								<%=cartResult + delivery%>원
+							</h3></li>
+					</ul>
+				</div>
+
 			</div>
+
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" />
