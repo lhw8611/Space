@@ -21,6 +21,7 @@ public class OrderDetailListSvc {
 			rollback(con);
 		}
 		
+		close(con);
 		return orodproviewbean; 
 	}
 }

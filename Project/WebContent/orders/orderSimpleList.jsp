@@ -20,7 +20,7 @@
 }
 
     #mainWrapper{
-        width: 800px;
+        width: 840px;
         margin: 0 auto; /*가운데 정렬*/
     }
 

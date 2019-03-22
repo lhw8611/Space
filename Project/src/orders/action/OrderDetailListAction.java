@@ -21,7 +21,7 @@ public class OrderDetailListAction implements Action{
 		request.setAttribute("orderdetaillist", orodproviewbean);
 		if(orodproviewbean != null) {
 			forward = new ActionForward();
-			forward.setPath("orders/orderDetailList");
+			forward.setPath("orders/orderDetailList.jsp");
 		}
 		
 		return forward;

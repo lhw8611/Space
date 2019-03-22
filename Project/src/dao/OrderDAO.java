@@ -447,10 +447,11 @@ public class OrderDAO {
 			close(rs);
 			close(pstmt);
 			for (int i = 0; i < orderlistbean.size(); i++) {
-				pstmt = con.prepareStatement("insert into order_detail values(?, ?, ?)");
+				pstmt = con.prepareStatement("insert into order_detail values(?, ?, ?, ?)");
 				pstmt.setInt(1, order_num);
 				pstmt.setInt(2, orderlistbean.get(i).getPro_code());
 				pstmt.setInt(3, orderlistbean.get(i).getOd_qty());
+				pstmt.setString(4, "wait");
 				arryInsertCount.add(pstmt.executeUpdate());
 			}
 
