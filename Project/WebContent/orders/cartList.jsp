@@ -29,16 +29,13 @@
 <meta charset="UTF-8">
 <title>장바구니 리스트</title>
 <style>
-body{
-	background-color: #f8f8f8;
-}
 #cart_form {
 	margin: 0 auto;
 	width: 1000px;
 }
 
-h1 img {
-	height: 50px;
+h2 img {
+	height: 24px;
 	width: auto;
 }
 
@@ -111,6 +108,10 @@ table tr td {
 	width:100%;
 	padding: 3px 6px;
 }
+
+.cart_title{
+	margin: 10px 0 10px;
+}
 </style>
 </head>
 <body>
@@ -118,9 +119,11 @@ table tr td {
 	<div id="container">
 		<div id="main">
 			<div id="cart_form">
-				<h1>
-					<img src="<%=request.getContextPath()%>/icon/cart2.png">장바구니
-				</h1>
+				<div class="cart_title">
+				<h2>
+					<img src="<%=request.getContextPath()%>/icon/cart2.png"> 장바구니
+				</h2>
+				</div>
 				<h3 style="text-align: right;">3만원 이상 무료배송</h3>
 				<hr style="border: 0; background: #aaa; height: 5px;">
 				<br>

@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="Project/css/top_menu.css" rel="stylesheet" type="text/css">
+<!-- <link href="Project/css/top_menu.css" rel="stylesheet" type="text/css"> -->
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -51,18 +51,22 @@ $(function() {
 	padding: 0;
 }
 
+body{
+	background-color : #f8f8f8;
+}
 header {
 	top:0;
 	background-color: black;
 	opacity:0.6;
 	width: 100%;
-	height: 75px;
+	height: 10vh;
 	position: fixed;
 	border-bottom:2px;
 	border-bottom-style:solid;
 	z-index: 100;
 	border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
 	border-image-slice: 1;
+	overflow: hidden;
 }
 
 #menu_center ul {
@@ -129,17 +133,19 @@ header a {
 	margin: 17px 20px;
 	font-weight: 500;
 }
+.size{
+	height : 10vh;
+}
 </style>
 
 <body>
+	<div class="size">
 	<header>
 		<div id="menu_main">
-
 
 			<div id="menu_left">
 				<a href="main.jsp">Space</a>
 			</div>
-
 
 			<div id="menu_center">
 				<ul>
@@ -154,14 +160,25 @@ header a {
 
 			<div id="menu_right">
 				<ul>
-					<li><a href="#">장바구니</a></li>
-					<li><a href="#">My page</a></li>
+					<li><a href="<%=request.getContextPath()%>/cartListForm.od">장바구니</a></li>
+					<li><a href="board/boardTest.jsp">My page</a></li>
+					<li><a href="login"></a></li>
+					<ii><a href='admin/admin_page.jsp'>관리자 페이지</a></ii>
+            <li><a href="<%=request.getContextPath()%>/qnaList.qna"><img src="<%=request.getContextPath()%>/icon/bell.png"></a></li>
+            <li><a href="<%=request.getContextPath()%>/cartListForm.od"><img src="<%=request.getContextPath()%>/icon/cart.png"></a></li>
+            <% if(id!=null) {%>
+            <li><a href="<%=request.getContextPath()%>/logout.mem"><img src="<%=request.getContextPath()%>/icon/login.png"></a></li>
+            <% }else {%>
+            <li><a href="<%=request.getContextPath()%>/loginForm.mem"><img src="<%=request.getContextPath()%>/icon/logout.png"></a></li>
+            <% }%>
+            <li><a href="<%=request.getContextPath()%>/board/boardTest.jsp">Notice</a></li>
+					
 				</ul>
 			</div>
-
-
 		</div>
 	</header>
+		<div style="clear : both;"></div>
+	</div>
 	<script>
 	function userdelete(id){
 		var userdel = confirm("회원탈퇴를 진행합니까?");

@@ -46,6 +46,7 @@
 	height: 40px;
 }
 
+
 .input_section1{
 box-sizing : border-box;
 	width: 100%;
@@ -55,9 +56,6 @@ box-sizing : border-box;
 }
 .input_section1 .tg3 td:first-child {
 	background-color: #FFF;
-}
-.tg3 td{
-	border-left: 1px solid silver;
 }
 .get_info{
 box-sizing : border-box;
@@ -71,7 +69,7 @@ box-sizing : border-box;
 display : inline-block;
 margin : 0;
 	padding : 0;
-	width : 30%;
+	width : 29%;
 }
 .tg .tg-s6z2 {
 	text-align: center
@@ -82,7 +80,7 @@ margin : 0;
 }
 
 .content {
-	width: 860px;
+	width: 1000px;
 	margin: 0 auto;
 }
 
@@ -141,12 +139,15 @@ a {
 
 .result {
 	float: right;
-	margin-top: 15px;
+	margin-top: 40px;
 	margin-bottom: 15px;
+	padding : 40px;
+	border : 1px solid silver;
 }
 
 .result li {
 	display: block;
+	border-bottom: 1px solid black;
 }
 
 
@@ -220,7 +221,12 @@ a {
 							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
 							target="_blank"><%=orderdetaillist.get(i).getPro_name()%></a></td>
 						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%></td>
-						<td class="tg-uys7"><%=orderdetaillist.get(i).getOd_state()%></td>
+						<td class="tg-uys7"><%if(orderdetaillist.get(i).getOd_state().equals("refund")){%>
+								구매취소
+						<%}else if(orderdetaillist.get(i).getOd_state().equals("wait")){%>		
+						주문완료
+						<%} %>
+						</td>
 					</tr>
 					<%
 						}
@@ -259,16 +265,16 @@ a {
 					<div class="order_info">
 					<table class="tg tg2 tg3">
 						<tr>
-							<td>주문자정보</td>
+							<td class="tg-uys7"><strong>주문자정보</strong></td>
 						</tr>
 						<tr>
-						<td>구매자 이름</td>
+						<td class="tg-uys7">구매자 이름<br></td>
 						</tr>
 						<tr>
-						<td>구매자 전화번호</td>
+						<td class="tg-uys7">구매자 전화번호<br>010-1234-5678 </td>
 						</tr>
 						<tr>
-						<td>구매자 이메일</td>
+						<td class="tg-uys7">구매자 이메일<br>hyunsung123@naver.com </td>
 						</tr>
 					</table>
 					</div>
@@ -281,7 +287,7 @@ a {
 						<li>포인트 : 0원</li>
 						<li>배송비 : <%=delivery%>원
 						</li>
-						<li>&nbsp;</li>
+						<li style="border : 0;">&nbsp;</li>
 						<li><h3>
 								결제금액 :
 								<%=cartResult + delivery%>원

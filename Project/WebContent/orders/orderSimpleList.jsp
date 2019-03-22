@@ -20,7 +20,7 @@
 }
 
     #mainWrapper{
-        width: 840px;
+        width: 1000px;
         margin: 0 auto; /*가운데 정렬*/
     }
 
@@ -36,7 +36,7 @@
     
 
     #ulTable > li:first-child > ul > li {
-        background-color:#c9c9c9;
+        background-color:#F6F6F6;
         font-weight:bold;
         size : 16px;
         text-align:center;
@@ -95,6 +95,9 @@ a{
 	text-decoration: none;
 }
 
+.simple_title{
+  margin: 10px 0 10px;
+}
 </style>
 </head>
 <body>
@@ -102,9 +105,12 @@ a{
  <div id="container">
 		<div id="main">
 			 <div id="mainWrapper">
+			 <div class="simple_title">
+            <h2>주문조회</h2>
+            </div>
         <ul>
-            <li></li>
-            <li><h1>주문조회</h1></li>
+          
+            
             <li>
                 <%if(orodproviewbean != null){ %>
                 <ul id ="ulTable">

@@ -16,86 +16,157 @@
 	int endPage = pageInfo.getEndPage();
 %>
 
-<jsp:include page="../top_menu.jsp" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <style>
-div{ 
-text-decoration: none;
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#qnalistForm ul {
+	display: inline-block;
+	list-style-type: none;
+}
+
+#qnalistForm li {
+	display: inline-block;
+}
+
+div {
+	text-decoration: none;
+}
+
+#qnalistForm {
+	width: 860px;
+	margin: 0 auto;
+}
+
+#qnalistForm ul, li {
+	width: 100%;
+}
+
+#qnalistForm dt {
+	float: left;
+}
+
+#qnalistForm dl {
+	width: 100%;
+	overflow: hidden;
+}
+
+#qnalistForm dt {
+	text-align: left;
+	float : left;
+	width: 100%;
+	float: left;
+	font-size: 16px;
+	padding : 10px 20px;
+}
+
+#qnalistForm dd {
+	text-align: left;
+	float: left;
+	width: 100%;
+	background: #f2f2f2;
+	padding : 20px 50px;
+}
+#qnalistForm dd p{
+	width : 90%;
+}
+#qnalistForm dl a{
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+#qnalistForm a, a:link{
+	color : black;
+}
+#qnalistForm a:active{
+	text-decoration: underline; 
+}
+
+.qna_title{
+	margin: 10px 0 10px;
+}
+
+#pageList{
+	text-align: center;
 }
 </style>
 <title>Q&A</title>
 </head>
 <body>
+	<jsp:include page="../top_menu.jsp" />
 	<!-- 게시판 리스트 -->
 	<section id="qnalistForm">
+		<div class="qna_title">
 		<h2>
 			Q&A<a href="qnaWriteForm.qna">게시판글쓰기</a>
 		</h2>
+		</div>
 		<br>
 
 
-		<table>
+		<ul>
 			<%
-				if (arryqna != null && listCount > 0) {
-			%>
-			<tr id="tr_top">
-				<td>번호</td>
-				<td>질문내용</td>
-				<td>답변내용</td>
-				<td>날짜</td>
-			</tr>
-			<%
+			if (arryqna != null && listCount > 0) {
 				for (int i = 0; i < arryqna.size(); i++) {
 			%>
-			<tr>
-				<td>▶ <%=arryqna.get(i).getQna_num()%></td>
-				<td>▶ <%=arryqna.get(i).getQna_question()%></td>
-				<td>▶ <%=arryqna.get(i).getQna_answer()%></td>
-				<td>▶ <%=arryqna.get(i).getQna_date()%></td>
-
-			</tr>
+				<li><dl>
+					<dt><a href="#"><%=arryqna.get(i).getQna_question()%></a></dt>
+					<dd><p><%=arryqna.get(i).getQna_answer()%></p></dd>
+				</dl></li>
 			<%
 				}
 			%>
 
-		</table>
-	</section>
-	<%
-		} else {
-	%>
-	<h2>등록된 글이 없습니다.</h2>
-	<%
-		}
-	%>
-	<section id="pageList">
+		</ul>
+
 		<%
-			if (nowPage <= 1) {
-				out.println("[이전]&nbsp;");
 			} else {
-				out.println("<a href='qnaList.qna?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
+		%>
+		<h2>등록된 글이 없습니다.</h2>
+		<%
 			}
 		%>
 
-		<%
-			for (int a = startPage; a <= endPage; a++) {
-				if (a == nowPage) {
-					out.println("[" + a + "]");
+
+
+
+
+
+
+
+		<section id="pageList">
+			<%
+				if (nowPage <= 1) {
+					out.println("[이전]&nbsp;");
 				} else {
-					out.println("<a href='qnaList.qna?page=" + a + "'>[" + a + "]</a>&nbsp;");
+					out.println("<a href='qnaList.qna?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
 				}
-			}
-		%>
+			%>
 
-		<%
-			if (nowPage >= maxPage) {
-				out.println("[다음]");
-			} else {
-				out.println("<a href='qnaList.qna?page=" + (nowPage + 1) + "'>[다음]</a>");
-			}
-		%>
+			<%
+				for (int a = startPage; a <= endPage; a++) {
+					if (a == nowPage) {
+						out.println("[" + a + "]");
+					} else {
+						out.println("<a href='qnaList.qna?page=" + a + "'>[" + a + "]</a>&nbsp;");
+					}
+				}
+			%>
+
+			<%
+				if (nowPage >= maxPage) {
+					out.println("[다음]");
+				} else {
+					out.println("<a href='qnaList.qna?page=" + (nowPage + 1) + "'>[다음]</a>");
+				}
+			%>
+		</section>
 	</section>
 </body>
 </html>

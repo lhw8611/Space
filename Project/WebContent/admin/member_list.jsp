@@ -28,6 +28,8 @@
 </style>
 </head>
 <body>
+
+
 <table>
 	<tr><td colspan=2 class="td_title">회원 목록</td></tr>
 		<tr><td>아이디</td><td>관리</td>
@@ -43,6 +45,68 @@
 	</tr>
 		<%}%>
 </table>
+
+     <section id="qnalistForm">
+           <h2>
+                Q&A<a href="qnaWriteForm.qna">게시판글쓰기</a>
+           </h2>
+           <br>
+           <ul>
+                <%
+                     if (arryqna != null && listCount > 0) {
+                %>
+                <li><dl>
+                           <dd>번호</dd>
+                           <dd>질문내용</dd>
+                           <dd>답변내용</dd>
+                           <dd>날짜</dd>
+                     </dl></li>
+                <%
+                     for (int i = 0; i < arryqna.size(); i++) {
+                %>
+                     <li><dl>
+                          <dd><%=arryqna.get(i).getQna_num()%></dd>
+                          <dd><%=arryqna.get(i).getQna_question()%></dd>
+                          <dd><%=arryqna.get(i).getQna_answer()%></dd>
+                           <dd> <%=arryqna.get(i).getQna_date()%></dd>
+                     </dl></li>
+                <%
+                     }
+                %>
+           </ul>
+           <%
+                } else {
+           %>
+           <h2>등록된 글이 없습니다.</h2>
+           <%
+                }
+           %>
+           <section id="pageList">
+                <%
+                     if (nowPage <= 1) {
+                           out.println("[이전]&nbsp;");
+                     } else {
+                           out.println("<a href='qnaList.qna?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
+                     }
+                %>
+                <%
+                     for (int a = startPage; a <= endPage; a++) {
+                           if (a == nowPage) {
+                                out.println("[" + a + "]");
+                           } else {
+                                out.println("<a href='qnaList.qna?page=" + a + "'>[" + a + "]</a>&nbsp;");
+                           }
+                     }
+                %>
+                <%
+                     if (nowPage >= maxPage) {
+                           out.println("[다음]");
+                     } else {
+                           out.println("<a href='qnaList.qna?page=" + (nowPage + 1) + "'>[다음]</a>");
+                     }
+                %>
+           </section>
+     </section>
 	<script>
 	function userdelete(id){
 		var userdel = confirm("회원탈퇴를 진행합니까?");
