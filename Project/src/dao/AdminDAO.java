@@ -271,6 +271,7 @@ public class AdminDAO {
 				 OrderListBean.setOd_num(rs.getInt("od_num"));//order_detail주문번호
 				 OrderListBean.setPro_code(rs.getInt("pro_code")); //상품코드
 				 OrderListBean.setOd_qty(rs.getInt("od_qty")); //상품주문갯수
+				 OrderListBean.setOd_state(rs.getString("od_state")); //주문상태
 		               
 				 OrderListBean.setPro_name(rs.getString("pro_name"));//상품이름
 				 OrderListBean.setPro_price(rs.getInt("pro_price")); //상품가격
@@ -293,21 +294,24 @@ public class AdminDAO {
 		
 	}
 
-	public void refund(int od_num, int pro_code,String state) {
+	public int stateChange(int od_num, int pro_code, String state) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
 		String sql = "update order_detail set od_state = ? where od_num=? AND pro_code =?";
-		
+		int check = 0;
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, state);
 			pstmt.setInt(2, od_num);
 			pstmt.setInt(3, pro_code);
+			check = pstmt.executeUpdate();
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
+		return check;
 	}
 	
 }

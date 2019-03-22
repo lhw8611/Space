@@ -101,6 +101,9 @@ border-radius: 4px;
 	list-style-type: none;
 	display: inline-block;
 }
+#search {
+float:right;
+}
 </style>
 </head>	
 <body>
@@ -138,6 +141,9 @@ border-radius: 4px;
 			<option value="sell" <%if(sort.equals("sell")) {%>selected<%} %>>판매수가 많은 순</option>
 			<option value="review" <%if(sort.equals("review")) {%>selected<%} %>>구매 후기가 많은 순</option>
 		</select>
+	</form>
+	<form name="search">
+		<input type="text" name="search"><input type="button" value="검색">
 	</form>
 	</div>
 	<div style="clear:both;"></div>

@@ -16,6 +16,7 @@ import admin.action.InOutListFormAction;
 import admin.action.QtyInOutAction;
 import admin.action.QtyInOutDeleteAction;
 import admin.action.QtyManagementFormAction;
+import admin.action.StateChangeAction;
 import admin.action.ShowAction;
 import vo.ActionForward;
 
@@ -113,9 +114,9 @@ public class adminController extends HttpServlet {
 		}
 		
 		//환불
-		else if (command.equals("/refund.ad")) {
-			System.out.println("환불 컨트롤러");
-			action = new Admin_orderListAction();
+		else if (command.equals("/changeState.ad")) {
+			System.out.println("상태 변경 컨트롤러");
+			action = new StateChangeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

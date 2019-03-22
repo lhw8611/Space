@@ -24,6 +24,14 @@ public class OrOdProViewBean {
 	private String pro_show;
 	private Date pro_date;
 	private int pro_count;
+	private String od_state;
+	
+	public String getOd_state() {
+		return od_state;
+	}
+	public void setOd_state(String od_state) {
+		this.od_state = od_state;
+	}
 	public int getOr_num() {
 		return or_num;
 	}

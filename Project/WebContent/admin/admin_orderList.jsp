@@ -12,45 +12,84 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	img {
+	#orderlistTable img {
 		width:100px;
 		height:100px;
 	}
-	td {
+	#orderlistTable td {
 		border:1px solid black;
+		text-align: center;
+	}
+	select {
+		height:30px;
+		border-radius: 3px;
+	}
+	#table {
+	width:1000px;
+	margin:100px auto;
+	}
+	#container {
+	background-color: #37474f;
 	}
 </style>
 </head>
 <body>
-	<table>
+<jsp:include page="../top_menu.jsp"></jsp:include>
+	<div id="container">
+		<div id="main">
+<div id="table">
+	<form name="orderList" method="post">
+	<h1>주문내역</h1>
+	<table id="orderlistTable">
 		<tr>
-			<td>주문번호</td>
 			<td>주문날짜</td>
+			<td>구매자 ID</td>
 			<td>주문상품</td>
 			<td>상품이름</td>
+			<td>상품가격</td>
 			<td>수량</td>
 			<td>결제금액</td>
 			<td>주문상태</td>
-			<td>구매자 ID</td>
-			<td>취소/환불</td>
+			<td>상태 변경</td>
 		</tr>
+		
 		<%
+		
 			for (int i = 0; i < OrderList.size(); i++) {
 		%>
 		<tr>
-			<td><%=OrderList.get(i).getOd_num()%></td>
 			<td><%=OrderList.get(i).getOr_date()%></td>
+			<td><%=OrderList.get(i).getMem_id()%></td>
 			<td><img src="boardUpload/<%=OrderList.get(i).getPro_image()%>"></td>
 			<td><%=OrderList.get(i).getPro_name()%></td>
+			<td><%=OrderList.get(i).getPro_price()%>원</td>
 			<td><%=OrderList.get(i).getOd_qty()%></td>
-			<td><%=OrderList.get(i).getPro_price()%></td>
-			<td><%=OrderList.get(i).getOr_state()%> <a href="#">변경</a></td>
-			<td><%=OrderList.get(i).getMem_id()%></td>
-			<td><a href="#" onclick="window.open('refund.ad?', '', 'width=300, height=200')">관리</a></td>
+			<td><%=OrderList.get(i).getPro_price()*OrderList.get(i).getOd_qty()%>원</td>
+			<td><%=OrderList.get(i).getOd_state()%></td>
+			<td>
+				<select name="state<%=i%>" style="color:gray">
+					<option value="none" style="color:gray">선택</option>
+					<option value="wait" style="color:black">배송 준비중</option>
+					<option value="ing" style="color:black">배송중</option>
+					<option value="exchange" style="color:black">교환</option>
+					<option value="refund" style="color:black">환불</option>
+					<option value="cancel" style="color:black"> 취소 대기</option>
+				</select>
+				
+				<input type="hidden" name="od_num<%=i%>" value="<%=OrderList.get(i).getOd_num() %>">
+				<input type="hidden" name="pro_code<%=i%>" value="<%=OrderList.get(i).getPro_code() %>">
+				<button onclick="orderList.action='/Project/changeState.ad?index=<%=i %>';orderList.submit();">변경</button>
+			</td>
+			
 		</tr>
 		<%
 			}
 		%>
 	</table>
+	</form>
+	</div>
+	</div>
+	</div>
+		<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

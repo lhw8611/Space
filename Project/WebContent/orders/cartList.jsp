@@ -182,8 +182,7 @@ table tr td {
 											수량변경</button>
 									</div>
 									<div class="btn btn2">
-										<button type="button" value="삭제하기"
-											onclick="cartForm.action='/Project/cartDelete.od?index=<%=i%>';cartForm.submit();">
+										<button type="button" value="삭제하기" onclick="cartForm.action='/Project/cartDelete.od?index=<%=i%>';cartForm.submit();">
 											삭제하기
 											</button>
 									</div>

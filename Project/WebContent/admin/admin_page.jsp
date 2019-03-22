@@ -12,6 +12,5 @@
 	<a href="/Project/productWriteForm.bo">상품등록</a>
 	<a href="/Project/qtyManagement.ad">재고관리</a>
 	<a href="/Project/admin_orderList.ad">전체 주문내역</a>
-	<a href="">취소/환불</a>
 </body>
 </html>
