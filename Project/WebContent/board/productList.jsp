@@ -146,15 +146,7 @@ float:right;
 		<input type="text" name="search"><input type="button" value="검색">
 	</form>
 	</div>
-	        <nav>
-            <p>nav</p>
-            <ul>
-                <li><a href="">link</a></li>
-                <li><a href="">link</a></li>
-                <li><a href="">link</a></li>
-            </ul>
-        </nav>
-
+	
 	<div style="clear:both;"></div>
 			<c:if test="${articleList!=null }">
 			<ul class="pro_grid">

@@ -22,7 +22,6 @@ public class MemberInfoModifyAction implements Action {
 		ActionForward forward = null;
 		String id = request.getParameter("id");
 		System.out.println("[2]파라미터 id 값 : " + id);
-		System.out.println("[2]파라미터 add 값 : " + request.getParameter("add"));
 		MemberInfoModifySvc membermodify = null;
 		// 서비스 실행
 
@@ -37,6 +36,7 @@ public class MemberInfoModifyAction implements Action {
 			member.setMem_tel(request.getParameter("tel"));
 			member.setMem_zip(request.getParameter("mem_zip"));
 			member.setMem_add2(request.getParameter("mem_add2"));
+			System.out.println("aslkdfjsakldjsald 우편번호 : " + member.getMem_zip());
 			membermodify.modifysvc(member);
 			
 			forward = new ActionForward();

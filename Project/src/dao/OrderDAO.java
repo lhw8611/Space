@@ -388,19 +388,6 @@ public class OrderDAO {
 		return insertCount;
 	}
 
-//	| Field      | Type         | Null | Key | Default | Extra          |
-//	+------------+--------------+------+-----+---------+----------------+
-//	| or_num     | int(11)      | NO   | PRI | NULL    | auto_increment |
-//	| or_date    | date         | YES  |     | NULL    |                |
-//	| or_state   | varchar(20)  | YES  |     | NULL    |                |
-//	| or_pay     | varchar(20)  | YES  |     | NULL    |                |
-//	| or_point   | int(11)      | YES  |     | NULL    |                |
-//	| or_request | varchar(100) | YES  |     | NULL    |                |
-//	| or_getname | varchar(20)  | YES  |     | NULL    |                |
-//	| or_getadd  | varchar(100) | YES  |     | NULL    |                |
-//	| or_gettel  | varchar(20)  | YES  |     | NULL    |                |
-//	| mem_id     | varchar(20)  | YES  |     | NULL    |                |
-//	+------------+--------------+------+-----+---------+----------------+
 	public int order_add(MemberBean membean, OrderBean orderbean) { // ordercomplete orders insert
 		System.out.println("[4]order_add dao");
 		PreparedStatement pstmt = null;
@@ -424,12 +411,6 @@ public class OrderDAO {
 		return insertCount;
 	}
 
-//	| Field    | Type    | Null | Key | Default | Extra |
-//	+----------+---------+------+-----+---------+-------+
-//	| od_num   | int(11) | NO   | PRI | NULL    |       |
-//	| pro_code | int(11) | NO   | PRI | NULL    |       |
-//	| od_qty   | int(11) | YES  |     | NULL    |       |
-//	+----------+---------+------+-----+---------+-------+
 	public ArrayList<Integer> order_detail_add(OrderBean orderbean, ArrayList<OrderListBean> orderlistbean) { // ordercomplete
 																												// order_detail_insert
 		System.out.println("[4]order_detail_add dao");

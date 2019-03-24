@@ -178,7 +178,8 @@ header a {
 				<div id="menu_right">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/cartListForm.od">장바구니</a></li>
-						<li><a href="board/boardTest.jsp">My page</a></li>
+						<li><a href="/Project/memberinfo.mem?id=<%=session.getAttribute("id")%>">My page</a></li>
+						<li><a href="board/boardTest.jsp">보드테스트</a>
 						<li><a href="login"></a></li>
 						<li><a href='admin/admin_page.jsp'>관리자 페이지</a>
 						</li>
@@ -189,15 +190,5 @@ header a {
 		</header>
 		<div style="clear: both;"></div>
 	</div>
-	<script>
-	function userdelete(id){
-		var userdel = confirm("회원탈퇴를 진행합니까?");
-		 if(userdel == true){
-			 location.href="<%=request.getContextPath()%>
-		/memberdelete.mem?id="
-						+ id;
-			}
-		}
-	</script>
 </body>
 </html>

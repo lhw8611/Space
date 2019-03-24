@@ -6,20 +6,123 @@
 <html>
 <head>
 <style>
-table {
-	margin: auto;
-	width: 400px;
-	border: 1px solid gray;
-	text-align: center;
+.memlist_title {
+	margin: 10px 0 10px;
 }
 
-.td_titel {
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 0px 10px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: black;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 0px 10px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: black;
+	height: 40px;
+	background-color: #c9c9c9;
 	font-weight: bold;
-	font-size: x-large;
+	size: 16px;
+}
+
+.tg .tg-s6z2 {
+	background: #aaa;
+	width: 25%;
+	padding: 5px 5px 5px 10px;
+}
+
+.tg .tg-uys7 {
+	border-color: inherit;
+	text-align: left;
+	width: 75%;
+	padding: 5px 5px 5px 10px;
+}
+
+.content {
+	width: 600px;
+	margin: 0 auto;
+}
+
+table {
+	width: 100%;
+	border: 1px solid silver;
+}
+
+input[type=button], input[type=submit] {
+	font-family: "Nanum Gothic";
+	font-weight: 700;
+	text-transform: uppercase;
+	outline: 0;
+	background: #abc;
+	border: 0;
+	padding: 3px;
+	color: #FFFFFF;
+	font-size: 16px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+label {
+	font-size: 16px;
+}
+.button1{
+	    font-family: "Nanum Gothic";
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: 0;
+    background: white;
+    width: 100px;
+    border: 1px solid #333;
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+}
+.button2{
+    font-family: "Nanum Gothic";
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: 0;
+    background: #d81818;
+    width: 100px;
+    border: 1px solid #333;
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+.button_group{
+	text-align: center;
 }
 </style>
 <%
-	MemberBean member = (MemberBean) request.getAttribute("member");
+	MemberBean member = (MemberBean)request.getAttribute("member");
 %>
 <script>
 	function modisubmit() {
@@ -30,87 +133,96 @@ table {
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="modify" action="<%=request.getContextPath()%>/modifyproaction.mem" method="post"
-		onsubmit="return passcheck()">
-		<table border=1>
-			<tr>
-				<td colspan="2" class="td_title">
-					<h3>회원 정보</h3>
-				</td>
-			</tr>
-			<tr>
-				<td><label for="id">아이디 : </label></td>
-				<td><input type="text" name="id" id="id" readonly
-					value="<%=member.getMem_id()%>" /></td>
+	<div id="container">
+		<div id="main">
+			<div class="content">
 
-			</tr>
-			<tr>
-				<td><label for="pass">비밀번호 : </label></td>
-				<td><input type="password" name="pass" id="pass"
-					value="<%=member.getMem_pass()%>" /></td>
-			</tr>
-			<tr>
-				<td><label for="pass2">비밀번호 확인 </label></td>
-				<td><input type="password" name="pass2" id="pass2"
-					value="<%=member.getMem_pass()%>" /></td>
-			</tr>
-			<tr>
-				<td><label for="name">이름 : </label></td>
-				<td><input type="text" name="name" id="name"
-					value="<%=member.getMem_name()%>" /></td>
-			</tr>
+				<div class="memlist_title">
+					<h2>회원정보 수정</h2>
+				</div>
+				<form name="modify"
+					action="<%=request.getContextPath()%>/modifyproaction.mem"
+					method="post" onsubmit="return validate();">
+					<table class="tg">
+						<tr>
+							<td class="tg-s6z2"><label for="id">아이디 : </label></td>
+							<td class="tg-uys7"><input type="text" name="id" id="id"
+								readonly value="<%=member.getMem_id()%>" /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="id">비밀번호 : </label></td>
+							<td class="tg-uys7"><input type="password" name="pass"
+								id="pass" value="<%=member.getMem_pass()%>" /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="id">비밀번호 확인</label></td>
+							<td class="tg-uys7"><input type="password" name="pass2"
+								id="pass2" value="<%=member.getMem_pass()%>" /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="id">이름 : </label></td>
+							<td class="tg-uys7"><input type="text" name="name" id="name"
+								value="<%=member.getMem_name()%>" /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="add">주소</label></td>
+							<td class="tg-uys7"><input type="text" name="mem_zip"
+								id="mem_zip" placeholder="우편번호" size="7"
+								value="<%=member.getMem_zip()%>"> <input type="button"
+								onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
+								<input type="text" name="mem_add" id="mem_add"
+								placeholder="도로명주소" value="<%=member.getMem_add()%>"> <br>
+								<input type="text" name="mem_add2" id="mem_add2"
+								placeholder="상세주소" value="<%=member.getMem_add2()%>"></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="email">이메일 </label></td>
+							<td class="tg-uys7"><input type="text" name="email"
+								id="email" value="<%=member.getMem_email()%>" /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="grade">등급 </label></td>
+							<td class="tg-uys7"><input type="text" name="grade"
+								id="grade"
+								value="<%if (member.getMem_grade().equals("s")) {%><%="관리자등급"%>
+					<%} else if (member.getMem_grade().equals("u")) {%><%="일반등급"%>	
+					<%}%>
+					"
+								readonly /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="date">가입일 </label></td>
+							<td class="tg-uys7"><input type="text" name="date" id="date"
+								value="<%=member.getMem_date()%>" readonly /></td>
+						</tr>
+						<tr>
+							<td class="tg-s6z2"><label for="tel">전화번호</label></td>
+							<td class="tg-uys7"><input type="tel" name="tel" id="tel"
+								value="<%=member.getMem_tel()%>" /></td>
+						</tr>
 
-			<tr>
-				<td colspan="2"><label for="add">주소</label></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="text" name="mem_zip" id="mem_zip"
-					placeholder="우편번호" size="7" value="<%=member.getMem_zip()%>">
-					<input type="button" onclick="sample4_execDaumPostcode()"
-					value="우편번호 찾기"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="text" name="mem_add" id="mem_add"
-					placeholder="도로명주소" value="<%=member.getMem_add()%>"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="text" name="mem_add2"
-					id="mem_add2" placeholder="상세주소" value="<%=member.getMem_add2()%>"></td>
-			</tr>
-			<tr>
-				<td><label for="email">이메일 </label></td>
-				<td><input type="text" name="email" id="email"
-					value="<%=member.getMem_email()%>" /></td>
-			</tr>
+					</table>
+					<br><br>
+					<div class="button_group">
+					<button type="reset" class="button1">초기화</button>
+					<button type="submit" class="button2">수정하기</button>
+					<button type="button" class="button1" onClick="javascript:userdelete('<%=session.getAttribute("id") %>');">회원탈퇴</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+	function userdelete(id){
+		var userdel = confirm("회원탈퇴를 진행합니까?");
+		 if(userdel == true){
+			 location.href="<%=request.getContextPath()%>/memberdelete.mem?id="
+						+ id;
+			}
+		}
+	</script>
 
-			<tr>
-				<td><label for="grade">등급 </label></td>
-				<td><input type="text" name="grade" id="grade"
-					value="<%
-					if(member.getMem_grade().equals("s")){
-					%><%="관리자등급" %>
-					<%}else if(member.getMem_grade().equals("u")){
-					%><%="일반등급" %>	
-					<%} %>
-					" readonly /></td>
-			</tr>
-			<tr>
-				<td><label for="date">가입일 </label></td>
-				<td><input type="text" name="date" id="date"
-					value="<%=member.getMem_date() %>" readonly /></td>
-			</tr>
-			<tr>
-				<td><label for="tel">전화번호</label></td>
-				<td><input type="tel" name="tel" id="tel"
-					value="<%=member.getMem_tel()%>" /></td>
-			</tr>
-			<tr>
-			<tr>
-				<td colspan="2"><a href="javascript:modify.submit()">수정하기</a>
-					&nbsp;&nbsp; <a href="javascript:modify.reset()">초기화</a>
-			</tr>
-		</table>
-	</form>
+
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -146,14 +258,88 @@ table {
 		}
 	</script>
 	<script>
-		function passcheck() {
-			var pass = document.getElementById("pass").value;
-			var pass2 = document.getElementById("pass2").value;
+		function validate() {
+			var re = /^[a-zA-Z0-9]{4,20}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+			var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			// 이메일이 적합한지 검사할 정규식
 
-			if (pass != pass2) {
-				alert('비밀번호가 틀렸습니다. 다시 입력해주세요');
+			var id = document.getElementById("id");
+			var pw = document.getElementById("pass");
+			var email = document.getElementById("email");
+
+			// ------------ 이메일 까지 -----------
+
+			if (modify.id.value == "") {
+				alert("아이디를 입력해 주세요");
+				modify.id.focus();
 				return false;
 			}
+			if (!check(re, id, "아이디는 4~20자의 영문 대소문자와 숫자로만 입력")) {
+				return false;
+			}
+
+			if (modify.pass.value == "") {
+				alert("비밀번호를 입력해 주세요");
+				modify.pass.focus();
+				return false;
+			}
+			if (!check(re, pass, "패스워드는 4~20자의 영문 대소문자와 숫자로만 입력")) {
+				return false;
+			}
+
+			if (modify.pass.value != modify.pass2.value) {
+				alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
+				modify.pass2.value = "";
+				modify.pass2.focus();
+				return false;
+			}
+			if (modify.name.value == "") {
+				alert("이름을 입력해 주세요");
+				modify.name.focus();
+				return false;
+			}
+
+			if (modify.mem_zip.value == "") {
+				alert("우편번호를 입력해 주세요");
+				modify.mem_zip.focus();
+				return false;
+			}
+			if (modify.mem_add.value == "") {
+				alert("도로명주소를 입력해 주세요");
+				modify.mem_add.focus();
+				return false;
+			}
+			if (modify.mem_add2.value == "") {
+				alert("상세주소를 입력해 주세요");
+				modify.mem_add2.focus();
+				return false;
+			}
+			if (email.value == "") {
+				alert("이메일을 입력해 주세요");
+				email.focus();
+				return false;
+			}
+
+			if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+				return false;
+			}
+
+			if (modify.tel.value == "") {
+				alert("전화번호를 입력해 주세요");
+				modify.tel.focus();
+				return false;
+			}
+
+		}
+
+		function check(re, what, message) {
+			if (re.test(what.value)) {
+				return true;
+			}
+			alert(message);
+			what.value = "";
+			what.focus();
+			//return false;
 		}
 	</script>
 </body>

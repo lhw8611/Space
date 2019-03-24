@@ -2,9 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="vo.OrOdProViewBean"%>
+<%@page import="vo.MemberBean" %>
 <%
 	ArrayList<OrOdProViewBean> orderdetaillist = (ArrayList<OrOdProViewBean>) request
 			.getAttribute("orderdetaillist");
+	MemberBean membean = (MemberBean)request.getAttribute("membean");
 %>
 <!DOCTYPE html>
 <html>
@@ -268,13 +270,13 @@ a {
 							<td class="tg-uys7"><strong>주문자정보</strong></td>
 						</tr>
 						<tr>
-						<td class="tg-uys7">구매자 이름<br></td>
+						<td class="tg-uys7">구매자 이름<br><%=membean.getMem_name() %></td>
 						</tr>
 						<tr>
-						<td class="tg-uys7">구매자 전화번호<br>010-1234-5678 </td>
+						<td class="tg-uys7">구매자 전화번호<br><%=membean.getMem_tel() %> </td>
 						</tr>
 						<tr>
-						<td class="tg-uys7">구매자 이메일<br>hyunsung123@naver.com </td>
+						<td class="tg-uys7">구매자 이메일<br><%=membean.getMem_email() %></td>
 						</tr>
 					</table>
 					</div>

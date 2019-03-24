@@ -28,7 +28,7 @@
 				<div style="clear: both"></div>
 			</div>
 
-			<div class="about">
+			<div class="about" id="about">
 				<h1 class="about_con about_h1">WHAT WE DO</h1>
 				<P class="about_con about_p">홈페이지 내에서 작동하는 모든 기능들을 만들고 이해하는 것에 관심을 가지고
 					투자해 왔습니다. 빠른 이해력과 경험을 바탕으로 모두가 불편함 없이 사이트를 이용할 수 있는 것이 목표입니다.</p>

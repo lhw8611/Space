@@ -147,7 +147,7 @@ for(int i=0; i<orodproviewbean.size(); i++){
                 </ul>
                 <%
                 }else{
-                	out.println("<br>구매내역이 없습니다.");
+                	out.println("<li><h2>구매내역이 없습니다.</h2><br><br></li>");
                 }
                 %>
             </li>

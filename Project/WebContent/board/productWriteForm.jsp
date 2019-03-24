@@ -182,8 +182,6 @@ margin:5px;
 		</article>
 	</section>
 	
-	<footer>
-		 <jsp:include page="../footer.jsp"></jsp:include>
-	</footer>
+		 <jsp:include page="../footer.jsp"/>
 </body>
 </html>
