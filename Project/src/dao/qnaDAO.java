@@ -5,6 +5,7 @@ import static db.jdbcUtil.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -94,6 +95,42 @@ public class qnaDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		return insertCount;
+	}
+	//글 삭제하기
+	public int qnaDeleteDAO(int qna_num) {
+		System.out.println("[4]qnaDeleteDAO");
+		PreparedStatement pstmt = null;
+		int insertCount = 0;
+		try {
+			pstmt = con.prepareStatement("delete from qna where qna_num=?");
+			pstmt.setInt(1, qna_num);
+			insertCount = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return insertCount;
+	}
+	//글 수정하기
+	public int qnaModify(int qna_num, String qna_question, String qna_answer) {
+		System.out.println("[4]qnaModify");
+		PreparedStatement pstmt = null;
+		int insertCount = 0;
+		try {
+			pstmt = con.prepareStatement("update qna set qna_question=?, qna_answer=? where qna_num=?");
+			pstmt.setString(1, qna_question);
+			pstmt.setString(2, qna_answer);
+			pstmt.setInt(3, qna_num);
+			insertCount = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
 			close(pstmt);
 		}
 		return insertCount;

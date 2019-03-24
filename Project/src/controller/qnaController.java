@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import qna.action.qnaDeleteAction;
 import qna.action.qnaListAction;
+import qna.action.qnaModifyAction;
 import qna.action.qnaWriteAction;
 import vo.ActionForward;
 
@@ -51,8 +53,26 @@ public class qnaController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}	
+		else if (command.equals("/qnaDelete.qna")) { //qna 글삭제 액션
+			action = new qnaDeleteAction();
+			try {
+				forward=action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-
+		else if (command.equals("/qnaModify.qna")) { //qna 글수정 액션
+			action = new qnaModifyAction();
+			try {
+				forward=action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/qnaModifyForm.qna")) { //qna 글수정폼 진입
+			forward = new ActionForward();
+			forward.setPath("board/qna_modify.jsp");
+		}
 			
 			if (forward != null) {
 				if (forward.isRedirect()) {

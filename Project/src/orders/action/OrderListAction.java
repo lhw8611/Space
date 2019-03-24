@@ -35,7 +35,7 @@ public class OrderListAction implements Action{
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다.');");
-			out.println("location.back();");
+			out.println("location.href='/Project/main.jsp';");
 			out.println("</script>");
 		}
 		return forward;

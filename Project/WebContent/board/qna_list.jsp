@@ -45,7 +45,7 @@ div {
 	margin: 0 auto;
 }
 
-#qnalistForm ul, li {
+#qnalistForm ul, #qnalistForm li {
 	width: 100%;
 }
 
@@ -60,11 +60,11 @@ div {
 
 #qnalistForm dt {
 	text-align: left;
-	float : left;
+	float: left;
 	width: 100%;
 	float: left;
 	font-size: 16px;
-	padding : 10px 20px;
+	padding: 10px 20px;
 }
 
 #qnalistForm dd {
@@ -72,27 +72,31 @@ div {
 	float: left;
 	width: 100%;
 	background: #f2f2f2;
-	padding : 20px 50px;
+	padding: 20px 50px;
 }
-#qnalistForm dd p{
-	width : 90%;
+
+#qnalistForm dd p {
+	width: 90%;
 }
-#qnalistForm dl a{
+
+#qnalistForm dl a {
 	text-decoration: none;
 	font-size: 1.5rem;
 }
-#qnalistForm a, a:link{
-	color : black;
-}
-#qnalistForm a:active{
-	text-decoration: underline; 
+
+#qnalistForm a, #qnalistForm a:link {
+	color: black;
 }
 
-.qna_title{
+#qnalistForm a:active {
+	text-decoration: underline;
+}
+
+.qna_title {
 	margin: 10px 0 10px;
 }
 
-#pageList{
+#pageList {
 	text-align: center;
 }
 </style>
@@ -103,21 +107,31 @@ div {
 	<!-- 게시판 리스트 -->
 	<section id="qnalistForm">
 		<div class="qna_title">
-		<h2>
-			Q&A<a href="qnaWriteForm.qna">게시판글쓰기</a>
-		</h2>
+			<h2>
+				Q&A 
+				<%if(session.getAttribute("id")!=null && session.getAttribute("id").equals("admin")){ %>
+				<a href="qnaWriteForm.qna">게시판글쓰기</a>
+				<%} %>
+			</h2>
 		</div>
 		<br>
 
 
 		<ul>
 			<%
-			if (arryqna != null && listCount > 0) {
-				for (int i = 0; i < arryqna.size(); i++) {
+				if (arryqna != null && listCount > 0) {
+					for (int i = 0; i < arryqna.size(); i++) {
 			%>
-				<li><dl>
-					<dt><a href="#"><%=arryqna.get(i).getQna_question()%></a></dt>
-					<dd><p><%=arryqna.get(i).getQna_answer()%></p></dd>
+			<li><dl>
+					<dt>
+						<a href="#"><%=arryqna.get(i).getQna_question()%></a>
+					<%if(session.getAttribute("id")!=null && session.getAttribute("id").equals("admin")){%>
+						<a href="qnaDelete.qna?qna_num=<%=arryqna.get(i).getQna_num() %>" style="font-size: 10px;">삭제하기</a>
+						<a href="qnaModifyForm.qna?qna_num=<%=arryqna.get(i).getQna_num() %>" style="font-size: 10px;">수정하기</a>
+					<% }%></dt>
+					<dd>
+						<p><%=arryqna.get(i).getQna_answer()%></p>
+					</dd>
 				</dl></li>
 			<%
 				}
