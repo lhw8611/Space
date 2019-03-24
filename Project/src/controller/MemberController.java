@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.action.AdminMemberList;
+import member.action.IdCheckFormAction;
+import member.action.IdCheckProAction;
 import member.action.JoinFormAction;
 import member.action.LoginFormAction;
 import member.action.LogoutAction;
@@ -103,6 +105,19 @@ public class MemberController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/idCheckForm.mem")) { //아이디 체크
+			System.out.println("[1]idCheckForm.mem");
+			forward = new ActionForward();
+			forward.setPath("member/idCheck.jsp");
+		}else if(command.equals("/idCheckProAction.mem")) {
+			System.out.println("[1]idCheckProAction.mem");
+			action = new IdCheckProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				System.out.println("[1]idCheck2 오류");
 				e.printStackTrace();
 			}
 		}

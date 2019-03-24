@@ -184,7 +184,7 @@ public class MemberDAO {
 		return list;
 	}
 
-	public int UserDeleteDAO(String id) {
+	public int UserDeleteDAO(String id) { //회원탈퇴
 		System.out.println("[4]MemberDAO.UserDeleteDAO");
 		PreparedStatement pstmt = null;
 		String sql = "delete from member where mem_id=?";
@@ -201,5 +201,29 @@ public class MemberDAO {
 		}
 		
 		return deleteCount;
+	}
+	
+	public boolean IdCheck(String id) { //아이디체크
+		System.out.println("[4]IdCheck");
+		PreparedStatement pstmt = null;
+		String sql = "select * from member where mem_id = ?";
+		boolean IdCheckResult = false;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				IdCheckResult = true;
+			}else {
+				IdCheckResult = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return IdCheckResult;
 	}
 }
