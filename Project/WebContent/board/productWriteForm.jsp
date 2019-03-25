@@ -144,6 +144,7 @@ margin:5px;
 <body id="page">
 
 		<jsp:include page="../top_menu.jsp" />  
+		<jsp:include page="../admin/adminSidebar.jsp"></jsp:include>
 	<section id="container">
 		
 		

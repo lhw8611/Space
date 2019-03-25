@@ -6,8 +6,97 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
-<link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css">
+<%-- <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"> --%>
 <style>
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.main_content{ /*메인 배너*/
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+	url(images/banner1.jpg);
+	height: 90vh;
+	background-size: cover;
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
+.h-title {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.h-title2 {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid #fff;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 2rem;
+	padding: 20px;
+}
+
+.h-title2 a {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.about {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url(images/about_us.jpg);
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgb(234, 234, 234);
+}
+
+.about_con { /* about us content option */
+	color: rgba(255, 255, 255, 0.8);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	position: absolute;
+}
+
+.about_h1 {
+	top: 130%;
+}
+
+.about_p {
+	color: rgba(255, 255, 255, 0.8);
+	top: 135%;
+}
+
+.about_icon {
+	top: 165%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	width: 10rem;
+}
+
+.java {
+	left: 35%;
+}
+
+.jsp {
+	left: 45%;
+}
+
+.css {
+	left: 55%;
+}
+
+.mysql {
+	left: 65%;
+}
 </style>
 
 

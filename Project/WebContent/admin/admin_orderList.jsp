@@ -10,15 +10,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>::Space:: 관리자 페이지 - 주문내역</title>
 <style>
 	#orderlistTable img {
 		width:100px;
 		height:100px;
 	}
 	#orderlistTable td {
-		border:1px solid black;
+		border-bottom:1px solid #CCCCCC;
 		text-align: center;
+		padding:10px 0;
 	}
 	select {
 		height:30px;
@@ -27,20 +28,36 @@
 	#table {
 	width:1000px;
 	margin:100px auto;
+	
 	}
-	#container {
-	background-color: #37474f;
+	#container { 
 	}
+	#main {
+	border:.5px solid #CCCCCC;
+	background-color: white;
+	width:1000px;
+	margin:100px auto;
+	}
+	#orderlistTable {
+	width: 900px;
+	border-spacing: 0;
+	}
+	button {
+	height:30px;
+	width:55px;
+	}
+	
 </style>
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
 	<div id="container">
+	<jsp:include page="adminSidebar.jsp"></jsp:include>
 		<div id="main">
 <div id="table">
 	<form name="orderList" method="post">
-	<h1>주문내역</h1>
-	<table id="orderlistTable">
+	<h2 style="margin-left: 50px;">주문내역</h2>
+	<table id="orderlistTable" style="margin:20px auto;">
 		<tr>
 			<td>주문날짜</td>
 			<td>구매자 ID</td>
@@ -70,10 +87,14 @@
 				<select name="state<%=i%>" style="color:gray">
 					<option value="none" style="color:gray">선택</option>
 					<option value="wait" style="color:black">배송 준비중</option>
-					<option value="ing" style="color:black">배송중</option>
-					<option value="exchange" style="color:black">교환</option>
-					<option value="refund" style="color:black">환불</option>
+					<option value="ing" style="color:black">배송 중</option>
+						<option value="deleCom" style="color:black"> 배송 완료</option>
+					<option value="exchangeWait" style="color:black">교환 대기</option>
+					<option value="exchange" style="color:black">교환 완료</option>
+					<option value="refundWait" style="color:black">환불 대기</option>
+					<option value="refund" style="color:black">환불 완료</option>
 					<option value="cancel" style="color:black"> 취소 대기</option>
+				
 				</select>
 				
 				<input type="hidden" name="od_num<%=i%>" value="<%=OrderList.get(i).getOd_num() %>">

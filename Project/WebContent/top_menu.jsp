@@ -21,6 +21,7 @@
 
 <!-- 서서히 사라지고 나타남(오버시 진해짐) -->
 <script>
+<<<<<<< HEAD
 	$(function() {
 		$(window).scroll(function() {
 			var scrollTop = $(window).scrollTop();
@@ -49,6 +50,31 @@
 				}, 200);
 			}
 		});
+=======
+$(function() {
+	$(window).scroll(function(){
+	                    var scrollTop = $(window).scrollTop();
+	                    if(scrollTop <500 )
+	                        $('header').stop().animate({'opacity':'.8'},200);
+	                    else    
+	                        $('header').stop().animate({'opacity':'1'},200);
+	                });
+	                
+	                $('header').hover(
+	                    function (e) {
+	                        var scrollTop = $(window).scrollTop();
+	                        if(scrollTop <500){
+	                            $('header').stop().animate({'opacity':'1'},200);
+	                        }
+	                    },
+	                    function (e) {
+	                        var scrollTop = $(window).scrollTop();
+	                        if(scrollTop <500){
+	                            $('header').stop().animate({'opacity':'.8'},200);
+	                        }
+	                    }
+	                );
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 	});
 </script>
 <style>
@@ -74,9 +100,17 @@ header {
 	z-index: 1;
 	border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
 	border-image-slice: 1;
+<<<<<<< HEAD
 	color: white;
     font-size: 1em;
     box-sizing: border-box;
+=======
+	overflow: hidden;
+	
+}
+input[type=text] {
+border-radius: 3px;
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 }
 
 #menu_center ul {
@@ -196,6 +230,10 @@ header a:linked{
 				<div id="menu_center">
 					<ul>
 						<li><a href="#about">About us</a></li>
+<<<<<<< HEAD
+=======
+						<li><a href="productList.bo">Shop</a></li>
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 						<li><a href="#">Notice</a></li>
 						<li><a href="<%=request.getContextPath()%>/qnaList.qna">qna</a></li>
 
@@ -209,6 +247,7 @@ header a:linked{
 				<div id="menu_right">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/cartListForm.od">장바구니</a></li>
+<<<<<<< HEAD
 						<%
 							if (id != null) {
 						%>
@@ -228,6 +267,14 @@ header a:linked{
 							}
 						%>
 
+=======
+						<li><a href="/Project/memberinfo.mem?id=<%=session.getAttribute("id")%>">My page</a></li>
+						<li><a href="board/boardTest.jsp">보드테스트</a>
+						<li><a href="login"></a></li>
+						<li><a href='admin/salesManagement.jsp'>관리자 페이지</a>
+						</li>
+						
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 					</ul>
 				</div>
 			</div>

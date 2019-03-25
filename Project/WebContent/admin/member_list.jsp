@@ -108,7 +108,7 @@ member_list_title h2{
 </style>
 </head>
 <body>
-
+<jsp:include page="adminSidebar.jsp"></jsp:include>
 
 <%-- 	<table>
 		<tr>
