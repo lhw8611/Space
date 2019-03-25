@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import vo.OrOdProViewBean;
 import vo.ProductBean;
 import vo.QtyProViewBean;
+import vo.SalesBean;
 
 public class AdminDAO {
 
@@ -313,5 +314,39 @@ public class AdminDAO {
 		}
 		return check;
 	}
+	
+	//매출관리(아직 덜함)
+	public ArrayList<SalesBean> salesManagement() {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SalesBean salesBean = null;
+		ArrayList<SalesBean> saleslist= new ArrayList<SalesBean>();
+		int price = 0;
+		String sql = "select * from ordersimplelist where or_state='exchangeWait' and or_date='?'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			rs =  pstmt.executeQuery();
+			while(rs.next()) {
+				salesBean = new SalesBean();
+				salesBean.setSa_price(rs.getInt("pro_price"));
+				saleslist.add(salesBean);
+				
+			}
+			for(int i=0; i<=saleslist.size(); i++)
+			{
+			price += saleslist.get(i).getSa_price();
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return saleslist;
+	}
+	
+	
 	
 }

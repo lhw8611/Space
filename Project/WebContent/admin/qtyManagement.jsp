@@ -11,17 +11,42 @@
 <meta charset="UTF-8">
 <title>재고관리</title>
 <style>
-table td {
-	border:1px solid black;
-	border-spacing: 0;
+#qtyTable img {
+		width:100px;
+		height:100px;
 }
 
+#qtyTable td {
+	border-bottom:1px solid #CCCCCC;
+	text-align: center;
+	padding:10px 10px;
+	
+	
+}
+#container {
+width:1000px;
+	margin:0 auto;
+}
+#main {
+	border:.5px solid #CCCCCC;
+	background-color: white;
+	width:1000px;
+	margin:100px auto;
+}
+#qtyTable {
+border-spacing: 0;
+margin:50px auto;
+}
 </style>
 </head>
 <body>
-	<table>
+<jsp:include page="../top_menu.jsp"></jsp:include>
+<jsp:include page="adminSidebar.jsp"></jsp:include>
+<div id="container">
+	<div id="main">
+	<h2 style="margin:100px 50px 0 50px;">재고관리</h2>
+	<table id="qtyTable">
 		<tr>
-			<td>번호</td>
 			<td>상품코드</td>
 			<td>이미지</td>
 			<td>상품명</td>
@@ -40,7 +65,6 @@ table td {
 				for (int i = 0; i < qtyList.size(); i++) {
 		%>
 		<tr>
-			<td><%=qtyList.get(i).getQty_num() %></td>
 			<td><%=qtyList.get(i).getPro_code() %></td>
 			<td><img src="/Project/boardUpload/<%=qtyList.get(i).getPro_image() %>" width="100px"/></td>
 			<td><%=qtyList.get(i).getPro_name() %></td>
@@ -65,5 +89,7 @@ table td {
 		%>
 
 	</table>
+	</div>
+	</div>
 </body>
 </html>

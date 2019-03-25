@@ -140,6 +140,7 @@ table {
 	width : 98px;
 	margin : 0 auto;
 }
+
 </style>
 </head>
 <body>

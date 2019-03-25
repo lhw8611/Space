@@ -25,7 +25,7 @@ $(function() {
 	$(window).scroll(function(){
 	                    var scrollTop = $(window).scrollTop();
 	                    if(scrollTop <500 )
-	                        $('header').stop().animate({'opacity':'.6'},200);
+	                        $('header').stop().animate({'opacity':'.8'},200);
 	                    else    
 	                        $('header').stop().animate({'opacity':'1'},200);
 	                });
@@ -40,7 +40,7 @@ $(function() {
 	                    function (e) {
 	                        var scrollTop = $(window).scrollTop();
 	                        if(scrollTop <500){
-	                            $('header').stop().animate({'opacity':'.6'},200);
+	                            $('header').stop().animate({'opacity':'.8'},200);
 	                        }
 	                    }
 	                );
@@ -69,6 +69,10 @@ header {
 	border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
 	border-image-slice: 1;
 	overflow: hidden;
+	
+}
+input[type=text] {
+border-radius: 3px;
 }
 
 #menu_center ul {
@@ -152,10 +156,7 @@ header a {
 				<div id="menu_center">
 					<ul>
 						<li><a href="#about">About us</a></li>
-						<li><a href="#">조명</a></li>
-						<li><a href="#">캔들</a></li>
-						<li><a href="#">가구</a></li>
-						<li><a href="#">소품</a></li>
+						<li><a href="productList.bo">Shop</a></li>
 						<li><a href="#">Notice</a></li>
 						<li><a href="<%=request.getContextPath()%>/qnaList.qna">qna</a></li>
 						<%
@@ -181,7 +182,7 @@ header a {
 						<li><a href="/Project/memberinfo.mem?id=<%=session.getAttribute("id")%>">My page</a></li>
 						<li><a href="board/boardTest.jsp">보드테스트</a>
 						<li><a href="login"></a></li>
-						<li><a href='admin/admin_page.jsp'>관리자 페이지</a>
+						<li><a href='admin/salesManagement.jsp'>관리자 페이지</a>
 						</li>
 						
 					</ul>

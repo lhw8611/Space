@@ -376,7 +376,7 @@ public class OrderDAO {
 				pstmt = con.prepareStatement("insert into qty values(null, ?, ?, 'out', now(), ?, 'sell')");
 				pstmt.setInt(1, orderlistbean.get(i).getPro_code());
 				pstmt.setInt(2, orderlistbean.get(i).getOd_qty());
-				pstmt.setInt(3, modifycount);
+				pstmt.setInt(3, modifycount+1);
 				insertCount = pstmt.executeUpdate();
 			}
 		} catch (Exception e) {

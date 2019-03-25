@@ -51,7 +51,7 @@ public class ProductWriteAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
-				forward.setRedirect(false);
+				forward.setRedirect(true);
 				forward.setPath("qtyManagement.ad");
 
 			}
