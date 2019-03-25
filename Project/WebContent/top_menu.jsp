@@ -56,7 +56,6 @@
 	padding: 0;
 }
 body {
-	z-index : 1;
 	background-color: #f8f8f8;
 }
 header {
@@ -138,10 +137,7 @@ header a:linked{
 #menu_right >a{
 	text-align: right;
 }
-.size {
-	height: 10vh;
-	background-color: black;
-}
+
 #menu_right li ul {
 	display: none;
 	height: auto;
@@ -166,7 +162,6 @@ header a:linked{
 }
 </style>
 <body>
-	<div class="size">
 		<header>
 			<div id="menu_main">
 
@@ -214,6 +209,5 @@ header a:linked{
 			</div>
 		</header>
 		<div style="clear: both;"></div>
-	</div>
 </body>
 </html>

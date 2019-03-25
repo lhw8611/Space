@@ -6,11 +6,9 @@
 <%
 	ArrayList<CartProViewBean> cartList = null;
 	String id = null;
-
 	if (session.getAttribute("id") != null) {
 		id = (String) session.getAttribute("id");
 	}
-
 	//비로그인 상태
 	if (session.getAttribute("id") == null) {
 		cartList = (ArrayList<CartProViewBean>) session.getAttribute("cartList");
@@ -19,7 +17,6 @@
 		cartList = (ArrayList<CartProViewBean>) request.getAttribute("cartList");
 		session.setAttribute("cartList", cartList);
 	}
-
 	int cartResult = 0;
 	int delivery = 2500;
 %>
@@ -33,32 +30,26 @@
 	margin: 0 auto;
 	width: 1000px;
 }
-
 h2 img {
 	height: 24px;
 	width: auto;
 }
-
 h1 {
 	line-height: 50px;
 	vertical-align: middle;
 }
-
 table {
 	width: 1000px;
 	border-spacing: 0px;
 	text-align: center;
 }
-
 table tr:first-child td {
 	background: #D5D5D5;
 	border-top: 1px solid gray;
 }
-
 table tr td {
 	border-bottom: 1px solid gray;
 }
-
 .select {
 	height: 41px;
 	font-size: 14px;
@@ -67,7 +58,6 @@ table tr td {
 	cursor: pointer;
 	padding: 10px 20px;
 }
-
 .select1{
 	background-color: #d81818;
 	color: #fff;
@@ -76,13 +66,11 @@ table tr td {
 	background-color: #6e81a5;
 	color: #fff;
 }
-
 #cart_button {
 	float: right;
 	margin-right: 2px;
 	padding-top: 10px;
 }
-
 .cart_button_opt {
 	cursor: pointer;
 	display: inline-block;
@@ -108,7 +96,6 @@ table tr td {
 	width:100%;
 	padding: 3px 6px;
 }
-
 .cart_title{
 	margin: 10px 0 10px;
 }
@@ -209,7 +196,6 @@ table tr td {
 
 
    </table>
-</form>
 
    <div>
       <h2>
@@ -227,7 +213,6 @@ table tr td {
 
 
 
-					</table>
 					<input type="hidden" value="<%=cartList%>" />
 					<div id="cart_button">
 						<button type="button" class="select select1"
@@ -237,8 +222,6 @@ table tr td {
 							onclick="location.href='orderForm.od?type=sel', cartForm.submit();">구매하기</button>
 					</div>
 				</form>
-				
-				
 			</div>
 		</div>
 	</div>
