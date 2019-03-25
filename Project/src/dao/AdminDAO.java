@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.sql.DataSource;
 
@@ -316,35 +317,43 @@ public class AdminDAO {
 	}
 	
 	//매출관리(아직 덜함)
-	public ArrayList<SalesBean> salesManagement() {
+	public HashMap<Integer, Integer> salesManagement() {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		SalesBean salesBean = null;
-		ArrayList<SalesBean> saleslist= new ArrayList<SalesBean>();
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		int price = 0;
-		String sql = "select * from ordersimplelist where or_state='exchangeWait' and or_date='?'";
+		int yy = 2019;
+		int mm = 1;
+		
+		
 		try {
-			pstmt = con.prepareStatement(sql);
-			
-			rs =  pstmt.executeQuery();
-			while(rs.next()) {
-				salesBean = new SalesBean();
-				salesBean.setSa_price(rs.getInt("pro_price"));
-				saleslist.add(salesBean);
+			for(int i=1; i<=12; i++) {
 				
+				String date = "'"+yy+"-"+mm+"-01'";
+				String date2 = "'"+yy+"-"+mm+"-31'";
+				String sql = "select * from ordersimplelist where or_state='wait' and or_date>="+date+" and or_date<="+date2+"";
+//				System.out.println(sql);
+				pstmt = con.prepareStatement(sql);
+				rs =  pstmt.executeQuery();
+				
+				while(rs.next()) {
+					price += rs.getInt("pro_price");
+				}
+				map.put(i, price);
+				
+				price=0;
+				mm+=1;
 			}
-			for(int i=0; i<=saleslist.size(); i++)
-			{
-			price += saleslist.get(i).getSa_price();
-			}
+
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
-		return saleslist;
+		return map;
 	}
 	
 	
