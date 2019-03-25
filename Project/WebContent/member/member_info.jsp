@@ -19,11 +19,9 @@
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	padding: 0px 10px;
-	border-style: solid;
-	border-width: 1px;
 	overflow: hidden;
 	word-break: normal;
-	border-color: black;
+	border-bottom: 1px solid silver;
 }
 
 .tg th {
@@ -43,13 +41,12 @@
 }
 
 .tg .tg-s6z2 {
-	background: #aaa;
+	background: #EAEAEA;
 	width: 25%;
 	padding: 5px 5px 5px 10px;
 }
 
 .tg .tg-uys7 {
-	border-color: inherit;
 	text-align: left;
 	width: 75%;
 	padding: 5px 5px 5px 10px;
@@ -62,23 +59,9 @@
 
 table {
 	width: 100%;
-	border: 1px solid silver;
 }
 
-input[type=button], input[type=submit] {
-	font-family: "Nanum Gothic";
-	font-weight: 700;
-	text-transform: uppercase;
-	outline: 0;
-	background: #abc;
-	border: 0;
-	padding: 3px;
-	color: #FFFFFF;
-	font-size: 16px;
-	-webkit-transition: all 0.3 ease;
-	transition: all 0.3 ease;
-	cursor: pointer;
-}
+
 
 label {
 	font-size: 16px;
@@ -120,6 +103,37 @@ label {
 .button_group{
 	text-align: center;
 }
+.input_style{
+	width: 90%;
+    height: 40px;
+    background: none;
+    border: 1px solid silver;
+    font-family: tahoma,geneva,sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
+.zip{
+    width: 30%;
+    height: 40px;
+    background: none;
+    border: 1px solid silver;
+    line-height: 25px;
+    font-family: tahoma,geneva,sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
+.infobutton {
+    width: 120px;
+    height: 40px;
+    border: 1px solid #d0d0d0;
+    color: #fff;
+    background-color: #6e81a5;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+}
 </style>
 <%
 	MemberBean member = (MemberBean)request.getAttribute("member");
@@ -147,42 +161,42 @@ label {
 						<tr>
 							<td class="tg-s6z2"><label for="id">아이디 : </label></td>
 							<td class="tg-uys7"><input type="text" name="id" id="id"
-								readonly value="<%=member.getMem_id()%>" /></td>
+								readonly value="<%=member.getMem_id()%>" class="input_style"/></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="id">비밀번호 : </label></td>
 							<td class="tg-uys7"><input type="password" name="pass"
-								id="pass" value="<%=member.getMem_pass()%>" /></td>
+								id="pass" value="<%=member.getMem_pass()%>" class="input_style"/></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="id">비밀번호 확인</label></td>
 							<td class="tg-uys7"><input type="password" name="pass2"
-								id="pass2" value="<%=member.getMem_pass()%>" /></td>
+								id="pass2" value="<%=member.getMem_pass()%>" class="input_style"/></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="id">이름 : </label></td>
 							<td class="tg-uys7"><input type="text" name="name" id="name"
-								value="<%=member.getMem_name()%>" /></td>
+								value="<%=member.getMem_name()%>" class="input_style"/></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="add">주소</label></td>
-							<td class="tg-uys7"><input type="text" name="mem_zip"
+							<td class="tg-uys7"><input type="text" name="mem_zip" class="zip"
 								id="mem_zip" placeholder="우편번호" size="7"
-								value="<%=member.getMem_zip()%>"> <input type="button"
+								value="<%=member.getMem_zip()%>"> <input type="button" class="infobutton"
 								onclick="sample4_execDaumPostcode()" value="우편번호 찾기"> <br>
-								<input type="text" name="mem_add" id="mem_add"
-								placeholder="도로명주소" value="<%=member.getMem_add()%>"> <br>
-								<input type="text" name="mem_add2" id="mem_add2"
+								<input type="text" class="input_style" name="mem_add" id="mem_add"
+								placeholder="도로명주소" value="<%=member.getMem_add()%> "> <br>
+								<input type="text" class="input_style" name="mem_add2" id="mem_add2"
 								placeholder="상세주소" value="<%=member.getMem_add2()%>"></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="email">이메일 </label></td>
-							<td class="tg-uys7"><input type="text" name="email"
+							<td class="tg-uys7"><input type="text" class="input_style" name="email"
 								id="email" value="<%=member.getMem_email()%>" /></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="grade">등급 </label></td>
-							<td class="tg-uys7"><input type="text" name="grade"
+							<td class="tg-uys7"><input type="text" name="grade" class="input_style"
 								id="grade"
 								value="<%if (member.getMem_grade().equals("s")) {%><%="관리자등급"%>
 					<%} else if (member.getMem_grade().equals("u")) {%><%="일반등급"%>	
@@ -192,12 +206,12 @@ label {
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="date">가입일 </label></td>
-							<td class="tg-uys7"><input type="text" name="date" id="date"
+							<td class="tg-uys7"><input type="text" class="input_style" name="date" id="date"
 								value="<%=member.getMem_date()%>" readonly /></td>
 						</tr>
 						<tr>
 							<td class="tg-s6z2"><label for="tel">전화번호</label></td>
-							<td class="tg-uys7"><input type="tel" name="tel" id="tel"
+							<td class="tg-uys7"><input type="tel" class="input_style" name="tel" id="tel"
 								value="<%=member.getMem_tel()%>" /></td>
 						</tr>
 

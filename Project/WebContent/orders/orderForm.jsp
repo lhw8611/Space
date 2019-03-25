@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="vo.MemberBean"%>
-<%@ page import="vo.OrderListBean" %>
-<%@ page import="java.util.*" %>
-<%  MemberBean membean = (MemberBean)request.getAttribute("membean"); 
-	int totalItem = (int)(request.getAttribute("totalItem"));
-	int totalMoney = (int)(request.getAttribute("totalMoney"));
-	int delivery = (int)(request.getAttribute("delivery"));
-	ArrayList<OrderListBean> orderlistbean = (ArrayList<OrderListBean>)request.getAttribute("orderlistbean");
+<%@ page import="vo.OrderListBean"%>
+<%@ page import="java.util.*"%>
+<%
+	MemberBean membean = (MemberBean) request.getAttribute("membean");
+	int totalItem = (int) (request.getAttribute("totalItem"));
+	int totalMoney = (int) (request.getAttribute("totalMoney"));
+	int delivery = (int) (request.getAttribute("delivery"));
+	ArrayList<OrderListBean> orderlistbean = (ArrayList<OrderListBean>) request.getAttribute("orderlistbean");
 	request.setAttribute("membean", membean);
-	
-	int MaxPoint = (Integer)(request.getAttribute("maxpoint"));
+
+	int MaxPoint = (Integer) (request.getAttribute("maxpoint"));
 %>
 <!DOCTYPE html>
 <html>
@@ -18,171 +19,275 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    ul, li{ 
-        list-style:none;
-        text-align:center;
-        padding:0;
-        margin:0;
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-    #mainWrapper{
-        width: 800px;
-        margin: 0 auto; /*가운데 정렬*/
-    }
-
-    #mainWrapper > ul > li:first-child {
-        text-align: center;
-        font-size:14pt;
-        height:40px;
-        vertical-align:middle;
-        line-height:30px;
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 0px 10px;
+	overflow: hidden;
+	word-break: normal;
+	height: 90px;
+	border-bottom: 1px solid silver;
 }
 
-    #ulTable {margin-top:10px;}
-    
-
-    #ulTable > li:first-child > ul > li {
-        background-color:#c9c9c9;
-        font-weight:bold;
-        text-align:center;
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 0px 10px;
+	overflow: hidden;
+	word-break: normal;
+	height: 90px;
+	background-color: #F6F6F6;
+	font-weight: bold;
+	size: 16px;
+	border-top: 2px solid black;
+	border-bottom: 1px solid silver;
 }
 
-    #ulTable > li > ul {
-        clear:both;
-        padding:0px auto;
-        position:relative;
-        min-width:40px;
-}
-    #ulTable > li > ul > li { 
-        float:left;
-        font-size:10pt;
-        border-bottom:1px solid silver;
-        vertical-align:baseline;
-}    
-
-    #ulTable > li > ul > li:first-child               {width:10%;} /*No 열 크기*/
-    #ulTable > li > ul > li:first-child +li           {width:45%;} /*제목 열 크기*/
-    #ulTable > li > ul > li:first-child +li+li        {width:20%;} /*작성일 열 크기*/
-    #ulTable > li > ul > li:first-child +li+li+li     {width:15%;} /*작성자 열 크기*/
-    #ulTable > li > ul > li:first-child +li+li+li+li{width:10%;} /*조회수 열 크기*/
-
-    #divPaging {
-          clear:both; 
-        margin:0 auto; 
-        width:220px; 
-        height:50px;
+.tg .tg-s6z2 {
+	text-align: center
 }
 
-    #divPaging > div {
-        float:left;
-        width: 30px;
-        margin:0 auto;
-        text-align:center;
+.tg .tg-uys7 {
+	text-align: center;
 }
 
-    #liSearchOption {clear:both;}
-    #liSearchOption > div {
-        margin:0 auto; 
-        margin-top: 30px; 
-        width:auto; 
-        height:100px; 
-
+.content {
+	width: 860px;
+	margin: 0 auto;
 }
 
-    .left {
-        text-align : left;
+.content h2 {
+	margin: 10px 0 10px;
 }
 
+table {
+	    font-family: '나눔고딕',NanumGothic,'맑은고딕',MalgunGothic,'돋움',Dotum,Helvetica,sans-serif;
+	    font-size : 12px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 0;
+}
+
+.tg2 {
+	width: 430px;
+}
+
+.tg2 td {
+	height: 40px;
+	padding : 5px 15px;
+}
+.infobutton{
+	width: 120px;
+    height: 40px;
+    border: 1px solid #d0d0d0;
+    color: #fff;
+    background-color: #6e81a5;
+    cursor: pointer;
+    font-size : 14px;
+        font-weight: 700;
+}
+.width100 {
+    width: 90%;
+    height: 40px;
+    background: none;
+    border: 1px solid silver;
+    font-family: tahoma,geneva,sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;padding-left: 15px;
+}
+.zip{
+    width: 30%;
+    height: 40px;
+    background: none;
+    border: 1px solid silver;
+    line-height: 25px;
+    font-family: tahoma,geneva,sans-serif;
+    font-size: 14px;margin-bottom: 5px; padding-left: 15px;
+
+}
+.point{
+  width: 30%;
+    height: 40px;
+    background: none;
+    border: 1px solid silver;
+    line-height: 25px;
+    font-family: tahoma,geneva,sans-serif;
+    font-size: 14px;margin-bottom: 5px; padding-left: 40px;
+}
+.tg td:first-child {
+	background: #EAEAEA;
+}
+.getter_info .tg .tg-uys7{
+	text-align: left;
+}
+.ordercomplete{
+    height: 41px;
+    font-size: 14px;
+    border: 0;
+    cursor: pointer;
+    padding: 10px 20px;
+        background-color: #d81818;
+    color: #fff;
+      font-weight: 700;
+}
+.complete_position{
+	width : 98px;
+	margin : 0 auto;
+}
 </style>
 </head>
 <body>
-<div id="mainWrapper">
-		<form action="<%=request.getContextPath() %>/orderaction.od" method="post">
+	<jsp:include page="../top_menu.jsp" />
+	<div id="container">
+		<div id="main">
+			<div class="content">
+				<form action="<%=request.getContextPath()%>/orderaction.od"
+					method="post">
+					<input type="hidden" id="size" name="size"
+						value="<%=orderlistbean.size()%>" />
+					<div class="orderForm_title">
+						<h2>주문/결제</h2>
+					</div>
+					<div class="orderInfo">
+						<table class="tg">
+							<tr>
+								<th class="tg-s6z2">상품명</th>
+								<th class="tg-uys7">상품 이미지</th>
+								<th class="tg-uys7">상품가격</th>
+								<th class="tg-uys7">수량</th>
+								<th class="tg-uys7">총 가격</th>
+								<th class="tg-uys7">적립금</th>
+							</tr>
+							<%
+								for (int i = 0; i < orderlistbean.size(); i++) {
+							%>
 
-		<ul><li>결제상품</li>
-			<li>
-				<ul id ="ulTable">
-					<li>
-						<ul>
-							<li>상품명</li>
-							<li>상품가격</li>
-							<li>수량</li>
-							<li>총 가격</li>
-							<li>적립금</li>
-						</ul>
-					</li>
-			<input type="hidden" id="size" name="size" value="<%=orderlistbean.size() %>"/>					
-					<%for(int i=0; i<orderlistbean.size(); i++){ %>
-			<input type="hidden" id="pro_codes<%=i %>" name="pro_codes<%=i %>" value="<%=orderlistbean.get(i).getPro_code() %>"/>
-			<input type="hidden" id="pro_qty<%=i %>" name="pro_qty<%=i %>" value="<%=orderlistbean.get(i).getOd_qty()%>" />
-					<li>
-						<ul>
-							<li><%=orderlistbean.get(i).getPro_name() %></li>
-							<li><%=orderlistbean.get(i).getPro_price()%>	</li>
-							<li><%=orderlistbean.get(i).getOd_qty()%></li>
-							<li><%=orderlistbean.get(i).getPro_price()*orderlistbean.get(i).getOd_qty() %></li>
-							<li><%=orderlistbean.get(i).getPro_price()*orderlistbean.get(i).getOd_qty()/100 %></li>
-						</ul>
-					</li>
-					<%} %>
-				</ul>
-			</li>
-		</ul>
-		
-		<br><h1>구매자 정보</h1>
-			
-			<label for="buyer_name">이름</label>			
-			<input type="text" id="buyer_name" name="buyer_name" value="<%=membean.getMem_name() %>" readonly/>
-			<br>
-			<label for="buyer_email">이메일</label>				
-			<input type="text" id="buyer_email" name="buyer_email" value="<%=membean.getMem_email() %>" readonly/>
-			<br>
-			<br>
-		<h1>받는사람정보 <button>배송지변경</button></h1>		
-			<label for="get_name">이름</label>
-			<input type="text" id="get_name" name="get_name" value="<%=membean.getMem_name() %>"/>
-			<br>
-			<label for="get_zip">배송주소</label>
-			<input type="text" name="get_zip" id="get_zip" placeholder="우편번호" size="7" value="<%=membean.getMem_zip()%>" readonly/>
-			<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
-			<br>
-			<input type="text" name="get_add" id="get_add" placeholder="도로명주소" value="<%=membean.getMem_add() %>" readonly/>
-			<br>
-			<input type="text" name="get_add2" id="get_add2" placeholder="상세주소" value="<%=membean.getMem_add2() %>"/>
-			<br>
-			<label for="get_tel">전화번호</label>
-			<input type="text" id="get_tel" name="get_tel" value="<%=membean.getMem_tel()%>"/>
-			<br>
-			<label for="or_request">배송 요청사항</label>
-			<input type="text" id="or_request" name="or_request" value="빠른 배송 부탁드립니다."/>
-		
-		
-		<h1>결제 금액</h1>
-			<label for="totalItem">총 상품금액</label>	
-			<input type="text" name="totalItem" id="totalItem"
-			value="<%=totalItem %>"readonly/>
-			<br>
-			
-			<label for="or_point">사용 가능 포인트  <%=MaxPoint %>점 중</label>
-			<input type="text" name="or_point" id="or_point" value="0"/>
-			<button type="submit">사용하기</button>
-			<br>
-			<label for="delivery">(+)배송비</label>
-			<input type="text" name="delivery" id="delivery" value=<%=delivery %> readonly/>
-			<br>
-			<label for="total_result">총 결제금액</label>
-			<input type="text" name="total_result" id="total_result" 
-			value="<%=totalMoney %>"readonly/>
-			<br>
-			<p>결제방법</p>
-			<label><input type="radio" id="gyulze" name="gyulze" value="cash" checked/>무통장입금</label>
-			<label><input type="radio" id="gyulze" name="gyulze" value="card" />신용카드</label>
-			
-			
-			<input type="submit" value="결제하기">
-		</form>
+
+
+							<tr>
+								<td class="tg-s6z2"><input type="hidden"
+									id="pro_codes<%=i%>" name="pro_codes<%=i%>"
+									value="<%=orderlistbean.get(i).getPro_code()%>" /> <input
+									type="hidden" id="pro_qty<%=i%>" name="pro_qty<%=i%>"
+									value="<%=orderlistbean.get(i).getOd_qty()%>" /> <%=orderlistbean.get(i).getPro_name()%></td>
+								<td class="tg-uys7"><img
+									src="/Project/boardUpload/<%=orderlistbean.get(i).getPro_image()%>"></td>
+								<td class="tg-uys7"><%=orderlistbean.get(i).getPro_price()%></td>
+								<td class="tg-uys7"><%=orderlistbean.get(i).getOd_qty()%></td>
+								<td class="tg-uys7"><%=orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty()%></td>
+								<td class="tg-uys7"><%=orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty() / 100%></td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
+					</div>
+					<h2>구매자 정보</h2>
+					<div class="buyer_info">
+						<table class="tg tg2">
+							<tr>
+								<td class="tg-uys7">이름 <input type="hidden" id="buyer_name"
+									name="buyer_name" value="<%=membean.getMem_name()%>" readonly />
+								</td>
+								<td class="tg-uys7"><%=membean.getMem_name()%></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">이메일<input type="hidden"
+									id="buyer_email" name="buyer_email"
+									value="<%=membean.getMem_email()%>" readonly />
+								</td>
+								<td class="tg-uys7"><%=membean.getMem_email()%></td>
+							</tr>
+						</table>
+					</div>
+					<br> <br>
+					<h2>
+						수취자 정보
+					</h2>
+					<div class="getter_info">
+						<table class="tg tg2">
+							<tr>
+								<td class="tg-uys7">이름</td>
+								<td class="tg-uys7"><input type="text" id="get_name"
+									name="get_name" value="<%=membean.getMem_name()%>"  class="width100"/></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">배송주소</td>
+								<td class="tg-uys7"><input type="text" name="get_zip"
+									id="get_zip" placeholder="우편번호" size="7"
+									value="<%=membean.getMem_zip()%>" readonly class="zip"/>
+									<button type="button" onclick="sample4_execDaumPostcode()" class="infobutton">우편번호
+										찾기</button> <br> <input type="text" name="get_add" id="get_add"
+									placeholder="도로명주소" value="<%=membean.getMem_add()%>" readonly class="width100"/>
+									<br> <input type="text" name="get_add2" id="get_add2"
+									placeholder="상세주소" value="<%=membean.getMem_add2()%>" class="width100"/></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">전화번호</td>
+								<td class="tg-uys7"><input type="text" id="get_tel"
+									name="get_tel" value="<%=membean.getMem_tel()%>" class="width100"/></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">요청사항</td>
+								<td class="tg-uys7"><input type="text" id="or_request"
+									name="or_request" value="빠른 배송 부탁드립니다." class="width100"/></td>
+							</tr>
+						</table>
+					</div>
+					<br> <br>
+					<h2>결제정보</h2>
+					<div class="result">
+						<table class="tg tg2">
+							<tr>
+								<td class="tg-uys7"><input type="hidden" name="totalItem"
+									id="totalItem" value="<%=totalItem%>" readonly /> 총 상품금액</td>
+								<td class="tg-uys7"><%=totalItem%>원</td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">사용 가능 포인트
+								</td>
+								<td class="tg-uys7"> <%=MaxPoint%>점 중<br><input type="text" name="or_point"
+									id="or_point" value="0" size="5" class="point"/><br>
+									<button type="button" class="infobutton">사용하기</button></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7"><input type="hidden" name="delivery"
+									id="delivery" value=<%=delivery%> readonly /> (+)배송비</td>
+								<td class="tg-uys7"><%=delivery%>원</td>
+							</tr>
+							<tr>
+								<td class="tg-uys7"><input type="hidden"
+									name="total_result" id="total_result" value="<%=totalMoney%>"
+									readonly /> 총 결제금액 </td>
+								<td class="tg-uys7"><%=totalMoney%>원</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="tg-uys7"><label><input type="radio" id="gyulze" name="gyulze"
+							value="cash" checked />무통장입금 </label>&nbsp;&nbsp;<label><input type="radio"
+							id="gyulze" name="gyulze" value="card" />신용카드</label></td>
+							</tr>
+						</table>
+					</div>
+					<br>
+					<div class="complete_position">
+					<input type="submit" value="결제하기" class="ordercomplete">
+					</div>
+					<br>
+				</form>
+			</div>
 		</div>
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	</div>
+
+	<jsp:include page="../footer.jsp" />
+
+
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		function sample4_execDaumPostcode() {
 			new daum.Postcode({

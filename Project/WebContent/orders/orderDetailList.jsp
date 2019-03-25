@@ -74,11 +74,11 @@ margin : 0;
 	width : 29%;
 }
 .tg .tg-s6z2 {
-	text-align: center
+	text-align: center;
 }
 
 .tg .tg-uys7 {
-	text-align: center
+	text-align: center;
 }
 
 .content {
