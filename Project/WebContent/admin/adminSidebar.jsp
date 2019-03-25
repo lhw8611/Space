@@ -47,7 +47,7 @@
 <div id="sidebar">
 	<ul>
 		<li id="side_title">관리자 페이지</li>
-		<li><a href="admin/salesManagement.jsp">매출관리</a></li>
+		<li><a href="/Project/salesManagement.ad">매출관리</a></li>
 		<li><a href="/Project/admingetlist.mem">회원관리</a></li>
 		<li><a href="/Project/productWriteForm.bo">상품등록</a></li>
 		<li><a href="/Project/qtyManagement.ad">재고관리</a></li>

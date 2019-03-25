@@ -16,6 +16,7 @@ import admin.action.InOutListFormAction;
 import admin.action.QtyInOutAction;
 import admin.action.QtyInOutDeleteAction;
 import admin.action.QtyManagementFormAction;
+import admin.action.SalesManagementAction;
 import admin.action.StateChangeAction;
 import admin.action.ShowAction;
 import vo.ActionForward;
@@ -117,6 +118,15 @@ public class adminController extends HttpServlet {
 		else if (command.equals("/changeState.ad")) {
 			System.out.println("상태 변경 컨트롤러");
 			action = new StateChangeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (command.equals("/salesManagement.ad")) {
+			System.out.println("매출관리 컨트롤러");
+			action = new SalesManagementAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
