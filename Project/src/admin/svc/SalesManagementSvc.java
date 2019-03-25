@@ -16,7 +16,7 @@ public class SalesManagementSvc {
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		map =  adminDAO.salesManagement();
 		
-		
+		close(con);
 		return map;
 	}
 }

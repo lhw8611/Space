@@ -21,6 +21,7 @@
 
 <!-- 서서히 사라지고 나타남(오버시 진해짐) -->
 <script>
+<<<<<<< HEAD
    $(function() {
       $(window).scroll(function() {
          var scrollTop = $(window).scrollTop();
@@ -49,6 +50,36 @@
          }
       });
    });
+=======
+	$(function() {
+		$(window).scroll(function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < 500)
+				$('header').stop().animate({
+					'opacity' : '.6'
+				}, 200);
+			else
+				$('header').stop().animate({
+					'opacity' : '1'
+				}, 200);
+		});
+		$('header').hover(function(e) {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < 500) {
+				$('header').stop().animate({
+					'opacity' : '1'
+				}, 200);
+			}
+		}, function(e) {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < 500) {
+				$('header').stop().animate({
+					'opacity' : '.6'
+				}, 200);
+			}
+		});
+	});
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 </script>
 <style>
 * {
@@ -56,10 +87,16 @@
    padding: 0;
 }
 body {
+<<<<<<< HEAD
    z-index : 1;
    background-color: #f8f8f8;
+=======
+	z-index : 1;
+	background-color: #f8f8f8;
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 }
 header {
+<<<<<<< HEAD
    top: 0;
    background-color: black;
    opacity: 0.6;
@@ -71,6 +108,19 @@ header {
    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
    border-image-slice: 1;
    color: white;
+=======
+	top: 0;
+	background-color: black;
+	opacity: 0.6;
+	width: 100%;
+	height: 10vh;
+	border-bottom: 2px;
+	border-bottom-style: solid;
+	z-index: 1;
+	border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+	border-image-slice: 1;
+	color: white;
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
     font-size: 1em;
     box-sizing: border-box;
    
@@ -120,12 +170,21 @@ header a:linked{
    font-size: 1.2em;
 }
 #menu_right {
+<<<<<<< HEAD
    width: 20%;
    line-height : 10vh;
    float: right;
    box-sizing: border-box;
    padding-right: 30px;
     
+=======
+	width: 20%;
+	line-height : 10vh;
+	float: right;
+	box-sizing: border-box;
+	padding-right: 30px;
+	 
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 }
 #menu_right>ul>li{
    padding-left : 40px;
@@ -157,9 +216,15 @@ header a:linked{
    display: block;
 }
 #menu_right li:hover ul li {
+<<<<<<< HEAD
    text-align: left;
    display: block;
    line-height : 10vh;
+=======
+	text-align: left;
+	display: block;
+	line-height : 10vh;
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 }
 #menu_right > ul{
    text-align: right;
@@ -174,11 +239,19 @@ header a:linked{
                <a href="main.jsp">Space</a>
             </div>
 
+<<<<<<< HEAD
             <div id="menu_center">
                <ul>
                   <li><a href="#about">About us</a></li>
                   <li><a href="#">Notice</a></li>
                   <li><a href="<%=request.getContextPath()%>/qnaList.qna">qna</a></li>
+=======
+				<div id="menu_center">
+					<ul>
+						<li><a href="#about">About us</a></li>
+						<li><a href="#">Notice</a></li>
+						<li><a href="<%=request.getContextPath()%>/qnaList.qna">qna</a></li>
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 
                   <li><a
                      href="<%=request.getContextPath()%>/board/boardTest.jsp">Notice</a></li>
@@ -187,6 +260,7 @@ header a:linked{
                </ul>
             </div>
 
+<<<<<<< HEAD
             <div id="menu_right">
                <ul>
                   
@@ -200,7 +274,23 @@ header a:linked{
                         <li><a href="/Project/orderList.od">주문배송조회</a></li>
                         <li><a href="<%=request.getContextPath()%>/logout.mem">로그아웃</a></li>
                      </ul></li>
+=======
+				<div id="menu_right">
+					<ul>
+						
+						<%
+							if (id != null) {
+						%>
+						<li><a
+							href="/Project/memberinfo.mem?id=<%=session.getAttribute("id")%>">My
+								page</a>
+							<ul>
+								<li><a href="/Project/orderList.od">주문배송조회</a></li>
+								<li><a href="<%=request.getContextPath()%>/logout.mem">로그아웃</a></li>
+							</ul></li>
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 
+<<<<<<< HEAD
                   <%
                      } else {
                   %>
@@ -215,5 +305,21 @@ header a:linked{
       </header>
       <div style="clear: both;"></div>
    </div>
+=======
+						<%
+							} else {
+						%>
+						<li><a href="<%=request.getContextPath()%>/loginForm.mem">로그인</a></li>
+						<%
+							}
+						%>
+<li><a href="<%=request.getContextPath()%>/cartListForm.od">장바구니</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div style="clear: both;"></div>
+	</div>
+>>>>>>> branch 'master' of https://github.com/lhw8611/impark
 </body>
 </html>
