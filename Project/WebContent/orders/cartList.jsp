@@ -30,26 +30,32 @@
 	margin: 0 auto;
 	width: 1000px;
 }
+
 h2 img {
-	height: 24px;
+	height: 39px;
 	width: auto;
 }
+
 h1 {
 	line-height: 50px;
 	vertical-align: middle;
 }
+
 table {
 	width: 1000px;
 	border-spacing: 0px;
 	text-align: center;
 }
+
 table tr:first-child td {
 	background: #D5D5D5;
 	border-top: 1px solid gray;
 }
+
 table tr td {
 	border-bottom: 1px solid gray;
 }
+
 .select {
 	height: 41px;
 	font-size: 14px;
@@ -58,46 +64,73 @@ table tr td {
 	cursor: pointer;
 	padding: 10px 20px;
 }
-.select1{
+
+.select1 {
 	background-color: #d81818;
 	color: #fff;
 }
-.select2{
+
+.select2 {
 	background-color: #6e81a5;
 	color: #fff;
 }
+
 #cart_button {
 	float: right;
 	margin-right: 2px;
 	padding-top: 10px;
 }
+
 .cart_button_opt {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
 }
-.btn1 button[type=button]{
+
+.btn1 button[type=button] {
 	background-color: #d81818;
 	height: 23px;
 	color: #fff;
 	border: 1px solid black;
 	cursor: pointer;
 	font-size: 13px;
-	width:100%;
+	width: 100%;
 	padding: 3px 6px;
 }
-.btn2 button[type=button]{
+
+.btn2 button[type=button] {
 	background-color: #fff;
 	height: 23px;
 	color: #000;
 	border: 1px solid black;
 	cursor: pointer;
 	font-size: 13px;
-	width:100%;
+	width: 100%;
 	padding: 3px 6px;
 }
-.cart_title{
-	margin: 10px 0 10px;
+
+.cart_title {
+	color : white;
+	font-size: 1.5em;
+	display: inline-block;
+	position: absolute;
+	margin: auto;
+	top: 28%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#headerImage {
+	width: 100%;
+	height: 477px;
+		background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+	url('headerImage/back05.jpg');
+	background-position: 50% 50%;
+	background-size: cover;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
 }
 </style>
 </head>
@@ -105,16 +138,17 @@ table tr td {
 	<jsp:include page="../top_menu.jsp" />
 	<div id="container">
 		<div id="main">
-			<div id="cart_form">
-				<div class="cart_title">
+			<div id="headerImage">
+			<div class="cart_title">
 				<h2>
-					<img src="<%=request.getContextPath()%>/icon/cart2.png"> 장바구니
+					<img src="<%=request.getContextPath()%>/icon/cart.png"> 장바구니
 				</h2>
-				</div>
+			</div>
+			</div>
+			<div id="cart_form">
 				<h3 style="text-align: right;">3만원 이상 무료배송</h3>
 				<hr style="border: 0; background: #aaa; height: 5px;">
-				<br>
-				<br>
+				<br> <br>
 				<form name="cartForm" method="post" action="orderForm.od?type=sel">
 
 					<%
@@ -124,8 +158,8 @@ table tr td {
 						<tr>
 							<td>
 								<h1>장바구니에 상품이 없습니다.</h1>
-								</td>
-								</tr>
+							</td>
+						</tr>
 					</table>
 					<%
 						} else {
@@ -172,9 +206,9 @@ table tr td {
 											수량변경</button>
 									</div>
 									<div class="btn btn2">
-										<button type="button" value="삭제하기" onclick="cartForm.action='/Project/cartDelete.od?index=<%=i%>';cartForm.submit();">
-											삭제하기
-											</button>
+										<button type="button" value="삭제하기"
+											onclick="cartForm.action='/Project/cartDelete.od?index=<%=i%>';cartForm.submit();">
+											삭제하기</button>
 									</div>
 								</div>
 							</td>
@@ -183,33 +217,33 @@ table tr td {
 
 
 
-        <%
-         //상품 전체 합계
-               cartResult += cartList.get(i).getPro_price() * cartList.get(i).getCart_qty();
-            }
-            //상품 전체 금액이 3만원 이상일 경우 배송비 0원
-            if (cartResult >= 30000) {
-            	delivery = 0;
-            }
-      %>
+						<%
+							//상품 전체 합계
+									cartResult += cartList.get(i).getPro_price() * cartList.get(i).getCart_qty();
+								}
+								//상품 전체 금액이 3만원 이상일 경우 배송비 0원
+								if (cartResult >= 30000) {
+									delivery = 0;
+								}
+						%>
 
 
 
-   </table>
+					</table>
 
-   <div>
-      <h2>
-         총 상품가격
-         <%=cartResult%>
-         + 배송비
-         <%=delivery%>
-         = 총 주문금액 :
-         <%=cartResult + delivery%>원
-      </h2>
-   </div>
-   <%
-      }
-   %>
+					<div>
+						<h2>
+							총 상품가격
+							<%=cartResult%>
+							+ 배송비
+							<%=delivery%>
+							= 총 주문금액 :
+							<%=cartResult + delivery%>원
+						</h2>
+					</div>
+					<%
+						}
+					%>
 
 
 

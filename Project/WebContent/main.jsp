@@ -17,7 +17,7 @@
 .main_content{ /*메인 배너*/
 	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
 	url(images/banner1.jpg);
-	height: 90vh;
+	height: 100vh;
 	background-size: cover;
 	background-position: top;
 	background-repeat: no-repeat;

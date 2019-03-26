@@ -96,7 +96,27 @@ a{
 }
 
 .simple_title{
-  margin: 10px 0 10px;
+  	color:white;
+	font-size:1.5em;
+	display:inline-block;
+    position: absolute;
+ 	margin:auto;
+    top: 28%;	
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#headerImage {
+		width:100%;
+	height:477px;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+	url('headerImage/back02.jpg');
+	background-position: 50% 50%;
+	background-size: 	cover;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0; 
 }
 </style>
 </head>
@@ -104,10 +124,12 @@ a{
 <jsp:include page="../top_menu.jsp"/>
  <div id="container">
 		<div id="main">
-			 <div id="mainWrapper">
+			 <div id="headerImage">
 			 <div class="simple_title">
-            <h2>주문조회</h2>
+            <h2>주문/배송 조회</h2>
             </div>
+            </div>
+			 <div id="mainWrapper">
         <ul>
           
             

@@ -134,6 +134,11 @@ label {
     font-size: 14px;
     font-weight: 700;
 }
+.vh10{
+	width : 100%;
+	height : 10vh;
+	background: #234;
+}
 </style>
 <%
 	MemberBean member = (MemberBean)request.getAttribute("member");
@@ -150,6 +155,8 @@ label {
 
 	<div id="container">
 		<div id="main">
+			<div class="vh10">
+			</div>
 			<div class="content">
 
 				<div class="memlist_title">

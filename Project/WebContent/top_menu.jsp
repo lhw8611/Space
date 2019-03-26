@@ -178,10 +178,6 @@ header a:linked {
 #menu_right>ul {
 	text-align: right;
 }
-
-#container {
-margin-top: 10vh auto;
-}
 </style>
 <body>
 	<header>
@@ -212,7 +208,7 @@ margin-top: 10vh auto;
 						href="/Project/memberinfo.mem?id=<%=session.getAttribute("id")%>">My
 							page</a>
 						<ul>
-							<li><a href="/Project/orderList.od">주문배송조회</a></li>
+							<li><a href="/Project/orderList.od">주문/배송 조회</a></li>
 							<li><a href="<%=request.getContextPath()%>/logout.mem">로그아웃</a></li>
 						</ul></li>
 

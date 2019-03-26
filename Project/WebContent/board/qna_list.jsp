@@ -93,14 +93,34 @@ div {
 }
 
 .qna_title {
-	margin: 10px 0 10px;
+	color:white;
+	font-size:1.5em;
+	display:inline-block;
+    position: absolute;
+ 	margin:auto;
+    top: 28%;	
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #pageList {
 	text-align: center;
 }
+
+#headerImage {
+		width:100%;
+	height:477px;
+	background-image:
+		url('headerImage/back01.jpg');
+	background-position: 50% 50%;
+	background-size: 	cover;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0; 
+}
 </style>
-<title>Q&A</title>
+<title>QNA</title>
 </head>
 <body>
 	<jsp:include page="../top_menu.jsp" />
@@ -108,10 +128,10 @@ div {
 	<div id="container">
 		<div id="main">
 
-			<section id="qnalistForm">
+				<div id="headerImage">
 				<div class="qna_title">
 					<h2>
-						Q&A
+						QNA
 						<%
 						if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
 					%>
@@ -121,6 +141,8 @@ div {
 						%>
 					</h2>
 				</div>
+				</div>
+			<section id="qnalistForm">
 				<br>
 
 

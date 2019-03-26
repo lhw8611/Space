@@ -87,7 +87,14 @@ margin : 0;
 }
 
 .detail_title {
-	margin: 10px 0 10px;
+	  	color:white;
+	font-size:1.5em;
+	display:inline-block;
+    position: absolute;
+ 	margin:auto;
+    top: 28%;	
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .detail_title2{
 	margin: 50px 0 10px;
@@ -151,8 +158,18 @@ a {
 	display: block;
 	border-bottom: 1px solid black;
 }
-
-
+#headerImage {
+		width:100%;
+	height:477px;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+	url('headerImage/back03.jpg');
+	background-position: 50% 50%;
+	background-size: 	cover;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0; 
+}
 </style>
 </head>
 <body>
@@ -172,11 +189,12 @@ a {
 
 	<div id="container">
 		<div id="main">
-
-			<div class="content">
+			<div id="headerImage">
 				<div class="detail_title">
 					<h2>주문상세정보</h2>
 				</div>
+				</div>
+			<div class="content">
 				<div class="detail_border">
 					<ul>
 						<li>
