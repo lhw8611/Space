@@ -16,13 +16,10 @@ map = (HashMap<Integer,Integer>)request.getAttribute("map");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#container {
-	
-}
 
-#main {
+#contnet {
 	width: 1000px;
-	margin: 100px auto;
+	margin: 160px auto;
 }
 </style>
 </head>
@@ -31,8 +28,7 @@ map = (HashMap<Integer,Integer>)request.getAttribute("map");
 	<jsp:include page="adminSidebar.jsp"></jsp:include>
 	<div id="container">
 		<div id="main">
-
-
+			<div id="contnet">
 			<div id="highcharts-8fbb2288-d8c7-42da-9e62-62235709f25a"></div>
 			<script>
 				(function() {
@@ -315,6 +311,7 @@ map = (HashMap<Integer,Integer>)request.getAttribute("map");
 					}
 				})();
 			</script>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>

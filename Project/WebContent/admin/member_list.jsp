@@ -29,7 +29,7 @@ td {
 }
 
 .member_list_title {
-	margin: 10px 0 10px;
+	margin: 60px 0 10px;
 }
 
 #memlistForm {
@@ -111,6 +111,8 @@ member_list_title h2 {
 	width : 100%;
 	height : 10vh;
 }
+#memlistForm{
+}
 </style>
 </head>
 <body>
@@ -191,8 +193,8 @@ member_list_title h2 {
 				}
 			</script>
 
-			<jsp:include page="../footer.jsp"></jsp:include>
 		</div>
 	</div>
+			<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

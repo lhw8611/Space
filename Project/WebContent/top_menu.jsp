@@ -189,11 +189,13 @@ header a:link, header a:visited {
 			</div>
 			<div id="menu_center">
 				<ul>
-					<li><a href="#about">About us</a></li>
+					<li><a href="/Project/main.jsp#about">About us</a></li>
 					<li><a href="/Project/productList.bo">Shop</a>
 					<li><a href="<%=request.getContextPath()%>/qnaList.qna">QNA</a></li>
 					<li><a href="<%=request.getContextPath()%>/noticeList.bo">Notice</a></li>
+					<%if(session.getAttribute("id") != null && session.getAttribute("id").equals("admin")){%>
 					<li><a href="/Project/salesManagement.ad">관리자 페이지</a></li>
+					<%} %>
 				</ul>
 			</div>
 

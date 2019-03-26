@@ -98,7 +98,7 @@ table tr:first-child td {
 }
 
 #backImage {
-	width: 1900px;
+	width: 100%;
 	height: 477px;
 	background-image:
 		url('https://cdn.imweb.me/thumbnail/20171218/5a37485dd02b9.jpg');
@@ -110,16 +110,16 @@ table tr:first-child td {
 	bottom: 0;
 }
 
-h1 {
+#title h2 {
 	color: rgba(255, 255, 255, 0.9);
-	font-size: 4em;
+	font-size: 48px;
 }
 
 #title {
 	display: inline-block;
 	position: absolute;
 	margin: auto;
-	top: 35%;
+	top: 28%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -131,7 +131,7 @@ h1 {
 	<div id="container">
 		<div id="main">
 			<div id="backImage">
-			<div id="title"><h1>Notice</h1></div>
+			<div id="title"><h2>Notice</h2></div>
 			</div>
 			<div id="board">
 				<section id="listForm">

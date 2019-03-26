@@ -72,7 +72,7 @@ container {
 }
 
 #headerImage {
-	width: 1900px;
+	width: 100%;
 	height: 477px;
 	background-image: url('headerImage/back04.jpg');
 	background-position: 50% 50%;
@@ -89,7 +89,7 @@ container {
 	display: inline-block;
 	position: absolute;
 	margin: auto;
-	top: 35%;
+	top: 28%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }

@@ -42,11 +42,12 @@ div {
 
 #qnalistForm {
 	width: 860px;
-	margin: 0 auto;
+	margin: 120px auto;
 }
 
 #qnalistForm ul, #qnalistForm li {
 	width: 100%;
+	margin-bottom: 40px;
 }
 
 #qnalistForm dt {
@@ -93,14 +94,14 @@ div {
 }
 
 .qna_title {
-	color:white;
+	color: white;
 	font-size: 2em;
-	display:inline-block;
-    position: absolute;
- 	margin:auto;
-    top: 28%;	
-    left: 50%;
-    transform: translate(-50%, -50%);
+	display: inline-block;
+	position: absolute;
+	margin: auto;
+	top: 28%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 #pageList {
@@ -108,16 +109,28 @@ div {
 }
 
 #headerImage {
-		width:100%;
-	height:477px;
-	background-image:
-		url('headerImage/back01.jpg');
+	width: 100%;
+	height: 477px;
+	background-image: url('headerImage/back01.jpg');
 	background-position: 50% 50%;
-	background-size: 	cover;
+	background-size: cover;
 	left: 0;
 	top: 0;
 	right: 0;
-	bottom: 0; 
+	bottom: 0;
+}
+
+#writeBtn {
+	width: 100px;
+	height: 35px;
+	background-color: #0082FC;
+	border-radius: 3px;
+	border : 0px;
+	text-align: center;
+	color: white;
+	padding-top: 7px;
+	margin-bottom: 40px;
+	font-size : 17px;
 }
 </style>
 <title>QNA</title>
@@ -128,20 +141,19 @@ div {
 	<div id="container">
 		<div id="main">
 
-				<div id="headerImage">
+			<div id="headerImage">
 				<div class="qna_title">
 					<h2>
 						QNA
 						<%
 						if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
 					%>
-						<a href="qnaWriteForm.qna">게시판글쓰기</a>
 						<%
 							}
 						%>
 					</h2>
 				</div>
-				</div>
+			</div>
 			<section id="qnalistForm">
 				<br>
 
@@ -217,6 +229,9 @@ div {
 						}
 					%>
 				</section>
+				<div>
+					<button type="button" id="writeBtn">글쓰기</button>
+				</div>
 			</section>
 		</div>
 	</div>
