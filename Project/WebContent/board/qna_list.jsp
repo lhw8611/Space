@@ -105,82 +105,99 @@ div {
 <body>
 	<jsp:include page="../top_menu.jsp" />
 	<!-- 게시판 리스트 -->
-	<section id="qnalistForm">
-		<div class="qna_title">
-			<h2>
-				Q&A 
-				<%if(session.getAttribute("id")!=null && session.getAttribute("id").equals("admin")){ %>
-				<a href="qnaWriteForm.qna">게시판글쓰기</a>
-				<%} %>
-			</h2>
-		</div>
-		<br>
+	<div id="container">
+		<div id="main">
+
+			<section id="qnalistForm">
+				<div class="qna_title">
+					<h2>
+						Q&A
+						<%
+						if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
+					%>
+						<a href="qnaWriteForm.qna">게시판글쓰기</a>
+						<%
+							}
+						%>
+					</h2>
+				</div>
+				<br>
 
 
-		<ul>
-			<%
-				if (arryqna != null && listCount > 0) {
-					for (int i = 0; i < arryqna.size(); i++) {
-			%>
-			<li><dl>
-					<dt>
-						<a href="#"><%=arryqna.get(i).getQna_question()%></a>
-					<%if(session.getAttribute("id")!=null && session.getAttribute("id").equals("admin")){%>
-						<a href="qnaDelete.qna?qna_num=<%=arryqna.get(i).getQna_num() %>" style="font-size: 10px;">삭제하기</a>
-						<a href="qnaModifyForm.qna?qna_num=<%=arryqna.get(i).getQna_num() %>" style="font-size: 10px;">수정하기</a>
-					<% }%></dt>
-					<dd>
-						<p><%=arryqna.get(i).getQna_answer()%></p>
-					</dd>
-				</dl></li>
-			<%
-				}
-			%>
+				<ul>
+					<%
+						if (arryqna != null && listCount > 0) {
+							for (int i = 0; i < arryqna.size(); i++) {
+					%>
+					<li><dl>
+							<dt>
+								<a href="#"><%=arryqna.get(i).getQna_question()%></a>
+								<%
+									if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
+								%>
+								<a href="qnaDelete.qna?qna_num=<%=arryqna.get(i).getQna_num()%>"
+									style="font-size: 10px;">삭제하기</a> <a
+									href="qnaModifyForm.qna?qna_num=<%=arryqna.get(i).getQna_num()%>"
+									style="font-size: 10px;">수정하기</a>
+								<%
+									}
+								%>
+							</dt>
+							<dd>
+								<p><%=arryqna.get(i).getQna_answer()%></p>
+							</dd>
+						</dl></li>
+					<%
+						}
+					%>
 
-		</ul>
+				</ul>
 
-		<%
-			} else {
-		%>
-		<h2>등록된 글이 없습니다.</h2>
-		<%
-			}
-		%>
-
-
-
-
-
-
-
-
-		<section id="pageList">
-			<%
-				if (nowPage <= 1) {
-					out.println("[이전]&nbsp;");
-				} else {
-					out.println("<a href='qnaList.qna?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
-				}
-			%>
-
-			<%
-				for (int a = startPage; a <= endPage; a++) {
-					if (a == nowPage) {
-						out.println("[" + a + "]");
+				<%
 					} else {
-						out.println("<a href='qnaList.qna?page=" + a + "'>[" + a + "]</a>&nbsp;");
+				%>
+				<h2>등록된 글이 없습니다.</h2>
+				<%
 					}
-				}
-			%>
+				%>
 
-			<%
-				if (nowPage >= maxPage) {
-					out.println("[다음]");
-				} else {
-					out.println("<a href='qnaList.qna?page=" + (nowPage + 1) + "'>[다음]</a>");
-				}
-			%>
-		</section>
-	</section>
+
+
+
+
+
+
+
+				<section id="pageList">
+					<%
+						if (nowPage <= 1) {
+							out.println("[이전]&nbsp;");
+						} else {
+							out.println("<a href='qnaList.qna?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
+						}
+					%>
+
+					<%
+						for (int a = startPage; a <= endPage; a++) {
+							if (a == nowPage) {
+								out.println("[" + a + "]");
+							} else {
+								out.println("<a href='qnaList.qna?page=" + a + "'>[" + a + "]</a>&nbsp;");
+							}
+						}
+					%>
+
+					<%
+						if (nowPage >= maxPage) {
+							out.println("[다음]");
+						} else {
+							out.println("<a href='qnaList.qna?page=" + (nowPage + 1) + "'>[다음]</a>");
+						}
+					%>
+				</section>
+			</section>
+		</div>
+	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

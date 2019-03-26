@@ -28,10 +28,11 @@ td {
 	border: 1px solid black;
 }
 
-.member_list_title{
+.member_list_title {
 	margin: 10px 0 10px;
 }
-#memlistForm{
+
+#memlistForm {
 	width: 860px;
 	margin: 0 auto;
 }
@@ -68,7 +69,7 @@ div {
 }
 
 #memlistForm dt {
-	background : #ccc;
+	background: #ccc;
 	box-sizing: border-box;
 	text-align: center;
 	float: left;
@@ -102,15 +103,16 @@ div {
 #memlistForm a:active {
 	text-decoration: underline;
 }
-member_list_title h2{
+
+member_list_title h2 {
 	display: inline-blcok;
 }
 </style>
 </head>
 <body>
-<jsp:include page="adminSidebar.jsp"></jsp:include>
+	<jsp:include page="adminSidebar.jsp"></jsp:include>
 
-<%-- 	<table>
+	<%-- 	<table>
 		<tr>
 			<td colspan=2 class="td_title">회원 목록</td>
 		</tr>
@@ -135,47 +137,47 @@ member_list_title h2{
 			}
 		%>
 	</table> --%>
+	<div id="container">
+		<div id="main">
 
-	<section id="memlistForm">
-		<div class="member_list_title">
-		<h2>
-			회원 목록
-		</h2>
-		<input type="text" name="search"><input type="button" value="검색">
-		</div>
-		<br>
-		<ul>
-			<%
-				if (list != null) {
-			%>
-			<li><dl>
-					<dt>아이디</dt>
-					<dt>관리</dt>
-				</dl></li>
-			<%
-				for (int i = 0; i < list.size(); i++) {
-			%>
-			<li><dl>
-					<dd><%=list.get(i).getMem_id()%></dd>
-					<dd>
-						<a href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
-						&nbsp;&nbsp;&nbsp;
-						<a href="javascript:userdelete('<%=list.get(i).getMem_id()%>');">삭제</a>
-					</dd>
-				</dl></li>
-			<%
-				}
-			%>
-		</ul>
-		<%
-			} else {
-		%>
-		<h2>등록된 글이 없습니다.</h2>
-		<%
-			}
-		%>
+			<section id="memlistForm">
+				<div class="member_list_title">
+					<h2>회원 목록</h2>
+					<input type="text" name="search"><input type="button" value="검색">
+				</div>
+				<br>
+				<ul>
+					<%
+						if (list != null) {
+					%>
+					<li><dl>
+							<dt>아이디</dt>
+							<dt>관리</dt>
+						</dl></li>
+					<%
+						for (int i = 0; i < list.size(); i++) {
+					%>
+					<li><dl>
+							<dd><%=list.get(i).getMem_id()%></dd>
+							<dd>
+								<a href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
+								&nbsp;&nbsp;&nbsp; <a
+									href="javascript:userdelete('<%=list.get(i).getMem_id()%>');">삭제</a>
+							</dd>
+						</dl></li>
+					<%
+						}
+					%>
+				</ul>
+				<%
+					} else {
+				%>
+				<h2>등록된 글이 없습니다.</h2>
+				<%
+					}
+				%>
 
-<%-- 		<section id="pageList">
+				<%-- 		<section id="pageList">
 			<%
 				if (nowPage <= 1) {
 					out.println("[이전]&nbsp;");
@@ -200,14 +202,18 @@ member_list_title h2{
 				}
 			%>
 		</section> --%>
-	</section>
-	<script>
-		function userdelete(id) {
-			var userdel = confirm("회원탈퇴를 진행합니까?");
-			if (userdel == true) {
-				location.href = "/Project/memberdelete.mem?id=" + id;
-			}
-		}
-	</script>
+			</section>
+			<script>
+				function userdelete(id) {
+					var userdel = confirm("회원탈퇴를 진행합니까?");
+					if (userdel == true) {
+						location.href = "/Project/memberdelete.mem?id=" + id;
+					}
+				}
+			</script>
+
+			<jsp:include page="../footer.jsp"></jsp:include>
+		</div>
+	</div>
 </body>
 </html>
