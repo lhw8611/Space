@@ -11,15 +11,18 @@
 		articleList = (ArrayList<ProductBean>) request.getAttribute("articleList");
 	}
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-	String sort = (String) request.getAttribute("sort");
-
+	String sort = "new";
+	
+	if((String)request.getAttribute("sort")!=null) {
+	sort = (String) request.getAttribute("sort");
+	}
 	int listCount = pageInfo.getListCount();
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 
-	System.out.println("jsp에서 아티클 +=============================:"+articleList);
+	System.out.println("jsp에서 아티클 =============================:" + articleList);
 %>
 
 
@@ -115,26 +118,29 @@ container {
 
 #search {
 	float: right;
-	margin:5px;
-	margin-right: 140px; 
+	margin: 5px;
+	margin-right: 140px;
 	line-height: 40px;
 }
-#search input[type=text] {
-height:30px;
-border:1px solid #CCCCCC;
-}
-#search input[type=submit] {
-border:1px solid #CCCCCC;
-	height:32px;
-	width:50px; 
-}
-#search table {
-border-spacing:0;
 
+#search input[type=text] {
+	height: 30px;
+	border: 1px solid #CCCCCC;
 }
+
+#search input[type=submit] {
+	border: 1px solid #CCCCCC;
+	height: 32px;
+	width: 50px;
+}
+
+#search table {
+	border-spacing: 0;
+}
+
 #page {
-text-align: center;
-margin:20px;
+	text-align: center;
+	margin: 20px;
 }
 </style>
 </head>
@@ -151,7 +157,7 @@ margin:20px;
 
 
 			<section id="listForm">
-<!-- 				<div id="category">
+				<!-- 				<div id="category">
 					<ul>
 						<li><a href="#">가구</a></li>
 						<li><a href="#">캔들</a></li>
@@ -174,46 +180,46 @@ margin:20px;
 						</select>
 					</form>
 					<form action="proSearch.bo" id="search">
-					<table>
-					<tr>
-						<td><input type="text" name="sW" required="required"></td>
-						<td><input type="submit" value="검색"></td>
-						</tr>	
-					</table>
+						<table>
+							<tr>
+								<td><input type="text" name="sW" required="required"></td>
+								<td><input type="submit" value="검색"></td>
+							</tr>
+						</table>
 					</form>
 				</div>
 
 				<div style="clear: both;"></div>
+				<%
+					if (articleList.size() != 0) {
+				%>
+				<ul class="pro_grid">
 					<%
-						if (articleList.size()!=0 ) {
+						for (int i = 0; i < articleList.size(); i++) {
 					%>
-					<ul class="pro_grid">
-						<%
-							for (int i = 0; i < articleList.size(); i++) {
-						%>
-						<li>
-							<div class="pro_img">
-								<a
-									href="/Project/productView.bo?pro_code=<%=articleList.get(i).getPro_code()%>">
-									<img src="/Project/boardUpload/<%=articleList.get(i).getPro_image()%>"
-									id="productImage" />
-								</a>
-							</div>
-							<div class="pro_detail">
-								<%=articleList.get(i).getPro_name()%><br>
-								<%=articleList.get(i).getPro_price()%>원<br>
-							</div>
-						</li>
-						<%
-							}
-								} else {
-						%>
-						<h1 style="text-align:center; margin:100px auto;">상품이 없습니다.</h1>
-						
-						<%
-							}
-						%>
-					</ul>
+					<li>
+						<div class="pro_img">
+							<a
+								href="/Project/productView.bo?pro_code=<%=articleList.get(i).getPro_code()%>">
+								<img src="/Project/boardUpload/<%=articleList.get(i).getPro_image()%>"
+								id="productImage" />
+							</a>
+						</div>
+						<div class="pro_detail">
+							<%=articleList.get(i).getPro_name()%><br>
+							<%=articleList.get(i).getPro_price()%>원<br>
+						</div>
+					</li>
+					<%
+						}
+						} else {
+					%>
+					<h1 style="text-align: center; margin: 100px auto;">상품이 없습니다.</h1>
+
+					<%
+						}
+					%>
+				</ul>
 			</section>
 
 

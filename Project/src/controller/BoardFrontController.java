@@ -13,6 +13,7 @@ import action.Action;
 import board.action.NoticeDetailAction;
 import board.action.NoticeListAction;
 import board.action.NoticeWriteAction;
+import board.action.ProSearchAction;
 import board.action.ProductListAction;
 import board.action.ProductViewAction;
 import board.action.ProductWriteAction;
@@ -129,7 +130,7 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 		//상품 검색
 		else if (command.equals("/proSearch.bo")) {
 			System.out.println("상품검색 컨트롤러 진입");
-			action = new ProductViewAction();
+			action = new ProSearchAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
