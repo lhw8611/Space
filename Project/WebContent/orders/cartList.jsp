@@ -32,7 +32,7 @@
 }
 
 h2 img {
-	height: 39px;
+	height: 53px;
 	width: auto;
 }
 
@@ -111,7 +111,7 @@ table tr td {
 
 .cart_title {
 	color : white;
-	font-size: 1.5em;
+	font-size: 2em;
 	display: inline-block;
 	position: absolute;
 	margin: auto;

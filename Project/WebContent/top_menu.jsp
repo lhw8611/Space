@@ -96,7 +96,7 @@ header a {
 	display: block;
 }
 
-header a:linked {
+header a:link, header a:visited {
 	color: white;
 }
 
@@ -162,15 +162,16 @@ header a:linked {
 	position: absolute;
 	width: 200px;
 	z-index: 200;
-	background: #6e81a5;
+	background: rgba(0, 0, 0, 0.6);
 }
 
 #menu_right li:hover ul {
 	display: block;
+	margin-left : -65px;
 }
 
 #menu_right li:hover ul li {
-	text-align: left;
+	text-align: center;
 	display: block;
 	line-height: 10vh;
 }
@@ -186,14 +187,12 @@ header a:linked {
 			<div id="menu_left">
 				<a href="main.jsp">Space</a>
 			</div>
-
 			<div id="menu_center">
 				<ul>
 					<li><a href="#about">About us</a></li>
 					<li><a href="/Project/productList.bo">Shop</a>
-					<li><a href="<%=request.getContextPath()%>/qnaList.qna">qna</a></li>
-					<li><a href="<%=request.getContextPath()%>/board/boardTest.jsp">Notice</a></li>
-					<li><a href="board/boardTest.jsp">보드테스트</a></li>
+					<li><a href="<%=request.getContextPath()%>/qnaList.qna">QNA</a></li>
+					<li><a href="<%=request.getContextPath()%>/noticeList.bo">Notice</a></li>
 					<li><a href="/Project/salesManagement.ad">관리자 페이지</a></li>
 				</ul>
 			</div>

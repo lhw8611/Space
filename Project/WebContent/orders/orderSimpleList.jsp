@@ -97,7 +97,7 @@ a{
 
 .simple_title{
   	color:white;
-	font-size:1.5em;
+	font-size:2em;
 	display:inline-block;
     position: absolute;
  	margin:auto;

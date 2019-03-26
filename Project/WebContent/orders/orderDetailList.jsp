@@ -57,7 +57,7 @@ box-sizing : border-box;
 	background-color: #EAEAEA;
 }
 .input_section1 .tg3 td:first-child {
-	background-color: #FFF;
+	background-color: #EAEAEA;
 }
 .get_info{
 box-sizing : border-box;
@@ -88,7 +88,7 @@ margin : 0;
 
 .detail_title {
 	  	color:white;
-	font-size:1.5em;
+	font-size: 2em;
 	display:inline-block;
     position: absolute;
  	margin:auto;
@@ -221,18 +221,17 @@ a {
 				</div>
 				<table class="tg">
 					<tr>
-						<th class="tg-s6z2">상품번호</th>
-						<th class="tg-uys7">상품정보</th>
+						<th class="tg-s6z2">상품정보</th>
 						<th class="tg-uys7">상품이름</th>
 						<th class="tg-uys7">상품금액(수량)</th>
+						<th class="tg-uys7">상품 총 금액</th>
 						<th class="tg-uys7">진행상태</th>
 					</tr>
 					<%
 						for (int i = 0; i < orderdetaillist.size(); i++) {
 					%>
 					<tr>
-						<td class="tg-s6z2"><%=orderdetaillist.get(i).getPro_code()%></td>
-						<td class="tg-uys7"><a
+						<td class="tg-s6z2"><a
 							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
 							target="_blank"><img
 								src="/Project/boardUpload/<%=orderdetaillist.get(i).getPro_image()%>"
@@ -240,7 +239,8 @@ a {
 						<td class="tg-uys7"><a
 							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
 							target="_blank"><%=orderdetaillist.get(i).getPro_name()%></a></td>
-						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%></td>
+						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%>원, ( <%=orderdetaillist.get(i).getOd_qty() %> )</td>
+						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()*orderdetaillist.get(i).getOd_qty()%></td>
 						<td class="tg-uys7"><%if(orderdetaillist.get(i).getOd_state().equals("refund")){%>
 								구매취소
 						<%}else if(orderdetaillist.get(i).getOd_state().equals("wait")){%>		

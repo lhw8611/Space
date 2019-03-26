@@ -107,39 +107,18 @@ div {
 member_list_title h2 {
 	display: inline-blcok;
 }
+.vh10{
+	width : 100%;
+	height : 10vh;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="adminSidebar.jsp"></jsp:include>
-
-	<%-- 	<table>
-		<tr>
-			<td colspan=2 class="td_title">회원 목록</td>
-		</tr>
-		<tr>
-			<td>아이디</td>
-			<td>관리</td>
-			<%
-				for (int i = 0; i < list.size(); i++) {
-			%>
-		
-		<tr>
-			<td><%=list.get(i).getMem_id()%></td>
-			<td><a
-				href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
-				<%
-					System.out.println(i + "  " + list.get(i).getMem_id());
-				%>
-				&nbsp;&nbsp;&nbsp; <a
-				href="javascript:userdelete('<%=list.get(i).getMem_id()%>');">삭제</a></td>
-		</tr>
-		<%
-			}
-		%>
-	</table> --%>
 	<div id="container">
 		<div id="main">
-
+			<div class="vh10">
+			</div>
 			<section id="memlistForm">
 				<div class="member_list_title">
 					<h2>회원 목록</h2>
