@@ -11,6 +11,7 @@ import action.Action;
 import member.svc.AdminMemberListSvc;
 import vo.ActionForward;
 import vo.MemberBean;
+import vo.PageInfo;
 
 public class AdminMemberList implements Action{
 
@@ -22,6 +23,11 @@ public class AdminMemberList implements Action{
 		HttpSession session = request.getSession();
 		ActionForward forward = null;
 		System.out.println("[2]AdminMemberList");
+		int page=1;
+		int limit=10;
+		if(request.getParameter("page")!=null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
 		
 		if((session.getAttribute("id")==null) ||
 				(!((String)session.getAttribute("id")).equals("admin"))){
@@ -30,14 +36,30 @@ public class AdminMemberList implements Action{
 			out.println("location.href='main.jsp';");
 			out.println("</script>");
 		}else {
+			AdminMemberListSvc memberlist = new AdminMemberListSvc();
+			int listCount = memberlist.listCount();
+			ArrayList<MemberBean> list = memberlist.getMemberList(page, limit);//총 멤버정보 받아옴
+			
+			int maxPage = (int)((double)listCount/limit+0.95);
+			int startPage = (((int) ((double)page / limit+0.9))-1)*limit+1;
+			int endPage = startPage + limit - 1;
+			
+			if(endPage>maxPage) endPage = maxPage;
+			
+			PageInfo pageInfo = new PageInfo();
+			pageInfo.setEndPage(endPage);
+			pageInfo.setListCount(listCount);
+			pageInfo.setMaxPage(maxPage);
+			pageInfo.setPage(page);
+			pageInfo.setStartPage(startPage);
+			request.setAttribute("pageInfo", pageInfo);
+			request.setAttribute("list", list);
+			
 			forward = new ActionForward();
 			forward.setPath("/admin/member_list.jsp");
-			System.out.println("[2]action에서 setPath 경로 확인 " + forward.getPath());
 		}
 		
-		AdminMemberListSvc memberlist = new AdminMemberListSvc();
-		ArrayList<MemberBean> list = memberlist.getMemberList();
-		request.setAttribute("list", list);
+		
 		
 		return forward;
 	}

@@ -13,6 +13,7 @@ import action.Action;
 import orders.action.CartAddAction;
 import orders.action.CartDeleteAction;
 import orders.action.OrderCompleteAction;
+import orders.action.OrderDeleteAction;
 import orders.action.OrderDetailListAction;
 import orders.action.CartListFormAction;
 import orders.action.CartQtyChangeAction;
@@ -106,6 +107,14 @@ public class OrderController extends HttpServlet {
 		}else if(command.equals("/cartDelete.od")) {
 			System.out.println("카트 목록 삭제 컨트롤러 진입");
 			action = new CartDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/orderDelete.od")) {
+			System.out.println("주문 목록 삭제 컨트롤러 진입");
+			action = new OrderDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

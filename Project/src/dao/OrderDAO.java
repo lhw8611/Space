@@ -452,7 +452,7 @@ public class OrderDAO {
 		ArrayList<OrOdProViewBean> orodproviewbean = null;
 		OrOdProViewBean temp = null;
 		try {
-			pstmt = con.prepareStatement("select * from orodproview where mem_id=? order by or_date desc;" ,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement("select * from orodproview where mem_id=? order by or_date desc, or_num desc;" ,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -545,6 +545,24 @@ public class OrderDAO {
 		
 		return orodproviewbean;
 	}
-	
-	
+//	delete from review where rev_num=6;
+	public int[] OrderDelete(int or_num) {
+		PreparedStatement pstmt = null;
+		int[] insertCount = new int[2];
+		try {
+			pstmt = con.prepareStatement("delete from orders where or_num=?");
+			pstmt.setInt(1, or_num);
+			insertCount[0] = pstmt.executeUpdate(); 
+			close(pstmt);
+			pstmt = con.prepareStatement("delete from order_detail where od_num=?");
+			pstmt.setInt(1, or_num);
+			insertCount[1] = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
 }

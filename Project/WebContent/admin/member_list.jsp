@@ -2,8 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@page import="vo.MemberBean"%>
 <%@page import="java.util.*"%>
+<%@page import="vo.PageInfo"%>
 <%
 	ArrayList<MemberBean> list = (ArrayList<MemberBean>) request.getAttribute("list");
+	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+	int listCount = pageInfo.getListCount();
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
 %>
 <jsp:include page="../top_menu.jsp" />
 <!DOCTYPE html>
@@ -107,11 +114,14 @@ div {
 member_list_title h2 {
 	display: inline-blcok;
 }
-.vh10{
-	width : 100%;
-	height : 10vh;
+
+.vh10 {
+	width: 100%;
+	height: 10vh;
 }
-#memlistForm{
+
+#memlistForm {
+	
 }
 </style>
 </head>
@@ -119,12 +129,12 @@ member_list_title h2 {
 	<jsp:include page="adminSidebar.jsp"></jsp:include>
 	<div id="container">
 		<div id="main">
-			<div class="vh10">
-			</div>
+			<div class="vh10"></div>
 			<section id="memlistForm">
 				<div class="member_list_title">
 					<h2>회원 목록</h2>
-					<input type="text" name="search"><input type="button" value="검색">
+					<input type="text" name="search"><input type="button"
+						value="검색">
 				</div>
 				<br>
 				<ul>
@@ -141,7 +151,8 @@ member_list_title h2 {
 					<li><dl>
 							<dd><%=list.get(i).getMem_id()%></dd>
 							<dd>
-								<a href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
+								<a
+									href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
 								&nbsp;&nbsp;&nbsp; <a
 									href="javascript:userdelete('<%=list.get(i).getMem_id()%>');">삭제</a>
 							</dd>
@@ -158,31 +169,31 @@ member_list_title h2 {
 					}
 				%>
 
-				<%-- 		<section id="pageList">
-			<%
-				if (nowPage <= 1) {
-					out.println("[이전]&nbsp;");
-				} else {
-					out.println("<a href='qnaList.qna?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
-				}
-			%>
-			<%
-				for (int a = startPage; a <= endPage; a++) {
-					if (a == nowPage) {
-						out.println("[" + a + "]");
-					} else {
-						out.println("<a href='qnaList.qna?page=" + a + "'>[" + a + "]</a>&nbsp;");
-					}
-				}
-			%>
-			<%
-				if (nowPage >= maxPage) {
-					out.println("[다음]");
-				} else {
-					out.println("<a href='qnaList.qna?page=" + (nowPage + 1) + "'>[다음]</a>");
-				}
-			%>
-		</section> --%>
+				<section id="pageList">
+					<%
+						if (nowPage <= 1) {
+							out.println("[이전]&nbsp;");
+						} else {
+							out.println("<a href='/Project/admingetlist.mem?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
+						}
+					%>
+					<%
+						for (int a = startPage; a <= endPage; a++) {
+							if (a == nowPage) {
+								out.println("[" + a + "]");
+							} else {
+								out.println("<a href='/Project/admingetlist.mem?page=" + a + "'>[" + a + "]</a>&nbsp;");
+							}
+						}
+					%>
+					<%
+						if (nowPage >= maxPage) {
+							out.println("[다음]");
+						} else {
+							out.println("<a href='/Project/admingetlist.mem?page=" + (nowPage + 1) + "'>[다음]</a>");
+						}
+					%>
+				</section>
 			</section>
 			<script>
 				function userdelete(id) {
@@ -195,6 +206,6 @@ member_list_title h2 {
 
 		</div>
 	</div>
-			<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

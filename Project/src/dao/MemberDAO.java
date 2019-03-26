@@ -149,14 +149,18 @@ public class MemberDAO {
 	}
 
 	//관리자 회원정보 목록보기
-	public ArrayList<MemberBean> getSelectList() {
+	public ArrayList<MemberBean> getSelectList(int page, int limit) {
 		System.out.println("[4]MemberDAO.getSelectList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<MemberBean> list= new ArrayList<MemberBean>();
 		MemberBean member = null;
+		int startrow = (page - 1) * 10;
+		System.out.println("page랑 limit 찍어보기 : " + page + " " + limit);
 		try {
-			pstmt = con.prepareStatement("select * from member");
+			pstmt = con.prepareStatement("select * from member order by mem_id desc limit ?, ?");
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -225,5 +229,25 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return IdCheckResult;
+	}
+	
+	public int selectListCount() { //멤버리스트 행갯수
+		System.out.println("[4]MemberDAO.selectListCount");
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement("select count(*) from member");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return listCount;
 	}
 }

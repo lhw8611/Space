@@ -30,7 +30,7 @@ public class qnaDAO {
 
 	// 글의 개수 구하기
 	public int selectListCount() {
-		System.out.println("[4]selectListCount");
+		System.out.println("[4]qnaDAO.selectListCount");
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

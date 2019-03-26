@@ -179,6 +179,9 @@ header a:link, header a:visited {
 #menu_right>ul {
 	text-align: right;
 }
+#menu_right a:hover {
+	text-decoration: underline;
+}
 </style>
 <body>
 	<header>

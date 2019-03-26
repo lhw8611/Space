@@ -59,7 +59,7 @@
 
 .content {
 	width: 860px;
-	margin: 0 auto;
+	margin: 120px auto 30px;
 }
 
 .content h2 {
@@ -140,7 +140,10 @@ table {
 	width : 98px;
 	margin : 0 auto;
 }
-
+.tg img{
+	height : 85px;
+	width : auto;
+}
 </style>
 </head>
 <body>

@@ -212,7 +212,7 @@ a {
 								</dd>
 								<dd>
 									<div class="detail_delete">
-										<a href="#">내역삭제</a>
+										<a href="orderDelete.od?or_num=<%=orderdetaillist.get(0).getOr_num() %>">내역삭제</a>
 									</div>
 								</dd>
 							</dl>
