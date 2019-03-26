@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 import dao.BoardDAO;
 import vo.ProductBean;
+import vo.ReviewBean;
 
 
 public class ProductViewSvc {
@@ -26,5 +27,15 @@ public class ProductViewSvc {
 		ProductBean productBean = boardDAO.productInfo(pro_code);
 		close(con);
 		return productBean;
+	}
+	public ReviewBean reviewList(){
+		ReviewBean reviewBean = new ReviewBean();
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		reviewBean = boardDAO.reviewList();
+		return reviewBean;
+		
 	}
 }

@@ -17,6 +17,8 @@ import board.action.ProSearchAction;
 import board.action.ProductListAction;
 import board.action.ProductViewAction;
 import board.action.ProductWriteAction;
+import board.action.ReviewRegAction;
+import board.action.ReviewRegFormAction;
 import vo.ActionForward;
 
 /**
@@ -137,6 +139,30 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		//리뷰 등록
+		else if (command.equals("/reviewReg.bo")) {
+			System.out.println("리뷰 등록컨트롤러 진입");
+			action = new ReviewRegAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//리뷰 등록 폼
+		else if (command.equals("/reviewRegForm.bo")) {
+			System.out.println("리뷰 등록폼 컨트롤러 진입");
+			action = new ReviewRegFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 		
 		//포워드
 		if (forward != null) {

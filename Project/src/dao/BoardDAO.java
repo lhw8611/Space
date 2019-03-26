@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import vo.NoticeBean;
 import vo.ProductBean;
+import vo.ReviewBean;
 
 public class BoardDAO {
 	DataSource ds;
@@ -361,7 +362,37 @@ public class BoardDAO {
 		return productBean;
 
 	}
+	//리뷰 출력
+	public ReviewBean reviewList() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewBean reviewBean = null;
 
+		try {
+			pstmt = con.prepareStatement("select * from review");
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				reviewBean = new ReviewBean();
+				reviewBean.setContent(rs.getString("rev_content"));
+				reviewBean.setMem_id(rs.getString("mem_id"));
+				reviewBean.setPro_code(rs.getInt("pro_code"));
+				reviewBean.setRev_date(rs.getDate("rev_date"));
+				reviewBean.setRev_img(rs.getString("rev_img"));
+				reviewBean.setRev_num(rs.getInt("rev_num"));
+				reviewBean.setRev_star(rs.getInt("rev_star"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("OrderDAO.productInfo error");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return reviewBean;
+
+	}
 	// 상품 조회수
 	public int proUpdateReadCount(int pro_code) {
 		PreparedStatement pstmt = null;
@@ -380,5 +411,62 @@ public class BoardDAO {
 		return updateCount;
 
 	}
+	//상품 샀는지 비교
+	public boolean reviewCheck(String mem_id, int pro_code) {
+		System.out.println("리뷰체크 DAO");
+		boolean reviewCheck = false;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from orodproview where mem_id=? and pro_code=?";
+//		sql +=  "and od_state='DeleCom'"
+//		od_state로 변경 후 사용
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			pstmt.setInt(2,pro_code);
+			rs = pstmt.executeQuery();
+			 
+			if(rs.next()) {
+				reviewCheck = true;
+			}
+		} catch (SQLException ex) {
+			System.out.println("리뷰등록 에러 : ");
+			ex.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return reviewCheck;
+	}
+	
+	//리뷰 등록
+	public int reviewReg(ReviewBean reviewBean) {
+		System.out.println("리뷰레지  dao");
+		PreparedStatement pstmt = null;
+		String sql = "insert into review value(null,?,?,?,now(),?,?)";
+		
+		int updateCheck = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewBean.getMem_id());
+			pstmt.setInt(2,reviewBean.getRev_star());
+			pstmt.setString(3, reviewBean.getContent());
+			pstmt.setString(4,reviewBean.getRev_img());
+			pstmt.setInt(5, reviewBean.getPro_code());
+			
+			 updateCheck = pstmt.executeUpdate();
+		} catch (SQLException ex) {
+			System.out.println("리뷰등록 에러 : ");
+			ex.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return updateCheck;
+
+		
+	}
+	
 
 }

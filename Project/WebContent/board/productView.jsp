@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
+ <%@ page import="vo.ReviewBean" %>
  <%
 	String id = null;
 	
@@ -9,6 +9,10 @@
 		id=(String)session.getAttribute("id");
 				
 	}
+	
+	ReviewBean reviewBean = (ReviewBean)request.getAttribute("reviewBean");
+	
+	
  %>
  
 <!DOCTYPE html>
@@ -32,6 +36,10 @@ margin:0 auto;
 #pro_img {
 float:left;
 margin:0 30px;
+}
+#container {
+margin:12vh auto;
+
 }
 </style>
 </head>
@@ -76,9 +84,32 @@ margin:0 30px;
 			</nav>
 		</section>
 		</section>
-		<jsp:include page="../footer.jsp"></jsp:include>
-			</div>
+		<div id="review">
+		
+		<span>구매후기</span>
+		<span>
+		<a href="reviewRegForm.bo?pro_code=${probean.pro_code}">구매후기 작성</a>
+		</span>
+		<div>
+		<span><%=reviewBean.getMem_id() %>
+			<%=reviewBean.getRev_date() %>
+			</span>
+			<span>
+			<img src="reviewImg/<%=reviewBean.getRev_img() %>">
+			</span>
+		</div>
+		<div>
+		<span><%=reviewBean.getRev_star() %></span>
+		<span><%=reviewBean.getContent() %></span>
+		</div>
+		
+		
+		</div>
+		
+		
+		</div>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
 
