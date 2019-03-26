@@ -33,7 +33,7 @@ public class BoardDAO {
 		this.con = con;
 	}
 
-	// 글의 개수 구하기
+	// 공지 글의 개수 구하기
 	public int selectListCount() {
 //			System.out.println("selectListCount dao 진입");
 		int listCount = 0;
@@ -57,13 +57,18 @@ public class BoardDAO {
 //			System.out.println("listCount(글번호) : " + listCount);
 		return listCount;
 	}
-
-	public int selectListCount2() {
+//상품리스트 개수
+	public int selectListCount2(String sW) {
 //			System.out.println("selectListCount dao 진입");
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select count(*) from product";
+		
+		if (sW!=null) {
+			sql += " where pro_name like '%" + sW + "%'";
+		}
+		System.out.println("SQL:"+sql);
 		// 무언가 검색했을때
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -260,7 +265,7 @@ public class BoardDAO {
 	}
 
 	// 상품리스트
-	public ArrayList<ProductBean> selectProductList(int page, int limit, String sort) {
+	public ArrayList<ProductBean> selectProductList(int page, int limit, String sort, String sW) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		System.out.println("DAO에서 sort :" + sort);
@@ -270,6 +275,12 @@ public class BoardDAO {
 		 * ;
 		 */
 		String sql = "select * from product where pro_show='o'";
+		//검색일 경우
+		if(sW!=null) {
+			sql += " and pro_name like '%"+sW+"%' ";
+		}
+		
+		
 		// 조회수 순
 		if (sort.equals("count")) {
 			sql += "order by pro_count desc limit ? , ?";
@@ -283,6 +294,8 @@ public class BoardDAO {
 		} else {
 			sql += "order by pro_date desc limit ? , ?";
 		}
+		
+
 		System.out.println("sql문 :" + sql);
 		ArrayList<ProductBean> articleList = new ArrayList<ProductBean>();
 		ProductBean product = null;

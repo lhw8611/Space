@@ -126,7 +126,16 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+		//상품 검색
+		else if (command.equals("/proSearch.bo")) {
+			System.out.println("상품검색 컨트롤러 진입");
+			action = new ProductViewAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		//포워드
 		if (forward != null) {
