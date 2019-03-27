@@ -13,9 +13,7 @@ import orders.svc.OrderFormSvc;
 import vo.ActionForward;
 import vo.CartProViewBean;
 import vo.MemberBean;
-import vo.OrderBean;
 import vo.OrderListBean;
-import vo.ProductBean;
 
 public class OrderFormAction implements Action {
 	@Override

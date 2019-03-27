@@ -1,8 +1,6 @@
 package orders.action;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +13,6 @@ import vo.ActionForward;
 import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderListBean;
-import vo.ProductBean;
-import vo.QtyBean;
 
 public class OrderCompleteAction implements Action {
 
@@ -58,19 +54,6 @@ public class OrderCompleteAction implements Action {
 		System.out.println("orderbean name : " + orderbean.getOr_getname());
 		System.out.println("orderbean tel : " + orderbean.getOr_gettel());
 		
-		
-//		if((qtybean.getQty_qty()-oddbean.getOd_qty())>0) { //구매가능
-//			forward = new ActionForward();
-//			ordercompletesvc.orderaction(membean.getMem_id(), odbean, oddbean, qtybean);
-//			
-//			forward.setPath("orders/orderComplete.jsp");
-//		}else {
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>");
-//			out.println("alert('재고수가 부족합니다.');");
-//			out.println("location.href='/Project/main.jsp'");
-//			out.println("</script>");
-//		}
 		ActionForward forward = new ActionForward();
 		forward.setPath("orders/orderComplete.jsp");
 		return forward;

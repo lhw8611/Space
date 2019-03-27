@@ -5,17 +5,13 @@ import static db.jdbcUtil.commit;
 import static db.jdbcUtil.getConnection;
 import static db.jdbcUtil.rollback;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.OrderDAO;
-import db.jdbcUtil.*;
-import sun.security.jca.GetInstance;
 import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderListBean;
-import vo.QtyBean;
 public class OrderCompleteSvc {
 	public int order_qty(ArrayList<OrderListBean> orderlistbean) {//주문할때 재고수 구하는 메소드
 		System.out.println("[3]OrderCompleteSvc.productqty");

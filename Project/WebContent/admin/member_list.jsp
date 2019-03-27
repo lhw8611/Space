@@ -120,8 +120,9 @@ member_list_title h2 {
 	height: 10vh;
 }
 
-#memlistForm {
-	
+#pageList{
+	text-align: center;
+	margin : 30px auto ;
 }
 </style>
 </head>

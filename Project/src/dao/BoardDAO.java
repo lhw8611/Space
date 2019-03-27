@@ -118,6 +118,35 @@ public class BoardDAO {
 		return insertCount;
 	}
 
+	// 상품 상세보기
+	public ProductBean productInfo(int pro_code) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProductBean productBean = null;
+		try {
+			pstmt = con.prepareStatement("select * from product where pro_code=?");
+			pstmt.setInt(1, pro_code);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				productBean = new ProductBean();
+				productBean.setPro_code(rs.getInt("pro_code"));
+				productBean.setPro_name(rs.getString("pro_name"));
+				productBean.setPro_price(rs.getInt("pro_price"));
+				productBean.setPro_category(rs.getString("pro_category"));
+				productBean.setPro_content(rs.getString("pro_content"));
+				productBean.setPro_image(rs.getString("pro_image"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("OrderDAO.productInfo error");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return productBean;
+	}
+	
 	// notice 목록
 	public ArrayList<NoticeBean> selectArticleList(int page, int limit) {
 		PreparedStatement pstmt = null;
@@ -332,36 +361,7 @@ public class BoardDAO {
 		return articleList;
 	}
 
-	// 상품 상세보기
-	public ProductBean productInfo(int pro_code) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ProductBean productBean = null;
 
-		try {
-			pstmt = con.prepareStatement("select * from product where pro_code=?");
-			pstmt.setInt(1, pro_code);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				productBean = new ProductBean();
-				productBean.setPro_code(rs.getInt("pro_code"));
-				productBean.setPro_name(rs.getString("pro_name"));
-				productBean.setPro_price(rs.getInt("pro_price"));
-				productBean.setPro_category(rs.getString("pro_category"));
-				productBean.setPro_content(rs.getString("pro_content"));
-				productBean.setPro_image(rs.getString("pro_image"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("OrderDAO.productInfo error");
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return productBean;
-
-	}
 	//리뷰 출력
 	public ReviewBean reviewList() {
 		PreparedStatement pstmt = null;

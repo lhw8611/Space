@@ -2,9 +2,15 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList" %>
     <%@page import="vo.OrOdProViewBean" %>
+    <%@page import="vo.PageInfo" %>
 <%
 	ArrayList<OrOdProViewBean> orodproviewbean = (ArrayList<OrOdProViewBean>)request.getAttribute("orodproviewbean");
-
+	PageInfo pageinfo = (PageInfo)request.getAttribute("pageinfo");
+    int listCount = pageinfo.getListCount();
+    int nowPage = pageinfo.getPage();
+    int maxPage = pageinfo.getMaxPage();
+    int startPage = pageinfo.getStartPage();
+    int endPage = pageinfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -63,17 +69,11 @@
     #ulTable > li > ul > li:first-child +li+li        {width:20%;} 
     #ulTable > li > ul > li:first-child +li+li+li     {width:15%;} 
     #ulTable > li > ul > li:first-child +li+li+li+li{width:10%;}
-    #divPaging {
+    #pageList {
           clear:both; 
-        margin:0 auto; 
-        width:220px; 
+        width:100%; 
         height:50px;
-}
-
-    #divPaging > div {
-        float:left;
-        width: 30px;
-        margin:0 auto;
+        padding-top : 50px;
         text-align:center;
 }
 
@@ -118,6 +118,9 @@ a{
 	right: 0;
 	bottom: 0; 
 }
+.simple_title a{
+	color : white;
+}
 </style>
 </head>
 <body>
@@ -126,7 +129,7 @@ a{
 		<div id="main">
 			 <div id="headerImage">
 			 <div class="simple_title">
-            <h2>주문/배송 조회</h2>
+            <h2><a href="/Project/orderList.od">주문/배송 조회</a></h2>
             </div>
             </div>
 			 <div id="mainWrapper">
@@ -173,28 +176,40 @@ for(int i=0; i<orodproviewbean.size(); i++){
                 }
                 %>
             </li>
+            
             <!-- 게시판 페이징 영역 -->
             <li>
-                <div id="divPaging">
-                    <div>◀</div>
-                       <div><b>1</b></div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>▶</div>
+                <div id="pageList">
+                <%if(nowPage <= 1) {%>
+                   		 ◀
+                <%}else{ %>
+                	<a href="/Project/orderList.od?page=<%=(nowPage-1)%>">◀</a>
+                <%} %>
+                
+                <%for(int a=startPage; a <=endPage; a++){
+                	if(a == nowPage){%>
+                       <b><%=a %></b>
+                       <%}else{ %>
+                       <b><a href="/Project/orderList.od?page=<%=a %>"><%=a %></a></b>
+                       <%}} %>
+                    <%if(nowPage >= maxPage){ %>
+                 			   ▶
+                    <%}else{ %>
+                    	<a href="/Project/orderList.od?page=<%=(nowPage+1) %>">▶</a>
+                    	<%} %>
                 </div>
             </li>
+            
             <!-- 검색 폼 영역 -->
             <li id='liSearchOption'>
                 <div>
+                   <form action="orderList.od">
                     <select id='selSearchOption' >
-                        <option value='A'>제목+내용</option>
-                        <option value='T'>제목</option>
-                        <option value='C'>내용</option>
+                        <option>상품이름</option>
                     </select>
-                    <input id='txtKeyWord' />
-                    <input type='button' value='검색'/>
+                    <input type="text" id="keyWord" name="keyWord" />
+                    <input type='submit' value='검색'/>
+                    </form>
                 </div>
                 </li>
         </ul>

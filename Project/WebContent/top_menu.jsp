@@ -15,39 +15,40 @@
 <!-- <link href="Project/css/top_menu.css" rel="stylesheet" type="text/css"> -->
 
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <!-- 서서히 사라지고 나타남(오버시 진해짐) -->
 <script>
-   $(function() {
-      $(window).scroll(function() {
-         var scrollTop = $(window).scrollTop();
-         if (scrollTop < 500)
-            $('header').stop().animate({
-               'opacity' : '.6'
-            }, 200);
-         else
-            $('header').stop().animate({
-               'opacity' : '1'
-            }, 200);
-      });
-      $('header').hover(function(e) {
-         var scrollTop = $(window).scrollTop();
-         if (scrollTop < 500) {
-            $('header').stop().animate({
-               'opacity' : '1'
-            }, 200);
-         }
-      }, function(e) {
-         var scrollTop = $(window).scrollTop();
-         if (scrollTop < 500) {
-            $('header').stop().animate({
-               'opacity' : '.6'
-            }, 200);
-         }
-      });
-   });
+	$(function() {
+		$(window).scroll(function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < 500)
+				$('header').stop().animate({
+					'opacity' : '.6'
+				}, 200);
+			else
+				$('header').stop().animate({
+					'opacity' : '1'
+				}, 200);
+		});
+		$('header').hover(function(e) {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < 500) {
+				$('header').stop().animate({
+					'opacity' : '1'
+				}, 200);
+			}
+		}, function(e) {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < 500) {
+				$('header').stop().animate({
+					'opacity' : '.6'
+				}, 200);
+			}
+		});
+	});
 </script>
 <style>
 * {
@@ -61,7 +62,7 @@ body {
 }
 
 header {
-	position:fixed;
+	position: fixed;
 	top: 0;
 	background-color: black;
 	opacity: 0.6;
@@ -83,7 +84,7 @@ header {
 }
 
 #menu_center li {
-	padding-right: 40px;
+	padding-right: 100px;
 }
 
 header li {
@@ -131,6 +132,10 @@ header a:link, header a:visited {
 	font-size: 1.2em;
 }
 
+#menu_center a:hover, #menu_right a:hover {
+	text-decoration: underline;
+}
+
 #menu_right {
 	width: 20%;
 	line-height: 10vh;
@@ -167,7 +172,7 @@ header a:link, header a:visited {
 
 #menu_right li:hover ul {
 	display: block;
-	margin-left : -65px;
+	margin-left: -65px;
 }
 
 #menu_right li:hover ul li {
@@ -178,9 +183,6 @@ header a:link, header a:visited {
 
 #menu_right>ul {
 	text-align: right;
-}
-#menu_right a:hover {
-	text-decoration: underline;
 }
 </style>
 <body>
@@ -196,9 +198,7 @@ header a:link, header a:visited {
 					<li><a href="/Project/productList.bo">Shop</a>
 					<li><a href="<%=request.getContextPath()%>/qnaList.qna">QNA</a></li>
 					<li><a href="<%=request.getContextPath()%>/noticeList.bo">Notice</a></li>
-					<%if(session.getAttribute("id") != null && session.getAttribute("id").equals("admin")){%>
-					<li><a href="/Project/salesManagement.ad">관리자 페이지</a></li>
-					<%} %>
+
 				</ul>
 			</div>
 
@@ -214,6 +214,13 @@ header a:link, header a:visited {
 						<ul>
 							<li><a href="/Project/orderList.od">주문/배송 조회</a></li>
 							<li><a href="<%=request.getContextPath()%>/logout.mem">로그아웃</a></li>
+							<%
+								if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
+							%>
+							<li><a href="/Project/salesManagement.ad">관리자 페이지</a></li>
+							<%
+								}
+							%>
 						</ul></li>
 
 					<%

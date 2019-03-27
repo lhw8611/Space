@@ -36,7 +36,8 @@ public class CartAddAction implements Action {
 		// 로그인 상태
 		} else {
 			cartAddSvc.addCart2(probean, id);
-			forward.setPath("/cartListForm.od");
+			forward.setPath("/Project/cartListForm.od");
+			forward.setRedirect(true);
 		}
 
 		return forward;

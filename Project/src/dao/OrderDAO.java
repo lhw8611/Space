@@ -271,6 +271,35 @@ public class OrderDAO {
 		return qtyChangeCheck;
 	}
 
+	// 상품 상세보기
+	public ProductBean productInfo(int pro_code) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProductBean productBean = null;
+		try {
+			pstmt = con.prepareStatement("select * from product where pro_code=?");
+			pstmt.setInt(1, pro_code);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				productBean = new ProductBean();
+				productBean.setPro_code(rs.getInt("pro_code"));
+				productBean.setPro_name(rs.getString("pro_name"));
+				productBean.setPro_price(rs.getInt("pro_price"));
+				productBean.setPro_category(rs.getString("pro_category"));
+				productBean.setPro_content(rs.getString("pro_content"));
+				productBean.setPro_image(rs.getString("pro_image"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("OrderDAO.productInfo error");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return productBean;
+	}
+
 	public ArrayList<OrderListBean> OrderList(int pro_code, int qty) { // 하나 주문DAO
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -376,7 +405,7 @@ public class OrderDAO {
 				pstmt = con.prepareStatement("insert into qty values(null, ?, ?, 'out', now(), ?, 'sell')");
 				pstmt.setInt(1, orderlistbean.get(i).getPro_code());
 				pstmt.setInt(2, orderlistbean.get(i).getOd_qty());
-				pstmt.setInt(3, modifycount+1);
+				pstmt.setInt(3, modifycount + 1);
 				insertCount = pstmt.executeUpdate();
 			}
 		} catch (Exception e) {
@@ -445,50 +474,65 @@ public class OrderDAO {
 		return arryInsertCount;
 	}
 
-	
-	public ArrayList<OrOdProViewBean> OrderSimpleList(String id) { //주문조회
+	public ArrayList<OrOdProViewBean> OrderSimpleList(int page, int limit, String id, String keyWord) { // 주문조회
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<OrOdProViewBean> orodproviewbean = null;
 		OrOdProViewBean temp = null;
+		String sql = "select * from orodproview where mem_id=? order by or_date desc, or_num desc limit ?, ?";
+		String sql2 = "select * from orodproview where mem_id=? and pro_name=? order by or_date desc, or_num desc limit ?, ?";
+
+		int startrow = (page - 1) * 5;
 		try {
-			pstmt = con.prepareStatement("select * from orodproview where mem_id=? order by or_date desc, or_num desc;" ,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			pstmt.setString(1, id);
+			if (keyWord == null || keyWord.trim().equals("")) {
+				System.out.println("키워드 널");
+				pstmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, limit);
+			} else {
+				System.out.println("키워드 널아님");
+				pstmt = con.prepareStatement(sql2, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				pstmt.setString(1, id);
+				pstmt.setString(2, keyWord);
+				pstmt.setInt(3, startrow);
+				pstmt.setInt(4, limit);
+			}
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				orodproviewbean = new ArrayList<OrOdProViewBean>();
 				rs.beforeFirst();
-				while(rs.next()) {
+				while (rs.next()) {
 					temp = new OrOdProViewBean();
 					temp.setOr_num(rs.getInt("or_num")); // orders 주문번호
-					temp.setOr_date(rs.getDate("or_date")); //주문날짜
-					temp.setOr_state(rs.getString("or_state")); //주문현황
-					temp.setOr_pay(rs.getString("or_pay")); //결제방식
-					temp.setOr_point(rs.getInt("or_point")); //포인트 사용
-					temp.setOr_request(rs.getString("or_request")); //요청사항
-					temp.setOr_getname(rs.getString("or_getname"));//받는사람 이름
-					temp.setOr_getadd(rs.getString("or_getadd"));//받는사람 주소
-					temp.setOr_gettel(rs.getString("or_gettel"));//받는사람 번호
-					temp.setMem_id(rs.getString("mem_id")); //주문자 이름
-					
-					temp.setOd_num(rs.getInt("od_num"));//order_detail주문번호
-					temp.setPro_code(rs.getInt("pro_code")); //상품코드
-					temp.setOd_qty(rs.getInt("od_qty")); //상품주문갯수
-					
-					temp.setPro_name(rs.getString("pro_name"));//상품이름
-					temp.setPro_price(rs.getInt("pro_price")); //상품가격
-					temp.setPro_category(rs.getString("pro_category")); //상품 카테고리
-					temp.setPro_content(rs.getString("pro_content"));//상품 내용
-					temp.setPro_image(rs.getString("pro_image")); //상품이미지
-					temp.setPro_show(rs.getString("pro_show"));//상품 보이기 숨기기
-					temp.setPro_date(rs.getDate("pro_date"));//상품 등록날짜
-					temp.setPro_count(rs.getInt("pro_count")); //상품 조회수
+					temp.setOr_date(rs.getDate("or_date")); // 주문날짜
+					temp.setOr_state(rs.getString("or_state")); // 주문현황
+					temp.setOr_pay(rs.getString("or_pay")); // 결제방식
+					temp.setOr_point(rs.getInt("or_point")); // 포인트 사용
+					temp.setOr_request(rs.getString("or_request")); // 요청사항
+					temp.setOr_getname(rs.getString("or_getname"));// 받는사람 이름
+					temp.setOr_getadd(rs.getString("or_getadd"));// 받는사람 주소
+					temp.setOr_gettel(rs.getString("or_gettel"));// 받는사람 번호
+					temp.setMem_id(rs.getString("mem_id")); // 주문자 이름
+
+					temp.setOd_num(rs.getInt("od_num"));// order_detail주문번호
+					temp.setPro_code(rs.getInt("pro_code")); // 상품코드
+					temp.setOd_qty(rs.getInt("od_qty")); // 상품주문갯수
+
+					temp.setPro_name(rs.getString("pro_name"));// 상품이름
+					temp.setPro_price(rs.getInt("pro_price")); // 상품가격
+					temp.setPro_category(rs.getString("pro_category")); // 상품 카테고리
+					temp.setPro_content(rs.getString("pro_content"));// 상품 내용
+					temp.setPro_image(rs.getString("pro_image")); // 상품이미지
+					temp.setPro_show(rs.getString("pro_show"));// 상품 보이기 숨기기
+					temp.setPro_date(rs.getDate("pro_date"));// 상품 등록날짜
+					temp.setPro_count(rs.getInt("pro_count")); // 상품 조회수
 					orodproviewbean.add(temp);
 				}
 			}
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
@@ -501,68 +545,96 @@ public class OrderDAO {
 		ArrayList<OrOdProViewBean> orodproviewbean = null;
 		OrOdProViewBean temp = null;
 		try {
-			pstmt = con.prepareStatement("select * from orodproview where od_num=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement("select * from orodproview where od_num=?", ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 			pstmt.setInt(1, od_num);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				orodproviewbean = new ArrayList<OrOdProViewBean>();
 				rs.beforeFirst();
-				while(rs.next()) {
-					 temp = new OrOdProViewBean();
-		               temp.setOr_num(rs.getInt("or_num")); // orders 주문번호
-		               temp.setOr_date(rs.getDate("or_date")); //주문날짜
-		               temp.setOr_state(rs.getString("or_state")); //주문현황
-		               temp.setOr_pay(rs.getString("or_pay")); //결제방식
-		               temp.setOr_point(rs.getInt("or_point")); //포인트 사용
-		               temp.setOr_request(rs.getString("or_request")); //요청사항
-		               temp.setOr_getname(rs.getString("or_getname"));//받는사람 이름
-		               temp.setOr_getadd(rs.getString("or_getadd"));//받는사람 주소
-		               temp.setOr_gettel(rs.getString("or_gettel"));//받는사람 번호
-		               temp.setMem_id(rs.getString("mem_id")); //주문자 이름
-		               
-		               temp.setOd_num(rs.getInt("od_num"));//order_detail주문번호
-		               temp.setPro_code(rs.getInt("pro_code")); //상품코드
-		               temp.setOd_qty(rs.getInt("od_qty")); //상품주문갯수
-		               temp.setOd_state(rs.getString("od_state"));//주문현황
-		               
-		               temp.setPro_name(rs.getString("pro_name"));//상품이름
-		               temp.setPro_price(rs.getInt("pro_price")); //상품가격
-		               temp.setPro_category(rs.getString("pro_category")); //상품 카테고리
-		               temp.setPro_content(rs.getString("pro_content"));//상품 내용
-		               temp.setPro_image(rs.getString("pro_image")); //상품이미지
-		               temp.setPro_show(rs.getString("pro_show"));//상품 보이기 숨기기
-		               temp.setPro_date(rs.getDate("pro_date"));//상품 등록날짜
-		               temp.setPro_count(rs.getInt("pro_count")); //상품 조회수
-		               orodproviewbean.add(temp);
+				while (rs.next()) {
+					temp = new OrOdProViewBean();
+					temp.setOr_num(rs.getInt("or_num")); // orders 주문번호
+					temp.setOr_date(rs.getDate("or_date")); // 주문날짜
+					temp.setOr_state(rs.getString("or_state")); // 주문현황
+					temp.setOr_pay(rs.getString("or_pay")); // 결제방식
+					temp.setOr_point(rs.getInt("or_point")); // 포인트 사용
+					temp.setOr_request(rs.getString("or_request")); // 요청사항
+					temp.setOr_getname(rs.getString("or_getname"));// 받는사람 이름
+					temp.setOr_getadd(rs.getString("or_getadd"));// 받는사람 주소
+					temp.setOr_gettel(rs.getString("or_gettel"));// 받는사람 번호
+					temp.setMem_id(rs.getString("mem_id")); // 주문자 이름
+
+					temp.setOd_num(rs.getInt("od_num"));// order_detail주문번호
+					temp.setPro_code(rs.getInt("pro_code")); // 상품코드
+					temp.setOd_qty(rs.getInt("od_qty")); // 상품주문갯수
+					temp.setOd_state(rs.getString("od_state"));// 주문현황
+
+					temp.setPro_name(rs.getString("pro_name"));// 상품이름
+					temp.setPro_price(rs.getInt("pro_price")); // 상품가격
+					temp.setPro_category(rs.getString("pro_category")); // 상품 카테고리
+					temp.setPro_content(rs.getString("pro_content"));// 상품 내용
+					temp.setPro_image(rs.getString("pro_image")); // 상품이미지
+					temp.setPro_show(rs.getString("pro_show"));// 상품 보이기 숨기기
+					temp.setPro_date(rs.getDate("pro_date"));// 상품 등록날짜
+					temp.setPro_count(rs.getInt("pro_count")); // 상품 조회수
+					orodproviewbean.add(temp);
 				}
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return orodproviewbean;
 	}
-//	delete from review where rev_num=6;
-	public int[] OrderDelete(int or_num) {
+
+	public int[] OrderDelete(int or_num) {// 주문삭제
 		PreparedStatement pstmt = null;
 		int[] insertCount = new int[2];
 		try {
 			pstmt = con.prepareStatement("delete from orders where or_num=?");
 			pstmt.setInt(1, or_num);
-			insertCount[0] = pstmt.executeUpdate(); 
+			insertCount[0] = pstmt.executeUpdate();
 			close(pstmt);
 			pstmt = con.prepareStatement("delete from order_detail where od_num=?");
 			pstmt.setInt(1, or_num);
 			insertCount[1] = pstmt.executeUpdate();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
-		
+
 		return insertCount;
+	}
+
+	public int getListCount(String id, String keyWord) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int listCount = 0;
+		try {
+			if (keyWord == null || keyWord.trim().equals("") ) {
+				pstmt = con.prepareStatement("select count(*) from orodproview where mem_id=?");
+				pstmt.setString(1, id);
+			} else {
+				pstmt = con.prepareStatement("select count(*) from orodproview where mem_id=? and pro_name=?");
+				pstmt.setString(1, id);
+				pstmt.setString(2, keyWord);
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return listCount;
 	}
 }

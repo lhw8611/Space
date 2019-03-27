@@ -5,12 +5,9 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import dao.BoardDAO;
 import dao.OrderDAO;
 import vo.MemberBean;
-import vo.OrderBean;
 import vo.OrderListBean;
-import vo.PointBean;
 import vo.ProductBean;
 
 public class OrderFormSvc {
@@ -28,20 +25,17 @@ public class OrderFormSvc {
 		}else {
 			rollback(con);
 		}
-		
 		close(con);
-		
 		return membean;
-		
 	}
 	//상품정보
 	public ProductBean productsInfo(int pro_code) {
 		System.out.println("구매 상품 정보 서비스 진입");
 		Connection con = getConnection();
-		BoardDAO boardDAO = BoardDAO.getInstance();
-		boardDAO.setConnection(con);
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
 		
-		ProductBean probean = boardDAO.productInfo(pro_code);
+		ProductBean probean = orderDAO.productInfo(pro_code);
 		if(probean!=null) {
 			commit(con);
 		}else {
