@@ -42,7 +42,7 @@
     
 
     #ulTable > li:first-child > ul > li {
-        background-color:#F6F6F6;
+        background-color:#EAEAEA;
         font-weight:bold;
         size : 16px;
         text-align:center;
@@ -91,10 +91,6 @@
 	height: 90px;
 }
 
-a{
-	text-decoration: none;
-}
-
 .simple_title{
   	color:white;
 	font-size:2em;
@@ -119,7 +115,14 @@ a{
 	bottom: 0; 
 }
 .simple_title a{
-	color : white;
+	color : rgba(255, 255, 255, 0.8);
+	text-decoration : none;
+}
+.simple_title a:hover{
+	color : rgba(255, 255, 255, 1);
+}
+a{
+text-decoration : none;
 }
 </style>
 </head>

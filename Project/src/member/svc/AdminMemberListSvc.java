@@ -9,26 +9,26 @@ import dao.MemberDAO;
 import vo.MemberBean;
 
 public class AdminMemberListSvc {
-	public ArrayList<MemberBean> getMemberList(int page, int limit) { //회원정보
+	public ArrayList<MemberBean> getMemberList(int page, int limit, String keyWord) { //회원정보
 		System.out.println("[3]AdminMemberListSvc");
 		Connection con = getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
 		
-		ArrayList<MemberBean> list= memberDAO.getSelectList(page, limit);
+		ArrayList<MemberBean> list= memberDAO.getSelectList(page, limit, keyWord);
 		
 		close(con);
 		return list;
 	}
 
-	public int listCount() {
+	public int listCount(String keyWord) {
 		System.out.println("[3]AdminMemberListSvc.listCount");
 		Connection con = getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
 		
 		int listCount = 0;
-		listCount = memberDAO.selectListCount();
+		listCount = memberDAO.selectListCount(keyWord);
 		
 		close(con);
 		return listCount;

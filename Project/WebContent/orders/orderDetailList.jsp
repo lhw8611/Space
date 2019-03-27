@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="vo.OrOdProViewBean"%>
-<%@page import="vo.MemberBean" %>
+<%@page import="vo.MemberBean"%>
 <%
 	ArrayList<OrOdProViewBean> orderdetaillist = (ArrayList<OrOdProViewBean>) request
 			.getAttribute("orderdetaillist");
-	MemberBean membean = (MemberBean)request.getAttribute("membean");
+	MemberBean membean = (MemberBean) request.getAttribute("membean");
 %>
 <!DOCTYPE html>
 <html>
@@ -44,35 +44,39 @@
 	border-bottom: 1px solid silver;
 }
 
-.tg2 td{
+.tg2 td {
 	height: 40px;
 }
 
-
-.input_section1{
-box-sizing : border-box;
+.input_section1 {
+	box-sizing: border-box;
 	width: 100%;
 }
+
 .input_section1 .tg2 td:first-child {
 	background-color: #EAEAEA;
 }
+
 .input_section1 .tg3 td:first-child {
 	background-color: #EAEAEA;
 }
-.get_info{
-box-sizing : border-box;
-	display : inline-block;
-	margin : 0;
-	padding : 0;
-	width : 70%;
+
+.get_info {
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 70%;
 }
-.order_info{
-box-sizing : border-box;
-display : inline-block;
-margin : 0;
-	padding : 0;
-	width : 29%;
+
+.order_info {
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 29%;
 }
+
 .tg .tg-s6z2 {
 	text-align: center;
 }
@@ -87,20 +91,22 @@ margin : 0;
 }
 
 .detail_title {
-	  	color:white;
+	color: white;
 	font-size: 2em;
-	display:inline-block;
-    position: absolute;
- 	margin:auto;
-    top: 28%;	
-    left: 50%;
-    transform: translate(-50%, -50%);
+	display: inline-block;
+	position: absolute;
+	margin: auto;
+	top: 28%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
-.detail_title2{
+
+.detail_title2 {
 	margin: 50px 0 10px;
 }
+
 table {
-box-sizing : border-box;
+	box-sizing: border-box;
 	width: 100%;
 	border: 0;
 }
@@ -150,25 +156,50 @@ a {
 	float: right;
 	margin-top: 40px;
 	margin-bottom: 15px;
-	padding : 40px;
-	border : 1px solid silver;
+	padding: 40px;
+	border: 1px solid silver;
 }
 
 .result li {
 	display: block;
 	border-bottom: 1px solid black;
 }
+
 #headerImage {
-		width:100%;
-	height:477px;
+	width: 100%;
+	height: 477px;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-	url('headerImage/back03.jpg');
+		url('headerImage/back03.jpg');
 	background-position: 50% 50%;
-	background-size: 	cover;
+	background-size: cover;
 	left: 0;
 	top: 0;
 	right: 0;
-	bottom: 0; 
+	bottom: 0;
+}
+
+.result::after {
+	dispaly: block;
+	content: "";
+	clear: both;
+}
+
+.result_box {
+	width: 100%;
+	float: right;
+}
+
+.back {
+	margin-left : 50%;
+	margin-bottom : 30px;
+	background-color: #d81818;
+	color: #fff;
+	height: 41px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 0;
+	cursor: pointer;
+	padding: 10px 20px;
 }
 </style>
 </head>
@@ -193,7 +224,7 @@ a {
 				<div class="detail_title">
 					<h2>주문상세정보</h2>
 				</div>
-				</div>
+			</div>
 			<div class="content">
 				<div class="detail_border">
 					<ul>
@@ -212,7 +243,8 @@ a {
 								</dd>
 								<dd>
 									<div class="detail_delete">
-										<a href="orderDelete.od?or_num=<%=orderdetaillist.get(0).getOr_num() %>">내역삭제</a>
+										<a
+											href="orderDelete.od?or_num=<%=orderdetaillist.get(0).getOr_num()%>">내역삭제</a>
 									</div>
 								</dd>
 							</dl>
@@ -239,13 +271,19 @@ a {
 						<td class="tg-uys7"><a
 							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
 							target="_blank"><%=orderdetaillist.get(i).getPro_name()%></a></td>
-						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%>원, ( <%=orderdetaillist.get(i).getOd_qty() %> )</td>
-						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()*orderdetaillist.get(i).getOd_qty()%></td>
-						<td class="tg-uys7"><%if(orderdetaillist.get(i).getOd_state().equals("refund")){%>
-								구매취소
-						<%}else if(orderdetaillist.get(i).getOd_state().equals("wait")){%>		
-						주문완료
-						<%} %>
+						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%>원,
+							( <%=orderdetaillist.get(i).getOd_qty()%> )</td>
+						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price() * orderdetaillist.get(i).getOd_qty()%></td>
+						<td class="tg-uys7">
+							<%
+								if (orderdetaillist.get(i).getOd_state().equals("refund")) {
+							%> 구매취소
+							<%
+								} else if (orderdetaillist.get(i).getOd_state().equals("wait")) {
+							%>
+							주문완료 <%
+								}
+							%>
 						</td>
 					</tr>
 					<%
@@ -255,66 +293,69 @@ a {
 
 
 				</table>
-			
+
 				<div class="detail_title2">
-					<h2>배송지 정보</h2>			
-				</div>
-				
-				<div class="input_section1">
-					<div class="get_info">
-					<table class="tg tg2">
-						<tr>
-							<td class="tg-uys7">수령인</td>
-							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_getname() %></td>
-						</tr>
-						<tr>
-							<td class="tg-uys7">연락처</td>
-							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_gettel()%></td>
-						</tr>
-						<tr>
-							<td class="tg-uys7">배송지</td>
-							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_getadd()%></td>
-						</tr>
-						<tr>
-							<td class="tg-uys7">요청사항</td>
-							<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_request()%></td>
-						</tr>
-					</table>
-					</div>
-					
-					<div class="order_info">
-					<table class="tg tg2 tg3">
-						<tr>
-							<td class="tg-uys7"><strong>주문자정보</strong></td>
-						</tr>
-						<tr>
-						<td class="tg-uys7">구매자 이름<br><%=membean.getMem_name() %></td>
-						</tr>
-						<tr>
-						<td class="tg-uys7">구매자 전화번호<br><%=membean.getMem_tel() %> </td>
-						</tr>
-						<tr>
-						<td class="tg-uys7">구매자 이메일<br><%=membean.getMem_email() %></td>
-						</tr>
-					</table>
-					</div>
-				</div>
-				
-				<div class="result">
-					<ul>
-						<li>상품금액 : <%=cartResult%>원
-						</li>
-						<li>포인트 : 0원</li>
-						<li>배송비 : <%=delivery%>원
-						</li>
-						<li style="border : 0;">&nbsp;</li>
-						<li><h3>
-								결제금액 :
-								<%=cartResult + delivery%>원
-							</h3></li>
-					</ul>
+					<h2>배송지 정보</h2>
 				</div>
 
+				<div class="input_section1">
+					<div class="get_info">
+						<table class="tg tg2">
+							<tr>
+								<td class="tg-uys7">수령인</td>
+								<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_getname()%></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">연락처</td>
+								<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_gettel()%></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">배송지</td>
+								<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_getadd()%></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">요청사항</td>
+								<td class="tg-uys7"><%=orderdetaillist.get(0).getOr_request()%></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="order_info">
+						<table class="tg tg2 tg3">
+							<tr>
+								<td class="tg-uys7"><strong>주문자정보</strong></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">구매자 이름<br><%=membean.getMem_name()%></td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">구매자 전화번호<br><%=membean.getMem_tel()%>
+								</td>
+							</tr>
+							<tr>
+								<td class="tg-uys7">구매자 이메일<br><%=membean.getMem_email()%></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="result_box">
+					<div class="result">
+						<ul>
+							<li>상품금액 : <%=cartResult%>원
+							</li>
+							<li>포인트 : 0원</li>
+							<li>배송비 : <%=delivery%>원
+							</li>
+							<li style="border: 0;">&nbsp;</li>
+							<li><h3>
+									결제금액 :
+									<%=cartResult + delivery%>원
+								</h3></li>
+						</ul>
+					</div>
+				</div>
+
+				<button type="button" class="back" onClick="javascript:location.href='/Project/orderList.od';">돌아가기</button>
 			</div>
 
 		</div>

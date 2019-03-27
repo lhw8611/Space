@@ -13,12 +13,12 @@ import javax.sql.DataSource;
 import vo.MemberBean;
 
 public class MemberDAO {
-		DataSource ds;
-		Connection con;
+	DataSource ds;
+	Connection con;
 	private static MemberDAO memberDAO;
 
 	private MemberDAO() {
-	
+
 	}
 
 	public static MemberDAO getInstance() {
@@ -88,8 +88,8 @@ public class MemberDAO {
 		}
 		return RightUser;
 	}
-	
-	//멤버 정보폼
+
+	// 멤버 정보폼
 	public MemberBean MemberInfoDAO(String id) {
 		System.out.println("[4]MemberDAO.MemberInfoDAO");
 		PreparedStatement pstmt = null;
@@ -100,7 +100,7 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				member = new MemberBean();
 				member.setMem_id(rs.getString("mem_id"));
 				member.setMem_pass(rs.getString("mem_pass"));
@@ -119,13 +119,13 @@ public class MemberDAO {
 		return member;
 	}
 
-	//멤버 정보수정 액션
+	// 멤버 정보수정 액션
 	public int modifyDAO(MemberBean member) {
 		System.out.println("[4]MemberDAO.modifyDAO");
 		PreparedStatement pstmt = null;
 		String sql = "update member set mem_pass = ?, mem_name =?, mem_add = ?, "
 				+ "mem_email = ?, mem_tel = ?, mem_zip = ?, mem_add2 = ? where mem_id = ?";
-		int count=0;
+		int count = 0;
 		System.out.println("[4]sql문 출력 : " + sql);
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -141,31 +141,39 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
-		
+
 		return count;
 	}
 
-	//관리자 회원정보 목록보기
-	public ArrayList<MemberBean> getSelectList(int page, int limit) {
+	// 관리자 회원정보 목록보기
+	public ArrayList<MemberBean> getSelectList(int page, int limit, String keyWord) {
 		System.out.println("[4]MemberDAO.getSelectList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<MemberBean> list= new ArrayList<MemberBean>();
+		ArrayList<MemberBean> list = new ArrayList<MemberBean>();
 		MemberBean member = null;
 		int startrow = (page - 1) * 10;
-		System.out.println("page랑 limit 찍어보기 : " + page + " " + limit);
 		try {
-			pstmt = con.prepareStatement("select * from member order by mem_id desc limit ?, ?");
-			pstmt.setInt(1, startrow);
-			pstmt.setInt(2, limit);
-			rs = pstmt.executeQuery();
+			if (keyWord == null || keyWord.trim().equals("")) {
+				System.out.println("keyword null");
+				pstmt = con.prepareStatement("select * from member order by mem_id desc limit ?, ?");
+				pstmt.setInt(1, startrow);
+				pstmt.setInt(2, limit);
+			} else {
+				System.out.println("keyword not null");
+				pstmt = con.prepareStatement("select * from member where mem_id like ? order by mem_id limit ?, ?");
+				pstmt.setString(1, "%" + keyWord + "%");
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, limit);
+			}
 			
-			while(rs.next()) {
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				member = new MemberBean();
-				//id pass name add email grade tel date zip add2
+				// id pass name add email grade tel date zip add2
 				member.setMem_id(rs.getString("mem_iD"));
 				member.setMem_pass(rs.getString("mem_pass"));
 				member.setMem_name(rs.getString("mem_name"));
@@ -184,11 +192,11 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return list;
 	}
 
-	public int UserDeleteDAO(String id) { //회원탈퇴
+	public int UserDeleteDAO(String id) { // 회원탈퇴
 		System.out.println("[4]MemberDAO.UserDeleteDAO");
 		PreparedStatement pstmt = null;
 		String sql = "delete from member where mem_id=?";
@@ -203,11 +211,11 @@ public class MemberDAO {
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return deleteCount;
 	}
-	
-	public boolean IdCheck(String id) { //아이디체크
+
+	public boolean IdCheck(String id) { // 아이디체크
 		System.out.println("[4]IdCheck");
 		PreparedStatement pstmt = null;
 		String sql = "select * from member where mem_id = ?";
@@ -217,34 +225,39 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				IdCheckResult = true;
-			}else {
+			} else {
 				IdCheckResult = false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		return IdCheckResult;
 	}
-	
-	public int selectListCount() { //멤버리스트 행갯수
+
+	public int selectListCount(String keyWord) { // 멤버리스트 행갯수
 		System.out.println("[4]MemberDAO.selectListCount");
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = con.prepareStatement("select count(*) from member");
+			if (keyWord == null || keyWord.trim().equals("")) {
+				pstmt = con.prepareStatement("select count(*) from member");
+			} else {
+				pstmt = con.prepareStatement("select count(*) from member where mem_id like ?");
+				pstmt.setString(1,"%"+ keyWord +"%");
+			}
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				listCount = rs.getInt(1);
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}

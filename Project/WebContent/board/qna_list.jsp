@@ -94,7 +94,6 @@ div {
 }
 
 .qna_title {
-	color: white;
 	font-size: 2em;
 	display: inline-block;
 	position: absolute;
@@ -111,7 +110,8 @@ div {
 #headerImage {
 	width: 100%;
 	height: 477px;
-	background-image: url('headerImage/back01.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+	url('headerImage/back08.jpg'); 
 	background-position: 50% 50%;
 	background-size: cover;
 	left: 0;
@@ -132,6 +132,13 @@ div {
 	margin-bottom: 40px;
 	font-size : 17px;
 }
+.qna_title a{
+	color : rgba(255, 255, 255, 0.8);
+	text-decoration: none;
+}
+.qna_title a:hover{
+	color : white;
+}
 </style>
 <title>QNA</title>
 </head>
@@ -144,7 +151,7 @@ div {
 			<div id="headerImage">
 				<div class="qna_title">
 					<h2>
-						QNA
+						<a href="/Project/qnaList.qna">QNA</a>
 						<%
 						if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
 					%>

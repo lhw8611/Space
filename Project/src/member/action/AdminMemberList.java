@@ -23,12 +23,6 @@ public class AdminMemberList implements Action{
 		HttpSession session = request.getSession();
 		ActionForward forward = null;
 		System.out.println("[2]AdminMemberList");
-		int page=1;
-		int limit=10;
-		if(request.getParameter("page")!=null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-		
 		if((session.getAttribute("id")==null) ||
 				(!((String)session.getAttribute("id")).equals("admin"))){
 			out.println("<script>");
@@ -36,9 +30,21 @@ public class AdminMemberList implements Action{
 			out.println("location.href='main.jsp';");
 			out.println("</script>");
 		}else {
+			
+//			keyWord
+			
 			AdminMemberListSvc memberlist = new AdminMemberListSvc();
-			int listCount = memberlist.listCount();
-			ArrayList<MemberBean> list = memberlist.getMemberList(page, limit);//총 멤버정보 받아옴
+			int page=1;
+			int limit=10;
+			String keyWord = null;
+			if(request.getParameter("page")!=null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			if(request.getParameter("keyWord") != null) {
+				keyWord = request.getParameter("keyWord");
+			}
+			int listCount = memberlist.listCount(keyWord);
+			ArrayList<MemberBean> list = memberlist.getMemberList(page, limit, keyWord);//총 멤버정보 받아옴
 			
 			int maxPage = (int)((double)listCount/limit+0.95);
 			int startPage = (((int) ((double)page / limit+0.9))-1)*limit+1;

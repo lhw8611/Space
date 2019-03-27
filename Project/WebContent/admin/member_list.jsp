@@ -134,8 +134,10 @@ member_list_title h2 {
 			<section id="memlistForm">
 				<div class="member_list_title">
 					<h2>회원 목록</h2>
-					<input type="text" name="search"><input type="button"
+					<form action="admingetlist.mem" method="post">
+					<input type="text" name="keyWord" id="keyWord"><input type="submit"
 						value="검색">
+					</form>	
 				</div>
 				<br>
 				<ul>

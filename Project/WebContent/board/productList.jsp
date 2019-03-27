@@ -74,7 +74,7 @@ container {
 #headerImage {
 	width: 100%;
 	height: 477px;
-	background-image: url('headerImage/back04.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(headerImage/back04.jpg);
 	background-position: 50% 50%;
 	background-size: cover;
 	left: 0;
@@ -142,6 +142,13 @@ container {
 	text-align: center;
 	margin: 20px;
 }
+#title a{
+	color : rgba(255, 255, 255, 0.8);
+	text-decoration: none;
+}
+#title a:hover{
+	color : white;
+}
 </style>
 </head>
 <body>
@@ -151,7 +158,7 @@ container {
 			<jsp:include page="../top_menu.jsp"></jsp:include>
 			<div id="headerImage">
 				<div id="title">
-					<h1>Product</h1>
+					<h1><a href="/Project/productList.bo">Product</a></h1>
 				</div>
 			</div>
 

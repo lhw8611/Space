@@ -123,6 +123,13 @@ table tr:first-child td {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+#title a{
+	color : rgba(255, 255, 255, 0.8);
+	text-decoration: none;
+}
+#title a:hover{
+	color : white;
+}
 </style>
 </head>
 <body>
@@ -131,7 +138,7 @@ table tr:first-child td {
 	<div id="container">
 		<div id="main">
 			<div id="backImage">
-			<div id="title"><h2>Notice</h2></div>
+			<div id="title"><h2><a href="/Project/noticeList.bo">Notice</a></h2></div>
 			</div>
 			<div id="board">
 				<section id="listForm">
