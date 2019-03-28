@@ -6,6 +6,8 @@
 <%
 	String id = null;
 	ArrayList<ReviewBean> reviewList = null;
+	float star = 0;
+	float totalStar = 0;
 	if (session.getAttribute("id") != null) {
 		id = (String) session.getAttribute("id");
 
@@ -13,6 +15,20 @@
 	if ((ArrayList<ReviewBean>) request.getAttribute("reviewList") != null) {
 		reviewList = (ArrayList<ReviewBean>) request.getAttribute("reviewList");
 	}
+	if((ArrayList<ReviewBean>) request.getAttribute("reviewList") != null) {
+		for (int i = 0; i < reviewList.size(); i++) {
+			star += reviewList.get(i).getRev_star();
+			totalStar = star / reviewList.size();
+			System.out.println("star:" + star);
+			totalStar = totalStar*1;
+			
+		}
+	}
+	
+	totalStar =Math.round(Math.round((totalStar*100)/100));
+	System.out.println(totalStar);
+	System.out.println((int)totalStar);
+	
 %>
 
 <!DOCTYPE html>
@@ -99,6 +115,49 @@
 	cursor: pointer;
 	margin-left: 4px;
 }
+#reviewDivision {
+	border-top:1px solid gray;
+	width:900px;
+	height: 260px;
+	padding-top:5px; 
+}
+#reviewId {
+	font-size: medium;
+}
+#reviewDate{
+	color:gray;
+	font-size: small;
+	margin-left: 25px;
+}
+#starImg { 
+	width:30px;
+	height:30px;
+}
+#reviewImg {
+}
+#reviewContent{
+}
+#pro_content {
+width:1000px;
+	height: 30vh;
+	margin:0 auto;
+	
+}
+#content_title {
+	margin:50px;
+}
+#content {
+	margin:50px;
+}
+#pro_detail>img {
+width:20px;
+height: 20px; 
+margin-top:15px;
+}
+#qty {
+	height: 30px;
+	border:0.5px solid #cccccc;
+	padding:5px;}
 </style>
 </head>
 <body>
@@ -114,6 +173,65 @@
 						<img src="/Project/boardUpload/${probean.pro_image}" />
 					</div>
 					<div id="pro_detail">
+						<%
+						switch ((int)totalStar) {
+						case (0):
+						%>
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<%
+						break;
+						case (1):
+						%>
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<%
+							break;
+							case (2):
+						%>
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<%
+							break;
+							case (3):
+						%>
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/grayStar.png">
+						<img src="/Project/images/grayStar.png">
+						<%
+							break;
+							case (4):
+						%>
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/grayStar.png">
+						<%
+							break;
+							case (5):
+						%>
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<img src="/Project/images/yellowStar.png">
+						<%
+							break;
+
+							}
+						%>
 						<form action="/Project/orderForm.od" id="orderForm" name="orderForm" method="post">
 							<h2 style="margin-top:100px;">${probean.pro_name}</h2>
 							<table id="detailTable">
@@ -123,7 +241,7 @@
 										name="pro_code" value="${probean.pro_code}" /></td>
 								</tr>
 								<tr>
-									<td>상품 가격</td>
+									<td>가격</td>
 									<td>${probean.pro_price }</td>
 								</tr>
 								<tr>
@@ -143,25 +261,91 @@
 					<nav id="commandList"></nav>
 				</section>
 			</section>
-			<br><hr style="width:1000px; margin:0 auto; color:#CCCCCC;">
+			<br><hr style="width:1000px; margin:0 auto;">
+			<div id="pro_content">
+				<div id="content_title"><h1>제품 상세</h1></div>
+				<div id="content">${probean.pro_content}</div>
+			</div>
+			
+			<br><hr style="width:1000px; margin:0 auto;">
+			
+			<!-- 리뷰 -->
 			<div id="review">
 			<div id="reviewtitle" style="float:left; width:900px; margin:50px auto;">
 			 <div style="display:inline; float:left;"><h1>구매후기(<%if (reviewList != null){%><%= reviewList.size()%><% }else { %>0<%} %>)</h1></div>
 			 <div style="float:right;"><input type="button" id="writeReviewBtn" value="구매후기 작성" onclick="location.href='reviewRegForm.bo?pro_code=${probean.pro_code}'"> </div>
 			</div>
-				 <% 	if (reviewList != null) {%>
-				<%
-				
+				 <% 	if (reviewList != null) {
 						for (int i = 0; i < reviewList.size(); i++) {
 				%>
-				<div>
-					<span><%=reviewList.get(i).getMem_id()%> <%=reviewList.get(i).getRev_date()%>
-					</span> <span> <img src="reviewImg/<%=reviewList.get(i).getRev_img()%>">
-					</span>
+				<div id="reviewDivision" style="clear:both;">
+					<div id="reviewers_left" style="float:left;">
+					  	 <div id="reviewId"> <%=reviewList.get(i).getMem_id()%></div>
+					  	<div id="reviewDate"><%=reviewList.get(i).getRev_date()%></div></div>
+				  	<div id="reviewers_right">
+					  	<div id="reviewStar" style="float:right; margin:10px;">
+						<%
+					  	switch(reviewList.get(i).getRev_star()) {
+					  	case(1):
+				  		%>
+				  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+						<%
+				  		break;
+					  	case(2):
+				  		%>
+				  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+						<%
+					  		break;
+					  	case(3):
+					  		%>
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+							<%	
+					  		break;
+					  	case(4):
+					  		%>
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+							<%	
+					  		break;
+					  	case(5):
+					  		%>
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+							<%	
+					  		break;
+					  	}
+					  	%>
+					  	</div> 
+					  	
+					</div>
+					<div id="reviewDetail" style="clear:both;">
+					 <div id="reviewImg" style="float:left;"> 
+						 <img src="reviewImg/<%=reviewList.get(i).getRev_img()%>">
+					</div>
+					<div id="reviewContent" style="float:left; margin-left:30px;">
+						<%=reviewList.get(i).getContent()%>
+					</div>
 				</div>
-				<div>
-					<span><%=reviewList.get(i).getRev_star()%></span> <span><%=reviewList.get(i).getContent()%></span>
-				</div>
+			</div>
+
 
 
 			

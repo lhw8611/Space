@@ -373,7 +373,7 @@ public class BoardDAO {
 		
 
 		try {
-			pstmt = con.prepareStatement("select * from review where pro_code=?",ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement("select * from review where pro_code=? order by rev_num desc",ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			pstmt.setInt(1, pro_code);
 			rs = pstmt.executeQuery();
 

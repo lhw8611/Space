@@ -15,6 +15,7 @@ public class ReviewRegSvc {
 		boolean reviewCheck = false;
 		reviewCheck = boardDAO.reviewCheck(mem_id, pro_code);
 		
+		close(con);
 		return reviewCheck;
 	}
 	
