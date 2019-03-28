@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Date;
 
-public class MemberBean { 
+public class MemberBean { //'member'
 	private String mem_id;
 	private String mem_pass;
 	private String mem_name;

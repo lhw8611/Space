@@ -3,6 +3,7 @@ package vo;
 import java.sql.Date;
 
 public class OrOdProViewBean {
+	//orders
 	private int or_num;
 	private Date or_date;
 	private String or_state;
@@ -13,6 +14,7 @@ public class OrOdProViewBean {
 	private String or_getadd;
 	private String or_gettel;
 	private String mem_id;
+	// order_detail + product
 	private int od_num;
 	private int pro_code;
 	private int od_qty;

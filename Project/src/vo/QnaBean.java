@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Date;
 
-public class QnaBean {
+public class QnaBean { //'qna'
 	private int qna_num;
 	private String qna_question;
 	private String qna_answer;

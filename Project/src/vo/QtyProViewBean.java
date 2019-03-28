@@ -2,7 +2,7 @@ package vo;
 
 import java.util.Date;
 
-public class QtyProViewBean {
+public class QtyProViewBean { //'qty' + 'product' = 'qtyproview'
 	
 	private int qty_num;
 	private int pro_code;

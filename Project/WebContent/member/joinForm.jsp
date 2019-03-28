@@ -81,6 +81,11 @@ body {
 	padding: 15px;
 	box-sizing: border-box;
 }
+#mem_zip::placeholder, #mem_add::placeholder, #id::placeholder{
+	color: rgba(255, 255, 255, 0.6);
+   opacity:  1;
+}
+
 </style>
 
 
@@ -100,7 +105,7 @@ body {
 					</div>
 
 					<label for="id">아이디</label> <input type="text" name="id" id="id"
-						placeholder="4~20자 영문자 또는 영문자+숫자" class="width100" readonly>
+						placeholder="4~20자 영문자 또는 영문자+숫자" class="width100" readonly style="background : #a0a0a0	;"/>
 						
 					<button class="width100" name="idCheck" id="idCheck" type="button"
 						onclick="window.open('/Project/idCheckForm.mem?openInit=true','','width=500, height=300')">중복검사</button>
@@ -113,9 +118,9 @@ body {
 						type="text" name="name" id="name" class="width100" />
 
 					<label for="mem_zip">주소</label><br>
-					<input type="text" name="mem_zip" id="mem_zip" placeholder="우편번호" size="7" readonly />
+					<input type="text" name="mem_zip" id="mem_zip" placeholder="우편번호" size="7" readonly style="background: #a0a0a0;"/>
 					<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
-						<input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"  class="width100" readonly/>
+						<input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"  class="width100" readonly style="background : #a0a0a0	;"/>
 					<input type="text" name="mem_add2" id="mem_add2" placeholder="상세주소"  class="width100" />
 
 					<label for="email">이메일 </label> <input type="text" name="email"

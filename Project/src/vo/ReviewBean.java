@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Date;
 
-public class ReviewBean {
+public class ReviewBean { //'review'
 	private int rev_num;
 	private String mem_id;
 	private int rev_star;

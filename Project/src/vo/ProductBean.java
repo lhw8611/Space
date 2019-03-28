@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Date;
 
-public class ProductBean {
+public class ProductBean {//'product'
 	private int pro_code;
 	private String pro_name;
 	private int pro_price;

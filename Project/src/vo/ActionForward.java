@@ -21,9 +21,4 @@ public class ActionForward {
 		this.redirect = redirect;
 	}
 
-//	public ActionForward(String path, boolean redirect) {
-//		this.path = path;
-//		this.redirect = redirect;
-//	}
-
 }

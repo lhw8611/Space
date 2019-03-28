@@ -2,13 +2,14 @@ package vo;
 
 import java.util.Date;
 
-public class PointBean {
+public class PointBean { //'point'
 	private int po_num;
 	private String mem_id;
 	private String po_state;
 	private int po_point;
 	private int po_total;
 	private Date po_date;
+	
 	public int getPo_num() {
 		return po_num;
 	}

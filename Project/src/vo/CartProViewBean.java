@@ -1,6 +1,6 @@
 package vo;
 
-public class CartProViewBean {
+public class CartProViewBean { //'member' + 'cart' + 'product' view 'cart_result'
 	private int cart_num;
 	private String mem_id;
 	private int pro_code;
