@@ -14,10 +14,10 @@ import vo.PageInfo;
 public class NoticeListAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeList 액션 진입");
+		ArrayList<NoticeBean> articleList = new ArrayList<NoticeBean>();
 		
 		
 		//페이지 관련
-		ArrayList<NoticeBean> articleList = new ArrayList<NoticeBean>();
 		int page = 1;
 		int limit = 10; //한페이지에 게시글 10개씩
 		int limitPage=10; //10 페이지 노출

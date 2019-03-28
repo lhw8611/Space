@@ -25,7 +25,7 @@ public class ProductListAction implements Action {
 		
 		//페이지 관련
 		int page = 1;
-		int limit = 10; //한페이지에 게시글 10개씩
+		int limit = 12; //한페이지에 게시글 10개씩
 		int limitPage=10; //10 페이지 노출
 
 		if (request.getParameter("page") != null) {

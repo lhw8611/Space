@@ -21,6 +21,7 @@
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
+	System.out.println(listCount);
 
 	System.out.println("jsp에서 아티클 =============================:" + articleList);
 %>
@@ -138,9 +139,28 @@ container {
 	border-spacing: 0;
 }
 
+/* 페이지 관련 */
+#page a {
+	text-decoration: none;
+	color: black; 
+}
 #page {
+	margin: 50px auto; 
 	text-align: center;
-	margin: 20px;
+	font-size: 1.5rem;
+}
+
+.pagebox {
+	display: inline-block;
+	color: #B2B2B2;
+}
+
+.pagebox>a {
+	display: inline-block;
+	text-align: center;
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	margin: 4px;
 }
 #title a{
 	color : rgba(255, 255, 255, 0.8);
@@ -229,51 +249,63 @@ container {
 				</ul>
 			</section>
 
-
 			<!-- 페이지 -->
 			<section id="page">
-				<%
-					if (nowPage <= 1) {
-				%>
-				[이전]&nbsp;
-				<%
-					} else {
-				%>
-				<a href="/Project/productList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
-				<%
-					}
-				%>
+					<%
+						if (nowPage <= 1) {
+					%>
+					<div class="pagebox"><</div>
+					<%
+						} else {
+					%>
+					<!-- [<] 버튼 -->
+					<a href="/Project/productList.bo?page=<%=nowPage - 1%>">
+						<div class="pagebox"><</div>
+					</a>
+					<%
+						}
+					%>
 
-				<%
-					for (int a = startPage; a <= endPage; a++) {
-						if (a == nowPage) {
-				%>
-				[<%=a%>]
-				<%
-					} else {
-				%>
+					<%
+						for (int a = startPage; a <= endPage; a++) {
+							if (a == nowPage) {
+					%>
+					<div class="pagebox" style="color:black;">
+						<%=a%>
+					</div>
+					<%
+						} else {
+					%>
+					<a href="/Project/productList.bo?page=<%=a%>">
+						<div class="pagebox">
+							<%=a%>
+						</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+					<%
+						if (nowPage >= maxPage) {
+					%>
+					<div class="pagebox">></div>
+					<%
+						} else {
+					%>
 
-				<a href="/Project/productList.bo?page=<%=a%>">[<%=a%>]
-				</a>&nbsp;
-				<%
-					}
-				%>
-				<%
-					}
-				%>
-				<%
-					if (nowPage >= maxPage) {
-				%>
-				[다음]
-				<%
-					} else {
-				%>
-				<a href="/Project/productList.bo?page=<%=nowPage + 1%>">[다음]</a>
-				<%
-					}
-				%>
+					<a href="/Project/productList.bo?page=<%=nowPage + 1%>">
+						<div class="pagebox">></div>
+					</a>
 
-			</section>
+					<%
+						}
+					%>
+
+
+				</section>
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" />

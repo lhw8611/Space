@@ -12,7 +12,11 @@
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
-	System.out.println(articleList.size());
+	
+	String id =	"";
+	if((String)session.getAttribute("id")!=null) {
+		id=(String)session.getAttribute("id");
+	}
 	//수정해보자
 %>
 
@@ -91,6 +95,7 @@ table tr:first-child td {
 	text-align: center;
 	color:white;
 	padding-top: 7px;
+	margin:30px 0;
 }
 
 .pagebox a:hover {
@@ -141,6 +146,8 @@ table tr:first-child td {
 			<div id="title"><h2><a href="/Project/noticeList.bo">Notice</a></h2></div>
 			</div>
 			<div id="board">
+			
+	 			
 				<section id="listForm">
 					<table>
 						<tr class="tableTitle" height="50px">
@@ -227,12 +234,21 @@ table tr:first-child td {
 
 
 				</section>
-				<a href="/Project/noticeWriteForm.bo">
-				<div id="writeBtn">
-					글쓰기
-				</div>
-				</a>
-				
+
+
+
+				<%
+					if (id.equals("admin")) {
+				%>
+				<a href="/Project/noticeWriteForm.bo"><div id="writeBtn"
+						style="float: right;">글쓰기</div> </a>
+
+
+				<%
+					}
+				%>
+
+
 			</div>
 		</div>
 	</div>
