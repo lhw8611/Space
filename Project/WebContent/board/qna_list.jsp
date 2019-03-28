@@ -14,6 +14,12 @@
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
+	
+	String id =	"";
+	if((String)session.getAttribute("id")!=null) {
+		id=(String)session.getAttribute("id");
+	}
+	
 %>
 
 
@@ -65,7 +71,7 @@ div {
 	width: 100%;
 	float: left;
 	font-size: 16px;
-	padding: 10px 20px;
+	padding: 10px;
 }
 
 #qnalistForm dd {
@@ -73,7 +79,7 @@ div {
 	float: left;
 	width: 100%;
 	background: #f2f2f2;
-	padding: 20px 50px;
+	padding: 20px;
 }
 
 #qnalistForm dd p {
@@ -131,6 +137,7 @@ div {
 	padding-top: 7px;
 	margin-bottom: 40px;
 	font-size : 17px;
+	cursor: pointer;
 }
 .qna_title a{
 	color : rgba(255, 255, 255, 0.8);
@@ -139,6 +146,7 @@ div {
 .qna_title a:hover{
 	color : white;
 }
+
 </style>
 <title>QNA</title>
 </head>
@@ -202,13 +210,6 @@ div {
 					}
 				%>
 
-
-
-
-
-
-
-
 				<section id="pageList">
 					<%
 						if (nowPage <= 1) {
@@ -236,9 +237,15 @@ div {
 						}
 					%>
 				</section>
+				<%
+					if (id.equals("admin")) {
+				%>
 				<div>
-					<button type="button" id="writeBtn">글쓰기</button>
+					<button type="button" id="writeBtn" onClick="javascript:location.href='qnaWriteForm.qna';">글쓰기</button>
 				</div>
+				<%
+					}
+				%>
 			</section>
 		</div>
 	</div>

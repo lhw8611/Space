@@ -27,8 +27,11 @@
 <title>장바구니 리스트</title>
 <style>
 #cart_form {
-	margin: 0 auto;
+	margin: 50px auto;
 	width: 1000px;
+}
+#main {
+	margin-bottom:50px;
 }
 
 h2 img {

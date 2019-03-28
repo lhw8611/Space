@@ -132,7 +132,7 @@ table {
     border: 0;
     cursor: pointer;
     padding: 10px 20px;
-        background-color: #d81818;
+        background-color: #DD5850;
     color: #fff;
       font-weight: 700;
 }

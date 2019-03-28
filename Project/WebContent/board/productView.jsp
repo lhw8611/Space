@@ -3,7 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="vo.ReviewBean"%>
 <%@ page import="java.util.*"%>
+<%@ page import="vo.PageInfo" %>
 <%
+	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+	int listCount = pageInfo.getListCount();
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
 	String id = null;
 	ArrayList<ReviewBean> reviewList = null;
 	float star = 0;
@@ -19,15 +26,9 @@
 		for (int i = 0; i < reviewList.size(); i++) {
 			star += reviewList.get(i).getRev_star();
 			totalStar = star / reviewList.size();
-			System.out.println("star:" + star);
-			totalStar = totalStar*1;
-			
 		}
 	}
-	
 	totalStar =Math.round(Math.round((totalStar*100)/100));
-	System.out.println(totalStar);
-	System.out.println((int)totalStar);
 	
 %>
 
@@ -39,7 +40,7 @@
 <style>
 #listForm {
 	width: 1000px;
-	margin: 0 auto;
+	margin: 50px auto;
 }
 
 #pro_img img {
@@ -89,7 +90,7 @@
 
 #orderbtn {
 	border: 0px;
-	background-color: red;
+	background-color: #DD5850;
 	color: white;
 	width: 100px;
 	height: 50px;
@@ -111,14 +112,14 @@
 	border: 1px solid red;
 	width: 120px;
 	height: 50px;
-	color: red;
+	color: #DD5850;
 	cursor: pointer;
 	margin-left: 4px;
 }
 #reviewDivision {
 	border-top:1px solid gray;
 	width:900px;
-	height: 260px;
+	min-height: 100px;
 	padding-top:5px; 
 }
 #reviewId {
@@ -157,7 +158,42 @@ margin-top:15px;
 #qty {
 	height: 30px;
 	border:0.5px solid #cccccc;
-	padding:5px;}
+	padding:5px;
+	}
+#writeReviewBtn {
+border-radius:3px;
+	border:0px;
+	width:120px;
+	height:50px;
+/* 	 background-image: linear-gradient(to right, #3886FF 0%, #01c9ca 100%);	  */
+	 background-color: #01c9ca; 
+	color:white; 
+	font-weight: 500;
+	cursor: pointer;
+}
+#page a {
+	text-decoration: none;
+	color: black; 
+}
+#page {
+	margin: 50px auto;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.pagebox {
+	display: inline-block;
+	color: #B2B2B2;
+}
+
+.pagebox>a {
+	display: inline-block;
+	text-align: center;
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	margin: 4px;
+}
+	
 </style>
 </head>
 <body>
@@ -270,6 +306,7 @@ margin-top:15px;
 			<br><hr style="width:1000px; margin:0 auto;">
 			
 			<!-- 리뷰 -->
+			
 			<div id="review">
 			<div id="reviewtitle" style="float:left; width:900px; margin:50px auto;">
 			 <div style="display:inline; float:left;"><h1>구매후기(<%if (reviewList != null){%><%= reviewList.size()%><% }else { %>0<%} %>)</h1></div>
@@ -279,7 +316,7 @@ margin-top:15px;
 						for (int i = 0; i < reviewList.size(); i++) {
 				%>
 				<div id="reviewDivision" style="clear:both;">
-					<div id="reviewers_left" style="float:left;">
+					<div id="reviewers_left" style="float:left; font-size: 0.5em; font-weight: lighter;">
 					  	 <div id="reviewId"> <%=reviewList.get(i).getMem_id()%></div>
 					  	<div id="reviewDate"><%=reviewList.get(i).getRev_date()%></div></div>
 				  	<div id="reviewers_right">
@@ -337,16 +374,17 @@ margin-top:15px;
 					  	
 					</div>
 					<div id="reviewDetail" style="clear:both;">
-					 <div id="reviewImg" style="float:left;"> 
+					  <div id="reviewImg" style="float:left;"> 
+					 <%if(reviewList.get(i).getRev_img()!=null){ %>
 						 <img src="reviewImg/<%=reviewList.get(i).getRev_img()%>">
+						 <%} %>
+						 
 					</div>
-					<div id="reviewContent" style="float:left; margin-left:30px;">
+					<div id="reviewContent" style="float:left; margin:20px; font-size: 1.2em; font-weight: 500;">
 						<%=reviewList.get(i).getContent()%>
 					</div>
 				</div>
 			</div>
-
-
 
 			
 			<%
@@ -358,6 +396,64 @@ margin-top:15px;
 				}
 			%>
 			</div>
+				<section id="page">
+					<%
+						if (nowPage <= 1) {
+					%>
+					<div class="pagebox"><</div>
+					<!-- &nbsp; -->
+					<%
+						} else {
+					%>
+					<a href="/Project/productView.bo?page=<%=nowPage - 1%>&pro_code=${probean.pro_code }#review">
+						<div class="pagebox"><</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
+
+					<%
+						for (int a = startPage; a <= endPage; a++) {
+							if (a == nowPage) {
+					%>
+					<div class="pagebox" style="color:black;">
+						<%=a%>
+					</div>
+					<%
+						} else {
+					%>
+					<a href="/Project/productView.bo?page=<%=a%>&pro_code=${probean.pro_code }#review">
+						<div class="pagebox">
+							<%=a%>
+						</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+					<%
+						if (nowPage >= maxPage) {
+					%>
+					<div class="pagebox">></div>
+					<%
+						} else {
+					%>
+
+					<a href="/Project/productView.bo?page=<%=nowPage + 1%>&pro_code=${probean.pro_code }#review">
+						<div class="pagebox">></div>
+					</a>
+
+					<%
+						}
+					%>
+
+
+				</section>
+			
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>

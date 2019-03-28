@@ -65,10 +65,10 @@ public class BoardDAO {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select count(*) from product";
+		String sql = "select count(*) from product where pro_show='o' ";
 		
 		if (sW!=null) {
-			sql += " where pro_name like '%" + sW + "%'";
+			sql += " and pro_name like '%" + sW + "%'";
 		}
 		System.out.println("SQL:"+sql);
 		// 무언가 검색했을때
@@ -330,7 +330,7 @@ public class BoardDAO {
 		System.out.println("sql문 :" + sql);
 		ArrayList<ProductBean> articleList = new ArrayList<ProductBean>();
 		ProductBean product = null;
-		int startrow = (page - 1) * 10;
+		int startrow = (page - 1) * 12;
 		try {
 			pstmt = con.prepareStatement(sql);
 			
@@ -364,22 +364,24 @@ public class BoardDAO {
 
 
 	//리뷰 출력
-	public ArrayList<ReviewBean> reviewList(int pro_code) {
+	public ArrayList<ReviewBean> reviewList(int page, int limit, int pro_code) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ReviewBean reviewBean = null;
 		ArrayList<ReviewBean> reviewList = null;
-		
-		
-
+		String sql = "select * from review where pro_code=? order by rev_num desc limit ?,?";
+		int startrow = (page - 1) * 5;
 		try {
-			pstmt = con.prepareStatement("select * from review where pro_code=? order by rev_num desc",ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			pstmt.setInt(1, pro_code);
+			pstmt.setInt(2, startrow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				reviewList = new ArrayList<ReviewBean>();
 				rs.beforeFirst();
+				
 				
 				while(rs.next()) {
 				reviewBean = new ReviewBean();
@@ -405,6 +407,32 @@ public class BoardDAO {
 		return reviewList;
 
 	}
+	//리뷰 개수 조회
+	public int selectListCountReview(int pro_code) {
+//		System.out.println("selectListCount dao 진입");
+	int listCount = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = "select count(*) from review where pro_code="+pro_code;
+	// 무언가 검색했을때
+	try {
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			listCount = rs.getInt(1);
+		}
+	} catch (Exception ex) {
+			System.out.println("getListCount 에러 :");
+			ex.printStackTrace();
+	} finally {
+		close(rs);
+		close(pstmt);
+	}
+//		System.out.println("listCount(글번호) : " + listCount);
+	return listCount;
+}
+	
 	// 상품 조회수
 	public int proUpdateReadCount(int pro_code) {
 		PreparedStatement pstmt = null;
