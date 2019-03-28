@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import vo.NoticeBean;
 import vo.ProductBean;
+import vo.QtyProViewBean;
 import vo.ReviewBean;
 
 public class BoardDAO {
@@ -363,16 +364,24 @@ public class BoardDAO {
 
 
 	//리뷰 출력
-	public ReviewBean reviewList() {
+	public ArrayList<ReviewBean> reviewList(int pro_code) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ReviewBean reviewBean = null;
+		ArrayList<ReviewBean> reviewList = null;
+		
+		
 
 		try {
-			pstmt = con.prepareStatement("select * from review");
+			pstmt = con.prepareStatement("select * from review where pro_code=?",ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt.setInt(1, pro_code);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
+				reviewList = new ArrayList<ReviewBean>();
+				rs.beforeFirst();
+				
+				while(rs.next()) {
 				reviewBean = new ReviewBean();
 				reviewBean.setContent(rs.getString("rev_content"));
 				reviewBean.setMem_id(rs.getString("mem_id"));
@@ -381,8 +390,11 @@ public class BoardDAO {
 				reviewBean.setRev_img(rs.getString("rev_img"));
 				reviewBean.setRev_num(rs.getInt("rev_num"));
 				reviewBean.setRev_star(rs.getInt("rev_star"));
+				reviewList.add(reviewBean);
 				
+				}
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("OrderDAO.productInfo error");
@@ -390,7 +402,7 @@ public class BoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-		return reviewBean;
+		return reviewList;
 
 	}
 	// 상품 조회수

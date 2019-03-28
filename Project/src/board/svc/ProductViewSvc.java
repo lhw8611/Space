@@ -3,6 +3,7 @@ package board.svc;
 import static db.jdbcUtil.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.BoardDAO;
 import vo.ProductBean;
@@ -28,14 +29,16 @@ public class ProductViewSvc {
 		close(con);
 		return productBean;
 	}
-	public ReviewBean reviewList(){
-		ReviewBean reviewBean = new ReviewBean();
+	public ArrayList<ReviewBean> reviewList(int pro_code){
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
+		ArrayList<ReviewBean> reviewList = new ArrayList<ReviewBean>();
 		
-		reviewBean = boardDAO.reviewList();
-		return reviewBean;
+		reviewList = boardDAO.reviewList(pro_code);
+		
+		close(con);
+		return reviewList;
 		
 	}
 }

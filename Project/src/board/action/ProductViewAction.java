@@ -1,10 +1,10 @@
 package board.action;
 
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import action.Action;
 import board.svc.ProductViewSvc;
@@ -17,11 +17,12 @@ public class ProductViewAction implements Action {
 		ProductViewSvc proViewSvc = new ProductViewSvc();
 		int pro_code = Integer.parseInt(request.getParameter("pro_code"));
 		ProductBean probean = proViewSvc.getProView(pro_code);
-		ReviewBean reviewBean = new ReviewBean();
 		
-		reviewBean = proViewSvc.reviewList();
+		
+		ArrayList<ReviewBean> reviewList= new ArrayList<ReviewBean>();
+		reviewList = proViewSvc.reviewList(pro_code);
 		request.setAttribute("probean", probean);
-		request.setAttribute("reviewBean", reviewBean);
+		request.setAttribute("reviewList", reviewList);
 		ActionForward forward = new ActionForward();
 
 		forward.setPath("/board/productView.jsp");
