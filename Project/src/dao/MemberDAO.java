@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import vo.MemberBean;
+import vo.PointBean;
 
 public class MemberDAO {
 	DataSource ds;
@@ -32,7 +33,7 @@ public class MemberDAO {
 		this.con = con;
 	}
 
-	public int JoinCheckDAO(MemberBean member) {
+	public int JoinCheckDAO(MemberBean member) { //회원가입
 		System.out.println("[4]MemberDAO.JoinCheckDAO");
 		PreparedStatement pstmt = null;
 		int updateCount = 0;
@@ -59,6 +60,62 @@ public class MemberDAO {
 		}
 
 		return updateCount;
+	}
+	
+	public int pointAddDAO(PointBean pointbean) { //포인트 추가
+		System.out.println("[4]MemberDAO.PointAddDAO");
+		PreparedStatement pstmt = null;
+		int updateCount = 0;
+		try {
+			if(pointbean.getPo_state().equals("join")) {
+				pointbean.setPo_total(1000);
+			}
+			pstmt = con.prepareStatement("insert into point(po_num, mem_id, po_state, po_point, po_date, po_total) value(null, ?, ?, ?, now(), ?)");
+			pstmt.setString(1, pointbean.getMem_id());
+			pstmt.setString(2, pointbean.getPo_state());
+			pstmt.setInt(3, pointbean.getPo_point());
+			pstmt.setInt(4, pointbean.getPo_total());
+			updateCount = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
+	}
+	
+	public ArrayList<PointBean> pointList(String id) { //포인트 조회
+		System.out.println("[4]MemberDAO.pointList");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<PointBean> arraypointbean = null;
+		PointBean pointbean = null;
+		try {
+			pstmt = con.prepareStatement("select * from point where mem_id=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				arraypointbean = new ArrayList<PointBean>();
+				rs.beforeFirst();
+				while(rs.next()) {
+					pointbean = new PointBean();
+					pointbean.setPo_num(rs.getInt("po_num"));
+					pointbean.setMem_id(rs.getString("mem_id"));
+					pointbean.setPo_state(rs.getString("po_state"));
+					pointbean.setPo_point(rs.getInt("po_point"));
+					pointbean.setPo_total(rs.getInt("po_total"));
+					pointbean.setPo_date(rs.getDate("po_date"));
+					arraypointbean.add(pointbean);
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return arraypointbean;
 	}
 
 	public boolean LoginCheckDAO(MemberBean member) {

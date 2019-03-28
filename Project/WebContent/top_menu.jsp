@@ -214,6 +214,7 @@ header a:link, header a:visited {
 						<ul>
 							<li><a href="/Project/orderList.od">주문/배송 조회</a></li>
 							<li><a href="<%=request.getContextPath()%>/logout.mem">로그아웃</a></li>
+						<%-- 	<li><a href="<%=request.getContextPath()%>/pointList.mem">포인트 조회</a></li> --%>
 							<%
 								if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
 							%>

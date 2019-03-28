@@ -37,7 +37,6 @@ public class OrderListAction implements Action {
 
 			ArrayList<OrOdProViewBean> orodproviewbean = orderlistsvc.OrderSimpleList(page, limit, id, keyWord); // 주문조회
 			int listCount = orderlistsvc.getListCount(id, keyWord);
-			System.out.println("listCount 가아아아앖 : " + listCount);
 			int maxPage = (int) ((double) listCount / limit + 0.95);
 			int startPage = ((int) ((double) page / limit + 0.9) - 1) * limit + 1;
 			int endPage = startPage + limit - 1;

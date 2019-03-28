@@ -19,6 +19,7 @@ import member.action.LogoutAction;
 import member.action.MemberDeleteAction;
 import member.action.MemberInfoAction;
 import member.action.MemberInfoModifyAction;
+import member.action.PointListAction;
 import vo.ActionForward;
 
 @WebServlet("*.mem")
@@ -107,11 +108,20 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/idCheckForm.mem")) { //아이디 체크
+		}else if (command.equals("/pointList.mem")) { // 포인트 조회
+			action = new PointListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/idCheckForm.mem")) { //아이디 체크
 			System.out.println("[1]idCheckForm.mem");
 			forward = new ActionForward();
 			forward.setPath("member/idCheck.jsp");
-		}else if(command.equals("/idCheckProAction.mem")) {
+		}else if(command.equals("/idCheckProAction.mem")) { //아이디 중복체크액션
 			System.out.println("[1]idCheckProAction.mem");
 			action = new IdCheckProAction();
 			try {

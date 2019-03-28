@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import member.svc.JoinFormSvc;
+import member.svc.PointAddSvc;
 import vo.ActionForward;
 import vo.MemberBean;
+import vo.PointBean;
 
 public class JoinFormAction implements Action {
 	@Override
@@ -16,6 +18,7 @@ public class JoinFormAction implements Action {
 		// TODO Auto-generated method stub
 		System.out.println("[2]JoinFormAction");
 		MemberBean member = new MemberBean();
+		String id = request.getParameter("id");
 		member.setMem_id(request.getParameter("id"));
 		member.setMem_pass(request.getParameter("pass"));
 		member.setMem_name(request.getParameter("name"));
@@ -30,6 +33,12 @@ public class JoinFormAction implements Action {
 		int updateCount = joinformsvc.JoinCheck(member);
 		
 		if(updateCount > 0) {
+			PointAddSvc pointaddsvc = new PointAddSvc();
+			PointBean pointbean = new PointBean();
+			pointbean.setMem_id(id);
+			pointbean.setPo_state("join");
+			pointbean.setPo_point(1000);
+			pointaddsvc.pointAddSvc(pointbean);
 			forward = new ActionForward();
 			forward.setPath("/Project/loginForm.mem");
 			forward.setRedirect(true);

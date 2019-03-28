@@ -36,11 +36,9 @@ public class OrderController extends HttpServlet {
 		String requestURL = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURL.substring(contextPath.length());
-//		위 3줄은 경로 구하는 코드
 //		System.out.println("requestURL : " + requestURL);
 //		System.out.println("contextPath : " + contextPath);
 		System.out.println("command : " + command);
-//		System.out.println("====================================");
 
 		ActionForward forward = null;
 		Action action = null;

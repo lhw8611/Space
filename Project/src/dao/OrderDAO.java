@@ -480,7 +480,7 @@ public class OrderDAO {
 		ArrayList<OrOdProViewBean> orodproviewbean = null;
 		OrOdProViewBean temp = null;
 		String sql = "select * from orodproview where mem_id=? order by or_date desc, or_num desc limit ?, ?";
-		String sql2 = "select * from orodproview where mem_id=? and pro_name=? order by or_date desc, or_num desc limit ?, ?";
+		String sql2 = "select * from orodproview where mem_id=? and pro_name like ? order by or_date desc, or_num desc limit ?, ?";
 
 		int startrow = (page - 1) * 5;
 		try {
@@ -494,7 +494,7 @@ public class OrderDAO {
 				System.out.println("키워드 널아님");
 				pstmt = con.prepareStatement(sql2, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 				pstmt.setString(1, id);
-				pstmt.setString(2, keyWord);
+				pstmt.setString(2,"%"+ keyWord + "%");
 				pstmt.setInt(3, startrow);
 				pstmt.setInt(4, limit);
 			}

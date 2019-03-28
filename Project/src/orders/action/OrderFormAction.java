@@ -34,7 +34,6 @@ public class OrderFormAction implements Action {
 			OrderFormSvc odFormSvc = new OrderFormSvc();
 			MemberBean membean = odFormSvc.purchaserInfo(id);// 구매자 정보
 			int MaxPoint = odFormSvc.MaxPoint(id);// 사용 가능한 포인트 계산
-			// if(구매수>재고수) 재고수 계산 후 재고수 >열이 있다고 친다.
 			
 			ArrayList<CartProViewBean> cartList = null;// 카트에서 넘어올 상품정보 배열저장
 			ArrayList<OrderListBean> orderlistbean = new ArrayList<OrderListBean>(); //주문할거 배열로 저장
@@ -65,14 +64,10 @@ public class OrderFormAction implements Action {
 				System.out.println("구매 type : one");
 				int pro_code = Integer.parseInt(request.getParameter("pro_code")); // 상품코드 받아옴
 				int qty = Integer.parseInt(request.getParameter("qty")); // 수량 받아옴
-				// 재고 계산 서비스 실행
-				// if(재고수-구매수 > 0) 실행
 				orderlistbean = odFormSvc.orderTypeOne(pro_code, qty); // 상품정보
 
-				// 재고수 else <script> location.href
 			}
 
-//			if (cartList == null) cartList = new ArrayList<CartProViewBean>();
 
 			int totalItem = 0; //총 상품금액
 			int totalMoney = 0; //총 결제금액

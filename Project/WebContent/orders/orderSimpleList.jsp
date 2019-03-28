@@ -124,6 +124,21 @@
 a{
 text-decoration : none;
 }
+#selSearchOption {
+    height: 30px;
+    border-radius: 3px;
+}
+#keyWord{
+	box-sizing : border-box;
+    height: 30px;
+    border: 1px solid #CCCCCC;
+}
+#SearchBtn{
+border: 1px solid #CCCCCC;
+    height: 32px;
+    width: 50px;
+    	box-sizing : border-box;
+}
 </style>
 </head>
 <body>
@@ -211,7 +226,7 @@ for(int i=0; i<orodproviewbean.size(); i++){
                         <option>상품이름</option>
                     </select>
                     <input type="text" id="keyWord" name="keyWord" />
-                    <input type='submit' value='검색'/>
+                    <input type='submit' id="SearchBtn" value='검색'/>
                     </form>
                 </div>
                 </li>
