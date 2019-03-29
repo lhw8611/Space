@@ -204,7 +204,7 @@ table tr:first-child td {
 					<%
 						} else {
 					%>
-					<a href="/Project/noticeList.bo?page=<%=a%>">
+					<a href="/Space/noticeList.bo?page=<%=a%>">
 						<div class="pagebox">
 							<%=a%>
 						</div>

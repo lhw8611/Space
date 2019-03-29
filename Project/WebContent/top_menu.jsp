@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link href="Project/css/top_menu.css" rel="stylesheet" type="text/css"> -->
+<!-- <link href="Space/css/top_menu.css" rel="stylesheet" type="text/css"> -->
 
 
 <script
@@ -54,6 +54,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family:'맑은 고딕','나눔고딕';
 }
 
 body {
@@ -80,7 +81,7 @@ header {
 
 #menu_center ul {
 	text-align: center;
-	font-family: 'Roboto', 'NanumSquare';
+	
 }
 
 #menu_center li {

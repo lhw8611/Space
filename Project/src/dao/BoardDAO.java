@@ -508,5 +508,33 @@ public class BoardDAO {
 		
 	}
 	
+	public int totalQty (int pro_code) {
+		System.out.println("남은 qty계산 DAO");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from qty where pro_code=? and qty_inout='in'";
+		int totalQty = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pro_code);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				totalQty += rs.getInt("qty_qty");
+			}
+			
+			
+			System.out.println(totalQty);
+			
+		} catch (SQLException ex) {
+			System.out.println("남은 qty계산 에러 : ");
+			ex.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return totalQty;
+		
+	}
+	
 
 }

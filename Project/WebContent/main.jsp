@@ -109,10 +109,10 @@
 			<div class="main_content">
 				<div class="h-title">
 					<h1>ARE YOU READY?</h1>
-					<p>do you wanna the best interior accessories?</p>
+					<p>Do you want the best interior accessories?</p>
 				</div>
 				<div class="h-title2">
-					<a href="/Space/productList.bo">GO TO SHOPPING</a>
+					<a href="/Space/productList.bo">GO SHOPPING</a>
 				</div>
 				<div style="clear: both"></div>
 			</div>

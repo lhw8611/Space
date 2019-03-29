@@ -38,27 +38,23 @@ table {
 }
 
 #productImage {
-	width: 400px;
-	height: 400px;
+	width: 370px;
+	height: 370px;
 	border: none;
-	border-radius: 3px;
-	s
+	border-radius: 10px 10px 0 0;
 }
 
 #productImage:hover {
-	opacity: 0.7;
+	opacity: 0.6;
 }
 
-container {
-	height: 100vh;
-}
 
 .pro_grid>li {
-	list-style: none;
+	list-style: none; 
 	display: inline-block;
-	margin: 10px;
+	margin: 40px;
 	border: 0.5px solid #D9D9D9;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 #listForm {
@@ -68,8 +64,12 @@ container {
 /* .pro_detail {
 	text-align: center;
 } */
+.pro_img {
+border-radius: 10px 10px 0 0;
+}
 .pro_img>a {
 	text-decoration: none;
+	border-radius: 10px 10px 0 0; 
 }
 
 #headerImage {
@@ -171,6 +171,17 @@ container {
 #title a:hover{
 	color : white;
 }
+#pro_name {
+	text-align: center;
+	font-size: 1em;
+}
+#pro_price {
+	text-align: center;
+	color:black;
+	font-weight:bold;
+	font-size: 0.9em;
+	margin:5px;
+}
 </style>
 </head>
 <body>
@@ -235,8 +246,8 @@ container {
 							</a>
 						</div>
 						<div class="pro_detail">
-							<%=articleList.get(i).getPro_name()%><br>
-							<%=articleList.get(i).getPro_price()%>원<br>
+							<div id="pro_name"><%=articleList.get(i).getPro_name()%></div>
+							<div id="pro_price"><%=articleList.get(i).getPro_price()%>원</div>
 						</div>
 					</li>
 					<%

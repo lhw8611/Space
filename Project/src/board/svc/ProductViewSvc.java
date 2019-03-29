@@ -5,8 +5,10 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import dao.AdminDAO;
 import dao.BoardDAO;
 import vo.ProductBean;
+import vo.QtyProViewBean;
 import vo.ReviewBean;
 
 public class ProductViewSvc {
@@ -52,6 +54,17 @@ public class ProductViewSvc {
 		return reviewList;
 
 	}
+	//제품 남은 수량
+	public ArrayList<QtyProViewBean> totalQty(int pro_code) {
+		Connection con = getConnection();
+		AdminDAO adminDAO = AdminDAO.getInstance();
+		adminDAO.setConnection(con);
+
+		ArrayList<QtyProViewBean> qtyList = new ArrayList<QtyProViewBean>();
+		qtyList = adminDAO.qtyProViewInOut(pro_code);
+		
+		close(con);
+		return qtyList;
 	
-	
+	}
 }

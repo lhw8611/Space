@@ -4,6 +4,7 @@
 <%@ page import="vo.ReviewBean"%>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.PageInfo" %>
+<%@ page import="vo.QtyProViewBean" %>
 <%
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 	int listCount = pageInfo.getListCount();
@@ -19,6 +20,7 @@
 		id = (String) session.getAttribute("id");
 
 	}
+	// 별점 계산
 	if ((ArrayList<ReviewBean>) request.getAttribute("reviewList") != null) {
 		reviewList = (ArrayList<ReviewBean>) request.getAttribute("reviewList");
 	}
@@ -30,13 +32,29 @@
 	}
 	totalStar =Math.round(Math.round((totalStar*100)/100));
 	
+	//총 수량 계산
+	ArrayList<QtyProViewBean> qtyList = (ArrayList<QtyProViewBean>)request.getAttribute("qtyList");	
+	
+ 	int qty_total=0;
+	if(qtyList != null) {
+		for (int i = 0; i < qtyList.size(); i++) {
+			if (qtyList.get(i).getQty_inout().equals("in")) {
+				qty_total += qtyList.get(i).getQty_qty();
+			} else {
+				qty_total -= qtyList.get(i).getQty_qty();
+			}
+		}
+	}
+	System.out.println(qty_total);
+	
+	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Space - ${probean.pro_name }</title>
 <style>
 #listForm {
 	width: 1000px;
@@ -150,7 +168,7 @@ width:1000px;
 #content {
 	margin:50px;
 }
-#pro_detail>img {
+#pro_star>img {
 width:20px;
 height: 20px; 
 margin-top:15px;
@@ -165,7 +183,6 @@ border-radius:3px;
 	border:0px;
 	width:120px;
 	height:50px;
-/* 	 background-image: linear-gradient(to right, #3886FF 0%, #01c9ca 100%);	  */
 	 background-color: #01c9ca; 
 	color:white; 
 	font-weight: 500;
@@ -208,7 +225,11 @@ border-radius:3px;
 					<div id="pro_img">
 						<img src="/Space/boardUpload/${probean.pro_image}" />
 					</div>
+					
+					
+					
 					<div id="pro_detail">
+					<div id="pro_star" style="margin-bottom: 50px;" > 
 						<%
 						switch ((int)totalStar) {
 						case (0):
@@ -268,17 +289,19 @@ border-radius:3px;
 
 							}
 						%>
+						</div>
+						
+						<div id="pro_name"><h2>${probean.pro_name}</h2><br><br></div>
+						
 						<form action="/Space/orderForm.od" id="orderForm" name="orderForm" method="post">
-							<h2 style="margin-top:100px;">${probean.pro_name}</h2>
 							<table id="detailTable">
 								<tr>
-									<td>상품명</td>
-									<td>${probean.pro_name}<input type="hidden" id="pro_code"
-										name="pro_code" value="${probean.pro_code}" /></td>
+									<td>가격</td>
+									<td style="font-weight: bold;">${probean.pro_price }원</td>
 								</tr>
 								<tr>
-									<td>가격</td>
-									<td>${probean.pro_price }</td>
+									<td>남은 수량</td>
+									<td id="totalQty"><%=qty_total %></td>
 								</tr>
 								<tr>
 									<td>수량</td>

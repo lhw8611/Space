@@ -12,6 +12,7 @@ import board.svc.ProductViewSvc;
 import vo.ActionForward;
 import vo.PageInfo;
 import vo.ProductBean;
+import vo.QtyProViewBean;
 import vo.ReviewBean;
 
 public class ProductViewAction implements Action {
@@ -46,9 +47,12 @@ public class ProductViewAction implements Action {
 		pageInfo.setPage(page);
 		pageInfo.setStartPage(startPage);
 		
-		request.setAttribute("pageInfo", pageInfo);
-		//페이지
 		
+		ArrayList<QtyProViewBean> qtyList = new ArrayList<QtyProViewBean>();
+		qtyList = productViewSvc.totalQty(pro_code);
+		
+		request.setAttribute("qtyList", qtyList);
+		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("probean", probean);
 		request.setAttribute("reviewList", reviewList);
 		ActionForward forward = new ActionForward();
