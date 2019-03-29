@@ -254,12 +254,12 @@ table {
 								<td class="tg-uys7"><%=totalItem%>원</td>
 							</tr>
 							<tr>
-<%-- 								 <td class="tg-uys7">사용 가능 포인트
+ 								 <td class="tg-uys7">사용 가능 포인트
 								</td> 
 								<td class="tg-uys7"> <%=MaxPoint%>점 중<br><input type="text" name="or_point"
 									id="or_point" value="0" size="5" class="point"/><br>
 									<button type="button" class="infobutton">사용하기</button></td>
-							</tr> --%>
+							</tr>
 							<tr>
 								<td class="tg-uys7"><input type="hidden" name="delivery"
 									id="delivery" value=<%=delivery%> readonly /> (+)배송비</td>

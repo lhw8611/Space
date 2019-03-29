@@ -13,6 +13,7 @@ import vo.ActionForward;
 import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderListBean;
+import vo.PointBean;
 
 public class OrderCompleteAction implements Action {
 
@@ -42,17 +43,22 @@ public class OrderCompleteAction implements Action {
 		}
 		ArrayList<OrderListBean> orderlistbean;
 		orderlistbean = ordercompletesvc.productInfo(pro_codes, pro_qty); //주문상품 정보
-		session.setAttribute("orderlistbean", orderlistbean); //주문조회할때도 씀 = session
-
+		session.setAttribute("orderlistbean", orderlistbean);
 		
 		int insertOrderCnt = ordercompletesvc.order_add(membean, orderbean); //orders 에 insert
-		System.out.println("order table insertCnt  : " + insertOrderCnt);
+//		System.out.println("order table insertCnt  : " + insertOrderCnt);
 		int insertQtyCnt = ordercompletesvc.order_qty(orderlistbean);//주문상품 재고수 빼기
-		System.out.println("qty table insertCnt  : " + insertQtyCnt);
+//		System.out.println("qty table insertCnt  : " + insertQtyCnt);
 		ordercompletesvc.order_detail_add(orderbean, orderlistbean);//order_detail에 insert
-		System.out.println("orderbean num : " + orderbean.getOr_num());
-		System.out.println("orderbean name : " + orderbean.getOr_getname());
-		System.out.println("orderbean tel : " + orderbean.getOr_gettel());
+		int savePoint = 0;
+		for(int i=0; i<orderlistbean.size(); i++) {
+			savePoint += orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty() / 100;
+		}
+		PointBean pointbean = new PointBean();
+		pointbean.setMem_id(id);
+		pointbean.setPo_state("buysave");
+		pointbean.setPo_point(savePoint);
+		
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("orders/orderComplete.jsp");

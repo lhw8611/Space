@@ -14,6 +14,7 @@ import vo.MemberBean;
 import vo.OrOdProViewBean;
 import vo.OrderBean;
 import vo.OrderListBean;
+import vo.PointBean;
 import vo.ProductBean;
 import vo.QtyBean;
 
@@ -634,7 +635,19 @@ public class OrderDAO {
 			close(rs);
 			close(pstmt);
 		}
-
 		return listCount;
+	}
+	public int save_point(PointBean pointbean) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int insertCount = 0;
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return ;
 	}
 }

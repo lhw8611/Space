@@ -12,6 +12,7 @@ import dao.OrderDAO;
 import vo.MemberBean;
 import vo.OrderBean;
 import vo.OrderListBean;
+import vo.PointBean;
 public class OrderCompleteSvc {
 	public int order_qty(ArrayList<OrderListBean> orderlistbean) {//주문할때 재고수 구하는 메소드
 		System.out.println("[3]OrderCompleteSvc.productqty");
@@ -80,6 +81,18 @@ public class OrderCompleteSvc {
 			rollback(con);
 		}
 		close(con);
-		
+	}
+	
+	public void save_point(PointBean pointbean) {
+		System.out.println("[3]OrderCompleteSvc.save_point");
+		Connection con = getConnection();
+		OrderDAO orderDAO = OrderDAO.getInstance();
+		orderDAO.setConnection(con);
+		OrderDAO.save_point(pointbean);
+		if() {
+			commit(con);
+		}else {
+			rollback(con);
+		}
 	}
 }
