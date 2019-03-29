@@ -291,7 +291,7 @@ border-radius:3px;
 						%>
 						</div>
 						
-						<div id="pro_name"><h2>${probean.pro_name}</h2><br><br></div>
+						<div id="pro_name"><h2 style="margin-top:60px; margin-bottom: 20px;">${probean.pro_name}</h2></div>
 						
 						<form action="/Space/orderForm.od" id="orderForm" name="orderForm" method="post">
 							<table id="detailTable">
