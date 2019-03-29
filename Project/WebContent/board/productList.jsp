@@ -133,6 +133,8 @@ container {
 	border: 1px solid #CCCCCC;
 	height: 32px;
 	width: 50px;
+	line-height:2px;
+	background-color: white;
 }
 
 #search table {
@@ -200,10 +202,10 @@ container {
 								등록일 순</option>
 							<option value="count" <%if (sort.equals("count")) {%> selected <%}%>>조회수가
 								많은 순</option>
-							<option value="sell" <%if (sort.equals("sell")) {%> selected <%}%>>판매수가
+							<%-- <option value="sell" <%if (sort.equals("sell")) {%> selected <%}%>>판매수가
 								많은 순</option>
 							<option value="review" <%if (sort.equals("review")) {%> selected <%}%>>구매
-								후기가 많은 순</option>
+								후기가 많은 순</option> --%>
 						</select>
 					</form>
 					<form action="proSearch.bo" id="search">

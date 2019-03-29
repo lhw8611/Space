@@ -225,7 +225,7 @@ label {
 					</table>
 					<br><br>
 					<div class="button_group">
-					<button type="reset" class="button1">초기화</button>
+					<button type="reset" class="button1">원래대로</button>
 					<button type="submit" class="button2">수정하기</button>
 					<button type="button" class="button1" onClick="javascript:userdelete('<%=session.getAttribute("id") %>');">회원탈퇴</button>
 					</div>

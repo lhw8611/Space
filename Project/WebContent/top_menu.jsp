@@ -67,7 +67,7 @@ header {
 	background-color: black;
 	opacity: 0.6;
 	width: 100%;
-	height: 10vh;
+	height: 7vh;
 	border-bottom: 2px;
 	border-bottom-style: solid;
 	z-index: 1;
@@ -107,7 +107,7 @@ header a:link, header a:visited {
 
 #menu_left {
 	width: 20%;
-	line-height: 10vh;
+	line-height: 7vh;
 	float: left;
 	padding-left: 50px;
 	box-sizing: border-box;
@@ -121,7 +121,7 @@ header a:link, header a:visited {
 
 #menu_center {
 	width: 60%;
-	line-height: 10vh;
+	line-height: 7vh;
 	float: left;
 	font-weight: lighter;
 	box-sizing: border-box;
@@ -129,7 +129,7 @@ header a:link, header a:visited {
 
 #menu_center a {
 	color: white;
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 #menu_center a:hover, #menu_right a:hover {
@@ -138,7 +138,7 @@ header a:link, header a:visited {
 
 #menu_right {
 	width: 20%;
-	line-height: 10vh;
+	line-height: 7vh;
 	float: right;
 	box-sizing: border-box;
 	padding-right: 30px;
@@ -178,7 +178,7 @@ header a:link, header a:visited {
 #menu_right li:hover ul li {
 	text-align: center;
 	display: block;
-	line-height: 10vh;
+	line-height: 7vh;
 }
 
 #menu_right>ul {
