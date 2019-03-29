@@ -99,7 +99,7 @@
 				
 				<input type="hidden" name="od_num<%=i%>" value="<%=OrderList.get(i).getOd_num() %>">
 				<input type="hidden" name="pro_code<%=i%>" value="<%=OrderList.get(i).getPro_code() %>">
-				<button onclick="orderList.action='/Project/changeState.ad?index=<%=i %>';orderList.submit();">변경</button>
+				<button onclick="orderList.action='/Space/changeState.ad?index=<%=i %>';orderList.submit();">변경</button>
 			</td>
 			
 		</tr>

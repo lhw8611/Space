@@ -26,7 +26,7 @@ public class MemberDeleteAction implements Action {
 					out.println("alert('탈퇴되었습니다.');");
 					if(session.getAttribute("id").equals("admin")) {
 					forward = new ActionForward();
-					forward.setPath("/Project/admingetlist.mem");
+					forward.setPath("/Space/admingetlist.mem");
 					forward.setRedirect(true);
 					}else {
 					out.println("location.href='logout.mem';");

@@ -130,7 +130,7 @@ form {
 		<article id="wrtieform">
 		<h2>공지사항 작성</h2>
 			<hr>
-			<form action="/Project/noticeWritePro.bo" method="post">
+			<form action="/Space/noticeWritePro.bo" method="post">
 				<div id="title">
 					<input type="text" name="title" id="title" autofocus="autofocus" size="20"
 						required="required" placeholder="제목" />

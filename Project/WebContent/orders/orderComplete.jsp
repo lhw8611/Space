@@ -83,8 +83,8 @@
 			<br>
 			<p>주문이 완료되었습니다. 감사합니다.</p>
 			<br><br>
-			<button type="button" class="btn1" onClick="location.href='/Project/orderList.od';">주문내역조회</button>
-			<button type="button" class="btn1 btn2" onClick="location.href='/Project/main.jsp';">홈으로</button>
+			<button type="button" class="btn1" onClick="location.href='/Space/orderList.od';">주문내역조회</button>
+			<button type="button" class="btn1 btn2" onClick="location.href='/Space/main.jsp';">홈으로</button>
 			</div>
 		</div>
 	</div>

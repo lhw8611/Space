@@ -191,7 +191,7 @@ table tr td {
 								<input type="checkbox" id="checklist" name="checklist"
 								value="<%=cartList.get(i).getPro_code()%>" checked /></td>
 							<td><img
-								src="/Project/boardUpload/<%=cartList.get(i).getPro_image()%>"
+								src="/Space/boardUpload/<%=cartList.get(i).getPro_image()%>"
 								id="cartImage" width="100px" /></td>
 							<td><input type="hidden" name="name" id="name"
 								value="<%=cartList.get(i).getPro_name()%>" /> <span><%=cartList.get(i).getPro_name()%></span>
@@ -205,12 +205,12 @@ table tr td {
 								<div class="cart_button_opt">
 									<div class="btn btn1" style="margin-bottom: 4px;">
 										<button type="button" value="수량변경"
-											onclick="cartForm.action='/Project/cartQtyChnage.od?index=<%=i%>';cartForm.submit();">
+											onclick="cartForm.action='/Space/cartQtyChnage.od?index=<%=i%>';cartForm.submit();">
 											수량변경</button>
 									</div>
 									<div class="btn btn2">
 										<button type="button" value="삭제하기"
-											onclick="cartForm.action='/Project/cartDelete.od?index=<%=i%>';cartForm.submit();">
+											onclick="cartForm.action='/Space/cartDelete.od?index=<%=i%>';cartForm.submit();">
 											삭제하기</button>
 									</div>
 								</div>
@@ -253,7 +253,7 @@ table tr td {
 					<input type="hidden" value="<%=cartList%>" />
 					<div id="cart_button">
 						<button type="button" class="select select1"
-							onclick="location.href='/Project/productList.bo';">계속
+							onclick="location.href='/Space/productList.bo';">계속
 							쇼핑하기</button>
 						<button type="button" class="select select2"
 							onclick="location.href='orderForm.od?type=sel', cartForm.submit();">구매하기</button>

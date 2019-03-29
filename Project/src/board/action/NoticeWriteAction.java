@@ -12,6 +12,7 @@ import vo.NoticeBean;
 
 public class NoticeWriteAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("notice Write");
 		ActionForward forward = null;
 		NoticeBean noticeBean = null;
 
@@ -21,6 +22,7 @@ public class NoticeWriteAction implements Action{
 		NoticeWriteSvc noticeWriteSvc = new NoticeWriteSvc();
 		boolean isWriteSuccess = noticeWriteSvc.noticeWriteSvc(noticeBean);
 
+		
 		if (!isWriteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -31,7 +33,7 @@ public class NoticeWriteAction implements Action{
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("/Project/noticeList.bo");
+			forward.setPath("/Space/noticeList.bo");
 			
 		}
 		return forward;

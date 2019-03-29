@@ -181,7 +181,7 @@ table {
 									type="hidden" id="pro_qty<%=i%>" name="pro_qty<%=i%>"
 									value="<%=orderlistbean.get(i).getOd_qty()%>" /> <%=orderlistbean.get(i).getPro_name()%></td>
 								<td class="tg-uys7"><img
-									src="/Project/boardUpload/<%=orderlistbean.get(i).getPro_image()%>"></td>
+									src="/Space/boardUpload/<%=orderlistbean.get(i).getPro_image()%>"></td>
 								<td class="tg-uys7"><%=orderlistbean.get(i).getPro_price()%></td>
 								<td class="tg-uys7"><%=orderlistbean.get(i).getOd_qty()%></td>
 								<td class="tg-uys7"><%=orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty()%></td>

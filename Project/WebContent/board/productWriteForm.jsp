@@ -151,7 +151,7 @@ margin:5px;
 		<article id="wrtieform">
 		<h2>상품 등록</h2>
 		<hr>
-			<form action="/Project/ProductWritePro.bo" name="proWriteForm" method="post"
+			<form action="/Space/ProductWritePro.bo" name="proWriteForm" method="post"
 				enctype="multipart/form-data">
 				<div id="title">
 					<input type="text" name="subject" id="subject" autofocus="autofocus"

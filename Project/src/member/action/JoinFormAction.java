@@ -40,7 +40,7 @@ public class JoinFormAction implements Action {
 			pointbean.setPo_point(1000);
 			pointaddsvc.pointAddSvc(pointbean);
 			forward = new ActionForward();
-			forward.setPath("/Project/loginForm.mem");
+			forward.setPath("/Space/loginForm.mem");
 			forward.setRedirect(true);
 		}else {
 			response.setContentType("text/html;charset=UTF-8");

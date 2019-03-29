@@ -27,7 +27,7 @@ body {
 	right: 0;
 	z-index: -1;
 	display: block;
-	background-image: url("/Project/images/join.jpg");
+	background-image: url("/Space/images/join.jpg");
 	width: 100%;
 	height: 100%;
 	-webkit-filter: blur(5px);

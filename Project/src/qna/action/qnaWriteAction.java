@@ -25,7 +25,7 @@ public class qnaWriteAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('관리자로 로그인하세요');");
-			out.println("location.href='/Project/main.jsp';");
+			out.println("location.href='/Space/main.jsp';");
 			out.println("</script>");
 		} else {
 			System.out.println("else문 진입체크");
@@ -36,7 +36,7 @@ public class qnaWriteAction implements Action {
 			qnawritesvc.UserCheck(voqna);
 
 			forward = new ActionForward();
-			forward.setPath("/Project/qnaList.qna");
+			forward.setPath("/Space/qnaList.qna");
 			forward.setRedirect(true);
 		}
 

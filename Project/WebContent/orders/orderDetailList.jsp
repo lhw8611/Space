@@ -264,12 +264,12 @@ a {
 					%>
 					<tr>
 						<td class="tg-s6z2"><a
-							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
+							href="/Space/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
 							target="_blank"><img
-								src="/Project/boardUpload/<%=orderdetaillist.get(i).getPro_image()%>"
+								src="/Space/boardUpload/<%=orderdetaillist.get(i).getPro_image()%>"
 								alt="<%=orderdetaillist.get(i).getPro_name()%>"></a></td>
 						<td class="tg-uys7"><a
-							href="/Project/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
+							href="/Space/productView.bo?<%=orderdetaillist.get(i).getPro_code()%>"
 							target="_blank"><%=orderdetaillist.get(i).getPro_name()%></a></td>
 						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price()%>원,
 							( <%=orderdetaillist.get(i).getOd_qty()%> )</td>
@@ -355,7 +355,7 @@ a {
 					</div>
 				</div>
 
-				<button type="button" class="back" onClick="javascript:location.href='/Project/orderList.od';">돌아가기</button>
+				<button type="button" class="back" onClick="javascript:location.href='/Space/orderList.od';">돌아가기</button>
 			</div>
 
 		</div>

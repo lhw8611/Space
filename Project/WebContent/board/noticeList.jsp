@@ -143,7 +143,7 @@ table tr:first-child td {
 	<div id="container">
 		<div id="main">
 			<div id="backImage">
-			<div id="title"><h2><a href="/Project/noticeList.bo">Notice</a></h2></div>
+			<div id="title"><h2><a href="/Space/noticeList.bo">Notice</a></h2></div>
 			</div>
 			<div id="board">
 			
@@ -163,7 +163,7 @@ table tr:first-child td {
 						<tr>
 							<td><%=articleList.get(i).getNo_num()%></td>
 							<td id="title-left"><a
-								href="/Project/noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>">
+								href="/Space/noticeDetail.bo?no_num=<%=articleList.get(i).getNo_num()%>&page=<%=nowPage%>">
 									<%=articleList.get(i).getNo_title()%></a></td>
 
 							<td><%=articleList.get(i).getNo_count()%></td>
@@ -186,7 +186,7 @@ table tr:first-child td {
 					<%
 						} else {
 					%>
-					<a href="/Project/noticeList.bo?page=<%=nowPage - 1%>">
+					<a href="/Space/noticeList.bo?page=<%=nowPage - 1%>">
 						<div class="pagebox"><</div>
 					</a>
 					<!-- &nbsp; -->
@@ -224,7 +224,7 @@ table tr:first-child td {
 						} else {
 					%>
 
-					<a href="/Project/noticeList.bo?page=<%=nowPage + 1%>">
+					<a href="/Space/noticeList.bo?page=<%=nowPage + 1%>">
 						<div class="pagebox">></div>
 					</a>
 
@@ -240,7 +240,7 @@ table tr:first-child td {
 				<%
 					if (id.equals("admin")) {
 				%>
-				<a href="/Project/noticeWriteForm.bo"><div id="writeBtn"
+				<a href="/Space/noticeWriteForm.bo"><div id="writeBtn"
 						style="float: right;">글쓰기</div> </a>
 
 

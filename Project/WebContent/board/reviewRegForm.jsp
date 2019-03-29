@@ -13,7 +13,7 @@ System.out.println(mem_id);
 <title>리뷰 작성 폼</title>
 </head>
 <body>
-	<form action="/Project/reviewReg.bo" enctype="multipart/form-data" method=post>
+	<form action="/Space/reviewReg.bo" enctype="multipart/form-data" method=post>
 	<input type="hidden" name="mem_id" value="<%=mem_id%>">
 	<input type="hidden" name="pro_code" value="<%=pro_code%>">
 	<select name="star">

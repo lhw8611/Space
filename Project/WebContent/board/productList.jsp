@@ -180,7 +180,7 @@ container {
 			<jsp:include page="../top_menu.jsp"></jsp:include>
 			<div id="headerImage">
 				<div id="title">
-					<h1><a href="/Project/productList.bo">Product</a></h1>
+					<h1><a href="/Space/productList.bo">Product</a></h1>
 				</div>
 			</div>
 
@@ -197,7 +197,7 @@ container {
 				<div id="sortDiv">
 					<form name="sortForm">
 						<select id="sort" name="sort"
-							onchange="sortForm.action='/Project/productList.bo';sortForm.submit();">
+							onchange="sortForm.action='/Space/productList.bo';sortForm.submit();">
 							<option value="new" <%if (sort.equals("new")) {%> selected <%}%>>최근
 								등록일 순</option>
 							<option value="count" <%if (sort.equals("count")) {%> selected <%}%>>조회수가
@@ -229,8 +229,8 @@ container {
 					<li>
 						<div class="pro_img">
 							<a
-								href="/Project/productView.bo?pro_code=<%=articleList.get(i).getPro_code()%>">
-								<img src="/Project/boardUpload/<%=articleList.get(i).getPro_image()%>"
+								href="/Space/productView.bo?pro_code=<%=articleList.get(i).getPro_code()%>">
+								<img src="/Space/boardUpload/<%=articleList.get(i).getPro_image()%>"
 								id="productImage" />
 							</a>
 						</div>
@@ -261,7 +261,7 @@ container {
 						} else {
 					%>
 					<!-- [<] 버튼 -->
-					<a href="/Project/productList.bo?page=<%=nowPage - 1%>">
+					<a href="/Space/productList.bo?page=<%=nowPage - 1%>">
 						<div class="pagebox"><</div>
 					</a>
 					<%
@@ -278,7 +278,7 @@ container {
 					<%
 						} else {
 					%>
-					<a href="/Project/productList.bo?page=<%=a%>">
+					<a href="/Space/productList.bo?page=<%=a%>">
 						<div class="pagebox">
 							<%=a%>
 						</div>
@@ -298,7 +298,7 @@ container {
 						} else {
 					%>
 
-					<a href="/Project/productList.bo?page=<%=nowPage + 1%>">
+					<a href="/Space/productList.bo?page=<%=nowPage + 1%>">
 						<div class="pagebox">></div>
 					</a>
 

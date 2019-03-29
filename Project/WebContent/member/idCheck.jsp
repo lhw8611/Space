@@ -89,7 +89,7 @@ function ok(v){
 %>
 <div class="content">
 	<h2>아이디 중복검사</h2>
-<form id="idcheck" action="/Project/idCheckProAction.mem" method="post" name=f  onsubmit="return validate()">
+<form id="idcheck" action="/Space/idCheckProAction.mem" method="post" name=f  onsubmit="return validate()">
 	<input type="text" name="id" id="id" value="<%=idcheck %>" class="inpt"><br>
 	<input type=submit class="inps" value="중복확인">
 </form>

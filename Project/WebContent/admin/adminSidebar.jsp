@@ -47,11 +47,11 @@
 <div id="sidebar">
 	<ul>
 		<li id="side_title">관리자 페이지</li>
-		<li><a href="/Project/salesManagement.ad">매출관리</a></li>
-		<li><a href="/Project/admingetlist.mem">회원관리</a></li>
-		<li><a href="/Project/productWriteForm.bo">상품등록</a></li>
-		<li><a href="/Project/qtyManagement.ad">재고관리</a></li>
-		<li><a href="/Project/admin_orderList.ad">전체 주문내역</a></li>
+		<li><a href="/Space/salesManagement.ad">매출관리</a></li>
+		<li><a href="/Space/admingetlist.mem">회원관리</a></li>
+		<li><a href="/Space/productWriteForm.bo">상품등록</a></li>
+		<li><a href="/Space/qtyManagement.ad">재고관리</a></li>
+		<li><a href="/Space/admin_orderList.ad">전체 주문내역</a></li>
 	</ul>
 	</div>
 </body>

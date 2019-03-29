@@ -25,7 +25,7 @@ body {
 	right: 0;
 	z-index: -1;
 	display: block;
-	background-image: url("/Project/images/join.jpg");
+	background-image: url("/Space/images/join.jpg");
 	width: 100%;
 	height: 100%;
 	-webkit-filter: blur(5px);
@@ -108,7 +108,7 @@ body {
 						placeholder="4~20자 영문자 또는 영문자+숫자" class="width100" readonly style="background : #a0a0a0	;"/>
 						
 					<button class="width100" name="idCheck" id="idCheck" type="button"
-						onclick="window.open('/Project/idCheckForm.mem?openInit=true','','width=500, height=300')">중복검사</button>
+						onclick="window.open('/Space/idCheckForm.mem?openInit=true','','width=500, height=300')">중복검사</button>
 						
 					<br>
 					<br> <label for="pass">비밀번호 </label> <input type="password"

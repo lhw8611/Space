@@ -194,8 +194,8 @@ header a:link, header a:visited {
 			</div>
 			<div id="menu_center">
 				<ul>
-					<li><a href="/Project/main.jsp#about">About us</a></li>
-					<li><a href="/Project/productList.bo">Shop</a>
+					<li><a href="/Space/main.jsp#about">About us</a></li>
+					<li><a href="/Space/productList.bo">Shop</a>
 					<li><a href="<%=request.getContextPath()%>/qnaList.qna">QNA</a></li>
 					<li><a href="<%=request.getContextPath()%>/noticeList.bo">Notice</a></li>
 
@@ -209,16 +209,16 @@ header a:link, header a:visited {
 						if (id != null) {
 					%>
 					<li><a
-						href="/Project/memberinfo.mem?id=<%=session.getAttribute("id")%>">My
+						href="/Space/memberinfo.mem?id=<%=session.getAttribute("id")%>">My
 							page</a>
 						<ul>
-							<li><a href="/Project/orderList.od">주문/배송 조회</a></li>
+							<li><a href="/Space/orderList.od">주문/배송 조회</a></li>
 							<li><a href="<%=request.getContextPath()%>/logout.mem">로그아웃</a></li>
 						<%-- 	<li><a href="<%=request.getContextPath()%>/pointList.mem">포인트 조회</a></li> --%>
 							<%
 								if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
 							%>
-							<li><a href="/Project/salesManagement.ad">관리자 페이지</a></li>
+							<li><a href="/Space/salesManagement.ad">관리자 페이지</a></li>
 							<%
 								}
 							%>

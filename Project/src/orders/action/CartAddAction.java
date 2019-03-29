@@ -31,12 +31,12 @@ public class CartAddAction implements Action {
 		// 비로그인 상태
 		if (id == null) {
 			cartAddSvc.addCart(request, probean, qty);
-			forward.setPath("/Project/orders/cartList.jsp");
+			forward.setPath("/Space/orders/cartList.jsp");
 			forward.setRedirect(true);
 		// 로그인 상태
 		} else {
 			cartAddSvc.addCart2(probean, id);
-			forward.setPath("/Project/cartListForm.od");
+			forward.setPath("/Space/cartListForm.od");
 			forward.setRedirect(true);
 		}
 

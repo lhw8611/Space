@@ -19,7 +19,7 @@ public class OrderDeleteAction implements Action{
 		}
 		OrderDeleteSvc orderdeletesvc = new OrderDeleteSvc();
 		orderdeletesvc.OrderDelete(or_num);
-		forward.setPath("/Project/orderList.od");
+		forward.setPath("/Space/orderList.od");
 		forward.setRedirect(true);
 		
 		return forward;

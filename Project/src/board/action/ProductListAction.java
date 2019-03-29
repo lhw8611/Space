@@ -13,6 +13,7 @@ import vo.ProductBean;
 
 public class ProductListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println(request.getContextPath());
 		System.out.println("ProductListAction 액션 진입");
 		String sort = "new";
 		String sW = "";

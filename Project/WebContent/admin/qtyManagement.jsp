@@ -66,7 +66,7 @@ margin:50px auto;
 		%>
 		<tr>
 			<td><%=qtyList.get(i).getPro_code() %></td>
-			<td><img src="/Project/boardUpload/<%=qtyList.get(i).getPro_image() %>" width="100px"/></td>
+			<td><img src="/Space/boardUpload/<%=qtyList.get(i).getPro_image() %>" width="100px"/></td>
 			<td><%=qtyList.get(i).getPro_name() %></td>
 			<td><%=qtyList.get(i).getPro_price() %></td>
 			<td><%=qtyList.get(i).getPro_category() %> </td>

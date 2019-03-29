@@ -27,7 +27,7 @@ public class qnaModifyAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('수정에 실패했습니다.');");
-			out.println("location.href='/Project/qnaList.qna';");
+			out.println("location.href='/Space/qnaList.qna';");
 			out.println("</script>");
 		}
 		

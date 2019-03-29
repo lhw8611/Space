@@ -28,7 +28,7 @@ public class OrderFormAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('로그인 후 이용해주세요.')");
-			out.println("location.href='/Project/member/loginForm.jsp'");
+			out.println("location.href='/Space/member/loginForm.jsp'");
 			out.println("</script>");
 		} else {// 로그인상태
 			OrderFormSvc odFormSvc = new OrderFormSvc();

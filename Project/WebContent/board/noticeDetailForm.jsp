@@ -111,7 +111,7 @@
 
 				<div class="title">
 					<h2>
-						<a href="/Project/noticeList.bo?page=<%=nowPage%>">Notice</a>
+						<a href="/Space/noticeList.bo?page=<%=nowPage%>">Notice</a>
 					</h2>
 				</div>
 			</div>
@@ -121,7 +121,7 @@
 				</div>
 				<div class="content2">
 				<p
-						class="date"><img src="/Project/icon/time.png"
+						class="date"><img src="/Space/icon/time.png"
 						style="height: 15px;"> <%=article.getNo_date()%></p>
 					<%=article.getNo_content()%>
 				</div>
@@ -129,7 +129,7 @@
 			<div class="position">
 				<div class="btn_position">
 				<input type="button" value="목록" class="inpb"
-					onclick='location.href="/Project/noticeList.bo?page=<%=nowPage%>"' />
+					onclick='location.href="/Space/noticeList.bo?page=<%=nowPage%>"' />
 					</div>
 					</div>
 		</div>

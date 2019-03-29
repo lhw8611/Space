@@ -155,7 +155,7 @@ member_list_title h2 {
 							<dd><%=list.get(i).getMem_id()%></dd>
 							<dd>
 								<a
-									href="/Project/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
+									href="/Space/memberinfo.mem?id=<%=list.get(i).getMem_id()%>">수정</a>
 								&nbsp;&nbsp;&nbsp; <a
 									href="javascript:userdelete('<%=list.get(i).getMem_id()%>');">삭제</a>
 							</dd>
@@ -177,7 +177,7 @@ member_list_title h2 {
 						if (nowPage <= 1) {
 							out.println("[이전]&nbsp;");
 						} else {
-							out.println("<a href='/Project/admingetlist.mem?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
+							out.println("<a href='/Space/admingetlist.mem?page=" + (nowPage - 1) + "'>[이전]</a>&nbsp");
 						}
 					%>
 					<%
@@ -185,7 +185,7 @@ member_list_title h2 {
 							if (a == nowPage) {
 								out.println("[" + a + "]");
 							} else {
-								out.println("<a href='/Project/admingetlist.mem?page=" + a + "'>[" + a + "]</a>&nbsp;");
+								out.println("<a href='/Space/admingetlist.mem?page=" + a + "'>[" + a + "]</a>&nbsp;");
 							}
 						}
 					%>
@@ -193,7 +193,7 @@ member_list_title h2 {
 						if (nowPage >= maxPage) {
 							out.println("[다음]");
 						} else {
-							out.println("<a href='/Project/admingetlist.mem?page=" + (nowPage + 1) + "'>[다음]</a>");
+							out.println("<a href='/Space/admingetlist.mem?page=" + (nowPage + 1) + "'>[다음]</a>");
 						}
 					%>
 				</section>
@@ -202,7 +202,7 @@ member_list_title h2 {
 				function userdelete(id) {
 					var userdel = confirm("회원탈퇴를 진행합니까?");
 					if (userdel == true) {
-						location.href = "/Project/memberdelete.mem?id=" + id;
+						location.href = "/Space/memberdelete.mem?id=" + id;
 					}
 				}
 			</script>

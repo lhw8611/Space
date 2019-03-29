@@ -147,7 +147,7 @@ border: 1px solid #CCCCCC;
 		<div id="main">
 			 <div id="headerImage">
 			 <div class="simple_title">
-            <h2><a href="/Project/orderList.od">주문/배송 조회</a></h2>
+            <h2><a href="/Space/orderList.od">주문/배송 조회</a></h2>
             </div>
             </div>
 			 <div id="mainWrapper">
@@ -181,7 +181,7 @@ for(int i=0; i<orodproviewbean.size(); i++){
 	}
 	totalMoney += delivery;
 	out.println("<li><ul><li>" + orodproviewbean.get(i).getOr_date()+"</li>"); //주문일시
-	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'><img src='/Project/boardUpload/" +orodproviewbean.get(i).getPro_image()  +"'class='simple_img'></a></li>"); //상품 이미지
+	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'><img src='/Space/boardUpload/" +orodproviewbean.get(i).getPro_image()  +"'class='simple_img'></a></li>"); //상품 이미지
 	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'>" + orodproviewbean.get(i).getPro_name() +"</a></li>"); //상품이름
 	out.println("<li>" + totalMoney +"</li>"); //결제금액
 	out.println("<li>" + state +"</li></ul></li>"); //주문상태
@@ -201,19 +201,19 @@ for(int i=0; i<orodproviewbean.size(); i++){
                 <%if(nowPage <= 1) {%>
                    		 ◀
                 <%}else{ %>
-                	<a href="/Project/orderList.od?page=<%=(nowPage-1)%>">◀</a>
+                	<a href="/Space/orderList.od?page=<%=(nowPage-1)%>">◀</a>
                 <%} %>
                 
                 <%for(int a=startPage; a <=endPage; a++){
                 	if(a == nowPage){%>
                        <b><%=a %></b>
                        <%}else{ %>
-                       <b><a href="/Project/orderList.od?page=<%=a %>"><%=a %></a></b>
+                       <b><a href="/Space/orderList.od?page=<%=a %>"><%=a %></a></b>
                        <%}} %>
                     <%if(nowPage >= maxPage){ %>
                  			   ▶
                     <%}else{ %>
-                    	<a href="/Project/orderList.od?page=<%=(nowPage+1) %>">▶</a>
+                    	<a href="/Space/orderList.od?page=<%=(nowPage+1) %>">▶</a>
                     	<%} %>
                 </div>
             </li>

@@ -206,69 +206,69 @@ border-radius:3px;
 				
 				<section id="content_main">
 					<div id="pro_img">
-						<img src="/Project/boardUpload/${probean.pro_image}" />
+						<img src="/Space/boardUpload/${probean.pro_image}" />
 					</div>
 					<div id="pro_detail">
 						<%
 						switch ((int)totalStar) {
 						case (0):
 						%>
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
 						<%
 						break;
 						case (1):
 						%>
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
 						<%
 							break;
 							case (2):
 						%>
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
 						<%
 							break;
 							case (3):
 						%>
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/grayStar.png">
-						<img src="/Project/images/grayStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/grayStar.png">
+						<img src="/Space/images/grayStar.png">
 						<%
 							break;
 							case (4):
 						%>
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/grayStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/grayStar.png">
 						<%
 							break;
 							case (5):
 						%>
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
-						<img src="/Project/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
+						<img src="/Space/images/yellowStar.png">
 						<%
 							break;
 
 							}
 						%>
-						<form action="/Project/orderForm.od" id="orderForm" name="orderForm" method="post">
+						<form action="/Space/orderForm.od" id="orderForm" name="orderForm" method="post">
 							<h2 style="margin-top:100px;">${probean.pro_name}</h2>
 							<table id="detailTable">
 								<tr>
@@ -288,8 +288,8 @@ border-radius:3px;
 							</div>
 						<div id="btn">
 						<input type="submit" id="orderbtn" value="주문하기" > 
-							<input type="button" id="listbtn" value="목록으로" onclick="location.href='/Project/productList.bo'">
-							<input type="button" id="cartbtn" value="장바구니에 담기" onclick="orderForm.action='/Project/cartAdd.od';orderForm.submit();">
+							<input type="button" id="listbtn" value="목록으로" onclick="location.href='/Space/productList.bo'">
+							<input type="button" id="cartbtn" value="장바구니에 담기" onclick="orderForm.action='/Space/cartAdd.od';orderForm.submit();">
 						</form>
 						
 						</div>
@@ -325,47 +325,47 @@ border-radius:3px;
 					  	switch(reviewList.get(i).getRev_star()) {
 					  	case(1):
 				  		%>
-				  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
 						<%
 				  		break;
 					  	case(2):
 				  		%>
-				  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
-				  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
+				  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
 						<%
 					  		break;
 					  	case(3):
 					  		%>
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
 							<%	
 					  		break;
 					  	case(4):
 					  		%>
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/grayStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/grayStar.png" style="width:20px; height:20px;">
 							<%	
 					  		break;
 					  	case(5):
 					  		%>
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
-					  		<img src="/Project/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
+					  		<img src="/Space/images/yellowStar.png" style="width:20px; height:20px;">
 							<%	
 					  		break;
 					  	}
@@ -405,7 +405,7 @@ border-radius:3px;
 					<%
 						} else {
 					%>
-					<a href="/Project/productView.bo?page=<%=nowPage - 1%>&pro_code=${probean.pro_code }#review">
+					<a href="/Space/productView.bo?page=<%=nowPage - 1%>&pro_code=${probean.pro_code }#review">
 						<div class="pagebox"><</div>
 					</a>
 					<!-- &nbsp; -->
@@ -423,7 +423,7 @@ border-radius:3px;
 					<%
 						} else {
 					%>
-					<a href="/Project/productView.bo?page=<%=a%>&pro_code=${probean.pro_code }#review">
+					<a href="/Space/productView.bo?page=<%=a%>&pro_code=${probean.pro_code }#review">
 						<div class="pagebox">
 							<%=a%>
 						</div>
@@ -443,7 +443,7 @@ border-radius:3px;
 						} else {
 					%>
 
-					<a href="/Project/productView.bo?page=<%=nowPage + 1%>&pro_code=${probean.pro_code }#review">
+					<a href="/Space/productView.bo?page=<%=nowPage + 1%>&pro_code=${probean.pro_code }#review">
 						<div class="pagebox">></div>
 					</a>
 

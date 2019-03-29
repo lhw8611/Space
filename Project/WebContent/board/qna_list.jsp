@@ -159,7 +159,7 @@ div {
 			<div id="headerImage">
 				<div class="qna_title">
 					<h2>
-						<a href="/Project/qnaList.qna">QNA</a>
+						<a href="/Space/qnaList.qna">QNA</a>
 						<%
 						if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
 					%>

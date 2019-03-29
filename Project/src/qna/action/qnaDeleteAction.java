@@ -26,7 +26,7 @@ public class qnaDeleteAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('삭제에 실패했습니다.');");
-			out.println("location.href='/Project/qnaList.qna';");
+			out.println("location.href='/Space/qnaList.qna';");
 			out.println("</script>");
 		}
 		
