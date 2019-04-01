@@ -22,13 +22,29 @@
 	}
 	System.out.println(qty_total);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>입/출고 관리</title>
+<style>
+#inoutTable {
+border-spacing: 0;
+margin:30px auto;
+}
+	#inoutTable td{
+		border-bottom:1px solid black;
+		padding:10px;
+	}
+	#inoutForm {
+		margin:30px auto;
+	}
+</style>
 </head>
 <body>
+<div id="main">
+<div id="inoutForm">
 	<form action="QtyInOutAction.ad">
 		<input type="hidden" name="pro_code" id="pro_code"
 			value="<%=pro_code%>" /> 입고<input type="radio" name="inout"
@@ -39,9 +55,9 @@
 			총 수량 : <%=qty_total %>
 
 	</form>
-	<table>
+	</div>
+	<table id="inoutTable">
 		<tr>
-			<td>번호</td>
 			<td>상품명</td>
 			<td>입/출고</td>
 			<td>수량</td>
@@ -56,7 +72,6 @@
 				for (int i = 0; i < qtyInOutList.size(); i++) {
 		%>
 		<tr>
-			<td><%=i + 1%></td>
 			<td><%=qtyInOutList.get(i).getPro_name()%></td>
 			<td><%=qtyInOutList.get(i).getQty_inout()%></td>
 			<td><%=qtyInOutList.get(i).getQty_qty()%></td>
@@ -71,6 +86,6 @@
 		%>
 
 	</table>
-
+</div>
 </body>
 </html>

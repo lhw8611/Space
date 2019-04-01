@@ -305,7 +305,7 @@ border-radius:3px;
 								</tr>
 								<tr>
 									<td>수량</td>
-									<td><input type="text" id="qty" name="qty" value="1"></td>
+									<td><input type="text" id="qty" name="qty" value="1"><input type="hidden" id="pro_code" name="pro_code" value="${probean.pro_code }"></td>
 									<td><input type="hidden" id="type" name="type" value="one" /></td>
 							</table>
 							</div>

@@ -81,7 +81,7 @@ public class AdminDAO {
 	public ArrayList<QtyProViewBean> qtyProViewInOut(int pro_code) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from qtyproview where pro_code=? AND qty_modifyCount>0";
+		String sql = "select * from qtyproview where pro_code=? AND qty_modifyCount>0 order by qty_num desc";
 		ArrayList<QtyProViewBean> qtyInOutList = null;
 		QtyProViewBean qtybean = null;
 
