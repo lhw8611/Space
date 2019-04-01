@@ -58,7 +58,7 @@ public class OrderCompleteAction implements Action {
 		pointbean.setMem_id(id);
 		pointbean.setPo_state("buysave");
 		pointbean.setPo_point(savePoint);
-		
+		ordercompletesvc.save_point(pointbean);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("orders/orderComplete.jsp");

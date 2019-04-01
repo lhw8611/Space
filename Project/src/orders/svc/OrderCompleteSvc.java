@@ -88,8 +88,8 @@ public class OrderCompleteSvc {
 		Connection con = getConnection();
 		OrderDAO orderDAO = OrderDAO.getInstance();
 		orderDAO.setConnection(con);
-		OrderDAO.save_point(pointbean);
-		if() {
+		int insertCount = orderDAO.save_point(pointbean);
+		if(insertCount > 0) {
 			commit(con);
 		}else {
 			rollback(con);

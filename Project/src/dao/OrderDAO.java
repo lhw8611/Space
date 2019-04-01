@@ -637,7 +637,7 @@ public class OrderDAO {
 		}
 		return listCount;
 	}
-	public int save_point(PointBean pointbean) {
+	public int save_point(PointBean pointbean) { //주문으로 포인트저장
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int insertCount = 0;
@@ -648,6 +648,6 @@ public class OrderDAO {
 		}finally {
 			
 		}
-		return ;
+		return insertCount;
 	}
 }

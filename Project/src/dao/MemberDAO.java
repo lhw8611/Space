@@ -69,6 +69,9 @@ public class MemberDAO {
 		try {
 			if(pointbean.getPo_state().equals("join")) {
 				pointbean.setPo_total(1000);
+			}else if(pointbean.getPo_state().equals("buysave")) {
+				pointbean.setPo_total(po_total);
+				select * from point where po_num=(select max(po_num) from (select * from point where mem_id='admin')a);
 			}
 			pstmt = con.prepareStatement("insert into point(po_num, mem_id, po_state, po_point, po_date, po_total) value(null, ?, ?, ?, now(), ?)");
 			pstmt.setString(1, pointbean.getMem_id());
