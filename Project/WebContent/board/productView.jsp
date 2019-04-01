@@ -291,7 +291,7 @@ border-radius:3px;
 						%>
 						</div>
 						
-						<div id="pro_name"><h2>${probean.pro_name}</h2><br><br></div>
+						<div id="pro_name"><h2 style="margin-top:60px; margin-bottom: 20px;">${probean.pro_name}</h2></div>
 						
 						<form action="/Space/orderForm.od" id="orderForm" name="orderForm" method="post">
 							<table id="detailTable">
@@ -305,7 +305,7 @@ border-radius:3px;
 								</tr>
 								<tr>
 									<td>수량</td>
-									<td><input type="text" id="qty" name="qty" value="1"></td>
+									<td><input type="text" id="qty" name="qty" value="1"><input type="hidden" id="pro_code" name="pro_code" value="${probean.pro_code }"></td>
 									<td><input type="hidden" id="type" name="type" value="one" /></td>
 							</table>
 							</div>
