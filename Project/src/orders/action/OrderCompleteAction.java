@@ -54,6 +54,7 @@ public class OrderCompleteAction implements Action {
 		for(int i=0; i<orderlistbean.size(); i++) {
 			savePoint += orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty() / 100;
 		}
+		//포인트 추가부분
 		PointBean pointbean = new PointBean();
 		pointbean.setMem_id(id);
 		pointbean.setPo_state("buysave");

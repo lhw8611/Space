@@ -65,13 +65,21 @@ public class MemberDAO {
 	public int pointAddDAO(PointBean pointbean) { //포인트 추가
 		System.out.println("[4]MemberDAO.PointAddDAO");
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		int updateCount = 0;
 		try {
 			if(pointbean.getPo_state().equals("join")) {
 				pointbean.setPo_total(1000);
 			}else if(pointbean.getPo_state().equals("buysave")) {
-				pointbean.setPo_total(po_total);
-				select * from point where po_num=(select max(po_num) from (select * from point where mem_id='admin')a);
+				pstmt = con.prepareStatement("select * from point where po_num=(select max(po_num) from (select * from point where mem_id='?')a)");
+				pstmt.setString(1, pointbean.getMem_id());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					pointbean.setPo_total(rs.getInt("po_toal")+pointbean.getPo_point());
+					System.out.println("포인트 토탈 테스트 : " + pointbean.getPo_total());
+				}
+				close(rs);
+				close(pstmt);
 			}
 			pstmt = con.prepareStatement("insert into point(po_num, mem_id, po_state, po_point, po_date, po_total) value(null, ?, ?, ?, now(), ?)");
 			pstmt.setString(1, pointbean.getMem_id());
@@ -82,6 +90,7 @@ public class MemberDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		return updateCount;

@@ -8,6 +8,7 @@ import static db.jdbcUtil.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import dao.MemberDAO;
 import dao.OrderDAO;
 import vo.MemberBean;
 import vo.OrderBean;
@@ -83,16 +84,18 @@ public class OrderCompleteSvc {
 		close(con);
 	}
 	
-	public void save_point(PointBean pointbean) {
+	public void save_point(PointBean pointbean) { //구매시 포인트 추가 서비스
 		System.out.println("[3]OrderCompleteSvc.save_point");
 		Connection con = getConnection();
-		OrderDAO orderDAO = OrderDAO.getInstance();
-		orderDAO.setConnection(con);
-		int insertCount = orderDAO.save_point(pointbean);
+		MemberDAO memberdao = MemberDAO.getInstance();
+		memberdao.setConnection(con);
+		int insertCount = memberdao.pointAddDAO(pointbean);
+		
 		if(insertCount > 0) {
 			commit(con);
 		}else {
 			rollback(con);
 		}
+		close(con);
 	}
 }

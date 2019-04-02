@@ -637,17 +637,12 @@ public class OrderDAO {
 		}
 		return listCount;
 	}
-	public int save_point(PointBean pointbean) { //주문으로 포인트저장
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int insertCount = 0;
-		try {
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			
-		}
-		return insertCount;
-	}
+	/*
+	 * public int save_point(PointBean pointbean) { //주문으로 포인트저장 PreparedStatement
+	 * pstmt = null; ResultSet rs = null; int insertCount = 0; try {
+	 * 
+	 * }catch(Exception e) { e.printStackTrace(); }finally {
+	 * 
+	 * } return insertCount; }
+	 */
 }
