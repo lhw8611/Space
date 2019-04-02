@@ -47,7 +47,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("[1]loginForm.mem 로그인 폼");
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("member/loginForm.jsp");
+			forward.setPath("member/loginForm2.jsp");
 		}
 
 		else if (command.equals("/memberinfo.mem")) { // 멤버 정보보기

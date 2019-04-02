@@ -38,7 +38,7 @@ margin:30px auto;
 		padding:10px;
 	}
 	#inoutForm {
-		margin:30px auto;
+		padding:20px 50px;
 	}
 </style>
 </head>
@@ -56,6 +56,7 @@ margin:30px auto;
 
 	</form>
 	</div>
+	<hr style="width:500px;"> 
 	<table id="inoutTable">
 		<tr>
 			<td>상품명</td>

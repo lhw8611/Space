@@ -24,7 +24,7 @@ public class MemberDeleteAction implements Action {
 					PrintWriter out = response.getWriter();
 					out.println("<script>");
 					out.println("alert('탈퇴되었습니다.');");
-					if(session.getAttribute("id").equals("admin")) {
+					if(session.getAttribute("grade").equals("s")) {
 					forward = new ActionForward();
 					forward.setPath("/Space/admingetlist.mem");
 					forward.setRedirect(true);

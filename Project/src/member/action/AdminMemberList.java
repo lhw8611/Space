@@ -23,8 +23,8 @@ public class AdminMemberList implements Action{
 		HttpSession session = request.getSession();
 		ActionForward forward = null;
 		System.out.println("[2]AdminMemberList");
-		if((session.getAttribute("id")==null) ||
-				(!((String)session.getAttribute("id")).equals("admin"))){
+		if((session.getAttribute("grade")==null) ||
+				(!((String)session.getAttribute("grade")).equals("s"))){
 			out.println("<script>");
 			out.println("alert('관리자로 로그인하세요');");
 			out.println("location.href='main.jsp';");

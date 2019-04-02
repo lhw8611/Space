@@ -69,12 +69,13 @@ table tr td {
 }
 
 .select1 {
-	background-color: #d81818;
-	color: #fff;
+border :1px solid #DD5850;
+background-color: white;
+color:#DD5850; 
 }
 
 .select2 {
-	background-color: #6e81a5;
+	background-color: #DD5850;
 	color: #fff;
 }
 
@@ -171,7 +172,7 @@ table tr td {
 
 					<table>
 						<tr>
-							<td>번호</td>
+							<td style="height: 50px;">번호</td>
 							<td><input type="checkbox" id="checkAll" name="checkAll"
 								onclick="javascript:CheckAll(this.form)" checked /></td>
 							<td>상품이미지</td>

@@ -8,6 +8,7 @@ import dao.BoardDAO;
 import vo.ReviewBean;
 
 public class ReviewRegSvc {
+	//해당 유저가 상품을 샀는지 확인
 	public boolean reviewCheck(String mem_id, int pro_code) {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();

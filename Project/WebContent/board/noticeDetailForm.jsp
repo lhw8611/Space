@@ -117,7 +117,7 @@
 			</div>
 			<div class="content">
 				<div class="name">
-					<span class="subject"><%=article.getNo_title()%></span> 
+					<span class="subject"><%=article.getNo_title()%></span>  
 				</div>
 				<div class="content2">
 				<p
@@ -128,8 +128,8 @@
 			</div>
 			<div class="position">
 				<div class="btn_position">
-				<input type="button" value="목록" class="inpb"
-					onclick='location.href="/Space/noticeList.bo?page=<%=nowPage%>"' />
+				<input type="button" value="목록으로" class="inpb"
+					onclick='location.href="/Space/noticeList.bo?page=<%=nowPage%>"' style="margin:30px 0;"/>
 					</div>
 					</div>
 		</div>

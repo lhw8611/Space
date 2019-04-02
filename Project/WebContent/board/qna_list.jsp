@@ -161,7 +161,7 @@ div {
 					<h2>
 						<a href="/Space/qnaList.qna">QNA</a>
 						<%
-						if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
+						if (session.getAttribute("id") != null && session.getAttribute("grade").equals("s")) {
 					%>
 						<%
 							}
@@ -182,7 +182,7 @@ div {
 							<dt>
 								<a href="#"><%=arryqna.get(i).getQna_question()%></a>
 								<%
-									if (session.getAttribute("id") != null && session.getAttribute("id").equals("admin")) {
+									if (session.getAttribute("id") != null && session.getAttribute("grade").equals("s")) {
 								%>
 								<a href="qnaDelete.qna?qna_num=<%=arryqna.get(i).getQna_num()%>"
 									style="font-size: 10px;">삭제하기</a> <a

@@ -192,7 +192,7 @@ a {
 .back {
 	margin-left : 50%;
 	margin-bottom : 30px;
-	background-color: #d81818;
+	background-color: #30A4A8;
 	color: #fff;
 	height: 41px;
 	font-size: 14px;
@@ -225,7 +225,7 @@ a {
 					<h2>주문상세정보</h2>
 				</div>
 			</div>
-			<div class="content">
+			<div class="content" style="margin-top:50px;">
 				<div class="detail_border">
 					<ul>
 						<li>

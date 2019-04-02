@@ -16,9 +16,6 @@ public class SalesManagementAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		
-		
-		
-		
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		SalesManagementSvc salesSvc = new SalesManagementSvc();
 		map = salesSvc.SalesManagement();

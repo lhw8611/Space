@@ -31,7 +31,7 @@ public class ProductViewAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		ProductViewSvc productViewSvc = new ProductViewSvc();
-		int listCount = productViewSvc.getListCount(pro_code); // 글 목록 개수
+		int listCount = productViewSvc.getListCount(pro_code); // 리뷰 개수 
 		reviewList = proViewSvc.reviewList(page,limit,pro_code);
 		int maxPage = (int) ((double) listCount / limit + 0.95); //글 목록 개수가 1.2면 2페이지가 필요하니깐 올림을 해주기위해 0.95를 더함
 		int startPage = (((int) ((double) page / limitPage + 0.9)) - 1) * limitPage + 1;
@@ -55,6 +55,7 @@ public class ProductViewAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("probean", probean);
 		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("reviewCount", listCount);
 		ActionForward forward = new ActionForward();
 
 		forward.setPath("/board/productView.jsp");

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,16 +59,16 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 
 			// 공지 글 작성 폼
 		} else if (command.equals("/noticeWriteForm.bo")) {
-			/* if(session.getAttribute("id").equals("admin")) { */
+			 if(session.getAttribute("grade").equals("s")) { 
 			forward = new ActionForward();
 			forward.setPath("/board/noticeWriteForm.jsp");
 			forward.setRedirect(false);
-			/*
-			 * } else { response.setContentType("text/html;charset=UTF-8"); PrintWriter out
-			 * = response.getWriter(); out.println("<script>");
-			 * out.println("alert('관리자만 이용가능합니다.');"); out.println("history.back()");
-			 * out.println("</script>"); out.close(); }
-			 */
+			
+			  } else { response.setContentType("text/html;charset=UTF-8"); PrintWriter out
+			  = response.getWriter(); out.println("<script>");
+			  out.println("alert('관리자만 이용가능합니다.');"); out.println("history.back()");
+			  out.println("</script>"); out.close(); }
+			 
 			// 공지 글 작성 액션
 		} else if (command.equals("/noticeWritePro.bo")) {
 			action = new NoticeWriteAction();
@@ -89,15 +90,15 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet {
 			// 상품등록 폼
 		} else if (command.equals("/productWriteForm.bo")) {
 //			System.out.println("상품등록 폼");
-			/* if(session.getAttribute("id").equals("admin")) { */
+			 if(session.getAttribute("grade").equals("s")) { 
 			forward = new ActionForward();
 			forward.setPath("/board/productWriteForm.jsp");
-			/*
-			 * } else { response.setContentType("text/html;charset=UTF-8"); PrintWriter out
-			 * = response.getWriter(); out.println("<script>");
-			 * out.println("alert('관리자만 이용가능합니다.');"); out.println("history.back()");
-			 * out.println("</script>"); out.close(); }
-			 */
+			
+			  } else { response.setContentType("text/html;charset=UTF-8"); 
+			  PrintWriter out = response.getWriter(); out.println("<script>");
+			  out.println("alert('관리자만 이용가능합니다.');"); out.println("history.back()");
+			  out.println("</script>"); out.close(); }
+			 
 
 			// 상품등록 액션
 		} else if (command.equals("/ProductWritePro.bo")) {

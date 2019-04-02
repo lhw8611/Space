@@ -20,7 +20,7 @@ public class qnaWriteAction implements Action {
 		ActionForward forward = null;
 		QnaBean voqna;
 		System.out.println(session.getAttribute("id"));
-		if (session.getAttribute("id") == null || (!(session.getAttribute("id").equals("admin"))) ) {
+		if (session.getAttribute("id") == null || (!(session.getAttribute("grade").equals("s"))) ) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

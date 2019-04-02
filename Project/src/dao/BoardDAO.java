@@ -338,8 +338,6 @@ public class BoardDAO {
 			pstmt.setInt(2, limit);
 
 			rs = pstmt.executeQuery();
-			
-			
 
 				while (rs.next()) {
 					product = new ProductBean();

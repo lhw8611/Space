@@ -45,9 +45,8 @@
 			}
 		}
 	}
-	System.out.println(qty_total);
-	
-	
+
+	int reviewCount = (int)request.getAttribute("reviewCount");
 %>
 
 <!DOCTYPE html>
@@ -301,7 +300,14 @@ border-radius:3px;
 								</tr>
 								<tr>
 									<td>남은 수량</td>
+									<%if(qty_total!=0) { %>
 									<td id="totalQty"><%=qty_total %></td>
+									<%}else {
+									%>
+									<td style="font-weight: bold; color:red;">품절</td>
+									<% 
+									}
+									%>
 								</tr>
 								<tr>
 									<td>수량</td>
@@ -332,15 +338,15 @@ border-radius:3px;
 			
 			<div id="review">
 			<div id="reviewtitle" style="float:left; width:900px; margin:50px auto;">
-			 <div style="display:inline; float:left;"><h1>구매후기(<%if (reviewList != null){%><%= reviewList.size()%><% }else { %>0<%} %>)</h1></div>
-			 <div style="float:right;"><input type="button" id="writeReviewBtn" value="구매후기 작성" onclick="location.href='reviewRegForm.bo?pro_code=${probean.pro_code}'"> </div>
+			 <div style="display:inline; float:left;"><h1>구매후기(<%if (reviewList != null){%><%= reviewCount%><% }else { %>0<%} %>)</h1></div>
+			 <div style="float:right;"><input type="button" id="writeReviewBtn" value="구매후기 작성" onclick="window.open('reviewRegForm.bo?pro_code=${probean.pro_code}', '', 'width=600, height=400')"> </div>
 			</div>
 				 <% 	if (reviewList != null) {
 						for (int i = 0; i < reviewList.size(); i++) {
 				%>
 				<div id="reviewDivision" style="clear:both;">
 					<div id="reviewers_left" style="float:left; font-size: 0.5em; font-weight: lighter;">
-					  	 <div id="reviewId"> <%=reviewList.get(i).getMem_id()%></div>
+					  	 <div id="reviewId"> <%=reviewList.get(i).getMem_id()%></div> 
 					  	<div id="reviewDate"><%=reviewList.get(i).getRev_date()%></div></div>
 				  	<div id="reviewers_right">
 					  	<div id="reviewStar" style="float:right; margin:10px;">

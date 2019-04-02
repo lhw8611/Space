@@ -37,7 +37,9 @@ public class ReviewRegAction implements Action{
 		reviewBean.setPro_code(pro_code);
 		reviewReg.ReviewReg(reviewBean);
 		
-		forward.setPath("productView.bo?pro_code="+pro_code);
+//		forward.setPath("productView.bo?pro_code="+pro_code);
+		forward.setPath("/Space/board/reviewRegCompleted.jsp");
+		
 		forward.setRedirect(true);
 		return forward;
 	}

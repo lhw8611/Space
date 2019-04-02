@@ -121,6 +121,7 @@ public class MemberDAO {
 		return arraypointbean;
 	}
 
+	//로그인 폼
 	public boolean LoginCheckDAO(MemberBean member) {
 		System.out.println("[4]MemberDAO.LoginCheckDAO");
 		PreparedStatement pstmt = null;
@@ -135,6 +136,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				if (member.getMem_pass().equals(rs.getString("mem_pass"))) {
 					RightUser = true;
+					member.setMem_grade(rs.getString("mem_grade"));
 				} else {
 					RightUser = false;
 				}
