@@ -1,3 +1,4 @@
+<%@page import="com.mysql.fabric.xmlrpc.base.Array"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="vo.MemberBean"%>
@@ -9,8 +10,25 @@
 	int totalMoney = (int) (request.getAttribute("totalMoney"));
 	int delivery = (int) (request.getAttribute("delivery"));
 	ArrayList<OrderListBean> orderlistbean = (ArrayList<OrderListBean>) request.getAttribute("orderlistbean");
+	
+	
+	
+	String type = request.getParameter("type");
 	request.setAttribute("membean", membean);
-
+	System.out.println("타입 값 찍어보기 : " + type);
+	int pro_code = 0;
+	int qty = 0;
+	ArrayList<Integer> pro_codes = new ArrayList<Integer>();
+	ArrayList<Integer> arrayqty = new ArrayList<Integer>();
+	if (type.equals("one")) {
+		pro_code = (int) request.getAttribute("pro_code");
+		qty = (int) request.getAttribute("qty");
+	} else if (type.equals("sel")) {
+		for(int i=0; i<orderlistbean.size(); i++){
+			pro_codes.add(orderlistbean.get(i).getPro_code());
+			arrayqty.add(orderlistbean.get(i).getOd_qty());
+		}
+	}
 	int MaxPoint = (Integer) (request.getAttribute("maxpoint"));
 %>
 <!DOCTYPE html>
@@ -67,8 +85,9 @@
 }
 
 table {
-	    font-family: '나눔고딕',NanumGothic,'맑은고딕',MalgunGothic,'돋움',Dotum,Helvetica,sans-serif;
-	    font-size : 12px;
+	font-family: '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum,
+		Helvetica, sans-serif;
+	font-size: 12px;
 	box-sizing: border-box;
 	width: 100%;
 	border: 0;
@@ -80,69 +99,82 @@ table {
 
 .tg2 td {
 	height: 40px;
-	padding : 5px 15px;
+	padding: 5px 15px;
 }
-.infobutton{
-	width: 120px;
-    height: 40px;
-    border: 1px solid #d0d0d0;
-    color: #fff;
-    background-color: #6e81a5;
-    cursor: pointer;
-    font-size : 14px;
-        font-weight: 700;
-}
-.width100 {
-    width: 90%;
-    height: 40px;
-    background: none;
-    border: 1px solid silver;
-    font-family: tahoma,geneva,sans-serif;
-    font-size: 14px;
-    margin-bottom: 5px;padding-left: 15px;
-}
-.zip{
-    width: 30%;
-    height: 40px;
-    background: none;
-    border: 1px solid silver;
-    line-height: 25px;
-    font-family: tahoma,geneva,sans-serif;
-    font-size: 14px;margin-bottom: 5px; padding-left: 15px;
 
+.infobutton {
+	width: 120px;
+	height: 40px;
+	border: 1px solid #d0d0d0;
+	color: #fff;
+	background-color: #6e81a5;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 700;
 }
-.point{
-  width: 30%;
-    height: 40px;
-    background: none;
-    border: 1px solid silver;
-    line-height: 25px;
-    font-family: tahoma,geneva,sans-serif;
-    font-size: 14px;margin-bottom: 5px; padding-left: 40px;
+
+.width100 {
+	width: 90%;
+	height: 40px;
+	background: none;
+	border: 1px solid silver;
+	font-family: tahoma, geneva, sans-serif;
+	font-size: 14px;
+	margin-bottom: 5px;
+	padding-left: 15px;
 }
+
+.zip {
+	width: 30%;
+	height: 40px;
+	background: none;
+	border: 1px solid silver;
+	line-height: 25px;
+	font-family: tahoma, geneva, sans-serif;
+	font-size: 14px;
+	margin-bottom: 5px;
+	padding-left: 15px;
+}
+
+.point {
+	width: 30%;
+	height: 40px;
+	background: none;
+	border: 1px solid silver;
+	line-height: 25px;
+	font-family: tahoma, geneva, sans-serif;
+	font-size: 14px;
+	margin-bottom: 5px;
+	padding-left: 40px;
+}
+
 .tg td:first-child {
 	background: #EAEAEA;
 }
-.getter_info .tg .tg-uys7{
+
+.getter_info .tg .tg-uys7 {
 	text-align: left;
 }
-.ordercomplete{
-    height: 41px;
-    font-size: 14px;
-    border: 0;
-    cursor: pointer;
-    padding: 10px 20px;
-        background-color: #DD5850;
-    color: #fff;
-      font-weight: 700;
+
+.ordercomplete {
+	height: 41px;
+	font-size: 14px;
+	border: 0;
+	cursor: pointer;
+	padding: 10px 20px;
+	background-color: #DD5850;
+	color: #fff;
+	font-weight: 700;
 }
-.complete_position{
-	width : 98px;
-	margin : 0 auto;
+
+.complete_position {
+	width: 98px;
+	margin: 0 auto;
 }
-.tg img{
-	height : 85px;
-	width : auto;
+
+.tg img {
+	height: 85px;
+	width: auto;
 }
 </style>
 </head>
@@ -152,7 +184,7 @@ table {
 		<div id="main">
 			<div class="content">
 				<form action="<%=request.getContextPath()%>/orderaction.od"
-					method="post">
+					method="post" name="orderform">
 					<input type="hidden" id="size" name="size"
 						value="<%=orderlistbean.size()%>" />
 					<div class="orderForm_title">
@@ -169,7 +201,9 @@ table {
 								<th class="tg-uys7">적립금</th>
 							</tr>
 							<%
+								int savepoint = 0;
 								for (int i = 0; i < orderlistbean.size(); i++) {
+									savepoint += orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty() / 100;
 							%>
 
 
@@ -211,36 +245,38 @@ table {
 						</table>
 					</div>
 					<br> <br>
-					<h2>
-						수취자 정보
-					</h2>
+					<h2>수취자 정보</h2>
 					<div class="getter_info">
 						<table class="tg tg2">
 							<tr>
 								<td class="tg-uys7">이름</td>
 								<td class="tg-uys7"><input type="text" id="get_name"
-									name="get_name" value="<%=membean.getMem_name()%>"  class="width100"/></td>
+									name="get_name" value="<%=membean.getMem_name()%>"
+									class="width100" /></td>
 							</tr>
 							<tr>
 								<td class="tg-uys7">배송주소</td>
 								<td class="tg-uys7"><input type="text" name="get_zip"
 									id="get_zip" placeholder="우편번호" size="7"
-									value="<%=membean.getMem_zip()%>" readonly class="zip"/>
-									<button type="button" onclick="sample4_execDaumPostcode()" class="infobutton">우편번호
-										찾기</button> <br> <input type="text" name="get_add" id="get_add"
-									placeholder="도로명주소" value="<%=membean.getMem_add()%>" readonly class="width100"/>
+									value="<%=membean.getMem_zip()%>" readonly class="zip" />
+									<button type="button" onclick="sample4_execDaumPostcode()"
+										class="infobutton">우편번호 찾기</button> <br> <input
+									type="text" name="get_add" id="get_add" placeholder="도로명주소"
+									value="<%=membean.getMem_add()%>" readonly class="width100" />
 									<br> <input type="text" name="get_add2" id="get_add2"
-									placeholder="상세주소" value="<%=membean.getMem_add2()%>" class="width100"/></td>
+									placeholder="상세주소" value="<%=membean.getMem_add2()%>"
+									class="width100" /></td>
 							</tr>
 							<tr>
 								<td class="tg-uys7">전화번호</td>
 								<td class="tg-uys7"><input type="text" id="get_tel"
-									name="get_tel" value="<%=membean.getMem_tel()%>" class="width100"/></td>
+									name="get_tel" value="<%=membean.getMem_tel()%>"
+									class="width100" /></td>
 							</tr>
 							<tr>
 								<td class="tg-uys7">요청사항</td>
 								<td class="tg-uys7"><input type="text" id="or_request"
-									name="or_request" value="빠른 배송 부탁드립니다." class="width100"/></td>
+									name="or_request" value="빠른 배송 부탁드립니다." class="width100" /></td>
 							</tr>
 						</table>
 					</div>
@@ -254,33 +290,55 @@ table {
 								<td class="tg-uys7"><%=totalItem%>원</td>
 							</tr>
 							<tr>
- 								 <td class="tg-uys7">사용 가능 포인트
-								</td> 
-								<td class="tg-uys7"> <%=MaxPoint%>점 중<br><input type="text" name="or_point"
-									id="or_point" value="0" size="5" class="point"/><br>
-									<button type="button" class="infobutton">사용하기</button></td>
+								<td class="tg-uys7">사용 가능 포인트</td>
+								<td class="tg-uys7"><%=MaxPoint%>점 중<br> <input
+									type="text" name="or_point" id="or_point"
+									value="<%if (request.getAttribute("usepoint") != null) {%><%=request.getAttribute("usepoint")%><%} else {%>0<%}%>"
+									size="5" class="point" /><br>
+									<%if(type.equals("one")) {%>
+									<button type="button" class="infobutton"
+										onClick="post_to_url('orderForm.od?type=<%=type%>', {'qty' : '<%=qty%>', 'pro_code' : '<%=pro_code%>', 'usepoint' : document.getElementById( 'or_point' ).value }) ">
+										사용하기</button></td>
+									<%}else if(type.equals("sel")){ %>
+									<button type="button" class="infobutton"
+										onClick="post_to_url('orderForm.od?type=<%=type%>', {'orderlistbean' : '<%=orderlistbean%>', 'usepoint' : document.getElementById( 'or_point' ).value }) ">
+										사용하기</button></td>
+									<%} %>
+							</tr>
+							<tr>
+								<td class="tg-uys7">총 적립금</td>
+								<td class="tg-uys7"><%=savepoint%>원</td>
 							</tr>
 							<tr>
 								<td class="tg-uys7"><input type="hidden" name="delivery"
 									id="delivery" value=<%=delivery%> readonly /> (+)배송비</td>
 								<td class="tg-uys7"><%=delivery%>원</td>
 							</tr>
+							<%if (request.getParameter("usepoint") != null && Integer.parseInt(request.getParameter("usepoint")) > 0) { %>
+							<tr>
+								<td class="tg-uys7"><input type="hidden"
+									name="total_result" id="total_result" value="<%=request.getAttribute("usepoint")%>"
+									readonly /> 사용 포인트</td>
+								<td class="tg-uys7"><%=request.getAttribute("usepoint")%>원</td>
+							</tr>
+							<%} %>
 							<tr>
 								<td class="tg-uys7"><input type="hidden"
 									name="total_result" id="total_result" value="<%=totalMoney%>"
-									readonly /> 총 결제금액 </td>
+									readonly /> 총 결제금액</td>
 								<td class="tg-uys7"><%=totalMoney%>원</td>
 							</tr>
 							<tr>
-								<td colspan="2" class="tg-uys7"><label><input type="radio" id="gyulze" name="gyulze"
-							value="cash" checked />무통장입금 </label>&nbsp;&nbsp;<label><input type="radio"
-							id="gyulze" name="gyulze" value="card" />신용카드</label></td>
+								<td colspan="2" class="tg-uys7"><label><input
+										type="radio" id="gyulze" name="gyulze" value="cash" checked />무통장입금
+								</label>&nbsp;&nbsp;<label><input type="radio" id="gyulze"
+										name="gyulze" value="card" />신용카드</label></td>
 							</tr>
 						</table>
 					</div>
 					<br>
 					<div class="complete_position">
-					<input type="submit" value="결제하기" class="ordercomplete">
+						<input type="submit" value="결제하기" class="ordercomplete">
 					</div>
 					<br>
 				</form>
@@ -322,6 +380,30 @@ table {
 					document.getElementById("get_add2").focus();
 				}
 			}).open();
+		}
+	</script>
+	<script>
+		/*
+		 * path : 전송 URL
+		 * params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력
+		 * method : 전송 방식(생략가능)
+		 */
+		function post_to_url(path, params, method) {
+			method = method || "post"; // Set method to post by default, if not specified.
+			// The rest of this code assumes you are not using a library.
+			// It can be made less wordy if you use one.
+			var form = document.createElement("form");
+			form.setAttribute("method", method);
+			form.setAttribute("action", path);
+			for ( var key in params) {
+				var hiddenField = document.createElement("input");
+				hiddenField.setAttribute("type", "hidden");
+				hiddenField.setAttribute("name", key);
+				hiddenField.setAttribute("value", params[key]);
+				form.appendChild(hiddenField);
+			}
+			document.body.appendChild(form);
+			form.submit();
 		}
 	</script>
 </body>

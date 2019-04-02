@@ -20,11 +20,6 @@ public class OrderFormSvc {
 		
 		MemberBean membean = orderDAO.purchaserInfo(id);
 		
-		if(membean!=null) {
-			commit(con);
-		}else {
-			rollback(con);
-		}
 		close(con);
 		return membean;
 	}

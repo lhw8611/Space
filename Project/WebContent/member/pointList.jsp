@@ -17,7 +17,7 @@
 			포인트 내역 : <%=arraypointbean.get(i).getPo_point() %>
 			총 포인트 : <%=arraypointbean.get(i).getPo_total() %>
 			날짜 : <%=arraypointbean.get(i).getPo_date() %>
-
+			<br>
 <%} %>
 </body>
 </html>

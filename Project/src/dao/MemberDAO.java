@@ -71,11 +71,11 @@ public class MemberDAO {
 			if(pointbean.getPo_state().equals("join")) {
 				pointbean.setPo_total(1000);
 			}else if(pointbean.getPo_state().equals("buysave")) {
-				pstmt = con.prepareStatement("select * from point where po_num=(select max(po_num) from (select * from point where mem_id='?')a)");
+				pstmt = con.prepareStatement("select * from point where po_num=(select max(po_num) from (select * from point where mem_id=?)a)");
 				pstmt.setString(1, pointbean.getMem_id());
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					pointbean.setPo_total(rs.getInt("po_toal")+pointbean.getPo_point());
+					pointbean.setPo_total(rs.getInt("po_total")+pointbean.getPo_point());
 					System.out.println("포인트 토탈 테스트 : " + pointbean.getPo_total());
 				}
 				close(rs);
