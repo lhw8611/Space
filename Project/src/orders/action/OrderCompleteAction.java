@@ -33,6 +33,10 @@ public class OrderCompleteAction implements Action {
 		orderbean.setOr_gettel(request.getParameter("get_tel"));
 		orderbean.setOr_request(request.getParameter("or_request"));
 		orderbean.setOr_pay(request.getParameter("gyulze"));
+		//(받는사람 정보)포인트 사용한만큼 깎아준거
+		int usepoint = Integer.parseInt(request.getParameter("usepoint"));
+		orderbean.setOr_point(usepoint);
+		System.out.println("사용한 포인트 계산해보기 : " + usepoint);
 		//주문상품 정보
 		int size = Integer.parseInt(request.getParameter("size"));
 		ArrayList<Integer> pro_codes = new ArrayList<Integer>();
@@ -54,9 +58,14 @@ public class OrderCompleteAction implements Action {
 		for(int i=0; i<orderlistbean.size(); i++) {
 			savePoint += orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty() / 100;
 		}
-		//포인트 추가부분
+		//포인트 추가, 사용내역부분
 		PointBean pointbean = new PointBean();
 		pointbean.setMem_id(id);
+		if(usepoint > 0) {
+			pointbean.setPo_state("usepoint");
+			pointbean.setPo_point(usepoint);
+			ordercompletesvc.use_point(pointbean);
+		}
 		pointbean.setPo_state("buysave");
 		pointbean.setPo_point(savePoint);
 		ordercompletesvc.save_point(pointbean);

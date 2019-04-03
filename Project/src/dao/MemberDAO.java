@@ -96,6 +96,33 @@ public class MemberDAO {
 		return updateCount;
 	}
 	
+	public int use_point(PointBean pointbean) {
+		System.out.println("[4]MemberDAO.use_point");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int updateCount = 0;
+		try {
+			pstmt = con.prepareStatement("select * from point where po_num=(select max(po_num) from (select * from point where mem_id=?)a)");
+			pstmt.setString(1, pointbean.getMem_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()) pointbean.setPo_total(rs.getInt("po_total")-pointbean.getPo_point()); //사용한 포인트만큼 총 포인트에서 마이너스
+			close(rs);
+			close(pstmt);
+			pstmt = con.prepareStatement("insert into point values(null, ?, ?, ?, ?, now())");
+			pstmt.setString(1, pointbean.getMem_id());
+			pstmt.setString(2, pointbean.getPo_state());
+			pstmt.setInt(3, pointbean.getPo_point());
+			pstmt.setInt(4, pointbean.getPo_total());
+			updateCount = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return updateCount;
+	}
+	
 	public ArrayList<PointBean> pointList(String id) { //포인트 조회
 		System.out.println("[4]MemberDAO.pointList");
 		PreparedStatement pstmt = null;

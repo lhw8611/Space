@@ -23,6 +23,7 @@ public class OrderFormAction implements Action {
 		ActionForward forward = new ActionForward();
 		String id = (String) session.getAttribute("id"); // 세션에서 ID 받아옴
 
+	
 		if (id == null) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -43,10 +44,32 @@ public class OrderFormAction implements Action {
 
 			if (request.getParameter("type").equals("sel")) { // 장바구니 주문하기
 				System.out.println("구매타입 : sel");
+			
 				cartList = (ArrayList<CartProViewBean>) session.getAttribute("cartList");
-				if(request.getParameterValues("checklist")!= null) {
+				if(request.getAttribute("point")==null) {
+					System.out.println("리퀘스트 어트리뷰트 포인트 널임 ");
+				}else if(request.getAttribute("point")!=null) {
+					System.out.println("리퀘스트 어트리뷰트 포인트 널아님님님님 ");
+				}
+				
+				if(session.getAttribute("point")==null) {
+					System.out.println("세션 리퀘스트 어트리뷰트 포인트 널임");
+				}else if(session.getAttribute("point")!=null) {
+					System.out.println("세션 리퀘스트 어트리뷰트 포인트 널아님님님");
+				}
+				
+				if(request.getParameterValues("checklist")!= null || session.getAttribute("point")!=null) {
+					System.out.println("체크리스트 이프문 진입하는지 체크~");
+					boolean point = false;
+					if(session.getAttribute("point")!=null) {
+						System.out.println("포인트 사용하기해서 참으로됨");
+						point = (boolean)session.getAttribute("point");
+					}
+				if(point == false) {
+					if(cartList==null) System.out.println("카트리스트 널");
 				pro_codes = Arrays.asList(request.getParameterValues("checklist")).stream().mapToInt(Integer::parseInt)
 						.toArray();// string배열을 int배열로 변환
+				if(pro_codes==null) System.out.println("프로코드 널");
 				for (int i = 0; i < cartList.size(); i++) {
 					for (int j = 0; j < pro_codes.length; j++) {
 						if (cartList.get(i).getPro_code() == (pro_codes[j])) {
@@ -61,13 +84,20 @@ public class OrderFormAction implements Action {
 					}
 				}
 				
-				}else {
-					orderlistbean = (ArrayList<OrderListBean>) request.getAttribute("orderlistbean");
-					if(orderlistbean != null) {
-						System.out.println("널아님");
-					}else {
-						System.out.println("널임... 오늘은 이까지~~~~~~");
-					}
+				}else if(point){
+					System.out.println("엘즈이프 포인뜨 트루");
+					orderlistbean = (ArrayList<OrderListBean>) session.getAttribute("orderlistbean");
+				}
+				
+				if(orderlistbean==null) System.out.println("orderlistbean 널이야 씨발 ...");
+				for(int i=0; i<orderlistbean.size(); i++) {
+					System.out.println("오더리스트빈 다 찍어본다 : " + orderlistbean.get(i).getPro_name());
+				}
+				//이미 있는 orderlistbean값을 그대로 사용
+				System.out.println("오더리스트빈 사이즈 측정 : " + orderlistbean.size());
+				//orderform에서 오면 true되는 point
+				request.setAttribute("orderlistbean", orderlistbean);
+				request.setAttribute("point", point);
 				}
 
 			} else if (request.getParameter("type").equals("one")) { // 뷰에서 바로구매
@@ -105,6 +135,9 @@ public class OrderFormAction implements Action {
 
 			request.setAttribute("type", request.getParameter("type")); // 포인트 사용을 위한 attribute
 
+//			//카트리스트에서 session준거 삭제
+//			session.removeAttribute("point");
+//			session.removeAttribute("orderlistbean");
 			// 값 계산
 			request.setAttribute("totalItem", totalItem);
 			request.setAttribute("totalMoney", totalMoney);
@@ -112,6 +145,7 @@ public class OrderFormAction implements Action {
 			request.setAttribute("orderlistbean", orderlistbean); // 주문상품 정보
 			request.setAttribute("membean", membean); // 구매자정보
 			request.setAttribute("maxpoint", MaxPoint); // 사용 가능한 최대포인트
+			System.out.println("맨밑에있는 오더리스트 빈 사이즈 측정 : " + orderlistbean.size());
 			forward.setPath("/orders/orderForm.jsp");
 		}
 		return forward;

@@ -425,7 +425,7 @@ public class OrderDAO {
 		try {
 			pstmt = con.prepareStatement("insert into orders values(null, now(), 'wait', ?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, orderbean.getOr_pay());
-			pstmt.setInt(2, 12345);
+			pstmt.setInt(2, orderbean.getOr_point());
 			pstmt.setString(3, orderbean.getOr_request());
 			pstmt.setString(4, orderbean.getOr_getname());
 			pstmt.setString(5, orderbean.getOr_getadd());

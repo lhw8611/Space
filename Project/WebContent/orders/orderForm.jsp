@@ -6,9 +6,7 @@
 <%@ page import="java.util.*"%>
 <%
 	MemberBean membean = (MemberBean) request.getAttribute("membean");
-	int totalItem = (int) (request.getAttribute("totalItem"));
-	int totalMoney = (int) (request.getAttribute("totalMoney"));
-	int delivery = (int) (request.getAttribute("delivery"));
+
 	ArrayList<OrderListBean> orderlistbean = (ArrayList<OrderListBean>) request.getAttribute("orderlistbean");
 	
 	
@@ -29,7 +27,26 @@
 			arrayqty.add(orderlistbean.get(i).getOd_qty());
 		}
 	}
+	
+	
+	if(request.getAttribute("point")!=null){
+		
+		boolean point = (boolean)request.getAttribute("point");
+		point = true;
+		session.setAttribute("point", point);
+		ArrayList<OrderListBean> orderlistbeana = (ArrayList<OrderListBean>)request.getAttribute("orderlistbean");
+		for(int i=0; i<orderlistbean.size(); i++) {
+			System.out.println("[orderform]오더리스트빈 다 찍어본다 : " + orderlistbeana.get(i).getPro_name());
+		}
+		
+		session.setAttribute("orderlistbean", request.getAttribute("orderlistbean"));
+	}
+	
 	int MaxPoint = (Integer) (request.getAttribute("maxpoint"));
+	
+	int totalItem = (int) (request.getAttribute("totalItem"));
+	int totalMoney = (int) (request.getAttribute("totalMoney"));
+	int delivery = (int) (request.getAttribute("delivery"));
 %>
 <!DOCTYPE html>
 <html>
@@ -295,18 +312,13 @@ table {
 									type="text" name="or_point" id="or_point"
 									value="<%if (request.getAttribute("usepoint") != null) {%><%=request.getAttribute("usepoint")%><%} else {%>0<%}%>"
 									size="5" class="point" /><br>
-									<%if(type.equals("one")) {%>
 									<button type="button" class="infobutton"
 										onClick="post_to_url('orderForm.od?type=<%=type%>', {'qty' : '<%=qty%>', 'pro_code' : '<%=pro_code%>', 'usepoint' : document.getElementById( 'or_point' ).value }) ">
 										사용하기</button></td>
-									<%}else if(type.equals("sel")){ %>
-									<button type="button" class="infobutton"
-										onClick="post_to_url('orderForm.od?type=<%=type%>', {'orderlistbean' : '<%=orderlistbean%>', 'usepoint' : document.getElementById( 'or_point' ).value }) ">
-										사용하기</button></td>
-									<%} %>
+								
 							</tr>
 							<tr>
-								<td class="tg-uys7">총 적립금</td>
+								<td class="tg-uys7">적립 포인트</td>
 								<td class="tg-uys7"><%=savepoint%>원</td>
 							</tr>
 							<tr>
@@ -317,7 +329,7 @@ table {
 							<%if (request.getParameter("usepoint") != null && Integer.parseInt(request.getParameter("usepoint")) > 0) { %>
 							<tr>
 								<td class="tg-uys7"><input type="hidden"
-									name="total_result" id="total_result" value="<%=request.getAttribute("usepoint")%>"
+									name="usepoint" id="usepoint" value="<%=request.getAttribute("usepoint")%>"
 									readonly /> 사용 포인트</td>
 								<td class="tg-uys7"><%=request.getAttribute("usepoint")%>원</td>
 							</tr>

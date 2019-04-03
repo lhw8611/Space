@@ -98,4 +98,18 @@ public class OrderCompleteSvc {
 		}
 		close(con);
 	}
+	public void use_point(PointBean pointbean) { //포인트 사용시 사용내역 기록
+		System.out.println("[3]OrderCompleteSvc.use_point");
+		Connection con = getConnection();
+		MemberDAO memberdao = MemberDAO.getInstance();
+		memberdao.setConnection(con);
+		int insertCount = memberdao.use_point(pointbean);
+		if(insertCount > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		
+	}
 }

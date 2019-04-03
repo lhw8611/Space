@@ -28,6 +28,10 @@ public class CartListFormAction implements Action {
 			request.setAttribute("cartList", cartList);
 		}
 
+		//카트리스트에서 session준거 삭제
+		session.removeAttribute("point");
+		session.removeAttribute("orderlistbean");
+		
 		forward.setPath("orders/cartList.jsp");
 		return forward;
 	}
