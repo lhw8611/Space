@@ -48,10 +48,10 @@ margin:30px auto;
 	<form action="QtyInOutAction.ad">
 		<input type="hidden" name="pro_code" id="pro_code"
 			value="<%=pro_code%>" /> 입고<input type="radio" name="inout"
-			id="inout" value="in" checked="checked" /> 출고<input type="radio"
+			id="inout" value="in" checked="checked"/> 출고<input type="radio"
 			name="inout" id="inout" value="out" /><br> 수량 : <input
-			type="text" name="qty" id="qty" /><br> 비고 : <input type="text"
-			name="note" id="note" /> <input type="submit" value="등록" />
+			type="text" name="qty" id="qty" required="required" placeholder="숫자만 입력하세요."/><br> 비고 : <input type="text"
+			name="note" id="note" required="required"/> <input type="submit" value="등록" />
 			총 수량 : <%=qty_total %>
 
 	</form>

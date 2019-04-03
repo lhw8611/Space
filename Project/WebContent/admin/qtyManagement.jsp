@@ -22,13 +22,13 @@
 	padding:10px 10px;
 }
 #container {
-width:1000px;
+width:1100px;
 	margin:0 auto;
 }
 #main {
 	border:.5px solid #CCCCCC;
 	background-color: white;
-	width:1000px;
+	width:1100px;
 	margin:100px auto;
 }
 #qtyTable {

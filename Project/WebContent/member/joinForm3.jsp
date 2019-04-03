@@ -3,222 +3,136 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-size : 15px;
+}
+
+h1{
+	font-size : 26px;
+}
+
+body {
+	color: white;
+}
+
+.position:before {
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	display: block;
+	background-image: url("/Space/images/join.jpg");
+	width: 100%;
+	height: 100%;
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+}
+
+.position {
+	z-index: 0;
+	width: 550px;
+	margin: auto;
+}
+
+.content {
+	background-color: rgba(0,0,0,0.7);
+	padding: 10px 45px 45px 45px;
+	margin-left: auto;
+	margin-right: auto;
+	border: white solid pink;
+	max-width: 360px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
+		rgba(0, 0, 0, 0.3);
+}
+
+.center {
+	text-align: center
+}
+
+.width100 {
+	width: 100%;
+}
+
+.content button, input[type=button], input[type=submit] {
+	font-family: "Nanum Gothic";
+	font-weight: 700;
+	text-transform: uppercase;
+	outline: 0;
+	background: #abc;
+	border: 0;
+	padding: 13px;
+	color: #FFFFFF;
+	font-size: 16px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.content input {
+	border: 0;
+	margin-bottom: 15px;
+	padding: 15px;
+	box-sizing: border-box;
+}
+#mem_zip::placeholder, #mem_add::placeholder, #id::placeholder{
+	color: rgba(255, 255, 255, 0.6);
+   opacity:  1;
+}
+
+</style>
+
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
-
-@import
-	url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300)
-	;
-
-.body {
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
-	width: auto;
-	height: auto;
-	background-image: url(/Space/images/loginBack.jpg);
-	background-size: cover;
-	-webkit-filter: blur(5px);
-	z-index: 0;
-}
-
-.grad {
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
-	width: auto;
-	height: auto;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0
-		, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65)));
-	/* Chrome,Safari4+ */
-	z-index: 1;
-	opacity: 0.7;
-}
-
-.header {
-	position: absolute;
-	top: calc(50% - 35px);
-	left: calc(50% - 255px);
-	z-index: 2;
-}
-
-.header div {
-	float: left;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 35px;
-	font-weight: 200;
-}
-
-.header div span {
-	color: #5379fa !important;
-}
-
-.login {
-	position: absolute;
-	top: calc(50% - 230px); 
-	left: calc(50% - 60px);
-	height: 150px;
-	width: 450px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.login input[type=text] {
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255, 255, 255, 0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-	margin-top:10px;
-}
-
-.login input[type=password] {
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255, 255, 255, 0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-	margin-top:10px;
-}
-
-.login input[type=button] {
-	width: 260px;
-	height: 35px;
-	background: #fff;
-	border: 1px solid #fff;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #595B5C;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-	margin-top: 10px;
-}
-
-.login input[type=submit] {
-	width: 260px;
-	height: 35px;
-	background: #fff;
-	border: 1px solid #fff;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #595B5C;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-	margin-top: 10px;
-}
-
-.login input[type=button]:hover {
-	opacity: 0.8;
-}
-
-.login input[type=button]:active {
-	opacity: 0.6;
-}
-
-.login input[type=submit]:hover {
-	opacity: 0.8;
-}
-
-.login input[type=submit]:active {
-	opacity: 0.6;
-}
-
-.login input[type=text]:focus {
-	outline: none;
-	border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-.login input[type=password]:focus {
-	outline: none;
-	border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-.login input[type=button]:focus {
-	outline: none;
-}
-
-.login input[type=submit]:focus {
-	outline: none;
-}
-
-::-webkit-input-placeholder {
-	color: rgba(255, 255, 255, 0.6);
-}
-
-::-moz-input-placeholder {
-	color: rgba(255, 255, 255, 0.6);
-}
-</style>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 </head>
 <body>
-	<div id="container">
-		<div id="main">
-			<div class="body"></div>
-			<div class="grad"></div>
-			<div class="header	">
-				<a href="/Space/main.jsp"><div
-						style="color: #595B5C; font-size: 3.5em; font-weight: 200;">Space</div></a>
-			</div>
-			<br>
-			<div class="login">
-					<form action="<%=request.getContextPath() %>/joinProcess.mem"
+		<div class="position">
+			<div class="content">
+				<form action="<%=request.getContextPath() %>/joinProcess.mem"
 					name="join" method="post" onsubmit="return validate()">
+					<div class="center">
+						<a href="<%=request.getContextPath()%>/main.jsp"> <img
+							src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
+						<hr color="#abc">
+						<h1>Sing up</h1>
+					</div>
 
-					<label for="id"></label> <input type="text" name="id" id="id"
-						placeholder="아이디" class="width100" readonly style="background : #a0a0a0	;"/>
+					<label for="id">아이디</label> <input type="text" name="id" id="id"
+						placeholder="4~20자 영문자 또는 영문자+숫자" class="width100" readonly style="background : #a0a0a0	;"/>
 						
-					<input class="width100" name="idCheck" id="idCheck" type="button" value="중복검사" onclick="window.open('/Space/idCheckForm.mem?openInit=true','','width=500, height=300')">
+					<button class="width100" name="idCheck" id="idCheck" type="button"
+						onclick="window.open('/Space/idCheckForm.mem?openInit=true','','width=500, height=300')">중복검사</button>
 						
 					<br>
-					<br> <label for="pass"> </label> <input type="password"
-						name="pass" id="pass" placeholder="비밀번호" class="width100" /> <label
-						for="pass2"> </label> <input type="password" name="pass2"
-						id="pass2" class="width100" placeholder="비밀번호 확인"/> <label for="name"></label> <input
-						type="text" name="name" id="name" class="width100" placeholder="이름"/>
+					<br> <label for="pass">비밀번호 </label> <input type="password"
+						name="pass" id="pass" placeholder="4~20자리 영문자 또는 영문자+숫자" class="width100" /> <label
+						for="pass2">비밀번호 확인 </label> <input type="password" name="pass2"
+						id="pass2" class="width100" /> <label for="name">이름</label> <input
+						type="text" name="name" id="name" class="width100" />
 
-					<label for="mem_zip"></label><br>
+					<label for="mem_zip">주소</label><br>
 					<input type="text" name="mem_zip" id="mem_zip" placeholder="우편번호" size="7" readonly style="background: #a0a0a0;"/>
-					<input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"  class="width100" readonly style="background : #a0a0a0	;"/>
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+					<button type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
+						<input type="text" name="mem_add" id="mem_add" placeholder="도로명주소"  class="width100" readonly style="background : #a0a0a0	;"/>
 					<input type="text" name="mem_add2" id="mem_add2" placeholder="상세주소"  class="width100" />
 
-					<label for="email"></label> <input type="text" name="email"
-						id="email" class="width100" value="" placeholder="이메일"/> <input type="hidden" name="grade"
-						id="grade" value="u" /> <label for="tel"></label>
-						<input type="text" name="tel" id="tel" class="width100" placeholder="전화번호"/>
-						<input type="submit" class="width100" value="회원가입">
+					<label for="email">이메일 </label> <input type="text" name="email"
+						id="email" class="width100" value=""/> <input type="hidden" name="grade"
+						id="grade" value="u" /> <label for="tel">전화번호</label>
+						<input type="tel" name="tel" id="tel" class="width100" />
+						<button type="submit" class="width100">회원가입</button>
 				</form>
 			</div>
-			
-			
-			
-			<script
-				src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-				<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		</div>
+		
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		function sample4_execDaumPostcode() {
 			new daum.Postcode({
@@ -337,7 +251,5 @@
                 //return false;
             }
       </script>
-		</div>
-	</div>
 </body>
 </html>

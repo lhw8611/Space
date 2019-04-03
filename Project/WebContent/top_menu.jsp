@@ -51,10 +51,15 @@
 	});
 </script>
 <style>
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,500);
+
+@import
+	url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 * {
 	margin: 0;
 	padding: 0;
-	font-family:'맑은 고딕','나눔고딕';
+		 font-family: 'Exo', '맑은 고딕'; 
+	/* font-family:'맑은 고딕','나눔고딕'; */
 }
 
 body {
@@ -116,7 +121,7 @@ header a:link, header a:visited {
 
 #menu_left a {
 	color: #01c9ca;
-	font-size: 1.5em;
+	font-size: 1.7em;
 	font-weight: 200;
 }
 
@@ -130,7 +135,7 @@ header a:link, header a:visited {
 
 #menu_center a {
 	color: white;
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 #menu_center a:hover, #menu_right a:hover {
