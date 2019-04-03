@@ -13,6 +13,9 @@ import action.Action;
 import admin.action.Admin_orderListAction;
 import admin.action.HideAction;
 import admin.action.InOutListFormAction;
+import admin.action.ProDeleteAction;
+import admin.action.ProModifyAction;
+import admin.action.ProModifyFormAction;
 import admin.action.QtyInOutAction;
 import admin.action.QtyInOutDeleteAction;
 import admin.action.QtyManagementFormAction;
@@ -133,6 +136,38 @@ public class adminController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		else if (command.equals("/ProModifyFormAction.ad")) {
+			System.out.println("상품 수정폼 컨트롤러");
+			action = new ProModifyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if (command.equals("/ProModifyAction.ad")) {
+			System.out.println("상품 수정 액션 컨트롤러");
+			action = new ProModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if (command.equals("/ProDeleteAction.ad")) {
+			System.out.println("상품 삭제 액션 컨트롤러");
+			action = new ProDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		
 		
 		

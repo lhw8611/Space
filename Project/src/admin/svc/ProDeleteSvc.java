@@ -1,30 +1,25 @@
 package admin.svc;
 
-import vo.ProductBean;
-
 import static db.jdbcUtil.*;
-
 import java.sql.Connection;
 
 import dao.AdminDAO;
 
-public class ProModifySvc {
-
-	public int proModifySvc(ProductBean probean) {
+public class ProDeleteSvc {
+	public int proDel(int pro_code) {
 		Connection con = getConnection();
 		AdminDAO adminDAO = AdminDAO.getInstance();
 		adminDAO.setConnection(con);
-
-		int updateCheck = 0;
-		updateCheck = adminDAO.ProModify(probean);
+		int check=0;
+		check = adminDAO.ProDel(pro_code);
 		
-		if (updateCheck > 0) {
+		if(check>0) {
 			commit(con);
-		} else {
+		}else {
 			rollback(con);
 		}
 		close(con);
-		return updateCheck;
 		
+		return check;
 	}
 }

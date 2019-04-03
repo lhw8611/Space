@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import admin.svc.ProModifyFormSvc;
 import vo.ActionForward;
+import vo.ProductBean;
 
 public class ProModifyFormAction implements Action {
 
@@ -15,9 +16,16 @@ public class ProModifyFormAction implements Action {
 		int pro_code = Integer.parseInt(request.getParameter("pro_code"));
 		
 		ProModifyFormSvc proModifyFormSvc = new ProModifyFormSvc();
-		proModifyFormSvc.getProView(pro_code);
 		
-		forward.setPath("admin/proModifyForm.jsp");
+		
+		ProductBean probean = new ProductBean();
+		
+		probean = proModifyFormSvc.getProView(pro_code);
+		
+		request.setAttribute("probean", probean);
+		
+		
+		forward.setPath("admin/ProModifyForm.jsp");
 		return forward;
 	}
 	

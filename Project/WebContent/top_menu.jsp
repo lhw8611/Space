@@ -51,7 +51,7 @@
 	});
 </script>
 <style>
-@import url(https://fonts.googleapis.com/css?family=Exo:100,200,500);
+@import url(https://fonts.googleapis.com/css?family=Exo:200,300,500);
 
 @import
 	url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);

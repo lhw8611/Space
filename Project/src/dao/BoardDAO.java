@@ -131,7 +131,7 @@ public class BoardDAO {
 
 			if (rs.next()) {
 				productBean = new ProductBean();
-				productBean.setPro_code(rs.getInt("pro_code"));
+				productBean.setPro_code(pro_code);
 				productBean.setPro_name(rs.getString("pro_name"));
 				productBean.setPro_price(rs.getInt("pro_price"));
 				productBean.setPro_category(rs.getString("pro_category"));

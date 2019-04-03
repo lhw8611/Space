@@ -16,6 +16,7 @@ public class ProModifyFormSvc {
 		
 		ProductBean productBean = boardDAO.productInfo(pro_code);
 		close(con);
+		
 		return productBean;
 	}
 }

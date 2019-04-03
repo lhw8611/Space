@@ -345,7 +345,7 @@ border-radius:3px;
 						for (int i = 0; i < reviewList.size(); i++) {
 				%>
 				<div id="reviewDivision" style="clear:both;">
-					<div id="reviewers_left" style="float:left; font-size: 0.5em; font-weight: lighter;">
+					<div id="reviewers_left" style="float:left; font-size: 0.2em;"> 
 					  	 <div id="reviewId"> <%=reviewList.get(i).getMem_id()%></div> 
 					  	<div id="reviewDate"><%=reviewList.get(i).getRev_date()%></div></div>
 				  	<div id="reviewers_right">
@@ -425,7 +425,7 @@ border-radius:3px;
 				}
 			%>
 			</div>
-				<section id="page">
+				<section id="page" style="clear:both;">
 					<%
 						if (nowPage <= 1) {
 					%>

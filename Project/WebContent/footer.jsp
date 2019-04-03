@@ -16,7 +16,7 @@
 		</div>
 	</div> -->
 	<footer id="footer">
-		<span>Copyright IMPARK Corp. All Rights Reserved.</span><br>
+		<span>Copyright Space Corp. All Rights Reserved.</span><br>
 	</footer>
 </body>
 </html>

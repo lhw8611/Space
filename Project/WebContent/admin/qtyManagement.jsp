@@ -43,6 +43,14 @@ margin:50px auto;
 <div id="container">
 	<div id="main">
 	<h2 style="margin:100px 50px 0 50px;">재고관리</h2>
+	
+			<%
+			if (qtyList == null) {
+				%>
+				<h1 style="margin:300px 400px; min-width: 500px;">등록된 상품이 없습니다.</h1> 
+				<% 
+				} else {
+				%>
 	<table id="qtyTable">
 		<tr>
 			<td>상품코드</td>
@@ -50,16 +58,12 @@ margin:50px auto;
 			<td>상품명</td>
 			<td>가격</td>
 			<td>카테고리</td>
-			<td>내용</td>
-			<!-- <td>상세보기</td> -->
+			<td>상품 수정/삭제</td>
 			<td>입/출고 관리</td>
-			<!-- <td>상품 수정</td> -->
 			<td>show/hide</td>
 		</tr>
-		<%
-			if (qtyList == null) {
-				out.println("상품이 없습니다.");
-			} else {
+<% 
+			
 				for (int i = 0; i < qtyList.size(); i++) {
 		%>
 		<tr>
@@ -68,10 +72,8 @@ margin:50px auto;
 			<td><%=qtyList.get(i).getPro_name() %></td>
 			<td><%=qtyList.get(i).getPro_price() %></td>
 			<td><%=qtyList.get(i).getPro_category() %> </td>
-			<td><%=qtyList.get(i).getPro_content() %></td>
-			<!-- <td><input type="button" value="상세보기" onclick="window.open('idCheckForm.mem?openInit=true', '', 'width=300, height=200')"/> </td> -->
+			<td><input type="button" value="상세보기" onclick="location.href='/Space/ProModifyFormAction.ad?pro_code=<%=qtyList.get(i).getPro_code()%>'"/></td>
 			<td><input type="button" value="입/출고 관리" onclick="window.open('inoutListForm.ad?pro_code=<%=qtyList.get(i).getPro_code() %>', '', 'width=550, height=800')"/> </td>
-		<!-- 	<td><input type="button" value="상품 수정"/></td> -->
 			<td><%=qtyList.get(i).getPro_show()%>
 			<%if(qtyList.get(i).getPro_show().equals("x")) {
 			%>
