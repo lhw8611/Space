@@ -88,12 +88,11 @@
 					<option value="none" style="color:gray">선택</option>
 					<option value="wait" style="color:black">배송 준비중</option>
 					<option value="ing" style="color:black">배송 중</option>
-						<option value="deleCom" style="color:black"> 배송 완료</option>
+					<option value="deleCom" style="color:black"> 배송 완료</option>
 					<option value="exchangeWait" style="color:black">교환 대기</option>
 					<option value="exchange" style="color:black">교환 완료</option>
 					<option value="refundWait" style="color:black">환불 대기</option>
 					<option value="refund" style="color:black">환불 완료</option>
-					<option value="cancel" style="color:black"> 취소 대기</option>
 				
 				</select>
 				
