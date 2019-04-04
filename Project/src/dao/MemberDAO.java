@@ -96,7 +96,7 @@ public class MemberDAO {
 		return updateCount;
 	}
 	
-	public int use_point(PointBean pointbean) {
+	public int use_point(PointBean pointbean) { //포인트 사용
 		System.out.println("[4]MemberDAO.use_point");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -130,7 +130,7 @@ public class MemberDAO {
 		ArrayList<PointBean> arraypointbean = null;
 		PointBean pointbean = null;
 		try {
-			pstmt = con.prepareStatement("select * from point where mem_id=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement("select * from point where mem_id=? order by po_num desc", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

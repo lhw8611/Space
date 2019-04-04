@@ -60,7 +60,7 @@
 	width: 100%;
 	height: 477px;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-		url('headerImage/back03.jpg');
+		url('headerImage/back07.jpg');
 	background-position: 50% 50%;
 	background-size: cover;
 	left: 0;
