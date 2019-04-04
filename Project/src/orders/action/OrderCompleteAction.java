@@ -34,7 +34,10 @@ public class OrderCompleteAction implements Action {
 		orderbean.setOr_request(request.getParameter("or_request"));
 		orderbean.setOr_pay(request.getParameter("gyulze"));
 		//(받는사람 정보)포인트 사용한만큼 깎아준거
-		int usepoint = Integer.parseInt(request.getParameter("usepoint"));
+		int usepoint = Integer.parseInt(request.getParameter("or_point"));
+		if(request.getParameter("usepoint")!=null) {
+		usepoint = Integer.parseInt(request.getParameter("usepoint"));
+		}
 		orderbean.setOr_point(usepoint);
 		System.out.println("사용한 포인트 계산해보기 : " + usepoint);
 		//주문상품 정보

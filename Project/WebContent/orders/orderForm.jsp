@@ -1,4 +1,3 @@
-<%@page import="com.mysql.fabric.xmlrpc.base.Array"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="vo.MemberBean"%>
@@ -12,41 +11,29 @@
 	
 	
 	String type = request.getParameter("type");
-	request.setAttribute("membean", membean);
 	System.out.println("타입 값 찍어보기 : " + type);
 	int pro_code = 0;
 	int qty = 0;
-	ArrayList<Integer> pro_codes = new ArrayList<Integer>();
-	ArrayList<Integer> arrayqty = new ArrayList<Integer>();
 	if (type.equals("one")) {
 		pro_code = (int) request.getAttribute("pro_code");
 		qty = (int) request.getAttribute("qty");
-	} else if (type.equals("sel")) {
-		for(int i=0; i<orderlistbean.size(); i++){
-			pro_codes.add(orderlistbean.get(i).getPro_code());
-			arrayqty.add(orderlistbean.get(i).getOd_qty());
-		}
 	}
+	
 	
 	
 	if(request.getAttribute("point")!=null){
-		
 		boolean point = (boolean)request.getAttribute("point");
 		point = true;
 		session.setAttribute("point", point);
-		ArrayList<OrderListBean> orderlistbeana = (ArrayList<OrderListBean>)request.getAttribute("orderlistbean");
-		for(int i=0; i<orderlistbean.size(); i++) {
-			System.out.println("[orderform]오더리스트빈 다 찍어본다 : " + orderlistbeana.get(i).getPro_name());
-		}
-		
 		session.setAttribute("orderlistbean", request.getAttribute("orderlistbean"));
 	}
 	
-	int MaxPoint = (Integer) (request.getAttribute("maxpoint"));
 	
-	int totalItem = (int) (request.getAttribute("totalItem"));
-	int totalMoney = (int) (request.getAttribute("totalMoney"));
-	int delivery = (int) (request.getAttribute("delivery"));
+	
+	int MaxPoint = (Integer) (request.getAttribute("maxpoint"));
+	int totalItem = 0;
+	int totalMoney = 0;
+	int delivery = 2500;
 %>
 <!DOCTYPE html>
 <html>
@@ -221,6 +208,11 @@ table {
 								int savepoint = 0;
 								for (int i = 0; i < orderlistbean.size(); i++) {
 									savepoint += orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty() / 100;
+									totalItem += orderlistbean.get(i).getPro_price() * orderlistbean.get(i).getOd_qty();
+								if(totalItem>=30000){
+									delivery = 0;
+								}
+								totalMoney = totalItem + delivery;
 							%>
 
 
@@ -326,14 +318,20 @@ table {
 									id="delivery" value=<%=delivery%> readonly /> (+)배송비</td>
 								<td class="tg-uys7"><%=delivery%>원</td>
 							</tr>
-							<%if (request.getParameter("usepoint") != null && Integer.parseInt(request.getParameter("usepoint")) > 0) { %>
+							<%if (request.getParameter("usepoint") != null && Integer.parseInt(request.getParameter("usepoint")) > 0) { 
+								totalMoney -= Integer.parseInt(request.getParameter("usepoint"));
+							%>
 							<tr>
 								<td class="tg-uys7"><input type="hidden"
 									name="usepoint" id="usepoint" value="<%=request.getAttribute("usepoint")%>"
 									readonly /> 사용 포인트</td>
 								<td class="tg-uys7"><%=request.getAttribute("usepoint")%>원</td>
 							</tr>
+							
+							
 							<%} %>
+							
+					
 							<tr>
 								<td class="tg-uys7"><input type="hidden"
 									name="total_result" id="total_result" value="<%=totalMoney%>"

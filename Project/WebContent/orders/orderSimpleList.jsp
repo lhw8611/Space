@@ -172,14 +172,26 @@ border: 1px solid #CCCCCC;
 for(int i=0; i<orodproviewbean.size(); i++){
 	int totalMoney = orodproviewbean.get(i).getPro_price()*orodproviewbean.get(i).getOd_qty();
 	int delivery = 2500;
-	if(totalMoney >30000){
+	if(totalMoney >=30000){
 		delivery = 0;
 	}
-	String state = orodproviewbean.get(i).getOr_state();
+	String state = orodproviewbean.get(i).getOd_state().trim();
 	if(state.equals("wait")){
-	 state = "주문완료";
+	 state = "배송대기중";
+	}else if(state.equals("ing")){
+		state = "배송중";
+	}else if(state.equals("deleCom")){
+		state = "배송완료";
+	}else if(state.equals("exchangeWait")){
+		state = "교환대기";
+	}else if(state.equals("exchange")){
+		state = "교환완료";
+	}else if(state.equals("refundWait  ")){
+		state = "환불대기";
+	}else if(state.equals("refund")){
+		state = "환불완료";
 	}
-	totalMoney += delivery;
+	totalMoney += delivery - orodproviewbean.get(i).getOr_point();
 	out.println("<li><ul><li>" + orodproviewbean.get(i).getOr_date()+"</li>"); //주문일시
 	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'><img src='/Space/boardUpload/" +orodproviewbean.get(i).getPro_image()  +"'class='simple_img'></a></li>"); //상품 이미지
 	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'>" + orodproviewbean.get(i).getPro_name() +"</a></li>"); //상품이름

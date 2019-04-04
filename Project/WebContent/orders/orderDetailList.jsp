@@ -27,6 +27,7 @@
 	word-break: normal;
 	height: 90px;
 	border-bottom: 1px solid silver;
+	box-sizing: border-box;
 }
 
 .tg th {
@@ -42,6 +43,7 @@
 	size: 16px;
 	border-top: 2px solid black;
 	border-bottom: 1px solid silver;
+	box-sizing: border-box;
 }
 
 .tg2 td {
@@ -190,8 +192,8 @@ a {
 }
 
 .back {
-	margin-left : 50%;
-	margin-bottom : 30px;
+	margin-left: 50%;
+	margin-bottom: 30px;
 	background-color: #30A4A8;
 	color: #fff;
 	height: 41px;
@@ -225,7 +227,7 @@ a {
 					<h2>주문상세정보</h2>
 				</div>
 			</div>
-			<div class="content" style="margin-top:50px;">
+			<div class="content" style="margin-top: 50px;">
 				<div class="detail_border">
 					<ul>
 						<li>
@@ -276,14 +278,23 @@ a {
 						<td class="tg-uys7"><%=orderdetaillist.get(i).getPro_price() * orderdetaillist.get(i).getOd_qty()%></td>
 						<td class="tg-uys7">
 							<%
-								if (orderdetaillist.get(i).getOd_state().equals("refund")) {
-							%> 구매취소
-							<%
-								} else if (orderdetaillist.get(i).getOd_state().equals("wait")) {
-							%>
-							주문완료 <%
-								}
-							%>
+								String state = orderdetaillist.get(i).getOd_state().trim();
+									if (state.equals("wait")) {
+										state = "배송대기중";
+									} else if (state.equals("ing")) {
+										state = "배송중";
+									} else if (state.equals("deleCom")) {
+										state = "배송완료";
+									} else if (state.equals("exchangeWait")) {
+										state = "교환대기";
+									} else if (state.equals("exchange")) {
+										state = "교환완료";
+									} else if (state.equals("refundWait  ")) {
+										state = "환불대기";
+									} else if (state.equals("refund")) {
+										state = "환불완료";
+									}
+							%> <%=state%>
 						</td>
 					</tr>
 					<%
@@ -343,19 +354,21 @@ a {
 						<ul>
 							<li>상품금액 : <%=cartResult%>원
 							</li>
-							<li>포인트 : 0원</li>
+							<li>포인트 : <%=orderdetaillist.get(0).getOr_point()%>원
+							</li>
 							<li>배송비 : <%=delivery%>원
 							</li>
 							<li style="border: 0;">&nbsp;</li>
 							<li><h3>
 									결제금액 :
-									<%=cartResult + delivery%>원
+									<%=cartResult + delivery - orderdetaillist.get(0).getOr_point()%>원
 								</h3></li>
 						</ul>
 					</div>
 				</div>
 
-				<button type="button" class="back" onClick="javascript:location.href='/Space/orderList.od';">돌아가기</button>
+				<button type="button" class="back"
+					onClick="javascript:location.href='/Space/orderList.od';">돌아가기</button>
 			</div>
 
 		</div>

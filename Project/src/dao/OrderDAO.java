@@ -519,7 +519,8 @@ public class OrderDAO {
 					temp.setOd_num(rs.getInt("od_num"));// order_detail주문번호
 					temp.setPro_code(rs.getInt("pro_code")); // 상품코드
 					temp.setOd_qty(rs.getInt("od_qty")); // 상품주문갯수
-
+					temp.setOd_state(rs.getString("od_state"));// 주문현황
+					
 					temp.setPro_name(rs.getString("pro_name"));// 상품이름
 					temp.setPro_price(rs.getInt("pro_price")); // 상품가격
 					temp.setPro_category(rs.getString("pro_category")); // 상품 카테고리
