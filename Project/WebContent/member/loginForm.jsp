@@ -3,136 +3,209 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <style>
-<
-style>* {
-	margin: 0;
-	padding: 0;
-	font-size: 15px;
-}
+/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
 
-h1 {
-	font-size: 26px;
-}
+@import
+	url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300)
+	;
 
-body {
-	margin: 0;
-	color: white;
-}
-
-.blur:before {
-	content: "";
-	position: fixed;
-	left: 0;
-	right: 0;
-	z-index: -1;
-	display: block;
-	background-image: url("/Space/images/join.jpg");
-	width: 100%;
-	height: 100%;
+	
+.body {
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background-image:
+		url(/Space/images/loginBack.jpg);
+	background-size: cover;
 	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	filter: blur(5px);
-}
-
-.blur {
 	z-index: 0;
 }
 
-.position {
-	width: 550px;
-	margin: auto;
-	padding-top: 140px;
+.grad {
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0
+		, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65)));
+	/* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
 }
 
-.content {
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 10px 45px 45px 45px;
-	margin-left: auto;
-	margin-right: auto;
-	border: white solid pink;
-	max-width: 360px;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
-		rgba(0, 0, 0, 0.3);
+.header {
+	position: absolute;
+	top: calc(50% - 35px);
+	left: calc(50% - 255px);
+	z-index: 2;
 }
 
-.center {
-	text-align: center
+.header div {
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
 }
 
-.width100 {
-	width: 100%;
+.header div span {
+	color: #5379fa !important;
 }
 
-.width50 {
-	width: 49%;
+.login {
+	position: absolute;
+	top: calc(50% - 75px);
+	left: calc(50% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
 }
 
-.content button, input[type=button], input[type=submit] {
-	font-family: "Nanum Gothic";
-	font-weight: 700;
-	text-transform: uppercase;
-	outline: 0;
-	background: #abc;
-	border: 0;
-	padding: 13px;
-	color: #FFFFFF;
+.login input[type=text] {
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
 	font-size: 16px;
-	-webkit-transition: all 0.3 ease;
-	transition: all 0.3 ease;
-	cursor: pointer;
+	font-weight: 400;
+	padding: 4px;
 }
 
-.content input {
-	border: 0;
-	margin-bottom: 15px;
-	padding: 15px;
-	box-sizing: border-box;
+.login input[type=password] {
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+.login input[type=button] {
+	width: 260px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #595B5C;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+.login input[type=submit] {
+	width: 260px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #595B5C;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+.login input[type=button]:hover {
+	opacity: 0.8;
+}
+
+.login input[type=button]:active {
+	opacity: 0.6;
+}
+.login input[type=submit]:hover {
+	opacity: 0.8;
+}
+
+.login input[type=submit]:active {
+	opacity: 0.6;
+}
+
+.login input[type=text]:focus {
+	outline: none;
+	border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.login input[type=password]:focus {
+	outline: none;
+	border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.login input[type=button]:focus {
+	outline: none;
+}
+.login input[type=submit]:focus {
+	outline: none;
+}
+
+::-webkit-input-placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+::-moz-input-placeholder {
+	color: rgba(255, 255, 255, 0.6);
 }
 </style>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script>
+	function validate() {
+		if (login.id.value == "") {
+			alert("아이디를 입력해 주세요");
+			login.id.focus();
+			return false;
+		}
+		if (login.pass.value == "") {
+			alert("비밀번호를 입력해 주세요");
+			login.pass.focus();
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
-	<div class="blur">
-		<div class="position">
-			<div class="content">
-				<form name="login"
-					action="<%=request.getContextPath()%>/loginProcess.mem"
-					method="post" onsubmit="return validate()">
-
-					<div class="center">
-						<a href="<%=request.getContextPath()%>/main.jsp"> <img
-							src="<%=request.getContextPath()%>/images/logo.png" width="150px"></a>
-						<hr color="#abc">
-						<h1>Login</h1>
-					</div>
-					<label for="id">아이디</label> <input type="text" name="id" id="id"
-						class="width100" /> <label for="pass">비밀번호 : </label> <input
-						type="password" name="pass" id="pass" class="width100" />
-
-					<button type="submit" class="width50">로그인</button>
-					<button type="button" onclick="javascript:location.href='<%=request.getContextPath()%>/joinForm.mem';"
-						class="width50">회원가입</button>
-				</form>
-			</div>
-		</div>
+	<div id="container">
+	<div id="main">
+	<div class="body"></div>
+	<div class="grad"></div>
+	<div class="header	">
+		<a href="/Space/main.jsp"><div style="color: #595B5C; font-size: 3.5em; font-weight:200;">Space</div></a>
 	</div>
-	<script>
-		function validate() {
-			if (login.id.value == "") {
-				alert("아이디를 입력해 주세요");
-				login.id.focus();
-				return false;
-			}
-			if (login.pass.value == "") {
-				alert("비밀번호를 입력해 주세요");
-				login.pass.focus();
-				return false;
-			}
-		}
-	</script>
+	<br>
+	<div class="login">
+		<form name="login" action="<%=request.getContextPath()%>/loginProcess.mem"
+			method="post" onsubmit="return validate()"> 
+			<input type="text" placeholder="id" name="id"><br> <input
+				type="password" placeholder="password" name="pass"><br> <input
+				type="submit" value="Login"> <input type="button" value="Join"
+				onclick="javascript:location.href='<%=request.getContextPath()%>/joinForm.mem';">
+		</form>
+	</div>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	</div>
+</div>
 </body>
 </html>

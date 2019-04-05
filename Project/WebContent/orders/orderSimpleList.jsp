@@ -162,7 +162,7 @@ border: 1px solid #CCCCCC;
                             <li>주문일시</li>
                             <li>주문상품</li>
                             <li>상품이름</li>
-                            <li>결제금액</li>
+                            <li>상품금액</li>
                             <li>주문현황</li>
                           
                         </ul>
@@ -191,11 +191,11 @@ for(int i=0; i<orodproviewbean.size(); i++){
 	}else if(state.equals("refund")){
 		state = "환불완료";
 	}
-	totalMoney += delivery - orodproviewbean.get(i).getOr_point();
+	totalMoney += delivery;
 	out.println("<li><ul><li>" + orodproviewbean.get(i).getOr_date()+"</li>"); //주문일시
 	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'><img src='/Space/boardUpload/" +orodproviewbean.get(i).getPro_image()  +"'class='simple_img'></a></li>"); //상품 이미지
 	out.println("<li><a href='orderDetailList.od?od_num=" + orodproviewbean.get(i).getOd_num() + "'>" + orodproviewbean.get(i).getPro_name() +"</a></li>"); //상품이름
-	out.println("<li>" + totalMoney +"</li>"); //결제금액
+	out.println("<li>" + totalMoney +"</li>"); //상품금액
 	out.println("<li>" + state +"</li></ul></li>"); //주문상태
 }
 %>
