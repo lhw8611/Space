@@ -17,6 +17,7 @@ public class qnaModifySvc {
 			rollback(con);
 		}
 		
+		close(con);
 		return insertCount;
 	}
 }
