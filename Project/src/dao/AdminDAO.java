@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 import vo.OrOdProViewBean;
 import vo.ProductBean;
 import vo.QtyProViewBean;
-import vo.SalesBean;
 
 public class AdminDAO {
 
@@ -250,16 +249,40 @@ public class AdminDAO {
 
 	}
 
+	//관리자 - 주문내역 리스트 개수 
+	public int admin_orderList_count() {
+	int listCount = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = "select count(*) from orodproview";
+	try {
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			listCount = rs.getInt(1);
+		}
+	} catch (Exception ex) {
+	} finally {
+		close(rs);
+		close(pstmt);
+	}
+	return listCount;
+}
 	// 관리자 - 주문내역
-	public ArrayList<OrOdProViewBean> admin_orderList() {
+	public ArrayList<OrOdProViewBean> admin_orderList(int page, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from orodproview";
+		String sql = "select * from orodproview limit ? , ?";
 		ArrayList<OrOdProViewBean> OrderList = new ArrayList<OrOdProViewBean>();
 		OrOdProViewBean OrderListBean = null;
-
+		int startrow = (page - 1) * 10;
+		System.out.println("page:"+page+", limit:"+limit);
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, limit);
+			System.out.println(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				OrderListBean = new OrOdProViewBean();
@@ -319,12 +342,11 @@ public class AdminDAO {
 		}
 		return check;
 	}
-
+	//매출 관리
 	public HashMap<Integer, Integer> salesManagement() {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		SalesBean salesBean = null;
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		int price = 0;
 		int yy = 2019;

@@ -2,9 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@page import="vo.OrOdProViewBean"%>
 <%@page import="java.util.*"%>
+<%@page import="vo.PageInfo"%>
 <%
 	ArrayList<OrOdProViewBean> OrderList = null;
 	OrderList = (ArrayList<OrOdProViewBean>) request.getAttribute("OrderList");
+	
+	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+	int listCount = pageInfo.getListCount();
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -46,6 +54,33 @@
 	height:30px;
 	width:55px;
 	}
+	#page {
+	margin: 10px auto;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.pagebox {
+	display: inline-block;
+	color: #B2B2B2;
+	/* border: 1px solid gray;
+	text-align: center;
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	margin: 4px; */
+}
+
+.pagebox>a {
+	display: inline-block;
+	text-align: center;
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	margin: 4px;
+}
+.pagebox a:hover {
+	color: black;
+}
+
 	
 </style>
 </head>
@@ -57,6 +92,7 @@
 <div id="table">
 	<form name="orderList" method="post">
 	<h2 style="margin-left: 50px;">주문내역</h2>
+	<section id="listForm">
 	<table id="orderlistTable" style="margin:20px auto;">
 		<tr>
 			<td>주문날짜</td>
@@ -106,6 +142,65 @@
 			}
 		%>
 	</table>
+	</section>
+	<section id="page">
+					<%
+						if (nowPage <= 1) {
+					%>
+					<div class="pagebox"><</div>
+					<!-- &nbsp; -->
+					<%
+						} else {
+					%>
+					
+					<a href="/Space/admin_orderList.ad?page=<%=nowPage - 1%>">
+						<div class="pagebox"><</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
+
+					<%
+						for (int a = startPage; a <= endPage; a++) {
+							if (a == nowPage) {
+					%>
+					<div class="pagebox" style="color:black;">
+						<%=a%>
+					</div>
+					<%
+						} else {
+					%>
+					<a href="/Space/admin_orderList.ad?page=<%=a%>">
+						<div class="pagebox">
+							<%=a%>
+						</div>
+					</a>
+					<!-- &nbsp; -->
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+					<%
+						if (nowPage >= maxPage) {
+					%>
+					<div class="pagebox">></div>
+					<%
+						} else {
+					%>
+
+					<a href="/Space/admin_orderList.ad?page=<%=nowPage + 1%>">
+						<div class="pagebox">></div>
+					</a>
+
+					<%
+						}
+					%>
+
+
+				</section>
 	</form>
 	</div>
 	</div>

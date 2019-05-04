@@ -46,6 +46,8 @@
 	text-align: left;
 	font-size: 24px;
 	padding-left: 40px;
+	padding-top:20px;
+	padding-botton:20px;
 }
 
 .date {
@@ -116,7 +118,7 @@
 				</div>
 			</div>
 			<div class="content">
-				<div class="name">
+				<div class="name" style="height:70px;">
 					<span class="subject"><%=article.getNo_title()%></span>  
 				</div>
 				<div class="content2">

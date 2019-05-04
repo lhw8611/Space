@@ -127,8 +127,9 @@ color:#DD5850;
 #headerImage {
 	width: 100%;
 	height: 477px;
-		background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-	url('headerImage/back05.jpg');
+		 background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+	url('/Space/headerImage/back05.jpg');
+	
 	background-position: 50% 50%;
 	background-size: cover;
 	left: 0;
