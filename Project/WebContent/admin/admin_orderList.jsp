@@ -20,6 +20,10 @@
 <meta charset="UTF-8">
 <title>::Space:: 관리자 페이지 - 주문내역</title>
 <style>
+a {
+	text-decoration: none;
+	color: black;
+}
 	#orderlistTable img {
 		width:100px;
 		height:100px;
